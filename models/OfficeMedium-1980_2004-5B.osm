@@ -2990,7 +2990,7 @@ OS:SpaceType,
   Plenum,                                 !- Name
   {852e2315-2ef6-4801-b2fc-02176a685694}, !- Default Construction Set Name
   {2da6e024-ce03-41d9-818b-632fe047b123}, !- Default Schedule Set Name
-  ,                                       !- Group Rendering Name
+  {9b314f6e-789c-4ca8-b5ed-ff9167f60096}, !- Group Rendering Name
   ,                                       !- Design Specification Outdoor Air Object Name
   ,                                       !- Standards Template
   ,                                       !- Standards Building Type
@@ -4455,7 +4455,7 @@ OS:ThermalZone,
   ,                                       !- Secondary Daylighting Control Name
   ,                                       !- Fraction of Zone Controlled by Secondary Daylighting Control
   ,                                       !- Illuminance Map Name
-  ,                                       !- Group Rendering Name
+  {5b4084cc-a0c4-490a-9f6e-c37cf8b80440}, !- Group Rendering Name
   {78020cad-ab90-4776-b95e-881b5ec9c2ef}, !- Thermostat Name
   No;                                     !- Use Ideal Air Loads
 
@@ -4554,7 +4554,7 @@ OS:ThermalZone,
   ,                                       !- Secondary Daylighting Control Name
   ,                                       !- Fraction of Zone Controlled by Secondary Daylighting Control
   ,                                       !- Illuminance Map Name
-  ,                                       !- Group Rendering Name
+  {5162337f-3547-499a-b583-a4fafd2b2c41}, !- Group Rendering Name
   {662df8f8-7dea-4ecb-b0f8-bf966bfee6ba}, !- Thermostat Name
   No;                                     !- Use Ideal Air Loads
 
@@ -4653,7 +4653,7 @@ OS:ThermalZone,
   ,                                       !- Secondary Daylighting Control Name
   ,                                       !- Fraction of Zone Controlled by Secondary Daylighting Control
   ,                                       !- Illuminance Map Name
-  ,                                       !- Group Rendering Name
+  {608f1af2-5e79-45d7-a534-c03584a222cf}, !- Group Rendering Name
   {3f8c6d1c-d3bf-4ce8-9b08-83294f2bed06}, !- Thermostat Name
   No;                                     !- Use Ideal Air Loads
 
@@ -4752,7 +4752,7 @@ OS:ThermalZone,
   ,                                       !- Secondary Daylighting Control Name
   ,                                       !- Fraction of Zone Controlled by Secondary Daylighting Control
   ,                                       !- Illuminance Map Name
-  ,                                       !- Group Rendering Name
+  {1f9dec2c-60d5-4a6c-bacb-73f0b1c77535}, !- Group Rendering Name
   {691e0b45-f0e6-49b1-a509-f3a03030a814}, !- Thermostat Name
   No;                                     !- Use Ideal Air Loads
 
@@ -4841,7 +4841,7 @@ OS:ThermalZone,
   ,                                       !- Secondary Daylighting Control Name
   ,                                       !- Fraction of Zone Controlled by Secondary Daylighting Control
   ,                                       !- Illuminance Map Name
-  ,                                       !- Group Rendering Name
+  {46132909-81dc-47cd-890e-f6f20d6abe37}, !- Group Rendering Name
   {d1536a4f-c8de-4c97-94c9-5913f962c4a2}, !- Thermostat Name
   No;                                     !- Use Ideal Air Loads
 
@@ -4930,7 +4930,7 @@ OS:ThermalZone,
   ,                                       !- Secondary Daylighting Control Name
   ,                                       !- Fraction of Zone Controlled by Secondary Daylighting Control
   ,                                       !- Illuminance Map Name
-  ,                                       !- Group Rendering Name
+  {0c550b5b-31f8-4cc8-a4ac-cdaae717a241}, !- Group Rendering Name
   {aa16ed15-8b8e-48d2-9e83-69156d999fb3}, !- Thermostat Name
   No;                                     !- Use Ideal Air Loads
 
@@ -5029,7 +5029,7 @@ OS:ThermalZone,
   ,                                       !- Secondary Daylighting Control Name
   ,                                       !- Fraction of Zone Controlled by Secondary Daylighting Control
   ,                                       !- Illuminance Map Name
-  ,                                       !- Group Rendering Name
+  {12687a31-f0f6-4276-ad17-409f223c7784}, !- Group Rendering Name
   {a92eaa9c-d8c6-4648-88a8-70b80df7379f}, !- Thermostat Name
   No;                                     !- Use Ideal Air Loads
 
@@ -5128,7 +5128,7 @@ OS:ThermalZone,
   ,                                       !- Secondary Daylighting Control Name
   ,                                       !- Fraction of Zone Controlled by Secondary Daylighting Control
   ,                                       !- Illuminance Map Name
-  ,                                       !- Group Rendering Name
+  {e40d47c8-1f7f-4d4c-8dc7-4b58e836fdf6}, !- Group Rendering Name
   {7770b995-8d81-4080-8298-7817b531427e}, !- Thermostat Name
   No;                                     !- Use Ideal Air Loads
 
@@ -5227,7 +5227,7 @@ OS:ThermalZone,
   ,                                       !- Secondary Daylighting Control Name
   ,                                       !- Fraction of Zone Controlled by Secondary Daylighting Control
   ,                                       !- Illuminance Map Name
-  ,                                       !- Group Rendering Name
+  {678af5af-4542-4a07-a650-479d3fb7507c}, !- Group Rendering Name
   {4444268c-450f-41ee-a266-7ac611ae88e6}, !- Thermostat Name
   No;                                     !- Use Ideal Air Loads
 
@@ -5326,7 +5326,7 @@ OS:ThermalZone,
   ,                                       !- Secondary Daylighting Control Name
   ,                                       !- Fraction of Zone Controlled by Secondary Daylighting Control
   ,                                       !- Illuminance Map Name
-  ,                                       !- Group Rendering Name
+  {67caa3d0-1934-4de9-8c0e-5dac174b3b23}, !- Group Rendering Name
   {9886a516-f7ae-41ef-8e92-799df9bd76c5}, !- Thermostat Name
   No;                                     !- Use Ideal Air Loads
 
@@ -5425,7 +5425,7 @@ OS:ThermalZone,
   ,                                       !- Secondary Daylighting Control Name
   ,                                       !- Fraction of Zone Controlled by Secondary Daylighting Control
   ,                                       !- Illuminance Map Name
-  ,                                       !- Group Rendering Name
+  {e508320c-7d9f-4b49-97fd-c81a2bb2a6dc}, !- Group Rendering Name
   {1e58a623-de31-4338-84df-f43e948525a5}, !- Thermostat Name
   No;                                     !- Use Ideal Air Loads
 
@@ -5524,7 +5524,7 @@ OS:ThermalZone,
   ,                                       !- Secondary Daylighting Control Name
   ,                                       !- Fraction of Zone Controlled by Secondary Daylighting Control
   ,                                       !- Illuminance Map Name
-  ,                                       !- Group Rendering Name
+  {67fe0893-1b91-41b2-9755-1baf5365465a}, !- Group Rendering Name
   {dd6af660-24c8-4d3d-b852-f30bd19aff9d}, !- Thermostat Name
   No;                                     !- Use Ideal Air Loads
 
@@ -5623,7 +5623,7 @@ OS:ThermalZone,
   ,                                       !- Secondary Daylighting Control Name
   ,                                       !- Fraction of Zone Controlled by Secondary Daylighting Control
   ,                                       !- Illuminance Map Name
-  ,                                       !- Group Rendering Name
+  {c43a81ff-52d0-46b9-b5c5-c2117ac14b9f}, !- Group Rendering Name
   {c7b3a67f-cbe4-471c-b1da-7815d93656f2}, !- Thermostat Name
   No;                                     !- Use Ideal Air Loads
 
@@ -5722,7 +5722,7 @@ OS:ThermalZone,
   ,                                       !- Secondary Daylighting Control Name
   ,                                       !- Fraction of Zone Controlled by Secondary Daylighting Control
   ,                                       !- Illuminance Map Name
-  ,                                       !- Group Rendering Name
+  {7ecaa6dc-4b02-4795-bc48-f8f83bf33eda}, !- Group Rendering Name
   {694283e0-51be-42f4-a66f-c6b0f66d7ff1}, !- Thermostat Name
   No;                                     !- Use Ideal Air Loads
 
@@ -5821,7 +5821,7 @@ OS:ThermalZone,
   ,                                       !- Secondary Daylighting Control Name
   ,                                       !- Fraction of Zone Controlled by Secondary Daylighting Control
   ,                                       !- Illuminance Map Name
-  ,                                       !- Group Rendering Name
+  {4d0ec10f-d6fe-40ff-9ea1-5bf3f18c43c4}, !- Group Rendering Name
   {f6a6bab1-600f-4d08-96d1-300ae2f7182f}, !- Thermostat Name
   No;                                     !- Use Ideal Air Loads
 
@@ -5920,7 +5920,7 @@ OS:ThermalZone,
   ,                                       !- Secondary Daylighting Control Name
   ,                                       !- Fraction of Zone Controlled by Secondary Daylighting Control
   ,                                       !- Illuminance Map Name
-  ,                                       !- Group Rendering Name
+  {69c5764a-cf5e-4282-8966-0c76826e7bef}, !- Group Rendering Name
   {32284f4b-2cc1-43e8-9934-0b5ad8f6daf3}, !- Thermostat Name
   No;                                     !- Use Ideal Air Loads
 
@@ -6019,7 +6019,7 @@ OS:ThermalZone,
   ,                                       !- Secondary Daylighting Control Name
   ,                                       !- Fraction of Zone Controlled by Secondary Daylighting Control
   ,                                       !- Illuminance Map Name
-  ,                                       !- Group Rendering Name
+  {94ceb6dc-18bd-4980-a7b6-544c07e291eb}, !- Group Rendering Name
   {f2fb1eb8-73aa-4e05-aa07-4a084fe2318d}, !- Thermostat Name
   No;                                     !- Use Ideal Air Loads
 
@@ -6118,7 +6118,7 @@ OS:ThermalZone,
   ,                                       !- Secondary Daylighting Control Name
   ,                                       !- Fraction of Zone Controlled by Secondary Daylighting Control
   ,                                       !- Illuminance Map Name
-  ,                                       !- Group Rendering Name
+  {31b73bca-0311-4ba2-96d6-97ff2546d393}, !- Group Rendering Name
   {91354de5-842b-4536-90d8-e6b7ab300962}, !- Thermostat Name
   No;                                     !- Use Ideal Air Loads
 
@@ -9197,15 +9197,6 @@ OS:Material,
   2322,                                   !- Density {kg/m3}
   832;                                    !- Specific Heat {J/kg-K}
 
-OS:Material:NoMass,
-  {d48dbb63-1493-4ad7-bf4c-acab8900b2ce}, !- Handle
-  Nonres_Floor_Insulation,                !- Name
-  MediumSmooth,                           !- Roughness
-  2.88291975297193,                       !- Thermal Resistance {m2-K/W}
-  0.9,                                    !- Thermal Absorptance
-  0.7,                                    !- Solar Absorptance
-  0.7;                                    !- Visible Absorptance
-
 OS:Material,
   {0b907ec9-5e25-4e02-9a7f-9a45b02a3438}, !- Handle
   G01 13mm gypsum board,                  !- Name
@@ -9217,15 +9208,6 @@ OS:Material,
   0.9,                                    !- Thermal Absorptance
   0.7,                                    !- Solar Absorptance
   0.5;                                    !- Visible Absorptance
-
-OS:Material,
-  {c3e3375b-878a-4b80-a33a-3bcd68782614}, !- Handle
-  M10 200mm concrete block basement wall, !- Name
-  MediumRough,                            !- Roughness
-  0.2032,                                 !- Thickness {m}
-  1.326,                                  !- Conductivity {W/m-K}
-  1842,                                   !- Density {kg/m3}
-  912;                                    !- Specific Heat {J/kg-K}
 
 OS:DefaultConstructionSet,
   {590dda61-b1fe-4750-a47b-f8981c4df6c5}, !- Handle
@@ -9244,23 +9226,9 @@ OS:DefaultConstructionSet,
 OS:DefaultSurfaceConstructions,
   {c2255097-7dd6-4ac9-9ad8-c03b34bfa17c}, !- Handle
   Default Surface Constructions 1,        !- Name
-  {fa778ca8-e18a-4f9c-b5fa-854d340a6592}, !- Floor Construction Name
+  ,                                       !- Floor Construction Name
   {8060470c-2460-4ae5-b5f8-f71d32479512}, !- Wall Construction Name
   {6e2d7284-2f40-4cf9-8cde-817aef1d8f83}; !- Roof Ceiling Construction Name
-
-OS:Construction,
-  {fa778ca8-e18a-4f9c-b5fa-854d340a6592}, !- Handle
-  Typical Insulated Exterior Mass Floor,  !- Name
-  ,                                       !- Surface Rendering Name
-  {ae7658b7-483b-4b11-8c5b-a77c74ba0b37}, !- Layer 1
-  {761ca89e-abfe-4ac0-bdf1-dd251cc26c7b}, !- Layer 2
-  {dc58de9d-8cd6-4c75-9fcb-52214b915e99}; !- Layer 3
-
-OS:StandardsInformation:Construction,
-  {76bf914c-a3f7-43d9-ab33-f15529c0d5ec}, !- Handle
-  {fa778ca8-e18a-4f9c-b5fa-854d340a6592}, !- Construction Name
-  ExteriorFloor,                          !- Intended Surface Type
-  Mass;                                   !- Standards Construction Type
 
 OS:Material:NoMass,
   {ae7658b7-483b-4b11-8c5b-a77c74ba0b37}, !- Handle
@@ -9271,31 +9239,10 @@ OS:Material:NoMass,
   0.7,                                    !- Solar Absorptance
   0.7;                                    !- Visible Absorptance
 
-OS:Material,
-  {761ca89e-abfe-4ac0-bdf1-dd251cc26c7b}, !- Handle
-  4 in. Normalweight Concrete Floor,      !- Name
-  MediumRough,                            !- Roughness
-  0.1016,                                 !- Thickness {m}
-  2.31,                                   !- Conductivity {W/m-K}
-  2321.99999999999,                       !- Density {kg/m3}
-  831.999999999997,                       !- Specific Heat {J/kg-K}
-  0.9,                                    !- Thermal Absorptance
-  0.7,                                    !- Solar Absorptance
-  0.7;                                    !- Visible Absorptance
-
-OS:Material:NoMass,
-  {dc58de9d-8cd6-4c75-9fcb-52214b915e99}, !- Handle
-  Typical Carpet Pad,                     !- Name
-  Smooth,                                 !- Roughness
-  0.216479986995276,                      !- Thermal Resistance {m2-K/W}
-  0.9,                                    !- Thermal Absorptance
-  0.7,                                    !- Solar Absorptance
-  0.8;                                    !- Visible Absorptance
-
 OS:Construction,
   {8060470c-2460-4ae5-b5f8-f71d32479512}, !- Handle
   Typical Insulated Steel Framed Exterior Wall R-12.2, !- Name
-  ,                                       !- Surface Rendering Name
+  {ed2c62ff-778a-463c-b71e-20e1114ff2da}, !- Surface Rendering Name
   {87af2340-3f66-4240-aa17-11c36b5a15ff}, !- Layer 1
   {83ede645-5d6d-4dcb-a535-4414b48dc512}, !- Layer 2
   {ae7658b7-483b-4b11-8c5b-a77c74ba0b37}, !- Layer 3
@@ -9334,7 +9281,7 @@ OS:Material,
 OS:Construction,
   {6e2d7284-2f40-4cf9-8cde-817aef1d8f83}, !- Handle
   Typical IEAD Roof R-19.61,              !- Name
-  ,                                       !- Surface Rendering Name
+  {e993f0d0-9214-46c6-9a68-fa80694516a9}, !- Surface Rendering Name
   {0a04b77c-603b-4c2e-ad0a-4c2b66c2c919}, !- Layer 1
   {3da9672a-c55f-4be2-8b07-effd52c4eede}, !- Layer 2
   {68999c54-da5e-4d62-bbd0-28344f9320f9}; !- Layer 3
@@ -9388,7 +9335,7 @@ OS:DefaultSurfaceConstructions,
 OS:Construction,
   {7fdcc77c-ed9c-4b5f-9c38-e89cab7a3dfa}, !- Handle
   Typical Interior Floor,                 !- Name
-  ,                                       !- Surface Rendering Name
+  {26c984d7-f9b8-447d-968b-2d183752d800}, !- Surface Rendering Name
   {ac1d6819-4ab5-47a2-bbc8-41ddbffe2856}, !- Layer 1
   {e26c51eb-d092-4b7b-8285-23b757ccc3a9}; !- Layer 2
 
@@ -9401,7 +9348,7 @@ OS:StandardsInformation:Construction,
 OS:Construction,
   {92b65c11-667f-4cdb-8629-0a8baaefa8d0}, !- Handle
   Typical Interior Wall,                  !- Name
-  ,                                       !- Surface Rendering Name
+  {44f8e641-847b-4139-977a-72d383a169e2}, !- Surface Rendering Name
   {0b907ec9-5e25-4e02-9a7f-9a45b02a3438}, !- Layer 1
   {0b907ec9-5e25-4e02-9a7f-9a45b02a3438}; !- Layer 2
 
@@ -9414,7 +9361,7 @@ OS:StandardsInformation:Construction,
 OS:Construction,
   {fb295ee6-1c2c-4a17-a0f9-b54741670965}, !- Handle
   Typical Interior Ceiling,               !- Name
-  ,                                       !- Surface Rendering Name
+  {eb968cea-a219-4adf-a000-ac7922560a82}, !- Surface Rendering Name
   {e26c51eb-d092-4b7b-8285-23b757ccc3a9}, !- Layer 1
   {ac1d6819-4ab5-47a2-bbc8-41ddbffe2856}; !- Layer 2
 
@@ -9428,13 +9375,13 @@ OS:DefaultSurfaceConstructions,
   {56b6856e-cdb7-43b2-be29-002652574de6}, !- Handle
   Default Surface Constructions 3,        !- Name
   {39bcda21-e030-40a8-b73a-d618a68aeacc}, !- Floor Construction Name
-  {27b7824b-3fc7-4fcf-a2a9-4596a6d0cc60}, !- Wall Construction Name
+  ,                                       !- Wall Construction Name
   ;                                       !- Roof Ceiling Construction Name
 
 OS:Construction,
   {39bcda21-e030-40a8-b73a-d618a68aeacc}, !- Handle
   ext-slab-mass,                          !- Name
-  ,                                       !- Surface Rendering Name
+  {2cbf219f-b0b8-4eaf-b01d-d7eb51a1c9bf}, !- Surface Rendering Name
   {57c8d5b3-f56c-4790-b8d6-0f364f1e6ebf}, !- Layer 1
   {e26c51eb-d092-4b7b-8285-23b757ccc3a9}; !- Layer 2
 
@@ -9456,56 +9403,22 @@ OS:Material,
   0.7,                                    !- Solar Absorptance
   0.7;                                    !- Visible Absorptance
 
-OS:Construction,
-  {27b7824b-3fc7-4fcf-a2a9-4596a6d0cc60}, !- Handle
-  Typical Insulated Basement Mass Wall R-10.0, !- Name
-  ,                                       !- Surface Rendering Name
-  {efda38a4-023a-42a9-ae9a-2112b79764fe}, !- Layer 1
-  {add4cfc1-d003-4528-aa6a-b5f50363739f}; !- Layer 2
-
-OS:StandardsInformation:Construction,
-  {1f106f5d-c578-4e26-861c-5acb6ec35fbb}, !- Handle
-  {27b7824b-3fc7-4fcf-a2a9-4596a6d0cc60}, !- Construction Name
-  GroundContactWall,                      !- Intended Surface Type
-  Mass;                                   !- Standards Construction Type
-
-OS:Material:NoMass,
-  {efda38a4-023a-42a9-ae9a-2112b79764fe}, !- Handle
-  Typical Insulation R-8.45,              !- Name
-  Smooth,                                 !- Roughness
-  1.48810407632331,                       !- Thermal Resistance {m2-K/W}
-  0.9,                                    !- Thermal Absorptance
-  0.7,                                    !- Solar Absorptance
-  0.7;                                    !- Visible Absorptance
-
-OS:Material,
-  {add4cfc1-d003-4528-aa6a-b5f50363739f}, !- Handle
-  8 in. Concrete Block Basement Wall,     !- Name
-  MediumRough,                            !- Roughness
-  0.2032,                                 !- Thickness {m}
-  1.326,                                  !- Conductivity {W/m-K}
-  1841.99999999999,                       !- Density {kg/m3}
-  911.999999999999,                       !- Specific Heat {J/kg-K}
-  0.9,                                    !- Thermal Absorptance
-  0.7,                                    !- Solar Absorptance
-  0.7;                                    !- Visible Absorptance
-
 OS:DefaultSubSurfaceConstructions,
   {7bc33bf0-8336-465b-b987-18d365826640}, !- Handle
   Default Sub Surface Constructions 1,    !- Name
   {a1213e53-495c-4c33-8751-5ae5f397e242}, !- Fixed Window Construction Name
-  {7f648510-b251-4cf4-9e9e-10881aaeef15}, !- Operable Window Construction Name
+  ,                                       !- Operable Window Construction Name
   {c6e3a58c-661b-4ceb-a2d7-fee32f32d54e}, !- Door Construction Name
-  {c866cdd1-89b6-4ae8-88d9-78822a086b75}, !- Glass Door Construction Name
-  {99cd4f08-26f1-4c1c-846c-5d2019ef8591}, !- Overhead Door Construction Name
+  ,                                       !- Glass Door Construction Name
+  ,                                       !- Overhead Door Construction Name
   ,                                       !- Skylight Construction Name
-  {ebf60b29-2f95-49ab-8fed-cc3b47a737f2}, !- Tubular Daylight Dome Construction Name
-  {ebf60b29-2f95-49ab-8fed-cc3b47a737f2}; !- Tubular Daylight Diffuser Construction Name
+  ,                                       !- Tubular Daylight Dome Construction Name
+  ;                                       !- Tubular Daylight Diffuser Construction Name
 
 OS:Construction,
   {a1213e53-495c-4c33-8751-5ae5f397e242}, !- Handle
   U 0.59 SHGC 0.39 Simple Glazing Window U-0.59 SHGC 0.39, !- Name
-  ,                                       !- Surface Rendering Name
+  {8e237584-b489-471c-a4f6-6ddce4fab03b}, !- Surface Rendering Name
   {31fd13b4-1cb6-4dc6-9728-31465efeb43a}; !- Layer 1
 
 OS:StandardsInformation:Construction,
@@ -9531,37 +9444,9 @@ OS:WindowMaterial:SimpleGlazingSystem,
   0.31;                                   !- Visible Transmittance
 
 OS:Construction,
-  {7f648510-b251-4cf4-9e9e-10881aaeef15}, !- Handle
-  U 0.59 SHGC 0.39 Simple Glazing Window U-0.59 SHGC 0.39 1, !- Name
-  ,                                       !- Surface Rendering Name
-  {884bbcac-6549-477f-b10d-89277cfc4639}; !- Layer 1
-
-OS:StandardsInformation:Construction,
-  {d09a92a0-7549-4ba0-9784-ae1df9a4c3c1}, !- Handle
-  {7f648510-b251-4cf4-9e9e-10881aaeef15}, !- Construction Name
-  ExteriorWindow,                         !- Intended Surface Type
-  Metal framing (all other),              !- Standards Construction Type
-  ,                                       !- Perturbable Layer
-  ,                                       !- Perturbable Layer Type
-  ,                                       !- Other Perturbable Layer Type
-  ,                                       !- Construction Standard
-  ,                                       !- Construction Standard Source
-  ,                                       !- Fenestration Type
-  ,                                       !- Fenestration Assembly Context
-  ,                                       !- Fenestration Number of Panes
-  Metal Framing;                          !- Fenestration Frame Type
-
-OS:WindowMaterial:SimpleGlazingSystem,
-  {884bbcac-6549-477f-b10d-89277cfc4639}, !- Handle
-  U 0.59 SHGC 0.39 Simple Glazing U-1.18 SHGC 0.39 1, !- Name
-  6.72051227935197,                       !- U-Factor {W/m2-K}
-  0.39,                                   !- Solar Heat Gain Coefficient
-  0.31;                                   !- Visible Transmittance
-
-OS:Construction,
   {c6e3a58c-661b-4ceb-a2d7-fee32f32d54e}, !- Handle
   Typical Insulated Metal Door,           !- Name
-  ,                                       !- Surface Rendering Name
+  {98b5c1d7-925b-4791-b40d-c79fb1d1b6b0}, !- Surface Rendering Name
   {73274419-c2a6-4be6-a2ea-3ada199bd802}, !- Layer 1
   {ec09a9ed-e198-43f4-a126-7b65b95a5079}; !- Layer 2
 
@@ -9592,112 +9477,17 @@ OS:Material:NoMass,
   0.7,                                    !- Solar Absorptance
   0.7;                                    !- Visible Absorptance
 
-OS:Construction,
-  {c866cdd1-89b6-4ae8-88d9-78822a086b75}, !- Handle
-  U 0.88 SHGC 0.16 Sgl Ref-A-L Clr 6mm,   !- Name
-  ,                                       !- Surface Rendering Name
-  {dc470eca-bf8e-4fd7-92aa-d8f37663d4d0}; !- Layer 1
-
-OS:StandardsInformation:Construction,
-  {87bbc27e-c114-493a-a9d7-8c06436bf92f}, !- Handle
-  {c866cdd1-89b6-4ae8-88d9-78822a086b75}, !- Construction Name
-  ExteriorWindow,                         !- Intended Surface Type
-  Metal framing (all other),              !- Standards Construction Type
-  ,                                       !- Perturbable Layer
-  ,                                       !- Perturbable Layer Type
-  ,                                       !- Other Perturbable Layer Type
-  ,                                       !- Construction Standard
-  ,                                       !- Construction Standard Source
-  ,                                       !- Fenestration Type
-  ,                                       !- Fenestration Assembly Context
-  ,                                       !- Fenestration Number of Panes
-  Metal Framing;                          !- Fenestration Frame Type
-
-OS:WindowMaterial:Glazing,
-  {dc470eca-bf8e-4fd7-92aa-d8f37663d4d0}, !- Handle
-  REF A CLEAR LO 6MM,                     !- Name
-  SpectralAverage,                        !- Optical Data Type
-  ,                                       !- Window Glass Spectral Data Set Name
-  0.00599999999999998,                    !- Thickness {m}
-  0.066,                                  !- Solar Transmittance at Normal Incidence
-  0.341,                                  !- Front Side Solar Reflectance at Normal Incidence
-  0.493,                                  !- Back Side Solar Reflectance at Normal Incidence
-  0.08,                                   !- Visible Transmittance at Normal Incidence
-  0.41,                                   !- Front Side Visible Reflectance at Normal Incidence
-  0.37,                                   !- Back Side Visible Reflectance at Normal Incidence
-  0,                                      !- Infrared Transmittance at Normal Incidence
-  0.84,                                   !- Front Side Infrared Hemispherical Emissivity
-  0.4,                                    !- Back Side Infrared Hemispherical Emissivity
-  0.9,                                    !- Conductivity {W/m-K}
-  1,                                      !- Dirt Correction Factor for Solar and Visible Transmittance
-  No;                                     !- Solar Diffusing
-
-OS:Construction,
-  {99cd4f08-26f1-4c1c-846c-5d2019ef8591}, !- Handle
-  Typical Overhead Door,                  !- Name
-  ,                                       !- Surface Rendering Name
-  {ec09a9ed-e198-43f4-a126-7b65b95a5079}; !- Layer 1
-
-OS:StandardsInformation:Construction,
-  {0d6ac79d-531f-44ff-9bf8-b86cfd96996a}, !- Handle
-  {99cd4f08-26f1-4c1c-846c-5d2019ef8591}, !- Construction Name
-  ExteriorDoor,                           !- Intended Surface Type
-  RollUp;                                 !- Standards Construction Type
-
-OS:Construction,
-  {ebf60b29-2f95-49ab-8fed-cc3b47a737f2}, !- Handle
-  Typical Interior Window,                !- Name
-  ,                                       !- Surface Rendering Name
-  {87c718a3-11cf-495a-97dd-9451decf6cd6}; !- Layer 1
-
-OS:StandardsInformation:Construction,
-  {f6fb38ac-237d-4f0d-bc69-b92d922bac99}, !- Handle
-  {ebf60b29-2f95-49ab-8fed-cc3b47a737f2}, !- Construction Name
-  InteriorWindow,                         !- Intended Surface Type
-  ;                                       !- Standards Construction Type
-
-OS:WindowMaterial:Glazing,
-  {87c718a3-11cf-495a-97dd-9451decf6cd6}, !- Handle
-  Clear 3mm,                              !- Name
-  SpectralAverage,                        !- Optical Data Type
-  ,                                       !- Window Glass Spectral Data Set Name
-  0.00299999999999999,                    !- Thickness {m}
-  0.837,                                  !- Solar Transmittance at Normal Incidence
-  0.075,                                  !- Front Side Solar Reflectance at Normal Incidence
-  0.075,                                  !- Back Side Solar Reflectance at Normal Incidence
-  0.898,                                  !- Visible Transmittance at Normal Incidence
-  0.081,                                  !- Front Side Visible Reflectance at Normal Incidence
-  0.081,                                  !- Back Side Visible Reflectance at Normal Incidence
-  0,                                      !- Infrared Transmittance at Normal Incidence
-  0.84,                                   !- Front Side Infrared Hemispherical Emissivity
-  0.84,                                   !- Back Side Infrared Hemispherical Emissivity
-  0.9,                                    !- Conductivity {W/m-K}
-  1,                                      !- Dirt Correction Factor for Solar and Visible Transmittance
-  No;                                     !- Solar Diffusing
-
 OS:DefaultSubSurfaceConstructions,
   {ccc7bebe-10a3-4451-a4d8-bd916151d56a}, !- Handle
   Default Sub Surface Constructions 2,    !- Name
-  {ebf60b29-2f95-49ab-8fed-cc3b47a737f2}, !- Fixed Window Construction Name
-  {ebf60b29-2f95-49ab-8fed-cc3b47a737f2}, !- Operable Window Construction Name
-  {58080211-3e4c-4d35-a1ed-2a73756a1606}, !- Door Construction Name
+  ,                                       !- Fixed Window Construction Name
+  ,                                       !- Operable Window Construction Name
+  ,                                       !- Door Construction Name
   ,                                       !- Glass Door Construction Name
   ,                                       !- Overhead Door Construction Name
   ,                                       !- Skylight Construction Name
   ,                                       !- Tubular Daylight Dome Construction Name
   ;                                       !- Tubular Daylight Diffuser Construction Name
-
-OS:Construction,
-  {58080211-3e4c-4d35-a1ed-2a73756a1606}, !- Handle
-  Typical Interior Door,                  !- Name
-  ,                                       !- Surface Rendering Name
-  {816a44aa-259a-449a-8750-f021ec70a4a3}; !- Layer 1
-
-OS:StandardsInformation:Construction,
-  {004faf2b-a16a-404a-80bf-6a3a56b18b67}, !- Handle
-  {58080211-3e4c-4d35-a1ed-2a73756a1606}, !- Construction Name
-  InteriorDoor,                           !- Intended Surface Type
-  ;                                       !- Standards Construction Type
 
 OS:Material,
   {816a44aa-259a-449a-8750-f021ec70a4a3}, !- Handle
@@ -9714,7 +9504,7 @@ OS:Material,
 OS:Construction,
   {e6cfae06-8bb3-4211-bd1f-3a6bf4ef3e3c}, !- Handle
   Typical Interior Partition,             !- Name
-  ,                                       !- Surface Rendering Name
+  {cc964294-7795-4642-afcd-826905ebeff6}, !- Surface Rendering Name
   {816a44aa-259a-449a-8750-f021ec70a4a3}; !- Layer 1
 
 OS:StandardsInformation:Construction,
@@ -9754,7 +9544,7 @@ OS:DefaultSurfaceConstructions,
 OS:Construction,
   {78ca20da-35c7-4075-8287-7b3a328ac97d}, !- Handle
   Plenum Acoustical Tile,                 !- Name
-  ,                                       !- Surface Rendering Name
+  {0cf19fed-4ae6-43a5-a47d-c4e14fe5b2be}, !- Surface Rendering Name
   {f4ba535c-de72-4b5f-bce9-757315492e92}; !- Layer 1
 
 OS:StandardsInformation:Construction,
@@ -10154,7 +9944,7 @@ OS:Material,
 OS:Construction,
   {1a6f2db0-bc8b-4206-8c8f-446bf510ab93}, !- Handle
   InteriorFurnishings,                    !- Name
-  ,                                       !- Surface Rendering Name
+  {ff3887a6-8e14-4444-b386-fec9d42f9698}, !- Surface Rendering Name
   {35b0ba83-05c1-4918-9801-5702011e9c4d}; !- Layer 1
 
 OS:InternalMass:Definition,
@@ -12702,14 +12492,6 @@ OS:StandardsInformation:Material,
   {816a44aa-259a-449a-8750-f021ec70a4a3}; !- Material Name
 
 OS:StandardsInformation:Material,
-  {086d8376-40a4-41c9-9df4-b7d301452f2a}, !- Handle
-  {87c718a3-11cf-495a-97dd-9451decf6cd6}; !- Material Name
-
-OS:StandardsInformation:Material,
-  {bc264c2d-2122-4b59-b879-0c4e5fe55aaa}, !- Handle
-  {dc470eca-bf8e-4fd7-92aa-d8f37663d4d0}; !- Material Name
-
-OS:StandardsInformation:Material,
   {477dcb71-4ed1-45a0-9fea-4b7ec9efbd4d}, !- Handle
   {ec09a9ed-e198-43f4-a126-7b65b95a5079}; !- Material Name
 
@@ -12718,20 +12500,8 @@ OS:StandardsInformation:Material,
   {73274419-c2a6-4be6-a2ea-3ada199bd802}; !- Material Name
 
 OS:StandardsInformation:Material,
-  {7e17b99a-b8e4-4e70-ae00-5392899ddc32}, !- Handle
-  {884bbcac-6549-477f-b10d-89277cfc4639}; !- Material Name
-
-OS:StandardsInformation:Material,
   {270e2e85-aec4-494e-bde3-ed5ed661bf48}, !- Handle
   {31fd13b4-1cb6-4dc6-9728-31465efeb43a}; !- Material Name
-
-OS:StandardsInformation:Material,
-  {5c263046-bbdd-40ad-83fc-007b7a8d0945}, !- Handle
-  {add4cfc1-d003-4528-aa6a-b5f50363739f}; !- Material Name
-
-OS:StandardsInformation:Material,
-  {4c3a4944-d963-4f7b-bb04-54ba61b59ddd}, !- Handle
-  {efda38a4-023a-42a9-ae9a-2112b79764fe}; !- Material Name
 
 OS:StandardsInformation:Material,
   {d1997e79-da98-4d7e-b2d4-758c5f6a76db}, !- Handle
@@ -12758,28 +12528,12 @@ OS:StandardsInformation:Material,
   {87af2340-3f66-4240-aa17-11c36b5a15ff}; !- Material Name
 
 OS:StandardsInformation:Material,
-  {8d63d9f0-c52b-4786-b6f9-9220bbd85b41}, !- Handle
-  {dc58de9d-8cd6-4c75-9fcb-52214b915e99}; !- Material Name
-
-OS:StandardsInformation:Material,
-  {cb680519-5885-4c58-8c9f-f097a5d48896}, !- Handle
-  {761ca89e-abfe-4ac0-bdf1-dd251cc26c7b}; !- Material Name
-
-OS:StandardsInformation:Material,
   {917c7d16-4b40-462d-bf8e-6ead710ea7a7}, !- Handle
   {ae7658b7-483b-4b11-8c5b-a77c74ba0b37}; !- Material Name
 
 OS:StandardsInformation:Material,
-  {a482f34c-845d-4e6f-8fee-2547842a14de}, !- Handle
-  {c3e3375b-878a-4b80-a33a-3bcd68782614}; !- Material Name
-
-OS:StandardsInformation:Material,
   {addc6cff-0b5b-4656-b429-9043d23e3c68}, !- Handle
   {0b907ec9-5e25-4e02-9a7f-9a45b02a3438}; !- Material Name
-
-OS:StandardsInformation:Material,
-  {790877a5-3d63-4d71-92a1-c77ba2ce936c}, !- Handle
-  {d48dbb63-1493-4ad7-bf4c-acab8900b2ce}; !- Material Name
 
 OS:StandardsInformation:Material,
   {0bc7664f-b252-49dc-84f9-3aded896ecbf}, !- Handle
@@ -12788,4 +12542,299 @@ OS:StandardsInformation:Material,
 OS:StandardsInformation:Material,
   {7d861d53-9c71-49db-b10d-123d16ee5e85}, !- Handle
   {e26c51eb-d092-4b7b-8285-23b757ccc3a9}; !- Material Name
+
+OS:RadianceParameters,
+  {2d37b805-0b12-4ac1-915b-769f2142625a}, !- Handle
+  1,                                      !- Accumulated Rays per Record
+  0,                                      !- Direct Threshold
+  1,                                      !- Direct Certainty
+  1,                                      !- Direct Jitter
+  1,                                      !- Direct Pretest
+  6,                                      !- Ambient Bounces VMX
+  2,                                      !- Ambient Bounces DMX
+  4050,                                   !- Ambient Divisions VMX
+  512,                                    !- Ambient Divisions DMX
+  256,                                    !- Ambient Supersamples
+  0.001,                                  !- Limit Weight VMX
+  0.001,                                  !- Limit Weight DMX
+  500,                                    !- Klems Sampling Density
+  146;                                    !- Sky Discretization Resolution
+
+OS:ProgramControl,
+  {eeb38389-af28-4b53-aff4-eb42210a5f2f}; !- Handle
+
+OS:OutputControl:ReportingTolerances,
+  {2eae3c3a-1ff4-4481-986f-2851cb106d22}; !- Handle
+
+OS:ZoneAirHeatBalanceAlgorithm,
+  {2929880e-7a19-4c4c-a53f-a76567740fd2}, !- Handle
+  ThirdOrderBackwardDifference;           !- Algorithm
+
+OS:ZoneAirContaminantBalance,
+  {285a467f-7ad1-4772-9f9e-34b4be4d414e}; !- Handle
+
+OS:ZoneCapacitanceMultiplier:ResearchSpecial,
+  {8cae9bf0-f787-4c8e-902e-cd27a431ef58}, !- Handle
+  ,                                       !- Temperature Capacity Multiplier
+  ,                                       !- Humidity Capacity Multiplier
+  ;                                       !- Carbon Dioxide Capacity Multiplier
+
+OS:Rendering:Color,
+  {ff3887a6-8e14-4444-b386-fec9d42f9698}, !- Handle
+  Rendering Color 4,                      !- Name
+  102,                                    !- Rendering Red Value
+  170,                                    !- Rendering Green Value
+  205;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {0cf19fed-4ae6-43a5-a47d-c4e14fe5b2be}, !- Handle
+  Rendering Color 5,                      !- Name
+  153,                                    !- Rendering Red Value
+  204,                                    !- Rendering Green Value
+  50;                                     !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {cc964294-7795-4642-afcd-826905ebeff6}, !- Handle
+  Rendering Color 6,                      !- Name
+  0,                                      !- Rendering Red Value
+  209,                                    !- Rendering Green Value
+  206;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {39a6148e-ccbd-4c3c-8144-18af3ededab3}, !- Handle
+  Rendering Color 7,                      !- Name
+  34,                                     !- Rendering Red Value
+  34,                                     !- Rendering Green Value
+  139;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {5d537721-c760-40b1-91a8-808825f25b19}, !- Handle
+  Rendering Color 8,                      !- Name
+  255,                                    !- Rendering Red Value
+  0,                                      !- Rendering Green Value
+  69;                                     !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {f19af8ae-f4d0-4381-9a0d-809a00d1b878}, !- Handle
+  Rendering Color 9,                      !- Name
+  0,                                      !- Rendering Red Value
+  255,                                    !- Rendering Green Value
+  255;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {8f640b9a-edb6-445a-9fc1-62b4a3eaed3b}, !- Handle
+  Rendering Color 10,                     !- Name
+  138,                                    !- Rendering Red Value
+  226,                                    !- Rendering Green Value
+  43;                                     !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {ef85caa6-bd23-47e6-9c6a-a9804e4992b7}, !- Handle
+  Rendering Color 11,                     !- Name
+  255,                                    !- Rendering Red Value
+  185,                                    !- Rendering Green Value
+  218;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {8e237584-b489-471c-a4f6-6ddce4fab03b}, !- Handle
+  Rendering Color 12,                     !- Name
+  184,                                    !- Rendering Red Value
+  11,                                     !- Rendering Green Value
+  134;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {09cafca3-83bc-45a6-8600-de1a1fab3129}, !- Handle
+  Rendering Color 13,                     !- Name
+  230,                                    !- Rendering Red Value
+  250,                                    !- Rendering Green Value
+  230;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {2cbf219f-b0b8-4eaf-b01d-d7eb51a1c9bf}, !- Handle
+  Rendering Color 14,                     !- Name
+  175,                                    !- Rendering Red Value
+  238,                                    !- Rendering Green Value
+  238;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {eb968cea-a219-4adf-a000-ac7922560a82}, !- Handle
+  Rendering Color 15,                     !- Name
+  178,                                    !- Rendering Red Value
+  34,                                     !- Rendering Green Value
+  34;                                     !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {44f8e641-847b-4139-977a-72d383a169e2}, !- Handle
+  Rendering Color 16,                     !- Name
+  255,                                    !- Rendering Red Value
+  147,                                    !- Rendering Green Value
+  20;                                     !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {26c984d7-f9b8-447d-968b-2d183752d800}, !- Handle
+  Rendering Color 17,                     !- Name
+  0,                                      !- Rendering Red Value
+  0,                                      !- Rendering Green Value
+  255;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {e993f0d0-9214-46c6-9a68-fa80694516a9}, !- Handle
+  Rendering Color 18,                     !- Name
+  218,                                    !- Rendering Red Value
+  32,                                     !- Rendering Green Value
+  165;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {ed2c62ff-778a-463c-b71e-20e1114ff2da}, !- Handle
+  Rendering Color 19,                     !- Name
+  102,                                    !- Rendering Red Value
+  170,                                    !- Rendering Green Value
+  205;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {bbe1dd92-280f-4f2f-895b-236008200c84}, !- Handle
+  Rendering Color 20,                     !- Name
+  0,                                      !- Rendering Red Value
+  0,                                      !- Rendering Green Value
+  255;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {98b5c1d7-925b-4791-b40d-c79fb1d1b6b0}, !- Handle
+  Rendering Color 21,                     !- Name
+  154,                                    !- Rendering Red Value
+  50,                                     !- Rendering Green Value
+  205;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {94ceb6dc-18bd-4980-a7b6-544c07e291eb}, !- Handle
+  Rendering Color 22,                     !- Name
+  255,                                    !- Rendering Red Value
+  205,                                    !- Rendering Green Value
+  235;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {31b73bca-0311-4ba2-96d6-97ff2546d393}, !- Handle
+  Rendering Color 23,                     !- Name
+  32,                                     !- Rendering Red Value
+  170,                                    !- Rendering Green Value
+  178;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {0c550b5b-31f8-4cc8-a4ac-cdaae717a241}, !- Handle
+  Rendering Color 24,                     !- Name
+  176,                                    !- Rendering Red Value
+  222,                                    !- Rendering Green Value
+  196;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {69c5764a-cf5e-4282-8966-0c76826e7bef}, !- Handle
+  Rendering Color 25,                     !- Name
+  147,                                    !- Rendering Red Value
+  219,                                    !- Rendering Green Value
+  112;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {46132909-81dc-47cd-890e-f6f20d6abe37}, !- Handle
+  Rendering Color 26,                     !- Name
+  255,                                    !- Rendering Red Value
+  173,                                    !- Rendering Green Value
+  222;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {7ecaa6dc-4b02-4795-bc48-f8f83bf33eda}, !- Handle
+  Rendering Color 27,                     !- Name
+  0,                                      !- Rendering Red Value
+  255,                                    !- Rendering Green Value
+  0;                                      !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {1f9dec2c-60d5-4a6c-bacb-73f0b1c77535}, !- Handle
+  Rendering Color 28,                     !- Name
+  255,                                    !- Rendering Red Value
+  0,                                      !- Rendering Green Value
+  165;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {608f1af2-5e79-45d7-a534-c03584a222cf}, !- Handle
+  Rendering Color 29,                     !- Name
+  128,                                    !- Rendering Red Value
+  128,                                    !- Rendering Green Value
+  128;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {5162337f-3547-499a-b583-a4fafd2b2c41}, !- Handle
+  Rendering Color 30,                     !- Name
+  199,                                    !- Rendering Red Value
+  133,                                    !- Rendering Green Value
+  21;                                     !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {5b4084cc-a0c4-490a-9f6e-c37cf8b80440}, !- Handle
+  Rendering Color 31,                     !- Name
+  50,                                     !- Rendering Red Value
+  50,                                     !- Rendering Green Value
+  205;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {12687a31-f0f6-4276-ad17-409f223c7784}, !- Handle
+  Rendering Color 32,                     !- Name
+  64,                                     !- Rendering Red Value
+  208,                                    !- Rendering Green Value
+  224;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {e40d47c8-1f7f-4d4c-8dc7-4b58e836fdf6}, !- Handle
+  Rendering Color 33,                     !- Name
+  176,                                    !- Rendering Red Value
+  230,                                    !- Rendering Green Value
+  224;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {678af5af-4542-4a07-a650-479d3fb7507c}, !- Handle
+  Rendering Color 34,                     !- Name
+  250,                                    !- Rendering Red Value
+  215,                                    !- Rendering Green Value
+  235;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {67caa3d0-1934-4de9-8c0e-5dac174b3b23}, !- Handle
+  Rendering Color 35,                     !- Name
+  0,                                      !- Rendering Red Value
+  0,                                      !- Rendering Green Value
+  255;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {c43a81ff-52d0-46b9-b5c5-c2117ac14b9f}, !- Handle
+  Rendering Color 36,                     !- Name
+  0,                                      !- Rendering Red Value
+  0,                                      !- Rendering Green Value
+  128;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {e508320c-7d9f-4b49-97fd-c81a2bb2a6dc}, !- Handle
+  Rendering Color 37,                     !- Name
+  123,                                    !- Rendering Red Value
+  238,                                    !- Rendering Green Value
+  104;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {67fe0893-1b91-41b2-9755-1baf5365465a}, !- Handle
+  Rendering Color 38,                     !- Name
+  153,                                    !- Rendering Red Value
+  204,                                    !- Rendering Green Value
+  50;                                     !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {4d0ec10f-d6fe-40ff-9ea1-5bf3f18c43c4}, !- Handle
+  Rendering Color 39,                     !- Name
+  95,                                     !- Rendering Red Value
+  160,                                    !- Rendering Green Value
+  158;                                    !- Rendering Blue Value
+
+OS:Rendering:Color,
+  {9b314f6e-789c-4ca8-b5ed-ff9167f60096}, !- Handle
+  Rendering Color 40,                     !- Name
+  100,                                    !- Rendering Red Value
+  237,                                    !- Rendering Green Value
+  149;                                    !- Rendering Blue Value
 
