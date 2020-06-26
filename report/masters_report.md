@@ -12,6 +12,8 @@
 
 Describe DOE ref bldg and include GEB characteristics (efficiency, load, etc.).
 
+## Energy Use
+
 ![image](figure_annual_end_uses.png)
 
 __Figure x. Annual Energy End Uses__
@@ -24,6 +26,10 @@ __Figure x. Monthly Electricity Energy__
 
 __Figure x. Monthly Electricity Demand__
 
+![image](figure_peak_elec.png)
+
+__Figure x. Peak Day Hourly Electricity Demand (Dec 21)__
+
 ![image](figure_monthly_ngas_energy.png)
 
 __Figure x. Monthly Natural Gas Energy__
@@ -31,6 +37,10 @@ __Figure x. Monthly Natural Gas Energy__
 ![image](figure_monthly_ngas_demand.png)
 
 __Figure x. Monthly Natural Gas Demand__
+
+![image](figure_peak_ngas.png)
+
+__Figure x. Peak Day Hourly Natural Gas Demand (Dec 22)__
 
 __Table x. Model Characteristics__
 
