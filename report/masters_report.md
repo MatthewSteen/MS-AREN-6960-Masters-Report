@@ -12,6 +12,14 @@
 
 Describe DOE ref bldg and include GEB characteristics (efficiency, load, etc.).
 
+![image](figure_geometry.png)
+
+__Figure x. Model Geometry (green axis is north)__
+
+__Table x. Architectural Systems__
+
+* _tables summarizing model systems (architectural, electrical, mechanical, plumbing)_
+
 ## Energy Use
 
 ![image](figure_annual_end_uses.png)
@@ -41,10 +49,6 @@ __Figure x. Monthly Natural Gas Demand__
 ![image](figure_peak_ngas.png)
 
 __Figure x. Peak Day Hourly Natural Gas Demand (Dec 22)__
-
-__Table x. Model Characteristics__
-
-
 
 # 3. Results
 
