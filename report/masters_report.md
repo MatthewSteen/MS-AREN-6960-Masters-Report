@@ -34,6 +34,10 @@ __Figure x. Monthly Electricity Energy__
 
 __Figure x. Monthly Electricity Demand__
 
+![image](figure_demand_comparison.png)
+
+__Figure x. Monthly Electricity Peak vs. Utility Demand__
+
 ![image](figure_peak_elec.png)
 
 __Figure x. Peak Day Hourly Electricity Demand (Dec 21)__
