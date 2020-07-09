@@ -1,7 +1,7 @@
 
 OS:Version,
-  {739cce14-fe74-4c8f-a916-aa5e5e6eabb5}, !- Handle
-  3.0.0;                                  !- Version Identifier
+  {a4e3165d-413f-4bdb-bfa5-982acf89f292}, !- Handle
+  3.0.1;                                  !- Version Identifier
 
 OS:Schedule:Constant,
   {e7e298e7-dd5e-4d4d-add7-6a87e838fe8f}, !- Handle
@@ -6593,6 +6593,7 @@ OS:Coil:Cooling:DX:TwoSpeed,
   Autosize,                               !- Rated High Speed Sensible Heat Ratio
   2.96645180193378,                       !- Rated High Speed COP {W/W}
   Autosize,                               !- Rated High Speed Air Flow Rate {m3/s}
+  773.3,                                  !- Unit Internal Static Air Pressure {Pa}
   {606f8e0d-63c3-4edd-9a2a-4cd685fd56af}, !- Air Inlet Node Name
   {5b048684-5e8e-4606-96f8-bc055fc05f4a}, !- Air Outlet Node Name
   {3c87eb50-b9b1-4067-9672-a10783afd3af}, !- Total Cooling Capacity Function of Temperature Curve Name
@@ -6608,6 +6609,7 @@ OS:Coil:Cooling:DX:TwoSpeed,
   {a9a140e6-ed7a-4d75-88ed-8c476ea40b7a}, !- Low Speed Energy Input Ratio Function of Temperature Curve Name
   ,                                       !- Condenser Air Inlet Node Name
   AirCooled,                              !- Condenser Type
+  -25,                                    !- Minimum Outdoor Dry-Bulb Temperature for Compressor Operation {C}
   0,                                      !- High Speed Evaporative Condenser Effectiveness {dimensionless}
   Autosize,                               !- High Speed Evaporative Condenser Air Flow Rate {m3/s}
   Autosize,                               !- High Speed Evaporative Condenser Pump Rated Power Consumption {W}
@@ -7540,6 +7542,7 @@ OS:Coil:Cooling:DX:TwoSpeed,
   Autosize,                               !- Rated High Speed Sensible Heat Ratio
   2.96645180193378,                       !- Rated High Speed COP {W/W}
   Autosize,                               !- Rated High Speed Air Flow Rate {m3/s}
+  773.3,                                  !- Unit Internal Static Air Pressure {Pa}
   {aed527ec-37ba-470e-8757-008515a1621f}, !- Air Inlet Node Name
   {823ca8bb-f122-4503-b78e-db640020cd5f}, !- Air Outlet Node Name
   {3c87eb50-b9b1-4067-9672-a10783afd3af}, !- Total Cooling Capacity Function of Temperature Curve Name
@@ -7555,6 +7558,7 @@ OS:Coil:Cooling:DX:TwoSpeed,
   {a9a140e6-ed7a-4d75-88ed-8c476ea40b7a}, !- Low Speed Energy Input Ratio Function of Temperature Curve Name
   ,                                       !- Condenser Air Inlet Node Name
   AirCooled,                              !- Condenser Type
+  -25,                                    !- Minimum Outdoor Dry-Bulb Temperature for Compressor Operation {C}
   0,                                      !- High Speed Evaporative Condenser Effectiveness {dimensionless}
   Autosize,                               !- High Speed Evaporative Condenser Air Flow Rate {m3/s}
   Autosize,                               !- High Speed Evaporative Condenser Pump Rated Power Consumption {W}
@@ -8487,6 +8491,7 @@ OS:Coil:Cooling:DX:TwoSpeed,
   Autosize,                               !- Rated High Speed Sensible Heat Ratio
   2.96645180193378,                       !- Rated High Speed COP {W/W}
   Autosize,                               !- Rated High Speed Air Flow Rate {m3/s}
+  773.3,                                  !- Unit Internal Static Air Pressure {Pa}
   {96691201-4173-4df6-a272-2e5b558678d1}, !- Air Inlet Node Name
   {0a0622a1-61e3-4963-a9d6-785d9a8d78b6}, !- Air Outlet Node Name
   {3c87eb50-b9b1-4067-9672-a10783afd3af}, !- Total Cooling Capacity Function of Temperature Curve Name
@@ -8502,6 +8507,7 @@ OS:Coil:Cooling:DX:TwoSpeed,
   {a9a140e6-ed7a-4d75-88ed-8c476ea40b7a}, !- Low Speed Energy Input Ratio Function of Temperature Curve Name
   ,                                       !- Condenser Air Inlet Node Name
   AirCooled,                              !- Condenser Type
+  -25,                                    !- Minimum Outdoor Dry-Bulb Temperature for Compressor Operation {C}
   0,                                      !- High Speed Evaporative Condenser Effectiveness {dimensionless}
   Autosize,                               !- High Speed Evaporative Condenser Air Flow Rate {m3/s}
   Autosize,                               !- High Speed Evaporative Condenser Pump Rated Power Consumption {W}
