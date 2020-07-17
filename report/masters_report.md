@@ -10,6 +10,8 @@
 
 # 2. Materials and Methods
 
+## Baseline Model Inputs
+
 Describe DOE ref bldg and include GEB characteristics (efficiency, load, etc.).
 
 ![image](figure_geometry.png)
@@ -80,7 +82,7 @@ __Table x. Plumbing Inputs__
 | Temperature Setpoint | 60C |
 | Water Consumption | 0.00006-0.00036 m3/min |
 
-## Energy Use
+## Baseline Model Outputs
 
 ![image](figure_annual_end_uses.png)
 
@@ -113,6 +115,14 @@ __Figure x. Monthly Natural Gas Demand__
 ![image](figure_peak_ngas.png)
 
 __Figure x. Peak Day Hourly Natural Gas Demand (Dec 22)__
+
+## Measures
+
+_TODO describe measures and results of individual measures in the context of GEBs_
+
+## Optimization Process
+
+_TODO since PAT does not have sequential search, use genetic algorithm(GA) or particle swarm optimization (PSO) techniques to perform optimization analyses_
 
 # 3. Results
 
