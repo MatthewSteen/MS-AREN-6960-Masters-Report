@@ -1399,7 +1399,7 @@ OS:Surface,
 
 OS:HeatBalanceAlgorithm,
   {fe715ac5-1bf3-4a57-9824-bb1cce42f1d3}, !- Handle
-  ConductionTransferFunction,             !- Algorithm
+  ConductionFiniteDifference,             !- Algorithm
   200;                                    !- Surface Temperature Upper Limit {C}
 
 OS:Surface,
@@ -2629,7 +2629,7 @@ OS:Surface,
 
 OS:Timestep,
   {b0fa043b-3e91-4705-b798-a26bbea47620}, !- Handle
-  6;                                      !- Number of Timesteps per Hour
+  12;                                     !- Number of Timesteps per Hour
 
 OS:Sizing:Parameters,
   {0677494e-4528-4de5-8964-9c0de7d15381}, !- Handle
@@ -9289,8 +9289,7 @@ OS:Construction,
   Typical IEAD Roof R-19.61,              !- Name
   {e993f0d0-9214-46c6-9a68-fa80694516a9}, !- Surface Rendering Name
   {0a04b77c-603b-4c2e-ad0a-4c2b66c2c919}, !- Layer 1
-  {3da9672a-c55f-4be2-8b07-effd52c4eede}, !- Layer 2
-  {68999c54-da5e-4d62-bbd0-28344f9320f9}; !- Layer 3
+  {3da9672a-c55f-4be2-8b07-effd52c4eede}; !- Layer 2
 
 OS:StandardsInformation:Construction,
   {17c6e3c3-fe5f-4066-8e2e-33d3926eee16}, !- Handle
@@ -9453,8 +9452,7 @@ OS:Construction,
   {c6e3a58c-661b-4ceb-a2d7-fee32f32d54e}, !- Handle
   Typical Insulated Metal Door,           !- Name
   {98b5c1d7-925b-4791-b40d-c79fb1d1b6b0}, !- Surface Rendering Name
-  {73274419-c2a6-4be6-a2ea-3ada199bd802}, !- Layer 1
-  {ec09a9ed-e198-43f4-a126-7b65b95a5079}; !- Layer 2
+  {ec09a9ed-e198-43f4-a126-7b65b95a5079}; !- Layer 1
 
 OS:StandardsInformation:Construction,
   {ba8f53e4-44fc-4498-bf0b-a978c6d1175e}, !- Handle
