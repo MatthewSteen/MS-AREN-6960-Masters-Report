@@ -9411,7 +9411,7 @@ OS:Material,
 OS:DefaultSubSurfaceConstructions,
   {7bc33bf0-8336-465b-b987-18d365826640}, !- Handle
   Default Sub Surface Constructions 1,    !- Name
-  {a1213e53-495c-4c33-8751-5ae5f397e242}, !- Fixed Window Construction Name
+  {622fe2a0-6a02-44bb-8da4-25d7786519da}, !- Fixed Window Construction Name
   ,                                       !- Operable Window Construction Name
   {c6e3a58c-661b-4ceb-a2d7-fee32f32d54e}, !- Door Construction Name
   ,                                       !- Glass Door Construction Name
@@ -12841,4 +12841,105 @@ OS:Rendering:Color,
   100,                                    !- Rendering Red Value
   237,                                    !- Rendering Green Value
   149;                                    !- Rendering Blue Value
+
+OS:Construction,
+  {622fe2a0-6a02-44bb-8da4-25d7786519da}, !- Handle
+  Dbl Elec Ref Bleached 6mm/6mm Air,      !- Name
+  ,                                       !- Surface Rendering Name
+  {c387dbb0-06c2-4383-808d-eda53694170d}, !- Layer 1
+  {f5a6977f-4615-4b7c-bb51-fd411eca7865}, !- Layer 2
+  {83afda2d-6cf8-4c5c-8c99-cde9ae1f795c}; !- Layer 3
+
+OS:WindowMaterial:Glazing,
+  {c387dbb0-06c2-4383-808d-eda53694170d}, !- Handle
+  ECREF-2 BLEACHED 6MM,                   !- Name
+  SpectralAverage,                        !- Optical Data Type
+  ,                                       !- Window Glass Spectral Data Set Name
+  0.005999988,                            !- Thickness {m}
+  0.694,                                  !- Solar Transmittance at Normal Incidence
+  0.168,                                  !- Front Side Solar Reflectance at Normal Incidence
+  0.168,                                  !- Back Side Solar Reflectance at Normal Incidence
+  0.818,                                  !- Visible Transmittance at Normal Incidence
+  0.11,                                   !- Front Side Visible Reflectance at Normal Incidence
+  0.11,                                   !- Back Side Visible Reflectance at Normal Incidence
+  ,                                       !- Infrared Transmittance at Normal Incidence
+  ,                                       !- Front Side Infrared Hemispherical Emissivity
+  0.1,                                    !- Back Side Infrared Hemispherical Emissivity
+  0.900000000048406;                      !- Conductivity {W/m-K}
+
+OS:StandardsInformation:Material,
+  {4712ce9c-7f8e-431a-9c9c-33cb3cbd0f98}, !- Handle
+  {c387dbb0-06c2-4383-808d-eda53694170d}; !- Material Name
+
+OS:WindowMaterial:Gas,
+  {f5a6977f-4615-4b7c-bb51-fd411eca7865}, !- Handle
+  AIR 6MM,                                !- Name
+  Air,                                    !- Gas Type
+  0.0063;                                 !- Thickness {m}
+
+OS:StandardsInformation:Material,
+  {37c6e9d6-a28e-4e16-98a8-b39aa20e30ee}, !- Handle
+  {f5a6977f-4615-4b7c-bb51-fd411eca7865}; !- Material Name
+
+OS:WindowMaterial:Glazing,
+  {83afda2d-6cf8-4c5c-8c99-cde9ae1f795c}, !- Handle
+  CLEAR 6MM,                              !- Name
+  SpectralAverage,                        !- Optical Data Type
+  ,                                       !- Window Glass Spectral Data Set Name
+  0.00599999999999998,                    !- Thickness {m}
+  0.775,                                  !- Solar Transmittance at Normal Incidence
+  0.071,                                  !- Front Side Solar Reflectance at Normal Incidence
+  0.071,                                  !- Back Side Solar Reflectance at Normal Incidence
+  0.881,                                  !- Visible Transmittance at Normal Incidence
+  0.08,                                   !- Front Side Visible Reflectance at Normal Incidence
+  0.08,                                   !- Back Side Visible Reflectance at Normal Incidence
+  0,                                      !- Infrared Transmittance at Normal Incidence
+  0.84,                                   !- Front Side Infrared Hemispherical Emissivity
+  0.84,                                   !- Back Side Infrared Hemispherical Emissivity
+  0.9,                                    !- Conductivity {W/m-K}
+  1,                                      !- Dirt Correction Factor for Solar and Visible Transmittance
+  No;                                     !- Solar Diffusing
+
+OS:StandardsInformation:Material,
+  {9fcf8cf9-f0bc-4664-9bb7-400c7c3a94e1}, !- Handle
+  {83afda2d-6cf8-4c5c-8c99-cde9ae1f795c}; !- Material Name
+
+OS:StandardsInformation:Construction,
+  {cc01c83a-c851-447f-9577-68d28ed3178f}, !- Handle
+  {622fe2a0-6a02-44bb-8da4-25d7786519da}; !- Construction Name
+
+OS:Construction,
+  {884e8b72-d122-4fb0-8666-41a60cace4dd}, !- Handle
+  Dbl Elec Ref Colored 6mm/6mm Air,       !- Name
+  ,                                       !- Surface Rendering Name
+  {bcdc9f81-c138-4c95-836b-18c1a5726159}, !- Layer 1
+  {f5a6977f-4615-4b7c-bb51-fd411eca7865}, !- Layer 2
+  {83afda2d-6cf8-4c5c-8c99-cde9ae1f795c}; !- Layer 3
+
+OS:WindowMaterial:Glazing,
+  {bcdc9f81-c138-4c95-836b-18c1a5726159}, !- Handle
+  ECREF-2 COLORED 6MM,                    !- Name
+  SpectralAverage,                        !- Optical Data Type
+  ,                                       !- Window Glass Spectral Data Set Name
+  0.00599999999999998,                    !- Thickness {m}
+  0.099,                                  !- Solar Transmittance at Normal Incidence
+  0.219,                                  !- Front Side Solar Reflectance at Normal Incidence
+  0.219,                                  !- Back Side Solar Reflectance at Normal Incidence
+  0.155,                                  !- Visible Transmittance at Normal Incidence
+  0.073,                                  !- Front Side Visible Reflectance at Normal Incidence
+  0.073,                                  !- Back Side Visible Reflectance at Normal Incidence
+  0,                                      !- Infrared Transmittance at Normal Incidence
+  0.84,                                   !- Front Side Infrared Hemispherical Emissivity
+  0.1,                                    !- Back Side Infrared Hemispherical Emissivity
+  0.9,                                    !- Conductivity {W/m-K}
+  1,                                      !- Dirt Correction Factor for Solar and Visible Transmittance
+  No;                                     !- Solar Diffusing
+
+OS:StandardsInformation:Material,
+  {851cf3bf-19b2-4f6d-8716-35bbe62574d0}, !- Handle
+  {bcdc9f81-c138-4c95-836b-18c1a5726159}; !- Material Name
+
+OS:StandardsInformation:Construction,
+  {8f7d5b97-1534-47a8-99d0-18c3e27c8202}, !- Handle
+  {884e8b72-d122-4fb0-8666-41a60cace4dd}; !- Construction Name
 
