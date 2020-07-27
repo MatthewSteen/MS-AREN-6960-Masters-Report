@@ -12943,3 +12943,37 @@ OS:StandardsInformation:Construction,
   {8f7d5b97-1534-47a8-99d0-18c3e27c8202}, !- Handle
   {884e8b72-d122-4fb0-8666-41a60cace4dd}; !- Construction Name
 
+OS:Construction,
+  {2d0f1ccb-d51f-45a5-81a5-f702d4dfb6c1}, !- Handle
+  Dbl Elec Ref Bleached 6mm/6mm Air + Shade, !- Name
+  ,                                       !- Surface Rendering Name
+  {c387dbb0-06c2-4383-808d-eda53694170d}, !- Layer 1
+  {f5a6977f-4615-4b7c-bb51-fd411eca7865}, !- Layer 2
+  {83afda2d-6cf8-4c5c-8c99-cde9ae1f795c}, !- Layer 3
+  {4d529e72-2ede-4ac7-a68b-c4daec1f0d43}; !- Layer 4
+
+OS:StandardsInformation:Construction,
+  {8c4aa86d-15fa-49d3-982f-084fa4f603a0}, !- Handle
+  {2d0f1ccb-d51f-45a5-81a5-f702d4dfb6c1}; !- Construction Name
+
+OS:WindowMaterial:Shade,
+  {4d529e72-2ede-4ac7-a68b-c4daec1f0d43}, !- Handle
+  MEDIUM REFLECT - MEDIUM TRANS SHADE,    !- Name
+  0.4,                                    !- Solar Transmittance {dimensionless}
+  0.5,                                    !- Solar Reflectance {dimensionless}
+  0.4,                                    !- Visible Transmittance {dimensionless}
+  0.5,                                    !- Visible Reflectance {dimensionless}
+  0.9,                                    !- Thermal Hemispherical Emissivity {dimensionless}
+  0.0,                                    !- Thermal Transmittance {dimensionless}
+  0.005,                                  !- Thickness {m}
+  0.1,                                    !- Conductivity {W/m-K}
+  0.05,                                   !- Shade to Glass Distance {m}
+  0.5,                                    !- Top Opening Multiplier
+  0.5,                                    !- Bottom Opening Multiplier
+  0.5,                                    !- Left-Side Opening Multiplier
+  0.5,                                    !- Right-Side Opening Multiplier
+  0.0;                                    !- Airflow Permeability {dimensionless}
+
+OS:StandardsInformation:Material,
+  {6d15a373-0d20-4c48-b7fc-a34e1f14eb9d}, !- Handle
+  {4d529e72-2ede-4ac7-a68b-c4daec1f0d43}; !- Material Name
