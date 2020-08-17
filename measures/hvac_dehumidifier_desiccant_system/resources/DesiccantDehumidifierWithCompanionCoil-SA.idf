@@ -1,0 +1,125 @@
+! Modeling Munters HCU (humidity control unit)
+Dehumidifier:Desiccant:System,
+    Desiccant,             !- Name
+    FanAvailSched,           !- Availability Schedule Name
+    HeatExchanger:Desiccant:BalancedFlow,  !- Desiccant Heat Exchanger Object Type
+    Desiccant Heat Exchanger 1,  !- Desiccant Heat Exchanger Name
+    HX Process Outlet Node,  !- Sensor Node Name
+    Fan:SystemModel,         !- Regeneration Air Fan Object Type
+    Desiccant Regen Fan,     !- Regeneration Air Fan Name
+    DrawThrough,             !- Regeneration Air Fan Placement
+    Coil:Heating:Fuel,       !- Regeneration Air Heater Object Type
+    Desiccant Regen Coil,    !- Regeneration Air Heater Name
+    46.111111,               !- Regeneration Inlet Air Setpoint Temperature {C}
+    Coil:Cooling:DX:SingleSpeed,  !- Companion Cooling Coil Object Type
+    Desiccant DXSystem Cooling Coil,  !- Companion Cooling Coil Name
+    Yes,                     !- Companion Cooling Coil Upstream of Dehumidifier Process Inlet
+    Yes,                     !- Companion Coil Regeneration Air Heating
+    ,                    !- Exhaust Fan Maximum Flow Rate {m3/s} 1.05
+    50,                      !- Exhaust Fan Maximum Power {W}
+    EXHAUSTFANPLF;           !- Exhaust Fan Power Curve Name
+
+HeatExchanger:Desiccant:BalancedFlow,
+    Desiccant Heat Exchanger,  !- Name
+    FanAvailSched,           !- Availability Schedule Name
+    HX Regen Inlet Node,     !- Regeneration Air Inlet Node Name
+    HX Regen Outlet Node,    !- Regeneration Air Outlet Node Name
+    HX Process Inlet Node,   !- Process Air Inlet Node Name
+    HX Process Outlet Node,  !- Process Air Outlet Node Name
+    HeatExchanger:Desiccant:BalancedFlow:PerformanceDataType1,  !- Heat Exchanger Performance Object Type
+    HXDesPerf1;              !- Heat Exchanger Performance Name
+
+!   Coefficients shown below were determined at a constant regeneration temperature and
+!   the desiccant system must be operated at a regeneration temperature of 46.111111 C for proper performance
+HeatExchanger:Desiccant:BalancedFlow:PerformanceDataType1,
+    HXDesPerf1,              !- Name
+    AUTOSIZE,                    !- Nominal Air Flow Rate {m3/s} 1.05
+    AUTOSIZE,                    !- Nominal Air Face Velocity {m/s} 3.25
+    50.0,                    !- Nominal Electric Power {W}
+    -2.53636E+00,            !- Temperature Equation Coefficient 1
+    2.13247E+01,             !- Temperature Equation Coefficient 2
+    9.23308E-01,             !- Temperature Equation Coefficient 3
+    9.43276E+02,             !- Temperature Equation Coefficient 4
+    -5.92367E+01,            !- Temperature Equation Coefficient 5
+    -4.27465E-02,            !- Temperature Equation Coefficient 6
+    1.12204E+02,             !- Temperature Equation Coefficient 7
+    7.78252E-01,             !- Temperature Equation Coefficient 8
+    0.007143,                !- Minimum Regeneration Inlet Air Humidity Ratio for Temperature Equation {kgWater/kgDryAir}
+    0.024286,                !- Maximum Regeneration Inlet Air Humidity Ratio for Temperature Equation {kgWater/kgDryAir}
+    46.111110,               !- Minimum Regeneration Inlet Air Temperature for Temperature Equation {C}
+    46.111112,               !- Maximum Regeneration Inlet Air Temperature for Temperature Equation {C}
+    0.005000,                !- Minimum Process Inlet Air Humidity Ratio for Temperature Equation {kgWater/kgDryAir}
+    0.015714,                !- Maximum Process Inlet Air Humidity Ratio for Temperature Equation {kgWater/kgDryAir}
+    4.583333,                !- Minimum Process Inlet Air Temperature for Temperature Equation {C}
+    21.83333,                !- Maximum Process Inlet Air Temperature for Temperature Equation {C}
+    2.286,                   !- Minimum Regeneration Air Velocity for Temperature Equation {m/s}
+    4.826,                   !- Maximum Regeneration Air Velocity for Temperature Equation {m/s}
+    35.0,                    !- Minimum Regeneration Outlet Air Temperature for Temperature Equation {C}
+    50.0,                    !- Maximum Regeneration Outlet Air Temperature for Temperature Equation {C}
+    5.0,                     !- Minimum Regeneration Inlet Air Relative Humidity for Temperature Equation {percent}
+    45.0,                    !- Maximum Regeneration Inlet Air Relative Humidity for Temperature Equation {percent}
+    80.0,                    !- Minimum Process Inlet Air Relative Humidity for Temperature Equation {percent}
+    100.0,                   !- Maximum Process Inlet Air Relative Humidity for Temperature Equation {percent}
+    -2.25547E+01,            !- Humidity Ratio Equation Coefficient 1
+    9.76839E-01,             !- Humidity Ratio Equation Coefficient 2
+    4.89176E-01,             !- Humidity Ratio Equation Coefficient 3
+    -6.30019E-02,            !- Humidity Ratio Equation Coefficient 4
+    1.20773E-02,             !- Humidity Ratio Equation Coefficient 5
+    5.17134E-05,             !- Humidity Ratio Equation Coefficient 6
+    4.94917E-02,             !- Humidity Ratio Equation Coefficient 7
+    -2.59417E-04,            !- Humidity Ratio Equation Coefficient 8
+    0.007143,                !- Minimum Regeneration Inlet Air Humidity Ratio for Humidity Ratio Equation {kgWater/kgDryAir}
+    0.024286,                !- Maximum Regeneration Inlet Air Humidity Ratio for Humidity Ratio Equation {kgWater/kgDryAir}
+    46.111110,               !- Minimum Regeneration Inlet Air Temperature for Humidity Ratio Equation {C}
+    46.111112,               !- Maximum Regeneration Inlet Air Temperature for Humidity Ratio Equation {C}
+    0.005000,                !- Minimum Process Inlet Air Humidity Ratio for Humidity Ratio Equation {kgWater/kgDryAir}
+    0.015714,                !- Maximum Process Inlet Air Humidity Ratio for Humidity Ratio Equation {kgWater/kgDryAir}
+    4.583333,                !- Minimum Process Inlet Air Temperature for Humidity Ratio Equation {C}
+    21.83333,                !- Maximum Process Inlet Air Temperature for Humidity Ratio Equation {C}
+    2.286,                   !- Minimum Regeneration Air Velocity for Humidity Ratio Equation {m/s}
+    4.826,                   !- Maximum Regeneration Air Velocity for Humidity Ratio Equation {m/s}
+    0.007914,                !- Minimum Regeneration Outlet Air Humidity Ratio for Humidity Ratio Equation {kgWater/kgDryAir}
+    0.026279,                !- Maximum Regeneration Outlet Air Humidity Ratio for Humidity Ratio Equation {kgWater/kgDryAir}
+    5.0,                     !- Minimum Regeneration Inlet Air Relative Humidity for Humidity Ratio Equation {percent}
+    45.0,                    !- Maximum Regeneration Inlet Air Relative Humidity for Humidity Ratio Equation {percent}
+    80.0,                    !- Minimum Process Inlet Air Relative Humidity for Humidity Ratio Equation {percent}
+    100.0;                   !- Maximum Process Inlet Air Relative Humidity for Humidity Ratio Equation {percent}
+
+Fan:SystemModel,
+    Desiccant Regen Fan,     !- Name
+    FanAvailSched,           !- Availability Schedule Name
+    HX Regen Outlet Node,    !- Air Inlet Node Name
+    Regen Fan Outlet Node,   !- Air Outlet Node Name
+    AUTOSIZE,                    !- Design Maximum Air Flow Rate {m3/s} 1.05
+    Discrete,                !- Speed Control Method
+    0.0,                     !- Electric Power Minimum Flow Rate Fraction
+    205.5,                   !- Design Pressure Rise {Pa}
+    0.9,                     !- Motor Efficiency
+    1.0,                     !- Motor In Air Stream Fraction
+    AUTOSIZE,                !- Design Electric Power Consumption {W}
+    TotalEfficiencyAndPressure,  !- Design Power Sizing Method
+    ,                        !- Electric Power Per Unit Flow Rate {W/(m3/s)}
+    ,                        !- Electric Power Per Unit Flow Rate Per Unit Pressure {W/((m3/s)-Pa)}
+    0.7;                     !- Fan Total Efficiency
+
+Coil:Heating:Fuel,
+    Desiccant Regen Coil,    !- Name
+    FanAvailSched,           !- Availability Schedule Name
+    NaturalGas,              !- Fuel Type
+    1,                       !- Burner Efficiency
+    AUTOSIZE,                   !- Nominal Capacity {W} 10000
+    Regen Coil Inlet Node,   !- Air Inlet Node Name
+    HX Regen Inlet Node;     !- Air Outlet Node Name
+
+Curve:Cubic,
+    EXHAUSTFANPLF,           !- Name
+    0,                       !- Coefficient1 Constant
+    1,                       !- Coefficient2 x
+    0.0,                     !- Coefficient3 x**2
+    0.0,                     !- Coefficient4 x**3
+    0.0,                     !- Minimum Value of x
+    1.0;                     !- Maximum Value of x
+
+OutdoorAir:NodeList,
+    Regen Coil Inlet Node;   !- Node or NodeList Name 1
+    
