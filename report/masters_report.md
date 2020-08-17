@@ -12,11 +12,13 @@ Fundamentally, grid operators must balance electricity supply with demand. In or
 
 This report...
 
-# 2. Materials and Methods
+# 2. Methodology
+
+The analysis used a reference building energy model from the U.S. Department of Energy Commercial Reference Building Models (Deru et. al., 2011) as the starting point for evaluating the technologies, henceforth referred to as the baseline. The reference building models are collectively representative of over 60% of the commercial building stock in the United States and are meant to represent generic existing and new buildings rather than a specific individual building. The Medium Office model was chosen because it is most representative of the commercial building stock in the United States based on area (EIA, 2012). 
 
 ## Baseline Model Inputs
 
-Describe DOE ref bldg and include GEB characteristics (efficiency, load, etc.).
+The baseline model was created with OpenStudio (NREL, 2011) using the Create Prototype Building measure. Measures are formal computer scripts written in the Ruby programming language that can interact with an OpenStudio model directly, change the EnergyPlus model during runtime, or produce reports after simulation (Roth et. al, 2016). 
 
 ![image](figure_geometry.png)
 
