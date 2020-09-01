@@ -6556,7 +6556,7 @@ OS:Coil:Heating:Gas,
   {e7e298e7-dd5e-4d4d-add7-6a87e838fe8f}, !- Availability Schedule Name
   0.8,                                    !- Gas Burner Efficiency
   AutoSize,                               !- Nominal Capacity {W}
-  {e6e47838-f8d8-4662-92f5-20ded4529b67}, !- Air Inlet Node Name
+  {5e0f4829-e234-46d2-af7b-4d0818df2bd7}, !- Air Inlet Node Name
   {633082fe-9af5-4bfb-a28a-64e2dd04b874}, !- Air Outlet Node Name
   ,                                       !- Temperature Setpoint Node Name
   0,                                      !- Parasitic Electric Load {W}
@@ -6584,65 +6584,6 @@ OS:Connection,
   3,                                      !- Outlet Port
   {bb9feb04-1b83-4272-b092-b3d1260fb229}, !- Target Object
   16;                                     !- Inlet Port
-
-OS:Coil:Cooling:DX:TwoSpeed,
-  {37d5edbd-9447-4a0c-9f3b-44dd93fe9f8d}, !- Handle
-  5 Zone PVAV 2spd DX Clg Coil 386kBtu/hr 8.5EER, !- Name
-  {e7e298e7-dd5e-4d4d-add7-6a87e838fe8f}, !- Availability Schedule Name
-  Autosize,                               !- Rated High Speed Total Cooling Capacity {W}
-  Autosize,                               !- Rated High Speed Sensible Heat Ratio
-  2.96645180193378,                       !- Rated High Speed COP {W/W}
-  Autosize,                               !- Rated High Speed Air Flow Rate {m3/s}
-  773.3,                                  !- Unit Internal Static Air Pressure {Pa}
-  {606f8e0d-63c3-4edd-9a2a-4cd685fd56af}, !- Air Inlet Node Name
-  {5b048684-5e8e-4606-96f8-bc055fc05f4a}, !- Air Outlet Node Name
-  {3c87eb50-b9b1-4067-9672-a10783afd3af}, !- Total Cooling Capacity Function of Temperature Curve Name
-  {a8c514c3-912f-4b18-b4bd-82f7e06ad84c}, !- Total Cooling Capacity Function of Flow Fraction Curve Name
-  {a9a140e6-ed7a-4d75-88ed-8c476ea40b7a}, !- Energy Input Ratio Function of Temperature Curve Name
-  {8a4b1c9a-a100-452f-bc66-331d754bb479}, !- Energy Input Ratio Function of Flow Fraction Curve Name
-  {9ad105a2-d022-45fb-8ab8-fb47c8af9520}, !- Part Load Fraction Correlation Curve Name
-  Autosize,                               !- Rated Low Speed Total Cooling Capacity {W}
-  0.69,                                   !- Rated Low Speed Sensible Heat Ratio
-  2.96645180193378,                       !- Rated Low Speed COP {W/W}
-  ,                                       !- Rated Low Speed Air Flow Rate {m3/s}
-  {3c87eb50-b9b1-4067-9672-a10783afd3af}, !- Low Speed Total Cooling Capacity Function of Temperature Curve Name
-  {a9a140e6-ed7a-4d75-88ed-8c476ea40b7a}, !- Low Speed Energy Input Ratio Function of Temperature Curve Name
-  ,                                       !- Condenser Air Inlet Node Name
-  AirCooled,                              !- Condenser Type
-  -25,                                    !- Minimum Outdoor Dry-Bulb Temperature for Compressor Operation {C}
-  0,                                      !- High Speed Evaporative Condenser Effectiveness {dimensionless}
-  Autosize,                               !- High Speed Evaporative Condenser Air Flow Rate {m3/s}
-  Autosize,                               !- High Speed Evaporative Condenser Pump Rated Power Consumption {W}
-  0,                                      !- Low Speed Evaporative Condenser Effectiveness {dimensionless}
-  Autosize,                               !- Low Speed Evaporative Condenser Air Flow Rate {m3/s}
-  Autosize,                               !- Low Speed Evaporative Condenser Pump Rated Power Consumption {W}
-  ,                                       !- Supply Water Storage Tank Name
-  ,                                       !- Condensate Collection Water Storage Tank Name
-  10,                                     !- Basin Heater Capacity {W/K}
-  2,                                      !- Basin Heater Setpoint Temperature {C}
-  ;                                       !- Basin Heater Operating Schedule Name
-
-OS:Node,
-  {d6186704-5ee8-4112-9a89-50321cf366d4}, !- Handle
-  5 Zone PVAV 2spd DX Clg Coil 386kBtu/hr 8.5EER Outlet Air Node, !- Name
-  {5b048684-5e8e-4606-96f8-bc055fc05f4a}, !- Inlet Port
-  {e6e47838-f8d8-4662-92f5-20ded4529b67}; !- Outlet Port
-
-OS:Connection,
-  {5b048684-5e8e-4606-96f8-bc055fc05f4a}, !- Handle
-  {d9c772b7-193f-42ce-949c-64eb0d7d279c}, !- Name
-  {37d5edbd-9447-4a0c-9f3b-44dd93fe9f8d}, !- Source Object
-  8,                                      !- Outlet Port
-  {d6186704-5ee8-4112-9a89-50321cf366d4}, !- Target Object
-  2;                                      !- Inlet Port
-
-OS:Connection,
-  {e6e47838-f8d8-4662-92f5-20ded4529b67}, !- Handle
-  {829626cf-acd0-42c3-a7dd-3b2234684927}, !- Name
-  {d6186704-5ee8-4112-9a89-50321cf366d4}, !- Source Object
-  3,                                      !- Outlet Port
-  {98902c79-4e38-40e2-bf1b-110d2f4f1180}, !- Target Object
-  5;                                      !- Inlet Port
 
 OS:Controller:OutdoorAir,
   {a43810d7-00ac-4419-a7d3-cd6a80c7e23a}, !- Handle
@@ -6723,7 +6664,7 @@ OS:Node,
   {45d858ab-8aa2-4164-a1e7-efd3ded953a5}, !- Handle
   5 Zone PVAV Mixed Air Node,             !- Name
   {49d028c7-541d-4891-a2ce-4767747b33df}, !- Inlet Port
-  {606f8e0d-63c3-4edd-9a2a-4cd685fd56af}; !- Outlet Port
+  {cb66012e-340f-4424-8452-af7bc6b96056}; !- Outlet Port
 
 OS:Connection,
   {e1aed095-55a9-4d23-8935-38035898b459}, !- Handle
@@ -6740,14 +6681,6 @@ OS:Connection,
   5,                                      !- Outlet Port
   {45d858ab-8aa2-4164-a1e7-efd3ded953a5}, !- Target Object
   2;                                      !- Inlet Port
-
-OS:Connection,
-  {606f8e0d-63c3-4edd-9a2a-4cd685fd56af}, !- Handle
-  {4b3a66b5-01b1-417a-9a4e-c307ed3dfc31}, !- Name
-  {45d858ab-8aa2-4164-a1e7-efd3ded953a5}, !- Source Object
-  3,                                      !- Outlet Port
-  {37d5edbd-9447-4a0c-9f3b-44dd93fe9f8d}, !- Target Object
-  7;                                      !- Inlet Port
 
 OS:AvailabilityManager:NightCycle,
   {001db604-0592-43fe-af82-ac6fbb8b3138}, !- Handle
@@ -7505,7 +7438,7 @@ OS:Coil:Heating:Gas,
   {e7e298e7-dd5e-4d4d-add7-6a87e838fe8f}, !- Availability Schedule Name
   0.8,                                    !- Gas Burner Efficiency
   AutoSize,                               !- Nominal Capacity {W}
-  {bae900ef-f8af-413d-b00d-9a0ca864ec81}, !- Air Inlet Node Name
+  {9fd78278-dffd-4094-866f-bc40fdecdfdd}, !- Air Inlet Node Name
   {00990da2-9dc9-42a2-a7b0-e944d91d09df}, !- Air Outlet Node Name
   ,                                       !- Temperature Setpoint Node Name
   0,                                      !- Parasitic Electric Load {W}
@@ -7533,65 +7466,6 @@ OS:Connection,
   3,                                      !- Outlet Port
   {59500b27-49aa-4183-af9d-b807fba4710a}, !- Target Object
   16;                                     !- Inlet Port
-
-OS:Coil:Cooling:DX:TwoSpeed,
-  {18173ffd-6a00-4929-89e0-180a993b0536}, !- Handle
-  5 Zone PVAV 1 2spd DX Clg Coil 434kBtu/hr 8.5EER, !- Name
-  {e7e298e7-dd5e-4d4d-add7-6a87e838fe8f}, !- Availability Schedule Name
-  Autosize,                               !- Rated High Speed Total Cooling Capacity {W}
-  Autosize,                               !- Rated High Speed Sensible Heat Ratio
-  2.96645180193378,                       !- Rated High Speed COP {W/W}
-  Autosize,                               !- Rated High Speed Air Flow Rate {m3/s}
-  773.3,                                  !- Unit Internal Static Air Pressure {Pa}
-  {aed527ec-37ba-470e-8757-008515a1621f}, !- Air Inlet Node Name
-  {823ca8bb-f122-4503-b78e-db640020cd5f}, !- Air Outlet Node Name
-  {3c87eb50-b9b1-4067-9672-a10783afd3af}, !- Total Cooling Capacity Function of Temperature Curve Name
-  {a8c514c3-912f-4b18-b4bd-82f7e06ad84c}, !- Total Cooling Capacity Function of Flow Fraction Curve Name
-  {a9a140e6-ed7a-4d75-88ed-8c476ea40b7a}, !- Energy Input Ratio Function of Temperature Curve Name
-  {8a4b1c9a-a100-452f-bc66-331d754bb479}, !- Energy Input Ratio Function of Flow Fraction Curve Name
-  {9ad105a2-d022-45fb-8ab8-fb47c8af9520}, !- Part Load Fraction Correlation Curve Name
-  Autosize,                               !- Rated Low Speed Total Cooling Capacity {W}
-  0.69,                                   !- Rated Low Speed Sensible Heat Ratio
-  2.96645180193378,                       !- Rated Low Speed COP {W/W}
-  ,                                       !- Rated Low Speed Air Flow Rate {m3/s}
-  {3c87eb50-b9b1-4067-9672-a10783afd3af}, !- Low Speed Total Cooling Capacity Function of Temperature Curve Name
-  {a9a140e6-ed7a-4d75-88ed-8c476ea40b7a}, !- Low Speed Energy Input Ratio Function of Temperature Curve Name
-  ,                                       !- Condenser Air Inlet Node Name
-  AirCooled,                              !- Condenser Type
-  -25,                                    !- Minimum Outdoor Dry-Bulb Temperature for Compressor Operation {C}
-  0,                                      !- High Speed Evaporative Condenser Effectiveness {dimensionless}
-  Autosize,                               !- High Speed Evaporative Condenser Air Flow Rate {m3/s}
-  Autosize,                               !- High Speed Evaporative Condenser Pump Rated Power Consumption {W}
-  0,                                      !- Low Speed Evaporative Condenser Effectiveness {dimensionless}
-  Autosize,                               !- Low Speed Evaporative Condenser Air Flow Rate {m3/s}
-  Autosize,                               !- Low Speed Evaporative Condenser Pump Rated Power Consumption {W}
-  ,                                       !- Supply Water Storage Tank Name
-  ,                                       !- Condensate Collection Water Storage Tank Name
-  10,                                     !- Basin Heater Capacity {W/K}
-  2,                                      !- Basin Heater Setpoint Temperature {C}
-  ;                                       !- Basin Heater Operating Schedule Name
-
-OS:Node,
-  {d7a4a968-26cb-498f-8caf-0e9d33a9f480}, !- Handle
-  5 Zone PVAV 1 2spd DX Clg Coil 434kBtu/hr 8.5EER Outlet Air Node, !- Name
-  {823ca8bb-f122-4503-b78e-db640020cd5f}, !- Inlet Port
-  {bae900ef-f8af-413d-b00d-9a0ca864ec81}; !- Outlet Port
-
-OS:Connection,
-  {823ca8bb-f122-4503-b78e-db640020cd5f}, !- Handle
-  {89ea06c4-bbb8-43fc-a9a2-3d45da13bc1a}, !- Name
-  {18173ffd-6a00-4929-89e0-180a993b0536}, !- Source Object
-  8,                                      !- Outlet Port
-  {d7a4a968-26cb-498f-8caf-0e9d33a9f480}, !- Target Object
-  2;                                      !- Inlet Port
-
-OS:Connection,
-  {bae900ef-f8af-413d-b00d-9a0ca864ec81}, !- Handle
-  {c46490b5-e38b-4029-a8be-9b4054d83250}, !- Name
-  {d7a4a968-26cb-498f-8caf-0e9d33a9f480}, !- Source Object
-  3,                                      !- Outlet Port
-  {39c7c9b6-41d1-4dd7-82a3-c2eb411540e5}, !- Target Object
-  5;                                      !- Inlet Port
 
 OS:Controller:OutdoorAir,
   {cfefa43a-ee1d-4416-b563-c565e40d629f}, !- Handle
@@ -7672,7 +7546,7 @@ OS:Node,
   {bf500449-57bf-4338-8f3a-d04ef5a52b46}, !- Handle
   5 Zone PVAV 1 Mixed Air Node,           !- Name
   {6a6bd361-3cf2-48dc-979a-c7d53ee8b748}, !- Inlet Port
-  {aed527ec-37ba-470e-8757-008515a1621f}; !- Outlet Port
+  {daa64b74-f446-4b24-bea9-0bc6d8a08ac7}; !- Outlet Port
 
 OS:Connection,
   {d07c972e-a1e4-4a61-a954-8513e2b2010c}, !- Handle
@@ -7689,14 +7563,6 @@ OS:Connection,
   5,                                      !- Outlet Port
   {bf500449-57bf-4338-8f3a-d04ef5a52b46}, !- Target Object
   2;                                      !- Inlet Port
-
-OS:Connection,
-  {aed527ec-37ba-470e-8757-008515a1621f}, !- Handle
-  {f14660dd-a779-4d70-b0f6-ffb3934d1198}, !- Name
-  {bf500449-57bf-4338-8f3a-d04ef5a52b46}, !- Source Object
-  3,                                      !- Outlet Port
-  {18173ffd-6a00-4929-89e0-180a993b0536}, !- Target Object
-  7;                                      !- Inlet Port
 
 OS:AvailabilityManager:NightCycle,
   {5398a566-0591-4cde-ab43-0bc90410c742}, !- Handle
@@ -8454,7 +8320,7 @@ OS:Coil:Heating:Gas,
   {e7e298e7-dd5e-4d4d-add7-6a87e838fe8f}, !- Availability Schedule Name
   0.8,                                    !- Gas Burner Efficiency
   AutoSize,                               !- Nominal Capacity {W}
-  {4d373299-cf74-449b-b3a3-91fedf2f8c8c}, !- Air Inlet Node Name
+  {90ee9d65-59c9-49ab-87b3-ce8d00fc3222}, !- Air Inlet Node Name
   {55999126-dde8-4e45-ba6f-b4738c632590}, !- Air Outlet Node Name
   ,                                       !- Temperature Setpoint Node Name
   0,                                      !- Parasitic Electric Load {W}
@@ -8482,65 +8348,6 @@ OS:Connection,
   3,                                      !- Outlet Port
   {1814384d-935e-40fa-9ee8-1841f6f8e99b}, !- Target Object
   16;                                     !- Inlet Port
-
-OS:Coil:Cooling:DX:TwoSpeed,
-  {bc9c300d-f55e-4664-9bf7-302bbc4298df}, !- Handle
-  5 Zone PVAV 2 2spd DX Clg Coil 461kBtu/hr 8.5EER, !- Name
-  {e7e298e7-dd5e-4d4d-add7-6a87e838fe8f}, !- Availability Schedule Name
-  Autosize,                               !- Rated High Speed Total Cooling Capacity {W}
-  Autosize,                               !- Rated High Speed Sensible Heat Ratio
-  2.96645180193378,                       !- Rated High Speed COP {W/W}
-  Autosize,                               !- Rated High Speed Air Flow Rate {m3/s}
-  773.3,                                  !- Unit Internal Static Air Pressure {Pa}
-  {96691201-4173-4df6-a272-2e5b558678d1}, !- Air Inlet Node Name
-  {0a0622a1-61e3-4963-a9d6-785d9a8d78b6}, !- Air Outlet Node Name
-  {3c87eb50-b9b1-4067-9672-a10783afd3af}, !- Total Cooling Capacity Function of Temperature Curve Name
-  {a8c514c3-912f-4b18-b4bd-82f7e06ad84c}, !- Total Cooling Capacity Function of Flow Fraction Curve Name
-  {a9a140e6-ed7a-4d75-88ed-8c476ea40b7a}, !- Energy Input Ratio Function of Temperature Curve Name
-  {8a4b1c9a-a100-452f-bc66-331d754bb479}, !- Energy Input Ratio Function of Flow Fraction Curve Name
-  {9ad105a2-d022-45fb-8ab8-fb47c8af9520}, !- Part Load Fraction Correlation Curve Name
-  Autosize,                               !- Rated Low Speed Total Cooling Capacity {W}
-  0.69,                                   !- Rated Low Speed Sensible Heat Ratio
-  2.96645180193378,                       !- Rated Low Speed COP {W/W}
-  ,                                       !- Rated Low Speed Air Flow Rate {m3/s}
-  {3c87eb50-b9b1-4067-9672-a10783afd3af}, !- Low Speed Total Cooling Capacity Function of Temperature Curve Name
-  {a9a140e6-ed7a-4d75-88ed-8c476ea40b7a}, !- Low Speed Energy Input Ratio Function of Temperature Curve Name
-  ,                                       !- Condenser Air Inlet Node Name
-  AirCooled,                              !- Condenser Type
-  -25,                                    !- Minimum Outdoor Dry-Bulb Temperature for Compressor Operation {C}
-  0,                                      !- High Speed Evaporative Condenser Effectiveness {dimensionless}
-  Autosize,                               !- High Speed Evaporative Condenser Air Flow Rate {m3/s}
-  Autosize,                               !- High Speed Evaporative Condenser Pump Rated Power Consumption {W}
-  0,                                      !- Low Speed Evaporative Condenser Effectiveness {dimensionless}
-  Autosize,                               !- Low Speed Evaporative Condenser Air Flow Rate {m3/s}
-  Autosize,                               !- Low Speed Evaporative Condenser Pump Rated Power Consumption {W}
-  ,                                       !- Supply Water Storage Tank Name
-  ,                                       !- Condensate Collection Water Storage Tank Name
-  10,                                     !- Basin Heater Capacity {W/K}
-  2,                                      !- Basin Heater Setpoint Temperature {C}
-  ;                                       !- Basin Heater Operating Schedule Name
-
-OS:Node,
-  {2b7ff57e-6f38-49f1-ba1a-c613638e8d05}, !- Handle
-  5 Zone PVAV 2 2spd DX Clg Coil 461kBtu/hr 8.5EER Outlet Air Node, !- Name
-  {0a0622a1-61e3-4963-a9d6-785d9a8d78b6}, !- Inlet Port
-  {4d373299-cf74-449b-b3a3-91fedf2f8c8c}; !- Outlet Port
-
-OS:Connection,
-  {0a0622a1-61e3-4963-a9d6-785d9a8d78b6}, !- Handle
-  {5767033c-d04f-4287-90a7-43ebe54246e2}, !- Name
-  {bc9c300d-f55e-4664-9bf7-302bbc4298df}, !- Source Object
-  8,                                      !- Outlet Port
-  {2b7ff57e-6f38-49f1-ba1a-c613638e8d05}, !- Target Object
-  2;                                      !- Inlet Port
-
-OS:Connection,
-  {4d373299-cf74-449b-b3a3-91fedf2f8c8c}, !- Handle
-  {a4aeaae2-23e7-433f-a34d-2e35775077b1}, !- Name
-  {2b7ff57e-6f38-49f1-ba1a-c613638e8d05}, !- Source Object
-  3,                                      !- Outlet Port
-  {e61a4363-9df8-41f1-8cc5-366f618030e0}, !- Target Object
-  5;                                      !- Inlet Port
 
 OS:Controller:OutdoorAir,
   {0b2de477-d9e9-4c21-99f7-8645e4cc1e78}, !- Handle
@@ -8621,7 +8428,7 @@ OS:Node,
   {288858cb-2c43-4d40-ac80-ad6396323dcd}, !- Handle
   5 Zone PVAV 2 Mixed Air Node,           !- Name
   {c802ac14-c647-4ec9-9c87-893abb08ecc5}, !- Inlet Port
-  {96691201-4173-4df6-a272-2e5b558678d1}; !- Outlet Port
+  {c1c03f7a-e7f3-4c11-bcd6-e62b52dab92f}; !- Outlet Port
 
 OS:Connection,
   {2da784dd-98d7-40fa-b560-c0c9939d433a}, !- Handle
@@ -8638,14 +8445,6 @@ OS:Connection,
   5,                                      !- Outlet Port
   {288858cb-2c43-4d40-ac80-ad6396323dcd}, !- Target Object
   2;                                      !- Inlet Port
-
-OS:Connection,
-  {96691201-4173-4df6-a272-2e5b558678d1}, !- Handle
-  {a3b822f6-23aa-4b5e-990a-3b4cda380925}, !- Name
-  {288858cb-2c43-4d40-ac80-ad6396323dcd}, !- Source Object
-  3,                                      !- Outlet Port
-  {bc9c300d-f55e-4664-9bf7-302bbc4298df}, !- Target Object
-  7;                                      !- Inlet Port
 
 OS:AvailabilityManager:NightCycle,
   {f5f2d377-e5d0-4660-9e8e-6e69f2b26722}, !- Handle
@@ -12977,3 +12776,212 @@ OS:WindowMaterial:Shade,
 OS:StandardsInformation:Material,
   {6d15a373-0d20-4c48-b7fc-a34e1f14eb9d}, !- Handle
   {4d529e72-2ede-4ac7-a68b-c4daec1f0d43}; !- Material Name
+
+OS:Coil:Cooling:DX:SingleSpeed,
+  {05277c9d-9095-4ea3-9f94-22f36d3617d3}, !- Handle
+  1 Spd DX Clg Coil,                      !- Name
+  {54fa86f6-a43f-4ddc-858f-ee2c9c21dd6c}, !- Availability Schedule Name
+  Autosize,                               !- Rated Total Cooling Capacity {W}
+  Autosize,                               !- Rated Sensible Heat Ratio
+  2.9664518019338,                        !- Rated COP {W/W}
+  Autosize,                               !- Rated Air Flow Rate {m3/s}
+  773.29999999999995,                     !- Rated Evaporator Fan Power Per Volume Flow Rate {W/(m3/s)}
+  {cb66012e-340f-4424-8452-af7bc6b96056}, !- Air Inlet Node Name
+  {39c53a99-8777-493c-a0c5-687bfac410d1}, !- Air Outlet Node Name
+  {3c87eb50-b9b1-4067-9672-a10783afd3af}, !- Total Cooling Capacity Function of Temperature Curve Name
+  {a8c514c3-912f-4b18-b4bd-82f7e06ad84c}, !- Total Cooling Capacity Function of Flow Fraction Curve Name
+  {a9a140e6-ed7a-4d75-88ed-8c476ea40b7a}, !- Energy Input Ratio Function of Temperature Curve Name
+  {8a4b1c9a-a100-452f-bc66-331d754bb479}, !- Energy Input Ratio Function of Flow Fraction Curve Name
+  {9ad105a2-d022-45fb-8ab8-fb47c8af9520}, !- Part Load Fraction Correlation Curve Name
+  -25,                                    !- Minimum Outdoor Dry-Bulb Temperature for Compressor Operation {C}
+  ,                                       !- Nominal Time for Condensate Removal to Begin {s}
+  ,                                       !- Ratio of Initial Moisture Evaporation Rate and Steady State Latent Capacity {dimensionless}
+  ,                                       !- Maximum Cycling Rate {cycles/hr}
+  ,                                       !- Latent Capacity Time Constant {s}
+  ,                                       !- Condenser Air Inlet Node Name
+  AirCooled,                              !- Condenser Type
+  0,                                      !- Evaporative Condenser Effectiveness {dimensionless}
+  Autosize,                               !- Evaporative Condenser Air Flow Rate {m3/s}
+  Autosize,                               !- Evaporative Condenser Pump Rated Power Consumption {W}
+  0,                                      !- Crankcase Heater Capacity {W}
+  0,                                      !- Maximum Outdoor Dry-Bulb Temperature for Crankcase Heater Operation {C}
+  ,                                       !- Supply Water Storage Tank Name
+  ,                                       !- Condensate Collection Water Storage Tank Name
+  0,                                      !- Basin Heater Capacity {W/K}
+  10,                                     !- Basin Heater Setpoint Temperature {C}
+  ;                                       !- Basin Heater Operating Schedule Name
+
+! Always On Discrete
+OS:Schedule:Constant,
+  {54fa86f6-a43f-4ddc-858f-ee2c9c21dd6c}, !- Handle
+  Always On Discrete hvac_library,        !- Name
+  {00e0083d-716a-4ebb-9f71-ccb36d1f3442}, !- Schedule Type Limits Name
+  1;                                      !- Value
+
+! Always OnOff Discrete Schedule Type Limits
+OS:ScheduleTypeLimits,
+  {00e0083d-716a-4ebb-9f71-ccb36d1f3442}, !- Handle
+  OnOff hvac_library,                     !- Name
+  0,                                      !- Lower Limit Value
+  1,                                      !- Upper Limit Value
+  Discrete,                               !- Numeric Type
+  Availability;                           !- Unit Type
+
+OS:Node,
+  {595cb5a3-c490-4b1a-be46-b904529ae7ee}, !- Handle
+  Node 1,                                 !- Name
+  {39c53a99-8777-493c-a0c5-687bfac410d1}, !- Inlet Port
+  {5e0f4829-e234-46d2-af7b-4d0818df2bd7}; !- Outlet Port
+
+OS:Connection,
+  {39c53a99-8777-493c-a0c5-687bfac410d1}, !- Handle
+  {cf96b38f-642f-4738-ab96-f85407df1d8e}, !- Name
+  {05277c9d-9095-4ea3-9f94-22f36d3617d3}, !- Source Object
+  9,                                      !- Outlet Port
+  {595cb5a3-c490-4b1a-be46-b904529ae7ee}, !- Target Object
+  2;                                      !- Inlet Port
+
+OS:Connection,
+  {5e0f4829-e234-46d2-af7b-4d0818df2bd7}, !- Handle
+  {cbd6aadb-7de8-4837-a4e8-bca848ab5830}, !- Name
+  {595cb5a3-c490-4b1a-be46-b904529ae7ee}, !- Source Object
+  3,                                      !- Outlet Port
+  {98902c79-4e38-40e2-bf1b-110d2f4f1180}, !- Target Object
+  5;                                      !- Inlet Port
+
+OS:Connection,
+  {cb66012e-340f-4424-8452-af7bc6b96056}, !- Handle
+  {1720acf4-d2b2-4200-af80-6faecc7174c0}, !- Name
+  {45d858ab-8aa2-4164-a1e7-efd3ded953a5}, !- Source Object
+  3,                                      !- Outlet Port
+  {05277c9d-9095-4ea3-9f94-22f36d3617d3}, !- Target Object
+  8;                                      !- Inlet Port
+
+OS:Coil:Cooling:DX:SingleSpeed,
+  {542d8723-e462-4285-bb70-8635db638dd7}, !- Handle
+  1 Spd DX Clg Coil 1,                    !- Name
+  {54fa86f6-a43f-4ddc-858f-ee2c9c21dd6c}, !- Availability Schedule Name
+  Autosize,                               !- Rated Total Cooling Capacity {W}
+  Autosize,                               !- Rated Sensible Heat Ratio
+  2.9664518019338,                        !- Rated COP {W/W}
+  Autosize,                               !- Rated Air Flow Rate {m3/s}
+  773.29999999999995,                     !- Rated Evaporator Fan Power Per Volume Flow Rate {W/(m3/s)}
+  {daa64b74-f446-4b24-bea9-0bc6d8a08ac7}, !- Air Inlet Node Name
+  {b3d62eab-b87c-4cb6-b113-78084cc93c16}, !- Air Outlet Node Name
+  {3c87eb50-b9b1-4067-9672-a10783afd3af}, !- Total Cooling Capacity Function of Temperature Curve Name
+  {a8c514c3-912f-4b18-b4bd-82f7e06ad84c}, !- Total Cooling Capacity Function of Flow Fraction Curve Name
+  {a9a140e6-ed7a-4d75-88ed-8c476ea40b7a}, !- Energy Input Ratio Function of Temperature Curve Name
+  {8a4b1c9a-a100-452f-bc66-331d754bb479}, !- Energy Input Ratio Function of Flow Fraction Curve Name
+  {9ad105a2-d022-45fb-8ab8-fb47c8af9520}, !- Part Load Fraction Correlation Curve Name
+  -25,                                    !- Minimum Outdoor Dry-Bulb Temperature for Compressor Operation {C}
+  ,                                       !- Nominal Time for Condensate Removal to Begin {s}
+  ,                                       !- Ratio of Initial Moisture Evaporation Rate and Steady State Latent Capacity {dimensionless}
+  ,                                       !- Maximum Cycling Rate {cycles/hr}
+  ,                                       !- Latent Capacity Time Constant {s}
+  ,                                       !- Condenser Air Inlet Node Name
+  AirCooled,                              !- Condenser Type
+  0,                                      !- Evaporative Condenser Effectiveness {dimensionless}
+  Autosize,                               !- Evaporative Condenser Air Flow Rate {m3/s}
+  Autosize,                               !- Evaporative Condenser Pump Rated Power Consumption {W}
+  0,                                      !- Crankcase Heater Capacity {W}
+  0,                                      !- Maximum Outdoor Dry-Bulb Temperature for Crankcase Heater Operation {C}
+  ,                                       !- Supply Water Storage Tank Name
+  ,                                       !- Condensate Collection Water Storage Tank Name
+  0,                                      !- Basin Heater Capacity {W/K}
+  10,                                     !- Basin Heater Setpoint Temperature {C}
+  ;                                       !- Basin Heater Operating Schedule Name
+
+OS:Node,
+  {6998d4ff-ec7a-4b63-b202-5fb2fd010750}, !- Handle
+  Node 2,                                 !- Name
+  {b3d62eab-b87c-4cb6-b113-78084cc93c16}, !- Inlet Port
+  {9fd78278-dffd-4094-866f-bc40fdecdfdd}; !- Outlet Port
+
+OS:Connection,
+  {b3d62eab-b87c-4cb6-b113-78084cc93c16}, !- Handle
+  {0ce123dc-5feb-43b2-b1ca-21d57bcc2068}, !- Name
+  {542d8723-e462-4285-bb70-8635db638dd7}, !- Source Object
+  9,                                      !- Outlet Port
+  {6998d4ff-ec7a-4b63-b202-5fb2fd010750}, !- Target Object
+  2;                                      !- Inlet Port
+
+OS:Connection,
+  {9fd78278-dffd-4094-866f-bc40fdecdfdd}, !- Handle
+  {19d96ccd-765e-4591-8f1e-ddafaa6101f0}, !- Name
+  {6998d4ff-ec7a-4b63-b202-5fb2fd010750}, !- Source Object
+  3,                                      !- Outlet Port
+  {39c7c9b6-41d1-4dd7-82a3-c2eb411540e5}, !- Target Object
+  5;                                      !- Inlet Port
+
+OS:Coil:Cooling:DX:SingleSpeed,
+  {5f4f63f2-8e58-4d25-b126-1ff93d10c1c4}, !- Handle
+  1 Spd DX Clg Coil 2,                    !- Name
+  {54fa86f6-a43f-4ddc-858f-ee2c9c21dd6c}, !- Availability Schedule Name
+  Autosize,                               !- Rated Total Cooling Capacity {W}
+  Autosize,                               !- Rated Sensible Heat Ratio
+  2.9664518019338,                        !- Rated COP {W/W}
+  Autosize,                               !- Rated Air Flow Rate {m3/s}
+  773.3,                                  !- Rated Evaporator Fan Power Per Volume Flow Rate {W/(m3/s)}
+  {c1c03f7a-e7f3-4c11-bcd6-e62b52dab92f}, !- Air Inlet Node Name
+  {ebeedc5e-149b-4eed-b9ba-17c1d8d20b4e}, !- Air Outlet Node Name
+  {3c87eb50-b9b1-4067-9672-a10783afd3af}, !- Total Cooling Capacity Function of Temperature Curve Name
+  {a8c514c3-912f-4b18-b4bd-82f7e06ad84c}, !- Total Cooling Capacity Function of Flow Fraction Curve Name
+  {a9a140e6-ed7a-4d75-88ed-8c476ea40b7a}, !- Energy Input Ratio Function of Temperature Curve Name
+  {8a4b1c9a-a100-452f-bc66-331d754bb479}, !- Energy Input Ratio Function of Flow Fraction Curve Name
+  {9ad105a2-d022-45fb-8ab8-fb47c8af9520}, !- Part Load Fraction Correlation Curve Name
+  -25,                                    !- Minimum Outdoor Dry-Bulb Temperature for Compressor Operation {C}
+  ,                                       !- Nominal Time for Condensate Removal to Begin {s}
+  ,                                       !- Ratio of Initial Moisture Evaporation Rate and Steady State Latent Capacity {dimensionless}
+  ,                                       !- Maximum Cycling Rate {cycles/hr}
+  ,                                       !- Latent Capacity Time Constant {s}
+  ,                                       !- Condenser Air Inlet Node Name
+  AirCooled,                              !- Condenser Type
+  0,                                      !- Evaporative Condenser Effectiveness {dimensionless}
+  Autosize,                               !- Evaporative Condenser Air Flow Rate {m3/s}
+  Autosize,                               !- Evaporative Condenser Pump Rated Power Consumption {W}
+  0,                                      !- Crankcase Heater Capacity {W}
+  0,                                      !- Maximum Outdoor Dry-Bulb Temperature for Crankcase Heater Operation {C}
+  ,                                       !- Supply Water Storage Tank Name
+  ,                                       !- Condensate Collection Water Storage Tank Name
+  0,                                      !- Basin Heater Capacity {W/K}
+  10,                                     !- Basin Heater Setpoint Temperature {C}
+  ;                                       !- Basin Heater Operating Schedule Name
+
+OS:Node,
+  {7ed70c77-8aff-42c7-9f26-5286ad84b930}, !- Handle
+  Node 3,                                 !- Name
+  {ebeedc5e-149b-4eed-b9ba-17c1d8d20b4e}, !- Inlet Port
+  {90ee9d65-59c9-49ab-87b3-ce8d00fc3222}; !- Outlet Port
+
+OS:Connection,
+  {ebeedc5e-149b-4eed-b9ba-17c1d8d20b4e}, !- Handle
+  {7ff5b883-f928-46b0-b886-9b3a5e837a75}, !- Name
+  {5f4f63f2-8e58-4d25-b126-1ff93d10c1c4}, !- Source Object
+  9,                                      !- Outlet Port
+  {7ed70c77-8aff-42c7-9f26-5286ad84b930}, !- Target Object
+  2;                                      !- Inlet Port
+
+OS:Connection,
+  {90ee9d65-59c9-49ab-87b3-ce8d00fc3222}, !- Handle
+  {68983832-ed6b-400e-94ff-05cf1af7cb68}, !- Name
+  {7ed70c77-8aff-42c7-9f26-5286ad84b930}, !- Source Object
+  3,                                      !- Outlet Port
+  {e61a4363-9df8-41f1-8cc5-366f618030e0}, !- Target Object
+  5;                                      !- Inlet Port
+
+OS:Connection,
+  {daa64b74-f446-4b24-bea9-0bc6d8a08ac7}, !- Handle
+  {0a03276b-d99d-4878-9dd4-085356b573d9}, !- Name
+  {bf500449-57bf-4338-8f3a-d04ef5a52b46}, !- Source Object
+  3,                                      !- Outlet Port
+  {542d8723-e462-4285-bb70-8635db638dd7}, !- Target Object
+  8;                                      !- Inlet Port
+
+OS:Connection,
+  {c1c03f7a-e7f3-4c11-bcd6-e62b52dab92f}, !- Handle
+  {a4cf5121-fdaa-44ec-8b1a-b5623b1631e6}, !- Name
+  {288858cb-2c43-4d40-ac80-ad6396323dcd}, !- Source Object
+  3,                                      !- Outlet Port
+  {5f4f63f2-8e58-4d25-b126-1ff93d10c1c4}, !- Target Object
+  8;                                      !- Inlet Port
+
