@@ -4457,7 +4457,8 @@ OS:ThermalZone,
   ,                                       !- Illuminance Map Name
   {5b4084cc-a0c4-490a-9f6e-c37cf8b80440}, !- Group Rendering Name
   {78020cad-ab90-4776-b95e-881b5ec9c2ef}, !- Thermostat Name
-  No;                                     !- Use Ideal Air Loads
+  No,                                     !- Use Ideal Air Loads
+  {383d348a-f3b5-4e08-b4c1-61295ea4c072}; !- Humidistat Name
 
 OS:Node,
   {54ad33c5-ab6c-4ff3-90a1-c299080b570b}, !- Handle
@@ -4556,7 +4557,8 @@ OS:ThermalZone,
   ,                                       !- Illuminance Map Name
   {5162337f-3547-499a-b583-a4fafd2b2c41}, !- Group Rendering Name
   {662df8f8-7dea-4ecb-b0f8-bf966bfee6ba}, !- Thermostat Name
-  No;                                     !- Use Ideal Air Loads
+  No,                                     !- Use Ideal Air Loads
+  {98c4dcd1-ae3f-4a56-a352-21bb65a6fe31}; !- Humidistat Name
 
 OS:Node,
   {e9e96ccb-5632-43b9-a16e-1c0e66701feb}, !- Handle
@@ -4655,7 +4657,8 @@ OS:ThermalZone,
   ,                                       !- Illuminance Map Name
   {608f1af2-5e79-45d7-a534-c03584a222cf}, !- Group Rendering Name
   {3f8c6d1c-d3bf-4ce8-9b08-83294f2bed06}, !- Thermostat Name
-  No;                                     !- Use Ideal Air Loads
+  No,                                     !- Use Ideal Air Loads
+  {04841e97-b0ab-4662-8f39-4bb3f82c32d3}; !- Humidistat Name
 
 OS:Node,
   {8dbfc61f-bee5-44f1-8e3c-8a6165b08030}, !- Handle
@@ -4754,7 +4757,8 @@ OS:ThermalZone,
   ,                                       !- Illuminance Map Name
   {1f9dec2c-60d5-4a6c-bacb-73f0b1c77535}, !- Group Rendering Name
   {691e0b45-f0e6-49b1-a509-f3a03030a814}, !- Thermostat Name
-  No;                                     !- Use Ideal Air Loads
+  No,                                     !- Use Ideal Air Loads
+  {32a7dab7-8e9f-4075-b951-bbb78fcb511e}; !- Humidistat Name
 
 OS:Node,
   {770d5a79-8f01-4ccc-b8e0-942ceab36a92}, !- Handle
@@ -4843,7 +4847,8 @@ OS:ThermalZone,
   ,                                       !- Illuminance Map Name
   {46132909-81dc-47cd-890e-f6f20d6abe37}, !- Group Rendering Name
   {d1536a4f-c8de-4c97-94c9-5913f962c4a2}, !- Thermostat Name
-  No;                                     !- Use Ideal Air Loads
+  No,                                     !- Use Ideal Air Loads
+  {0ce13e74-65f8-4d68-9dd5-fdd2dae43258}; !- Humidistat Name
 
 OS:Node,
   {e3e394a9-31bc-48c3-a191-46a696fdbafe}, !- Handle
@@ -4932,7 +4937,8 @@ OS:ThermalZone,
   ,                                       !- Illuminance Map Name
   {0c550b5b-31f8-4cc8-a4ac-cdaae717a241}, !- Group Rendering Name
   {aa16ed15-8b8e-48d2-9e83-69156d999fb3}, !- Thermostat Name
-  No;                                     !- Use Ideal Air Loads
+  No,                                     !- Use Ideal Air Loads
+  {33fb984e-ccc8-4b47-b445-51eb205c3886}; !- Humidistat Name
 
 OS:Node,
   {400fce17-12c8-4d7b-868b-82935dc76278}, !- Handle
@@ -5031,7 +5037,8 @@ OS:ThermalZone,
   ,                                       !- Illuminance Map Name
   {12687a31-f0f6-4276-ad17-409f223c7784}, !- Group Rendering Name
   {a92eaa9c-d8c6-4648-88a8-70b80df7379f}, !- Thermostat Name
-  No;                                     !- Use Ideal Air Loads
+  No,                                     !- Use Ideal Air Loads
+  {ceb36b8e-8cc9-46c5-a296-88c371ac0d53}; !- Humidistat Name
 
 OS:Node,
   {c1be2674-b0b2-45cb-a98d-5b6100324b11}, !- Handle
@@ -5130,7 +5137,8 @@ OS:ThermalZone,
   ,                                       !- Illuminance Map Name
   {e40d47c8-1f7f-4d4c-8dc7-4b58e836fdf6}, !- Group Rendering Name
   {7770b995-8d81-4080-8298-7817b531427e}, !- Thermostat Name
-  No;                                     !- Use Ideal Air Loads
+  No,                                     !- Use Ideal Air Loads
+  {e2c7eeec-3712-45f9-9514-dcb6a49c787b}; !- Humidistat Name
 
 OS:Node,
   {f28941de-e35f-40c4-89f1-5d0a9bccb103}, !- Handle
@@ -5229,7 +5237,8 @@ OS:ThermalZone,
   ,                                       !- Illuminance Map Name
   {678af5af-4542-4a07-a650-479d3fb7507c}, !- Group Rendering Name
   {4444268c-450f-41ee-a266-7ac611ae88e6}, !- Thermostat Name
-  No;                                     !- Use Ideal Air Loads
+  No,                                     !- Use Ideal Air Loads
+  {3b64e18d-c521-464b-98fa-40daf7cd0622}; !- Humidistat Name
 
 OS:Node,
   {d0c12ec9-dbe4-4596-bd71-21c85d7d1051}, !- Handle
@@ -5328,7 +5337,8 @@ OS:ThermalZone,
   ,                                       !- Illuminance Map Name
   {67caa3d0-1934-4de9-8c0e-5dac174b3b23}, !- Group Rendering Name
   {9886a516-f7ae-41ef-8e92-799df9bd76c5}, !- Thermostat Name
-  No;                                     !- Use Ideal Air Loads
+  No,                                     !- Use Ideal Air Loads
+  {03560024-2a59-45bd-8353-81cacf2fe7dd}; !- Humidistat Name
 
 OS:Node,
   {e4e04374-d143-41fc-a336-a147d9469ac5}, !- Handle
@@ -5427,7 +5437,8 @@ OS:ThermalZone,
   ,                                       !- Illuminance Map Name
   {e508320c-7d9f-4b49-97fd-c81a2bb2a6dc}, !- Group Rendering Name
   {1e58a623-de31-4338-84df-f43e948525a5}, !- Thermostat Name
-  No;                                     !- Use Ideal Air Loads
+  No,                                     !- Use Ideal Air Loads
+  {aecb2aa0-3a7a-4300-82e6-ead0c57161cf}; !- Humidistat Name
 
 OS:Node,
   {c6fc7bc0-ba62-49c9-bb96-a755bcfcf1f1}, !- Handle
@@ -5526,7 +5537,8 @@ OS:ThermalZone,
   ,                                       !- Illuminance Map Name
   {67fe0893-1b91-41b2-9755-1baf5365465a}, !- Group Rendering Name
   {dd6af660-24c8-4d3d-b852-f30bd19aff9d}, !- Thermostat Name
-  No;                                     !- Use Ideal Air Loads
+  No,                                     !- Use Ideal Air Loads
+  {9508eb36-514a-4aab-8de7-e0b61a4ec789}; !- Humidistat Name
 
 OS:Node,
   {486fdb1f-ee26-4c99-851c-ebb59748e49e}, !- Handle
@@ -5625,7 +5637,8 @@ OS:ThermalZone,
   ,                                       !- Illuminance Map Name
   {c43a81ff-52d0-46b9-b5c5-c2117ac14b9f}, !- Group Rendering Name
   {c7b3a67f-cbe4-471c-b1da-7815d93656f2}, !- Thermostat Name
-  No;                                     !- Use Ideal Air Loads
+  No,                                     !- Use Ideal Air Loads
+  {81081ce8-61b6-407e-91d1-d7c962825e11}; !- Humidistat Name
 
 OS:Node,
   {542b9ae7-1b72-49d5-bccf-7260c70e2e20}, !- Handle
@@ -5724,7 +5737,8 @@ OS:ThermalZone,
   ,                                       !- Illuminance Map Name
   {7ecaa6dc-4b02-4795-bc48-f8f83bf33eda}, !- Group Rendering Name
   {694283e0-51be-42f4-a66f-c6b0f66d7ff1}, !- Thermostat Name
-  No;                                     !- Use Ideal Air Loads
+  No,                                     !- Use Ideal Air Loads
+  {9be64222-d2ca-4a7f-bd09-a4cd73176c45}; !- Humidistat Name
 
 OS:Node,
   {9e256774-fc0f-4ce6-a3c3-a0de2dd82fc1}, !- Handle
@@ -5823,7 +5837,8 @@ OS:ThermalZone,
   ,                                       !- Illuminance Map Name
   {4d0ec10f-d6fe-40ff-9ea1-5bf3f18c43c4}, !- Group Rendering Name
   {f6a6bab1-600f-4d08-96d1-300ae2f7182f}, !- Thermostat Name
-  No;                                     !- Use Ideal Air Loads
+  No,                                     !- Use Ideal Air Loads
+  {bef2849d-16c6-4082-8fc5-fc355e7fd24d}; !- Humidistat Name
 
 OS:Node,
   {123644ab-4353-4e39-876f-37a936617355}, !- Handle
@@ -5922,7 +5937,8 @@ OS:ThermalZone,
   ,                                       !- Illuminance Map Name
   {69c5764a-cf5e-4282-8966-0c76826e7bef}, !- Group Rendering Name
   {32284f4b-2cc1-43e8-9934-0b5ad8f6daf3}, !- Thermostat Name
-  No;                                     !- Use Ideal Air Loads
+  No,                                     !- Use Ideal Air Loads
+  {11bcede6-a56d-4632-8341-2a641eebe2ce}; !- Humidistat Name
 
 OS:Node,
   {d758a092-cb29-4cce-a0f5-c536bcb80eb7}, !- Handle
@@ -6021,7 +6037,8 @@ OS:ThermalZone,
   ,                                       !- Illuminance Map Name
   {94ceb6dc-18bd-4980-a7b6-544c07e291eb}, !- Group Rendering Name
   {f2fb1eb8-73aa-4e05-aa07-4a084fe2318d}, !- Thermostat Name
-  No;                                     !- Use Ideal Air Loads
+  No,                                     !- Use Ideal Air Loads
+  {c098ad7b-00a7-4cd8-a95d-0d0fb3dc5a7d}; !- Humidistat Name
 
 OS:Node,
   {f101e003-2e74-4104-ad26-882045cfbcd5}, !- Handle
@@ -6120,7 +6137,8 @@ OS:ThermalZone,
   ,                                       !- Illuminance Map Name
   {31b73bca-0311-4ba2-96d6-97ff2546d393}, !- Group Rendering Name
   {91354de5-842b-4536-90d8-e6b7ab300962}, !- Thermostat Name
-  No;                                     !- Use Ideal Air Loads
+  No,                                     !- Use Ideal Air Loads
+  {d7ff96af-a0d7-4629-a8ab-a4474e456ad0}; !- Humidistat Name
 
 OS:Node,
   {19858370-fcd1-4fec-b522-147360c3ab64}, !- Handle
@@ -12984,4 +13002,252 @@ OS:Connection,
   3,                                      !- Outlet Port
   {5f4f63f2-8e58-4d25-b126-1ff93d10c1c4}, !- Target Object
   8;                                      !- Inlet Port
+
+OS:ScheduleTypeLimits,
+  {e5903ec9-5710-4f9a-84a3-fc14c4548c43}, !- Handle
+  Dimensionless,                          !- Name
+  ,                                       !- Lower Limit Value
+  ,                                       !- Upper Limit Value
+  Continuous;                             !- Numeric Type
+
+OS:ScheduleTypeLimits,
+  {e17d81c0-73cf-4de3-b9d1-565d552aa53b}, !- Handle
+  Dimensionless 1,                        !- Name
+  -1,                                     !- Lower Limit Value
+  1,                                      !- Upper Limit Value
+  Continuous;                             !- Numeric Type
+
+OS:ScheduleTypeLimits,
+  {47f60c9d-76da-4901-971d-1be32f579208}, !- Handle
+  Dimensionless 2,                        !- Name
+  0.1,                                    !- Lower Limit Value
+  1000,                                   !- Upper Limit Value
+  Continuous;                             !- Numeric Type
+
+OS:ScheduleTypeLimits,
+  {31330ac7-00db-4fe8-8af7-0833c89e6cea}, !- Handle
+  OnOff,                                  !- Name
+  0,                                      !- Lower Limit Value
+  1,                                      !- Upper Limit Value
+  Discrete,                               !- Numeric Type
+  Availability;                           !- Unit Type
+
+OS:ScheduleTypeLimits,
+  {5b7a2f6c-2da7-45a7-b86f-7f78939decc4}, !- Handle
+  Capacity,                               !- Name
+  0,                                      !- Lower Limit Value
+  ,                                       !- Upper Limit Value
+  Continuous,                             !- Numeric Type
+  Capacity;                               !- Unit Type
+
+OS:ScheduleTypeLimits,
+  {f3cd2072-90e9-40fa-9066-0dfbcc851cd3}, !- Handle
+  ControlMode,                            !- Name
+  0,                                      !- Lower Limit Value
+  1,                                      !- Upper Limit Value
+  Discrete,                               !- Numeric Type
+  ControlMode;                            !- Unit Type
+
+OS:ScheduleTypeLimits,
+  {7a075bc6-8002-45a3-aba3-061eaaac4195}, !- Handle
+  DeltaTemperature,                       !- Name
+  ,                                       !- Lower Limit Value
+  ,                                       !- Upper Limit Value
+  Continuous,                             !- Numeric Type
+  DeltaTemperature;                       !- Unit Type
+
+OS:ScheduleTypeLimits,
+  {bad180ca-da2f-47bf-881e-67bb7601b46f}, !- Handle
+  Dimensionless 3,                        !- Name
+  0,                                      !- Lower Limit Value
+  1,                                      !- Upper Limit Value
+  Continuous,                             !- Numeric Type
+  Dimensionless;                          !- Unit Type
+
+OS:ScheduleTypeLimits,
+  {9c31c9de-bdfe-489b-94ec-9986c8457b39}, !- Handle
+  LinearPowerDensity,                     !- Name
+  0,                                      !- Lower Limit Value
+  ,                                       !- Upper Limit Value
+  Continuous,                             !- Numeric Type
+  LinearPowerDensity;                     !- Unit Type
+
+OS:ScheduleTypeLimits,
+  {7bfafd8b-8fbb-40b5-bbc6-0bf893d77163}, !- Handle
+  MassFlowRate,                           !- Name
+  ,                                       !- Lower Limit Value
+  ,                                       !- Upper Limit Value
+  Continuous,                             !- Numeric Type
+  MassFlowRate;                           !- Unit Type
+
+OS:ScheduleTypeLimits,
+  {3c55466e-4e83-4b3d-8034-c64907db5fce}, !- Handle
+  Percent,                                !- Name
+  0,                                      !- Lower Limit Value
+  100,                                    !- Upper Limit Value
+  Continuous,                             !- Numeric Type
+  Percent;                                !- Unit Type
+
+OS:ScheduleTypeLimits,
+  {0cbe90c8-562c-4790-ab54-d55c20213e8d}, !- Handle
+  Pressure,                               !- Name
+  ,                                       !- Lower Limit Value
+  ,                                       !- Upper Limit Value
+  Continuous,                             !- Numeric Type
+  Pressure;                               !- Unit Type
+
+OS:ScheduleTypeLimits,
+  {486afff1-db3e-4a67-828c-431f29fb0802}, !- Handle
+  RotationsPerMinute,                     !- Name
+  ,                                       !- Lower Limit Value
+  ,                                       !- Upper Limit Value
+  Continuous,                             !- Numeric Type
+  RotationsPerMinute;                     !- Unit Type
+
+OS:ScheduleTypeLimits,
+  {88cc7104-8f1d-46e6-8b41-50199b1b6d34}, !- Handle
+  Temperature 1,                          !- Name
+  ,                                       !- Lower Limit Value
+  0,                                      !- Upper Limit Value
+  Continuous,                             !- Numeric Type
+  Temperature;                            !- Unit Type
+
+OS:ScheduleTypeLimits,
+  {d8a49626-a37e-49c2-9a82-4f6f4ee6600f}, !- Handle
+  Temperature 2,                          !- Name
+  0,                                      !- Lower Limit Value
+  ,                                       !- Upper Limit Value
+  Continuous,                             !- Numeric Type
+  Temperature;                            !- Unit Type
+
+OS:ScheduleTypeLimits,
+  {683ff3cb-183e-4793-a30f-db01060d4a7e}, !- Handle
+  VolumetricFlowRate,                     !- Name
+  0,                                      !- Lower Limit Value
+  ,                                       !- Upper Limit Value
+  Continuous,                             !- Numeric Type
+  VolumetricFlowRate;                     !- Unit Type
+
+OS:Schedule:Ruleset,
+  {615b1fad-0041-4391-aba6-f5f1feb00796}, !- Handle
+  Relative Humidity Sched,                !- Name
+  {3c55466e-4e83-4b3d-8034-c64907db5fce}, !- Schedule Type Limits Name
+  {9f789a51-2186-4994-8334-05ff665389c7}; !- Default Day Schedule Name
+
+OS:Schedule:Day,
+  {9f789a51-2186-4994-8334-05ff665389c7}, !- Handle
+  Schedule Day 1,                         !- Name
+  {3c55466e-4e83-4b3d-8034-c64907db5fce}, !- Schedule Type Limits Name
+  ,                                       !- Interpolate to Timestep
+  24,                                     !- Hour 1
+  0,                                      !- Minute 1
+  45;                                     !- Value Until Time 1
+
+OS:ZoneControl:Humidistat,
+  {383d348a-f3b5-4e08-b4c1-61295ea4c072}, !- Handle
+  Zone Control Humidistat 1,              !- Name
+  {615b1fad-0041-4391-aba6-f5f1feb00796}, !- Humidifying Relative Humidity Setpoint Schedule Name
+  {615b1fad-0041-4391-aba6-f5f1feb00796}; !- Dehumidifying Relative Humidity Setpoint Schedule Name
+
+OS:ZoneControl:Humidistat,
+  {98c4dcd1-ae3f-4a56-a352-21bb65a6fe31}, !- Handle
+  Zone Control Humidistat 2,              !- Name
+  {615b1fad-0041-4391-aba6-f5f1feb00796}, !- Humidifying Relative Humidity Setpoint Schedule Name
+  {615b1fad-0041-4391-aba6-f5f1feb00796}; !- Dehumidifying Relative Humidity Setpoint Schedule Name
+
+OS:ZoneControl:Humidistat,
+  {04841e97-b0ab-4662-8f39-4bb3f82c32d3}, !- Handle
+  Zone Control Humidistat 3,              !- Name
+  {615b1fad-0041-4391-aba6-f5f1feb00796}, !- Humidifying Relative Humidity Setpoint Schedule Name
+  {615b1fad-0041-4391-aba6-f5f1feb00796}; !- Dehumidifying Relative Humidity Setpoint Schedule Name
+
+OS:ZoneControl:Humidistat,
+  {32a7dab7-8e9f-4075-b951-bbb78fcb511e}, !- Handle
+  Zone Control Humidistat 4,              !- Name
+  {615b1fad-0041-4391-aba6-f5f1feb00796}, !- Humidifying Relative Humidity Setpoint Schedule Name
+  {615b1fad-0041-4391-aba6-f5f1feb00796}; !- Dehumidifying Relative Humidity Setpoint Schedule Name
+
+OS:ZoneControl:Humidistat,
+  {0ce13e74-65f8-4d68-9dd5-fdd2dae43258}, !- Handle
+  Zone Control Humidistat 5,              !- Name
+  {615b1fad-0041-4391-aba6-f5f1feb00796}, !- Humidifying Relative Humidity Setpoint Schedule Name
+  {615b1fad-0041-4391-aba6-f5f1feb00796}; !- Dehumidifying Relative Humidity Setpoint Schedule Name
+
+OS:ZoneControl:Humidistat,
+  {33fb984e-ccc8-4b47-b445-51eb205c3886}, !- Handle
+  Zone Control Humidistat 6,              !- Name
+  {615b1fad-0041-4391-aba6-f5f1feb00796}, !- Humidifying Relative Humidity Setpoint Schedule Name
+  {615b1fad-0041-4391-aba6-f5f1feb00796}; !- Dehumidifying Relative Humidity Setpoint Schedule Name
+
+OS:ZoneControl:Humidistat,
+  {ceb36b8e-8cc9-46c5-a296-88c371ac0d53}, !- Handle
+  Zone Control Humidistat 7,              !- Name
+  {615b1fad-0041-4391-aba6-f5f1feb00796}, !- Humidifying Relative Humidity Setpoint Schedule Name
+  {615b1fad-0041-4391-aba6-f5f1feb00796}; !- Dehumidifying Relative Humidity Setpoint Schedule Name
+
+OS:ZoneControl:Humidistat,
+  {e2c7eeec-3712-45f9-9514-dcb6a49c787b}, !- Handle
+  Zone Control Humidistat 8,              !- Name
+  {615b1fad-0041-4391-aba6-f5f1feb00796}, !- Humidifying Relative Humidity Setpoint Schedule Name
+  {615b1fad-0041-4391-aba6-f5f1feb00796}; !- Dehumidifying Relative Humidity Setpoint Schedule Name
+
+OS:ZoneControl:Humidistat,
+  {3b64e18d-c521-464b-98fa-40daf7cd0622}, !- Handle
+  Zone Control Humidistat 9,              !- Name
+  {615b1fad-0041-4391-aba6-f5f1feb00796}, !- Humidifying Relative Humidity Setpoint Schedule Name
+  {615b1fad-0041-4391-aba6-f5f1feb00796}; !- Dehumidifying Relative Humidity Setpoint Schedule Name
+
+OS:ZoneControl:Humidistat,
+  {03560024-2a59-45bd-8353-81cacf2fe7dd}, !- Handle
+  Zone Control Humidistat 10,             !- Name
+  {615b1fad-0041-4391-aba6-f5f1feb00796}, !- Humidifying Relative Humidity Setpoint Schedule Name
+  {615b1fad-0041-4391-aba6-f5f1feb00796}; !- Dehumidifying Relative Humidity Setpoint Schedule Name
+
+OS:ZoneControl:Humidistat,
+  {aecb2aa0-3a7a-4300-82e6-ead0c57161cf}, !- Handle
+  Zone Control Humidistat 11,             !- Name
+  {615b1fad-0041-4391-aba6-f5f1feb00796}, !- Humidifying Relative Humidity Setpoint Schedule Name
+  {615b1fad-0041-4391-aba6-f5f1feb00796}; !- Dehumidifying Relative Humidity Setpoint Schedule Name
+
+OS:ZoneControl:Humidistat,
+  {9508eb36-514a-4aab-8de7-e0b61a4ec789}, !- Handle
+  Zone Control Humidistat 12,             !- Name
+  {615b1fad-0041-4391-aba6-f5f1feb00796}, !- Humidifying Relative Humidity Setpoint Schedule Name
+  {615b1fad-0041-4391-aba6-f5f1feb00796}; !- Dehumidifying Relative Humidity Setpoint Schedule Name
+
+OS:ZoneControl:Humidistat,
+  {81081ce8-61b6-407e-91d1-d7c962825e11}, !- Handle
+  Zone Control Humidistat 13,             !- Name
+  {615b1fad-0041-4391-aba6-f5f1feb00796}, !- Humidifying Relative Humidity Setpoint Schedule Name
+  {615b1fad-0041-4391-aba6-f5f1feb00796}; !- Dehumidifying Relative Humidity Setpoint Schedule Name
+
+OS:ZoneControl:Humidistat,
+  {9be64222-d2ca-4a7f-bd09-a4cd73176c45}, !- Handle
+  Zone Control Humidistat 14,             !- Name
+  {615b1fad-0041-4391-aba6-f5f1feb00796}, !- Humidifying Relative Humidity Setpoint Schedule Name
+  {615b1fad-0041-4391-aba6-f5f1feb00796}; !- Dehumidifying Relative Humidity Setpoint Schedule Name
+
+OS:ZoneControl:Humidistat,
+  {bef2849d-16c6-4082-8fc5-fc355e7fd24d}, !- Handle
+  Zone Control Humidistat 15,             !- Name
+  {615b1fad-0041-4391-aba6-f5f1feb00796}, !- Humidifying Relative Humidity Setpoint Schedule Name
+  {615b1fad-0041-4391-aba6-f5f1feb00796}; !- Dehumidifying Relative Humidity Setpoint Schedule Name
+
+OS:ZoneControl:Humidistat,
+  {11bcede6-a56d-4632-8341-2a641eebe2ce}, !- Handle
+  Zone Control Humidistat 16,             !- Name
+  {615b1fad-0041-4391-aba6-f5f1feb00796}, !- Humidifying Relative Humidity Setpoint Schedule Name
+  {615b1fad-0041-4391-aba6-f5f1feb00796}; !- Dehumidifying Relative Humidity Setpoint Schedule Name
+
+OS:ZoneControl:Humidistat,
+  {c098ad7b-00a7-4cd8-a95d-0d0fb3dc5a7d}, !- Handle
+  Zone Control Humidistat 17,             !- Name
+  {615b1fad-0041-4391-aba6-f5f1feb00796}, !- Humidifying Relative Humidity Setpoint Schedule Name
+  {615b1fad-0041-4391-aba6-f5f1feb00796}; !- Dehumidifying Relative Humidity Setpoint Schedule Name
+
+OS:ZoneControl:Humidistat,
+  {d7ff96af-a0d7-4629-a8ab-a4474e456ad0}, !- Handle
+  Zone Control Humidistat 18,             !- Name
+  {615b1fad-0041-4391-aba6-f5f1feb00796}, !- Humidifying Relative Humidity Setpoint Schedule Name
+  {615b1fad-0041-4391-aba6-f5f1feb00796}; !- Dehumidifying Relative Humidity Setpoint Schedule Name
 
