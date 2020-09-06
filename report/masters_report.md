@@ -18,7 +18,7 @@ The analysis used a reference building energy model from the U.S. Department of 
 
 ## Baseline Model Inputs
 
-The baseline model was created with OpenStudio (NREL, 2011) using the Create Prototype Building measure. Measures are formal computer scripts written in the Ruby programming language that can interact with an OpenStudio model directly, change the EnergyPlus model during runtime, or produce reports after simulation (Roth et. al, 2016). 
+The baseline model was created with OpenStudio (NREL, 2011) using the Create Prototype Building measure. Measures are formal computer scripts written in the Ruby programming language that can interact with an OpenStudio model directly, change the EnergyPlus model during runtime, or produce reports after simulation (Roth et. al, 2016). Several changes to the baseline model were required to allow the application of specific technologies, which are described in the Measures secion. In total, the changes decreased the energy use intensity (EUI) by 0.9% and increased the peak electric demand by 10.2% (unadjusted facility) and 4.8% (adjusted utility).
 
 ![image](figure_geometry.png)
 
@@ -30,6 +30,7 @@ __Table x. General Inputs__
 | :- | :- |
 | Occupancy | 0.053820 people/m2 |
 | Schedule | Mon-Fri, 0600-2200 Sat, 0600-1700 |
+| Utility Rates | Xcel Energy Electricity: Secondary General Natural Gas: Large CG |
 
 __Table x. Geometry Inputs__
 
@@ -51,8 +52,8 @@ __Table x. Architectural Inputs__
 | Roofs | Insulation Entirely Above Deck U-0.501 |
 | Walls, above grade | Steel-Framed U-0.302 |
 | Slab-on-Grade Floors | Mass (4” concrete) U-3.402 |
-| Windows | Simple Glazing U-6.721, SHGC-0.39, VT-0.31 |
-| Doors | Swinging, Insulated Metal U-35.411 |
+| Windows | Layered Glazing U-2.371, SHGC-0.180, VT-0.137 |
+| Doors | Swinging, Insulated Metal U-35.433 |
 | Window-to-Wall Ratio | 33% all facades  |
 | Infiltration (ACH) | 0.75 |
 
@@ -72,10 +73,10 @@ __Table x. Mechanical Inputs__
 | Input | Description |
 | :- | :- |
 | Thermal Zoning | core zone with four perimeter zones on each floor |
-| Setpoints | Cooling: 24C/26.7C Heating: 24C/15.6C |
+| Setpoints | Cooling: 24C/26.7C Heating: 24C/15.6C Humidity: 45%|
 | System Type | (3) MZ-VAV |
 | Heating Type | Gas furnace and electric reheat |
-| Cooling Type | PACU |
+| Cooling Type | Single Speed PACU |
 | Fan Control | Variable |
 
 __Table x. Plumbing Inputs__
@@ -90,9 +91,13 @@ __Table x. Plumbing Inputs__
 
 ## Baseline Model Outputs
 
-![image](figure_annual_end_uses.png)
+![image](figure_annual_energy_pct.png)
 
-__Figure x. Annual Energy End Uses__
+__Figure x. Annual Energy Use Percent__
+
+![image](figure_annual_energy_eui.png)
+
+__Figure x. Annual Energy Use Intensity__
 
 ![image](figure_monthly_elec_energy.png)
 
@@ -102,13 +107,9 @@ __Figure x. Monthly Electricity Energy__
 
 __Figure x. Monthly Electricity Demand__
 
-![image](figure_demand_comparison.png)
+![image](figure_hourly_elec.png)
 
-__Figure x. Monthly Electricity Peak vs. Utility Demand__
-
-![image](figure_peak_elec.png)
-
-__Figure x. Peak Day Hourly Electricity Demand (Dec 21)__
+__Figure x. Hourly Electricity Demand on Peak Day (Dec 22)__
 
 ![image](figure_monthly_ngas_energy.png)
 
@@ -118,9 +119,13 @@ __Figure x. Monthly Natural Gas Energy__
 
 __Figure x. Monthly Natural Gas Demand__
 
-![image](figure_peak_ngas.png)
+![image](figure_hourly_ngas.png)
 
-__Figure x. Peak Day Hourly Natural Gas Demand (Dec 22)__
+__Figure x. Hourly Natural Gas Demand on Peak Day (Dec 20)__
+
+![image](figure_monthly_elec_demand_comparison.png)
+
+__Figure x. Monthly Electricity Peak vs. Utility Demand__
 
 ## Measures
 
