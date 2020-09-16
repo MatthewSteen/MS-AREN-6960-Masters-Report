@@ -1,0 +1,167 @@
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>swh_generator_micro_turbine</name>
+  <uid>28106f2f-d536-44c4-aa30-44408d1a0757</uid>
+  <version_id>e4d9c76e-6529-4034-bcaa-b218b82d0ba5</version_id>
+  <version_modified>20200825T193809Z</version_modified>
+  <xml_checksum>A05EBCA5</xml_checksum>
+  <class_name>SWHGeneratorMicroTurbine</class_name>
+  <display_name>Generator Micro Turbine</display_name>
+  <description>TODO</description>
+  <modeler_description>This measure adds an OpenStudio GeneratorMicroTurbineHeatRecovery object (EnergyPlus object Generator:MicroTurbine) to the supply side of a plant loop with a WaterHeater object. The GeneratorMicroTurbine is the Capstone C65 from the EnergyPlus HeatRecoveryPlantLoopAuto.idf example file (and others), which generates electric energy for the building and waste thermal energy that is used for service hot water. The code and topology is based on https://github.com/NREL/OpenStudio-resources/blob/develop/model/simulationtests/generator_microturbine.rb. The topology differs from the example file because OpenStudio does not allow WaterHeater objects on the same side of two different plant loops.</modeler_description>
+  <arguments>
+    <argument>
+      <name>plant_loop_name</name>
+      <display_name>Plant Loop Name</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+    </argument>
+    <argument>
+      <name>generator_operation_scheme_type</name>
+      <display_name>Generator Operation Scheme Type</display_name>
+      <description>ElectricLoadCenter:Distribution</description>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>Baseload</default_value>
+      <choices>
+        <choice>
+          <value>Baseload</value>
+          <display_name>Baseload</display_name>
+        </choice>
+        <choice>
+          <value>DemandLimit</value>
+          <display_name>DemandLimit</display_name>
+        </choice>
+        <choice>
+          <value>FollowThermal</value>
+          <display_name>FollowThermal</display_name>
+        </choice>
+        <choice>
+          <value>FollowThermalLimitElectrical</value>
+          <display_name>FollowThermalLimitElectrical</display_name>
+        </choice>
+        <choice>
+          <value>TrackElectrical</value>
+          <display_name>TrackElectrical</display_name>
+        </choice>
+        <choice>
+          <value>TrackSchedule</value>
+          <display_name>TrackSchedule</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>demand_limit</name>
+      <display_name>Demand Limit Scheme Purchased Electric Demand Limit (W)</display_name>
+      <description>Generator Operation Scheme Type = DemandLimit</description>
+      <type>Double</type>
+      <required>false</required>
+      <model_dependent>false</model_dependent>
+    </argument>
+    <argument>
+      <name>track_schedule_name</name>
+      <display_name>Track Schedule Name Scheme Schedule Name</display_name>
+      <description>Generator Operation Scheme Type = TrackSchedule</description>
+      <type>Choice</type>
+      <required>false</required>
+      <model_dependent>false</model_dependent>
+    </argument>
+    <argument>
+      <name>output_variables_bool</name>
+      <display_name>Output Variables</display_name>
+      <description>GeneratorMicroTurbine, GeneratorMicroTurbineHeatRecovery, ElectricLoadCenterDistribution</description>
+      <type>Boolean</type>
+      <required>false</required>
+      <model_dependent>false</model_dependent>
+      <default_value>false</default_value>
+      <choices>
+        <choice>
+          <value>true</value>
+          <display_name>true</display_name>
+        </choice>
+        <choice>
+          <value>false</value>
+          <display_name>false</display_name>
+        </choice>
+      </choices>
+    </argument>
+  </arguments>
+  <outputs/>
+  <provenances/>
+  <tags>
+    <tag>Service Water Heating.Water Heating</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Measure Type</name>
+      <value>ModelMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Apply Measure Now</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>OpenStudio Application</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Parametric Analysis Tool</value>
+      <datatype>string</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>CD7F5672</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
+    </file>
+    <file>
+      <filename>.gitkeep</filename>
+      <filetype>gitkeep</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>00000000</checksum>
+    </file>
+    <file>
+      <filename>swh_generator_micro_turbine_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>8233F736</checksum>
+    </file>
+    <file>
+      <filename>example_model.osm</filename>
+      <filetype>osm</filetype>
+      <usage_type>test</usage_type>
+      <checksum>53D14E69</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.9.0</identifier>
+        <min_compatible>2.9.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>95180A2A</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>E1BA6A5C</checksum>
+    </file>
+  </files>
+</measure>
