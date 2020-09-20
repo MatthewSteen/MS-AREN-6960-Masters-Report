@@ -3,20 +3,92 @@
   <schema_version>3.0</schema_version>
   <name>envelope_material_property_phase_change</name>
   <uid>89c98dc2-c2d7-4014-a411-0103c899546b</uid>
-  <version_id>58465349-4463-4926-8d1e-68a6b9328c49</version_id>
-  <version_modified>20200808T211309Z</version_modified>
+  <version_id>777afb86-a28a-4e41-a03e-e5235c75c516</version_id>
+  <version_modified>20200920T211523Z</version_modified>
   <xml_checksum>BB067920</xml_checksum>
   <class_name>EnvelopeMaterialPropertyPhaseChange</class_name>
   <display_name>Material Property Phase Change</display_name>
   <description>Adds a MaterialProperty:PhaseChange object to the model that references the interior layer of the selected Construction.</description>
-  <modeler_description>Gets the interior layer name of the selected Construction object from the number of fields and sets the MaterialProperty:PhaseChange Name field to reference it.</modeler_description>
+  <modeler_description>Adds a MaterialProperty:PhaseChange object to the workspace for each chosen Construction. Each MaterialProperty:PhaseChange object references the interior layer of the Construction object.</modeler_description>
   <arguments>
     <argument>
-      <name>construction_name</name>
-      <display_name>Construction Name</display_name>
-      <description>Phase Change Material will be added to interior material</description>
+      <name>construction_name_1</name>
+      <display_name>Construction Name 1</display_name>
+      <description>A new MaterialProperty:PhaseChange object will reference the interior layer of this Construction.</description>
       <type>Choice</type>
-      <required>true</required>
+      <required>false</required>
+      <model_dependent>false</model_dependent>
+    </argument>
+    <argument>
+      <name>construction_name_2</name>
+      <display_name>Construction Name 2</display_name>
+      <description>A new MaterialProperty:PhaseChange object will reference the interior layer of this Construction.</description>
+      <type>Choice</type>
+      <required>false</required>
+      <model_dependent>false</model_dependent>
+    </argument>
+    <argument>
+      <name>construction_name_3</name>
+      <display_name>Construction Name 3</display_name>
+      <description>A new MaterialProperty:PhaseChange object will reference the interior layer of this Construction.</description>
+      <type>Choice</type>
+      <required>false</required>
+      <model_dependent>false</model_dependent>
+    </argument>
+    <argument>
+      <name>construction_name_4</name>
+      <display_name>Construction Name 4</display_name>
+      <description>A new MaterialProperty:PhaseChange object will reference the interior layer of this Construction.</description>
+      <type>Choice</type>
+      <required>false</required>
+      <model_dependent>false</model_dependent>
+    </argument>
+    <argument>
+      <name>construction_name_5</name>
+      <display_name>Construction Name 5</display_name>
+      <description>A new MaterialProperty:PhaseChange object will reference the interior layer of this Construction.</description>
+      <type>Choice</type>
+      <required>false</required>
+      <model_dependent>false</model_dependent>
+    </argument>
+    <argument>
+      <name>construction_name_6</name>
+      <display_name>Construction Name 6</display_name>
+      <description>A new MaterialProperty:PhaseChange object will reference the interior layer of this Construction.</description>
+      <type>Choice</type>
+      <required>false</required>
+      <model_dependent>false</model_dependent>
+    </argument>
+    <argument>
+      <name>construction_name_7</name>
+      <display_name>Construction Name 7</display_name>
+      <description>A new MaterialProperty:PhaseChange object will reference the interior layer of this Construction.</description>
+      <type>Choice</type>
+      <required>false</required>
+      <model_dependent>false</model_dependent>
+    </argument>
+    <argument>
+      <name>construction_name_8</name>
+      <display_name>Construction Name 8</display_name>
+      <description>A new MaterialProperty:PhaseChange object will reference the interior layer of this Construction.</description>
+      <type>Choice</type>
+      <required>false</required>
+      <model_dependent>false</model_dependent>
+    </argument>
+    <argument>
+      <name>construction_name_9</name>
+      <display_name>Construction Name 9</display_name>
+      <description>A new MaterialProperty:PhaseChange object will reference the interior layer of this Construction.</description>
+      <type>Choice</type>
+      <required>false</required>
+      <model_dependent>false</model_dependent>
+    </argument>
+    <argument>
+      <name>construction_name_10</name>
+      <display_name>Construction Name 10</display_name>
+      <description>A new MaterialProperty:PhaseChange object will reference the interior layer of this Construction.</description>
+      <type>Choice</type>
+      <required>false</required>
       <model_dependent>false</model_dependent>
     </argument>
   </arguments>
@@ -76,13 +148,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>15AAD156</checksum>
+      <checksum>B0478170</checksum>
     </file>
     <file>
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
-      <checksum>F4CD0FC5</checksum>
+      <checksum>B928CA43</checksum>
     </file>
   </files>
 </measure>
