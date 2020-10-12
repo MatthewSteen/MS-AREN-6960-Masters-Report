@@ -1,0 +1,227 @@
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>equipment_demand_manager_electric_equipment</name>
+  <uid>ec35733c-989b-43b6-a14a-78468c4ded3b</uid>
+  <version_id>6d554b5c-dbf1-4548-b7f0-f4b766cac714</version_id>
+  <version_modified>20201011T194741Z</version_modified>
+  <xml_checksum>878B4EA3</xml_checksum>
+  <class_name>EquipmentDemandManagerElectricEquipment</class_name>
+  <display_name>Demand Manager Electric Equipment</display_name>
+  <description>TODO</description>
+  <modeler_description>This measure will add a DemandManager:ElectricEquipment object to the EnergyPlus model. The measure will also add a DemandManagerAssignmentList object if one is not present in the model. If one is, it will add the DemandManager:ElectricEquipment to the existing DemandManagerAssignmentList. Argument default values come from the 5ZoneAirCooledDemandLimiting.idf EnergyPlus example file.</modeler_description>
+  <arguments>
+    <argument>
+      <name>availability_schedule_name</name>
+      <display_name>Availability Schedule Name</display_name>
+      <type>Choice</type>
+      <required>false</required>
+      <model_dependent>false</model_dependent>
+    </argument>
+    <argument>
+      <name>limit_control</name>
+      <display_name>Limit Control</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>Fixed</default_value>
+      <choices>
+        <choice>
+          <value>Fixed</value>
+          <display_name>Fixed</display_name>
+        </choice>
+        <choice>
+          <value>Off</value>
+          <display_name>Off</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>minimum_limit_duration</name>
+      <display_name>Minimum Limit Duration {minutes}</display_name>
+      <type>Double</type>
+      <required>false</required>
+      <model_dependent>false</model_dependent>
+      <default_value>60</default_value>
+    </argument>
+    <argument>
+      <name>maximum_limit_fraction</name>
+      <display_name>Maximum Limit Fraction</display_name>
+      <type>Double</type>
+      <required>false</required>
+      <model_dependent>false</model_dependent>
+      <default_value>0.5</default_value>
+    </argument>
+    <argument>
+      <name>selection_control</name>
+      <display_name>Selection Control</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>All</default_value>
+      <choices>
+        <choice>
+          <value>All</value>
+          <display_name>All</display_name>
+        </choice>
+        <choice>
+          <value>RotateMany</value>
+          <display_name>RotateMany</display_name>
+        </choice>
+        <choice>
+          <value>RotateOne</value>
+          <display_name>RotateOne</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>rotation_duration</name>
+      <display_name>Rotation Duration {minutes}</display_name>
+      <description>Selection Control = RotateMany or RotateOne</description>
+      <type>Double</type>
+      <required>false</required>
+      <model_dependent>false</model_dependent>
+    </argument>
+    <argument>
+      <name>electric_equipment_name</name>
+      <display_name>ElectricEquipment Name</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>ALL</default_value>
+      <choices>
+        <choice>
+          <value>ALL</value>
+          <display_name>ALL</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>meter_name</name>
+      <display_name>Meter Name</display_name>
+      <type>String</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>Electricity:Facility</default_value>
+    </argument>
+    <argument>
+      <name>demand_limit_schedule_name</name>
+      <display_name>Demand Limit Schedule Name</display_name>
+      <type>Choice</type>
+      <required>false</required>
+      <model_dependent>false</model_dependent>
+    </argument>
+    <argument>
+      <name>demand_limit_safety_fraction</name>
+      <display_name>Demand Limit Safety Fraction</display_name>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>1</default_value>
+    </argument>
+    <argument>
+      <name>billing_period_schedule_name</name>
+      <display_name>Billing Period Schedule Name</display_name>
+      <type>Choice</type>
+      <required>false</required>
+      <model_dependent>false</model_dependent>
+    </argument>
+    <argument>
+      <name>peak_period_schedule_name</name>
+      <display_name>Peak Period Schedule Name</display_name>
+      <type>Choice</type>
+      <required>false</required>
+      <model_dependent>false</model_dependent>
+    </argument>
+    <argument>
+      <name>demand_window_length</name>
+      <display_name>Demand Window Length {minutes}</display_name>
+      <type>Double</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <default_value>15</default_value>
+    </argument>
+    <argument>
+      <name>demand_manager_priority</name>
+      <display_name>Demand Manager Priority</display_name>
+      <type>Choice</type>
+      <required>false</required>
+      <model_dependent>false</model_dependent>
+      <default_value>Sequential</default_value>
+      <choices>
+        <choice>
+          <value>All</value>
+          <display_name>All</display_name>
+        </choice>
+        <choice>
+          <value>Sequential</value>
+          <display_name>Sequential</display_name>
+        </choice>
+      </choices>
+    </argument>
+  </arguments>
+  <outputs/>
+  <provenances/>
+  <tags>
+    <tag>Equipment.Equipment Controls</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Measure Type</name>
+      <value>EnergyPlusMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>OpenStudio Application</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Parametric Analysis Tool</value>
+      <datatype>string</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>CD7F5672</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
+    </file>
+    <file>
+      <filename>.gitkeep</filename>
+      <filetype>gitkeep</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>00000000</checksum>
+    </file>
+    <file>
+      <filename>equipment_demand_manager_electric_equipment_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>0BF12E33</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.9.0</identifier>
+        <min_compatible>2.9.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>316E285C</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>0B602225</checksum>
+    </file>
+  </files>
+</measure>
