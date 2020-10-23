@@ -165,7 +165,11 @@ This measure adds the EnergyPlus object [MaterialProperty:PhaseChange](https://b
 		71000;                   !- Enthalpy 4 {J/kg}
 ```
 
-The annual energy use intensity savings by end use for this measure is shown in Figure x. below.
+The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
+
+![image](figure_measures_energy_cost_A1.png)
+
+__Figure x. Measure A1 Annual Energy Cost Savings__
 
 ![image](figure_measures_energy_use_A1.png)
 
@@ -175,7 +179,11 @@ __Figure x. Measure A1 Annual Energy Use Intensity Savings by End Use__
 
 This measure adds the OpenStudio object [ShadingControl](https://bigladdersoftware.com/epx/docs/9-4/input-output-reference/group-thermal-zone-description-geometry.html#windowpropertyshadingcontrol) to the model with Shading Type set to `SwitchableGlazing`. 
 
-The annual energy use intensity savings by end use for this measure is shown in Figure x. below.
+The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
+
+![image](figure_measures_energy_cost_A2.png)
+
+__Figure x. Measure A2 Annual Energy Cost Savings__
 
 ![image](figure_measures_energy_use_A2.png)
 
@@ -185,7 +193,11 @@ __Figure x. Measure A2 Annual Energy Use Intensity Savings by End Use__
 
 This measure adds the OpenStudio object [ShadingControl](https://bigladdersoftware.com/epx/docs/9-4/input-output-reference/group-thermal-zone-description-geometry.html#windowpropertyshadingcontrol) to the model with Shading Type set to `InteriorShade`. 
 
-The annual energy use intensity savings by end use for this measure is shown in Figure x. below.
+The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
+
+![image](figure_measures_energy_cost_A3.png)
+
+__Figure x. Measure A3 Annual Energy Cost Savings__
 
 ![image](figure_measures_energy_use_A3.png)
 
@@ -208,7 +220,11 @@ DemandManager:ElectricEquipment,
 	Space1-1 AllZones with Electric Equipment;  !- Electric Equipment 1 Name
 ```
 
-The annual energy use intensity savings by end use for this measure is shown in Figure x. below.
+The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
+
+![image](figure_measures_energy_cost_E1.png)
+
+__Figure x. Measure E1 Annual Energy Cost Savings__
 
 ![image](figure_measures_energy_use_E1.png)
 
@@ -241,7 +257,11 @@ Dehumidifier:Desiccant:System,
 	EXHAUSTFANPLF;           !- Exhaust Fan Power Curve Name
 ```
 
-The annual energy use intensity savings by end use for this measure is shown in Figure x. below.
+The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
+
+![image](figure_measures_energy_cost_M1.png)
+
+__Figure x. Measure M1 Annual Energy Cost Savings__
 
 ![image](figure_measures_energy_use_M1.png)
 
@@ -251,7 +271,11 @@ __Figure x. Measure M1 Annual Energy Use Intensity Savings by End Use__
 
 This [measure](https://github.com/NREL/openstudio-load-flexibility-measures-gem/releases/tag/v0.1.3) replaces CoilSystem:Cooling:DX objects in the model with the EnergyPlus object [Coil:Cooling:DX:SingleSpeed:ThermalStorage](https://bigladdersoftware.com/epx/docs/9-4/input-output-reference/group-heating-and-cooling-coils.html#coilcoolingdxsinglespeedthermalstorage). 
 
-The annual energy use intensity savings by end use for this measure is shown in Figure x. below.
+The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
+
+![image](figure_measures_energy_cost_M2.png)
+
+__Figure x. Measure M2 Annual Energy Cost Savings__
 
 ![image](figure_measures_energy_use_M2.png)
 
@@ -261,7 +285,11 @@ __Figure x. Measure M2 Annual Energy Use Intensity Savings by End Use__
 
 This measure adds the OpenStudio object [GeneratorMicroTurbineHeatRecovery](https://bigladdersoftware.com/epx/docs/9-4/input-output-reference/group-electric-load-center-generator.html#generatormicroturbine) to the model. The object's properties come from the EnergyPlus example file `HeatRecoveryPlantLoopAuto.idf`, which is based on the Capstone C65, and is located on the supply side of a plant loop with a water heater object. The object generates electric energy for the building and waste thermal energy is used for service hot water. The measure's code and topology is based on https://github.com/NREL/OpenStudio-resources/blob/develop/model/simulationtests/generator_microturbine.rb. The topology differs from the example file because OpenStudio does not allow WaterHeater objects on the same side of two different plant loops.
 
-The annual energy use intensity savings by end use for this measure is shown in Figure x. below.
+The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
+
+![image](figure_measures_energy_cost_P1.png)
+
+__Figure x. Measure P1 Annual Energy Cost Savings__
 
 ![image](figure_measures_energy_use_P1-1.png)
 
@@ -288,7 +316,11 @@ DemandManager:Lights,
 	AllZones with Lights;    !- Lights 1 Name    
 ```
 
-The annual energy use intensity savings by end use for this measure is shown in Figure x. below.
+The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
+
+![image](figure_measures_energy_cost_C1.png)
+
+__Figure x. Measure C1 Annual Energy Cost Savings__
 
 ![image](figure_measures_energy_use_C1.png)
 
@@ -312,7 +344,11 @@ DemandManager:Thermostats,
   AllControlledZones Thermostat;  !- Thermostat 1 Name
 ```
 
-The annual energy use intensity savings by end use for this measure is shown in Figure x. below.
+The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
+
+![image](figure_measures_energy_cost_C2.png)
+
+__Figure x. Measure C2 Annual Energy Cost Savings__
 
 ![image](figure_measures_energy_use_C2.png)
 
