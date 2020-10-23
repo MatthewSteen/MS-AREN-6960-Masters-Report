@@ -129,7 +129,194 @@ __Figure x. Monthly Electricity Peak vs. Utility Demand__
 
 ## Measures
 
-_TODO describe measures and results of individual measures in the context of GEBs_
+The following sections describe the nine measures used to apply each technology to the baseline model and the individual model results compared to the baseline. The measures are coded according to the following prefixes.
+
+- A for Architectural
+- E for Electrical
+- M for Mechanical
+- P for Plumbing
+- C for Controls
+
+The annual energy cost and use results for the individual measures are shown in Figures x. and x. below.
+
+![image](figure_measures_energy_use.png)
+
+__Figure x. Individual Measure Annual Energy Use Intensity__
+
+![image](figure_measures_energy_cost.png)
+
+__Figure x. Individual Measure Annual Energy Cost__
+
+### Thermal Storage (A1)
+
+This measure adds the EnergyPlus object [MaterialProperty:PhaseChange](https://bigladdersoftware.com/epx/docs/9-4/input-output-reference/group-surface-construction-elements.html#materialpropertyphasechange) to all interior surfaces in the model. The object's properties were taken from the EnergyPlus example file `MaterialPropertyPhaseChange.idf` shown below.
+
+```
+	MaterialProperty:PhaseChange,
+		#{construction_interior_layer_name},  !- Name
+		0,                       !- Temperature Coefficient for Thermal Conductivity {W/m-K2}
+		-20,                     !- Temperature 1 {C}
+		0.1,                     !- Enthalpy 1 {J/kg}
+		22,                      !- Temperature 2 {C}
+		18260,                   !- Enthalpy 2 {J/kg}
+		22.1,                    !- Temperature 3 {C}
+		32000,                   !- Enthalpy 3 {J/kg}
+		60,                      !- Temperature 4 {C}
+		71000;                   !- Enthalpy 4 {J/kg}
+```
+
+The annual energy use intensity savings by end use for this measure is shown in Figure x. below.
+
+![image](figure_measures_energy_use_A1.png)
+
+__Figure x. Measure A1 Annual Energy Use Intensity Savings by End Use__
+
+### Dynamic Glazing (A2)
+
+This measure adds the OpenStudio object [ShadingControl](https://bigladdersoftware.com/epx/docs/9-4/input-output-reference/group-thermal-zone-description-geometry.html#windowpropertyshadingcontrol) to the model with Shading Type set to `SwitchableGlazing`. 
+
+The annual energy use intensity savings by end use for this measure is shown in Figure x. below.
+
+![image](figure_measures_energy_use_A2.png)
+
+__Figure x. Measure A2 Annual Energy Use Intensity Savings by End Use__
+
+### Automated Attachments (A3)
+
+This measure adds the OpenStudio object [ShadingControl](https://bigladdersoftware.com/epx/docs/9-4/input-output-reference/group-thermal-zone-description-geometry.html#windowpropertyshadingcontrol) to the model with Shading Type set to `InteriorShade`. 
+
+The annual energy use intensity savings by end use for this measure is shown in Figure x. below.
+
+![image](figure_measures_energy_use_A3.png)
+
+__Figure x. Measure A3 Annual Energy Use Intensity Savings by End Use__
+
+### Continuous-Operation Electronics (E1)
+
+This measure adds the EnergyPlus object [DemandManager:ElectricEquipment](https://bigladdersoftware.com/epx/docs/9-4/input-output-reference/group-demand-limiting-controls.html#demandmanagerelectricequipment) to the model. The object's properties come from the EnergyPlus example file `5ZoneAirCooledDemandLimiting.idf` shown below.
+
+```
+DemandManager:ElectricEquipment,
+	Eq Mgr Stage 1,          !- Name
+	,                        !- Availability Schedule Name
+	FIXED,                   !- Limit Control
+	60,                      !- Minimum Limit Duration {minutes}
+	0.0,                     !- Maximum Limit Fraction
+	,                        !- Limit Step Change
+	ALL,                     !- Selection Control
+	,                        !- Rotation Duration {minutes}
+	Space1-1 AllZones with Electric Equipment;  !- Electric Equipment 1 Name
+```
+
+The annual energy use intensity savings by end use for this measure is shown in Figure x. below.
+
+![image](figure_measures_energy_use_E1.png)
+
+__Figure x. Measure E1 Annual Energy Use Intensity Savings by End Use__
+
+### Separate Sensible and Latent Space Conditioning (M1)
+
+This measure adds the EnergyPlus object [Dehumidifier:Desiccant:System](https://bigladdersoftware.com/epx/docs/9-4/input-output-reference/group-humidifiers-and-dehumidifiers.html#dehumidifierdesiccantsystem) downstream of the cooling coil on the supply air stream of all air loops in the model. The object's properties come from the the EnergyPlus example file `DesiccantDehumidifierWithCompanionCoil.idf` shown below.
+
+```
+! Modeling Munters HCU (humidity control unit)
+Dehumidifier:Desiccant:System,
+	Desiccant,             !- Name
+	FanAvailSched,           !- Availability Schedule Name
+	HeatExchanger:Desiccant:BalancedFlow,  !- Desiccant Heat Exchanger Object Type
+	Desiccant Heat Exchanger 1,  !- Desiccant Heat Exchanger Name
+	HX Process Outlet Node,  !- Sensor Node Name
+	Fan:SystemModel,         !- Regeneration Air Fan Object Type
+	Desiccant Regen Fan,     !- Regeneration Air Fan Name
+	DrawThrough,             !- Regeneration Air Fan Placement
+	Coil:Heating:Fuel,       !- Regeneration Air Heater Object Type
+	Desiccant Regen Coil,    !- Regeneration Air Heater Name
+	46.111111,               !- Regeneration Inlet Air Setpoint Temperature {C}
+	Coil:Cooling:DX:SingleSpeed,  !- Companion Cooling Coil Object Type
+	Desiccant DXSystem Cooling Coil,  !- Companion Cooling Coil Name
+	Yes,                     !- Companion Cooling Coil Upstream of Dehumidifier Process Inlet
+	Yes,                     !- Companion Coil Regeneration Air Heating
+	,                    !- Exhaust Fan Maximum Flow Rate {m3/s} 1.05
+	50,                      !- Exhaust Fan Maximum Power {W}
+	EXHAUSTFANPLF;           !- Exhaust Fan Power Curve Name
+```
+
+The annual energy use intensity savings by end use for this measure is shown in Figure x. below.
+
+![image](figure_measures_energy_use_M1.png)
+
+__Figure x. Measure M1 Annual Energy Use Intensity Savings by End Use__
+
+### Thermal Energy Storage (M2)
+
+This [measure](https://github.com/NREL/openstudio-load-flexibility-measures-gem/releases/tag/v0.1.3) replaces CoilSystem:Cooling:DX objects in the model with the EnergyPlus object [Coil:Cooling:DX:SingleSpeed:ThermalStorage](https://bigladdersoftware.com/epx/docs/9-4/input-output-reference/group-heating-and-cooling-coils.html#coilcoolingdxsinglespeedthermalstorage). 
+
+The annual energy use intensity savings by end use for this measure is shown in Figure x. below.
+
+![image](figure_measures_energy_use_M2.png)
+
+__Figure x. Measure M2 Annual Energy Use Intensity Savings by End Use__
+
+### Building-Scale CHP (P1)
+
+This measure adds the OpenStudio object [GeneratorMicroTurbineHeatRecovery](https://bigladdersoftware.com/epx/docs/9-4/input-output-reference/group-electric-load-center-generator.html#generatormicroturbine) to the model. The object's properties come from the EnergyPlus example file `HeatRecoveryPlantLoopAuto.idf`, which is based on the Capstone C65, and is located on the supply side of a plant loop with a water heater object. The object generates electric energy for the building and waste thermal energy is used for service hot water. The measure's code and topology is based on https://github.com/NREL/OpenStudio-resources/blob/develop/model/simulationtests/generator_microturbine.rb. The topology differs from the example file because OpenStudio does not allow WaterHeater objects on the same side of two different plant loops.
+
+The annual energy use intensity savings by end use for this measure is shown in Figure x. below.
+
+![image](figure_measures_energy_use_P1-1.png)
+
+__Figure x. Measure P1 Annual Energy Use Intensity Savings by End Use__
+
+![image](figure_measures_energy_use_P1-2.png)
+
+__Figure x. Measure P1 Annual Energy Use Intensity Savings by End Use__
+
+### Advanced Sensors and Controls (lighting) (C1)
+
+This measure adds the EnergyPlus object [DemandManager:Lights](https://bigladdersoftware.com/epx/docs/9-4/input-output-reference/group-demand-limiting-controls.html#demandmanagerlights) to the model. The object's properties come from the EnergyPlus example file `5ZoneAirCooledDemandLimiting.idf` shown below.
+
+```
+DemandManager:Lights,
+	Lights Manager,          !- Name
+	,                        !- Availability Schedule Name
+	FIXED,                   !- Limit Control
+	60,                      !- Minimum Limit Duration {minutes}
+	0.5,                     !- Maximum Limit Fraction
+	,                        !- Limit Step Change
+	ALL,                     !- Selection Control
+	,                        !- Rotation Duration {minutes}
+	AllZones with Lights;    !- Lights 1 Name    
+```
+
+The annual energy use intensity savings by end use for this measure is shown in Figure x. below.
+
+![image](figure_measures_energy_use_C1.png)
+
+__Figure x. Measure C1 Annual Energy Use Intensity Savings by End Use__
+
+### Smart Thermostats (C2)
+
+This measure adds the EnergyPlus object [DemandManager:Thermostats](https://bigladdersoftware.com/epx/docs/9-4/input-output-reference/group-demand-limiting-controls.html#demandmanagerthermostats) to the model. The object's properties come from the EnergyPlus example file `5ZoneAirCooledDemandLimiting.idf` shown below.
+
+```
+DemandManager:Thermostats,
+  Thermostats Manager,     !- Name
+  ,                        !- Availability Schedule Name
+  FIXED,                   !- Reset Control
+  60,                      !- Minimum Reset Duration {minutes}
+  19,                      !- Maximum Heating Setpoint Reset {C}
+  26,                      !- Maximum Cooling Setpoint Reset {C}
+  ,                        !- Reset Step Change
+  ALL,                     !- Selection Control
+  ,                        !- Rotation Duration {minutes}
+  AllControlledZones Thermostat;  !- Thermostat 1 Name
+```
+
+The annual energy use intensity savings by end use for this measure is shown in Figure x. below.
+
+![image](figure_measures_energy_use_C2.png)
+
+__Figure x. Measure C2 Annual Energy Use Intensity Savings by End Use__
 
 ## Optimization Process
 
