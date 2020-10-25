@@ -1,7 +1,7 @@
 
 OS:Version,
-  {a4e3165d-413f-4bdb-bfa5-982acf89f292}, !- Handle
-  3.0.1;                                  !- Version Identifier
+  {97a8702e-f290-4111-a0f3-ca7b8d4ec500}, !- Handle
+  3.1.0;                                  !- Version Identifier
 
 OS:Schedule:Constant,
   {e7e298e7-dd5e-4d4d-add7-6a87e838fe8f}, !- Handle
@@ -501,7 +501,6 @@ OS:SubSurface,
   {3b007fc4-a7ea-4d54-a7c1-0b39798c8e32}, !- Surface Name
   ,                                       !- Outside Boundary Condition Object
   ,                                       !- View Factor to Ground
-  ,                                       !- Shading Control Name
   ,                                       !- Frame and Divider Name
   1,                                      !- Multiplier
   ,                                       !- Number of Vertices
@@ -771,7 +770,6 @@ OS:SubSurface,
   {8f228f71-0dc3-4dc5-8a8b-630b8c9a5571}, !- Surface Name
   ,                                       !- Outside Boundary Condition Object
   ,                                       !- View Factor to Ground
-  ,                                       !- Shading Control Name
   ,                                       !- Frame and Divider Name
   1,                                      !- Multiplier
   ,                                       !- Number of Vertices
@@ -963,7 +961,6 @@ OS:SubSurface,
   {0a632e83-54b1-4f21-a856-a0f274c5245f}, !- Surface Name
   ,                                       !- Outside Boundary Condition Object
   ,                                       !- View Factor to Ground
-  ,                                       !- Shading Control Name
   ,                                       !- Frame and Divider Name
   1,                                      !- Multiplier
   ,                                       !- Number of Vertices
@@ -1099,7 +1096,6 @@ OS:SubSurface,
   {96a31391-8001-46f3-9a72-de2cd1602d0b}, !- Surface Name
   ,                                       !- Outside Boundary Condition Object
   ,                                       !- View Factor to Ground
-  ,                                       !- Shading Control Name
   ,                                       !- Frame and Divider Name
   1,                                      !- Multiplier
   ,                                       !- Number of Vertices
@@ -1235,7 +1231,6 @@ OS:SubSurface,
   {b90242e8-7039-45eb-a313-1beb1f893fcb}, !- Surface Name
   ,                                       !- Outside Boundary Condition Object
   ,                                       !- View Factor to Ground
-  ,                                       !- Shading Control Name
   ,                                       !- Frame and Divider Name
   1,                                      !- Multiplier
   ,                                       !- Number of Vertices
@@ -1444,7 +1439,6 @@ OS:SubSurface,
   {fe74b4ea-125a-47b6-85bc-df2503f70382}, !- Surface Name
   ,                                       !- Outside Boundary Condition Object
   ,                                       !- View Factor to Ground
-  ,                                       !- Shading Control Name
   ,                                       !- Frame and Divider Name
   1,                                      !- Multiplier
   ,                                       !- Number of Vertices
@@ -1539,7 +1533,6 @@ OS:SubSurface,
   {9dca61c1-611d-4e25-9674-71eb82516f4c}, !- Surface Name
   ,                                       !- Outside Boundary Condition Object
   ,                                       !- View Factor to Ground
-  ,                                       !- Shading Control Name
   ,                                       !- Frame and Divider Name
   1,                                      !- Multiplier
   ,                                       !- Number of Vertices
@@ -1680,7 +1673,6 @@ OS:SubSurface,
   {fcb9c303-60b7-4799-9da3-3f3fb86942b1}, !- Surface Name
   ,                                       !- Outside Boundary Condition Object
   ,                                       !- View Factor to Ground
-  ,                                       !- Shading Control Name
   ,                                       !- Frame and Divider Name
   1,                                      !- Multiplier
   ,                                       !- Number of Vertices
@@ -1889,7 +1881,6 @@ OS:SubSurface,
   {c4c69e54-2157-4950-8388-5e464612dd2b}, !- Surface Name
   ,                                       !- Outside Boundary Condition Object
   ,                                       !- View Factor to Ground
-  ,                                       !- Shading Control Name
   ,                                       !- Frame and Divider Name
   1,                                      !- Multiplier
   ,                                       !- Number of Vertices
@@ -2316,7 +2307,6 @@ OS:SubSurface,
   {ba4569a8-b4b9-45d1-8e35-92980557579f}, !- Surface Name
   ,                                       !- Outside Boundary Condition Object
   ,                                       !- View Factor to Ground
-  ,                                       !- Shading Control Name
   ,                                       !- Frame and Divider Name
   1,                                      !- Multiplier
   ,                                       !- Number of Vertices
@@ -2401,7 +2391,6 @@ OS:SubSurface,
   {8efef24a-80d8-4f06-ab27-e51f2a68056b}, !- Surface Name
   ,                                       !- Outside Boundary Condition Object
   ,                                       !- View Factor to Ground
-  ,                                       !- Shading Control Name
   ,                                       !- Frame and Divider Name
   1,                                      !- Multiplier
   ,                                       !- Number of Vertices
@@ -2730,7 +2719,6 @@ OS:SubSurface,
   {83416424-96d6-4f14-89be-24a065146140}, !- Surface Name
   ,                                       !- Outside Boundary Condition Object
   ,                                       !- View Factor to Ground
-  ,                                       !- Shading Control Name
   ,                                       !- Frame and Divider Name
   1,                                      !- Multiplier
   ,                                       !- Number of Vertices
@@ -3004,7 +2992,6 @@ OS:SubSurface,
   {96a31391-8001-46f3-9a72-de2cd1602d0b}, !- Surface Name
   ,                                       !- Outside Boundary Condition Object
   ,                                       !- View Factor to Ground
-  ,                                       !- Shading Control Name
   ,                                       !- Frame and Divider Name
   1,                                      !- Multiplier
   ,                                       !- Number of Vertices
@@ -3021,7 +3008,6 @@ OS:SubSurface,
   {96a31391-8001-46f3-9a72-de2cd1602d0b}, !- Surface Name
   ,                                       !- Outside Boundary Condition Object
   ,                                       !- View Factor to Ground
-  ,                                       !- Shading Control Name
   ,                                       !- Frame and Divider Name
   1,                                      !- Multiplier
   ,                                       !- Number of Vertices
@@ -3038,7 +3024,6 @@ OS:SubSurface,
   {c4c69e54-2157-4950-8388-5e464612dd2b}, !- Surface Name
   ,                                       !- Outside Boundary Condition Object
   ,                                       !- View Factor to Ground
-  ,                                       !- Shading Control Name
   ,                                       !- Frame and Divider Name
   1,                                      !- Multiplier
   ,                                       !- Number of Vertices
@@ -3055,7 +3040,6 @@ OS:SubSurface,
   {c4c69e54-2157-4950-8388-5e464612dd2b}, !- Surface Name
   ,                                       !- Outside Boundary Condition Object
   ,                                       !- View Factor to Ground
-  ,                                       !- Shading Control Name
   ,                                       !- Frame and Divider Name
   1,                                      !- Multiplier
   ,                                       !- Number of Vertices
@@ -3072,7 +3056,6 @@ OS:SubSurface,
   {8f228f71-0dc3-4dc5-8a8b-630b8c9a5571}, !- Surface Name
   ,                                       !- Outside Boundary Condition Object
   ,                                       !- View Factor to Ground
-  ,                                       !- Shading Control Name
   ,                                       !- Frame and Divider Name
   1,                                      !- Multiplier
   ,                                       !- Number of Vertices
@@ -3089,7 +3072,6 @@ OS:SubSurface,
   {8efef24a-80d8-4f06-ab27-e51f2a68056b}, !- Surface Name
   ,                                       !- Outside Boundary Condition Object
   ,                                       !- View Factor to Ground
-  ,                                       !- Shading Control Name
   ,                                       !- Frame and Divider Name
   1,                                      !- Multiplier
   ,                                       !- Number of Vertices
@@ -6213,6 +6195,7 @@ OS:AirLoopHVAC,
   {130fcb3c-cc7c-44d0-b1d4-efeeb8c84e77}, !- Availability Schedule
   {e4bfcb46-1793-4eb8-ae2e-2e22b81a36bb}, !- Availability Manager List Name
   AutoSize,                               !- Design Supply Air Flow Rate {m3/s}
+  1,                                      !- Design Return Air Flow Fraction of Supply Air Flow
   ,                                       !- Branch List Name
   ,                                       !- Connector List Name
   {cbf50459-a1cd-40fe-b0fb-61930df562ec}, !- Supply Side Inlet Node Name
@@ -7245,6 +7228,7 @@ OS:AirLoopHVAC,
   {130fcb3c-cc7c-44d0-b1d4-efeeb8c84e77}, !- Availability Schedule
   {a575c02a-a018-470a-bb0d-97b7af09022b}, !- Availability Manager List Name
   AutoSize,                               !- Design Supply Air Flow Rate {m3/s}
+  1,                                      !- Design Return Air Flow Fraction of Supply Air Flow
   ,                                       !- Branch List Name
   ,                                       !- Connector List Name
   {c8bcb163-ab57-4675-8301-c2f8d7e0dffe}, !- Supply Side Inlet Node Name
@@ -8127,6 +8111,7 @@ OS:AirLoopHVAC,
   {130fcb3c-cc7c-44d0-b1d4-efeeb8c84e77}, !- Availability Schedule
   {4ed6b980-313d-4727-91e8-f09e78e44f04}, !- Availability Manager List Name
   AutoSize,                               !- Design Supply Air Flow Rate {m3/s}
+  1,                                      !- Design Return Air Flow Fraction of Supply Air Flow
   ,                                       !- Branch List Name
   ,                                       !- Connector List Name
   {3ba75def-0d6b-4203-824b-34db6f3572a3}, !- Supply Side Inlet Node Name
