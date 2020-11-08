@@ -3,91 +3,86 @@
   <schema_version>3.0</schema_version>
   <name>envelope_material_property_phase_change</name>
   <uid>89c98dc2-c2d7-4014-a411-0103c899546b</uid>
-  <version_id>777afb86-a28a-4e41-a03e-e5235c75c516</version_id>
-  <version_modified>20200920T211523Z</version_modified>
+  <version_id>eecadbfa-2fb5-41ff-8b6f-dfc6f0023e5e</version_id>
+  <version_modified>20201108T032631Z</version_modified>
   <xml_checksum>BB067920</xml_checksum>
   <class_name>EnvelopeMaterialPropertyPhaseChange</class_name>
   <display_name>Material Property Phase Change</display_name>
   <description>Adds a MaterialProperty:PhaseChange object to the model that references the interior layer of the selected Construction.</description>
-  <modeler_description>Adds a MaterialProperty:PhaseChange object to the workspace for each chosen Construction. Each MaterialProperty:PhaseChange object references the interior layer of the Construction object.</modeler_description>
+  <modeler_description>Adds a MaterialProperty:PhaseChange object to the workspace for each chosen Construction. Each MaterialProperty:PhaseChange object references the specified layer of the Construction object.</modeler_description>
   <arguments>
     <argument>
       <name>construction_name_1</name>
       <display_name>Construction Name 1</display_name>
-      <description>A new MaterialProperty:PhaseChange object will reference the interior layer of this Construction.</description>
       <type>Choice</type>
+      <required>false</required>
+      <model_dependent>false</model_dependent>
+    </argument>
+    <argument>
+      <name>construction_layer_number_1</name>
+      <display_name>Construction Layer Number 1</display_name>
+      <description>from outside to inside</description>
+      <type>Integer</type>
       <required>false</required>
       <model_dependent>false</model_dependent>
     </argument>
     <argument>
       <name>construction_name_2</name>
       <display_name>Construction Name 2</display_name>
-      <description>A new MaterialProperty:PhaseChange object will reference the interior layer of this Construction.</description>
       <type>Choice</type>
+      <required>false</required>
+      <model_dependent>false</model_dependent>
+    </argument>
+    <argument>
+      <name>construction_layer_number_2</name>
+      <display_name>Construction Layer Number 2</display_name>
+      <description>from outside to inside</description>
+      <type>Integer</type>
       <required>false</required>
       <model_dependent>false</model_dependent>
     </argument>
     <argument>
       <name>construction_name_3</name>
       <display_name>Construction Name 3</display_name>
-      <description>A new MaterialProperty:PhaseChange object will reference the interior layer of this Construction.</description>
       <type>Choice</type>
+      <required>false</required>
+      <model_dependent>false</model_dependent>
+    </argument>
+    <argument>
+      <name>construction_layer_number_3</name>
+      <display_name>Construction Layer Number 3</display_name>
+      <description>from outside to inside</description>
+      <type>Integer</type>
       <required>false</required>
       <model_dependent>false</model_dependent>
     </argument>
     <argument>
       <name>construction_name_4</name>
       <display_name>Construction Name 4</display_name>
-      <description>A new MaterialProperty:PhaseChange object will reference the interior layer of this Construction.</description>
       <type>Choice</type>
+      <required>false</required>
+      <model_dependent>false</model_dependent>
+    </argument>
+    <argument>
+      <name>construction_layer_number_4</name>
+      <display_name>Construction Layer Number 4</display_name>
+      <description>from outside to inside</description>
+      <type>Integer</type>
       <required>false</required>
       <model_dependent>false</model_dependent>
     </argument>
     <argument>
       <name>construction_name_5</name>
       <display_name>Construction Name 5</display_name>
-      <description>A new MaterialProperty:PhaseChange object will reference the interior layer of this Construction.</description>
       <type>Choice</type>
       <required>false</required>
       <model_dependent>false</model_dependent>
     </argument>
     <argument>
-      <name>construction_name_6</name>
-      <display_name>Construction Name 6</display_name>
-      <description>A new MaterialProperty:PhaseChange object will reference the interior layer of this Construction.</description>
-      <type>Choice</type>
-      <required>false</required>
-      <model_dependent>false</model_dependent>
-    </argument>
-    <argument>
-      <name>construction_name_7</name>
-      <display_name>Construction Name 7</display_name>
-      <description>A new MaterialProperty:PhaseChange object will reference the interior layer of this Construction.</description>
-      <type>Choice</type>
-      <required>false</required>
-      <model_dependent>false</model_dependent>
-    </argument>
-    <argument>
-      <name>construction_name_8</name>
-      <display_name>Construction Name 8</display_name>
-      <description>A new MaterialProperty:PhaseChange object will reference the interior layer of this Construction.</description>
-      <type>Choice</type>
-      <required>false</required>
-      <model_dependent>false</model_dependent>
-    </argument>
-    <argument>
-      <name>construction_name_9</name>
-      <display_name>Construction Name 9</display_name>
-      <description>A new MaterialProperty:PhaseChange object will reference the interior layer of this Construction.</description>
-      <type>Choice</type>
-      <required>false</required>
-      <model_dependent>false</model_dependent>
-    </argument>
-    <argument>
-      <name>construction_name_10</name>
-      <display_name>Construction Name 10</display_name>
-      <description>A new MaterialProperty:PhaseChange object will reference the interior layer of this Construction.</description>
-      <type>Choice</type>
+      <name>construction_layer_number_5</name>
+      <display_name>Construction Layer Number 5</display_name>
+      <description>from outside to inside</description>
+      <type>Integer</type>
       <required>false</required>
       <model_dependent>false</model_dependent>
     </argument>
@@ -148,13 +143,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>B0478170</checksum>
+      <checksum>79D54A4D</checksum>
     </file>
     <file>
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
-      <checksum>B928CA43</checksum>
+      <checksum>1E66307F</checksum>
     </file>
   </files>
 </measure>

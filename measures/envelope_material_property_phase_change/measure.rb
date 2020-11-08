@@ -7,7 +7,7 @@
 class EnvelopeMaterialPropertyPhaseChange < OpenStudio::Measure::EnergyPlusMeasure
   
   # constants
-  MAX = 10
+  MAX = 5
   
   # human readable name
   def name
@@ -22,7 +22,7 @@ class EnvelopeMaterialPropertyPhaseChange < OpenStudio::Measure::EnergyPlusMeasu
 
   # human readable description of modeling approach
   def modeler_description
-    return 'Adds a MaterialProperty:PhaseChange object to the workspace for each chosen Construction. Each MaterialProperty:PhaseChange object references the interior layer of the Construction object.'
+    return 'Adds a MaterialProperty:PhaseChange object to the workspace for each chosen Construction. Each MaterialProperty:PhaseChange object references the specified layer of the Construction object.'
   end
 
   # define the arguments that the user will input
@@ -35,12 +35,19 @@ class EnvelopeMaterialPropertyPhaseChange < OpenStudio::Measure::EnergyPlusMeasu
       construction_names << obj.name.to_s
     end
     
-    # construction name arguments
     (1..MAX).each do |num|
+      
+      # construction name
       construction_name = OpenStudio::Ruleset::OSArgument::makeChoiceArgument("construction_name_#{num}", construction_names, false)
       construction_name.setDisplayName("Construction Name #{num}")
-      construction_name.setDescription('A new MaterialProperty:PhaseChange object will reference the interior layer of this Construction.')
       args << construction_name
+
+      # construction layer number
+      construction_layer_number = OpenStudio::Ruleset::OSArgument::makeIntegerArgument("construction_layer_number_#{num}", false)
+      construction_layer_number.setDisplayName("Construction Layer Number #{num}")
+      construction_layer_number.setDescription('from outside to inside')
+      args << construction_layer_number
+
     end
 
     return args
@@ -56,33 +63,38 @@ class EnvelopeMaterialPropertyPhaseChange < OpenStudio::Measure::EnergyPlusMeasu
     end
 
     # assign the user inputs to variables
-    construction_names = []
+    construction_hash = {}
     (1..MAX).each do |num|
       if runner.getOptionalStringArgumentValue("construction_name_#{num}", user_arguments).is_initialized
-        construction_names << runner.getOptionalStringArgumentValue("construction_name_#{num}", user_arguments).get
+        construction_name = runner.getOptionalStringArgumentValue("construction_name_#{num}", user_arguments).get
+        if runner.getOptionalIntegerArgumentValue("construction_layer_number_#{num}", user_arguments).is_initialized
+          construction_layer_number = runner.getOptionalIntegerArgumentValue("construction_layer_number_#{num}", user_arguments).get
+          construction_hash[construction_layer_number] = construction_name
+        else
+          runner.registerError("missing user argument = Construction Layer Number #{num}")
+          return false
+        end
       end
-    end
-
-    if construction_names.size == 0
-      runner.registerError('at least 1 construction name must be selected')
-      return false
     end
 
     # reporting initial condition of model
     objs = workspace.getObjectsByType('MaterialProperty:PhaseChange'.to_IddObjectType)
     runner.registerInitialCondition("MaterialProperty:PhaseChange objects = #{objs.size}")
 
-    # get objects
-    construction_names.each do |construction_name|
+    # add objects
+    construction_hash.each do |construction_layer_number, construction_name|
+    
+      # if the layer number is greater than the number of fields, it's skipped so error handling doesn't work
+      construction = workspace.getObjectByTypeAndName('Construction'.to_IddObjectType, construction_name).get 
+      construction_layer_name = construction.getString(construction_layer_number).to_s
 
-      construction = workspace.getObjectByTypeAndName('Construction'.to_IddObjectType, construction_name).get
-      construction_num_fields = construction.numFields - 1
-      construction_interior_layer_name = construction.getString(construction_num_fields).to_s
+      runner.registerInfo("Construction = #{construction_name}")
+      runner.registerInfo("    Material = #{construction_layer_name}")
 
       # add object from ~/EnergyPlus-x-x-x/ExampleFiles/MaterialPropertyPhaseChange.idf 
       idf_str = "
         MaterialProperty:PhaseChange,
-          #{construction_interior_layer_name},  !- Name
+          #{construction_layer_name},  !- Name
           0,                       !- Temperature Coefficient for Thermal Conductivity {W/m-K2}
           -20,                     !- Temperature 1 {C}
           0.1,                     !- Enthalpy 1 {J/kg}
@@ -93,8 +105,8 @@ class EnvelopeMaterialPropertyPhaseChange < OpenStudio::Measure::EnergyPlusMeasu
           60,                      !- Temperature 4 {C}
           71000;                   !- Enthalpy 4 {J/kg}
         "
-        idf_obj = OpenStudio::IdfObject.load(idf_str).get
-        workspace.addObject(idf_obj)
+      idf_obj = OpenStudio::IdfObject.load(idf_str).get
+      workspace.addObject(idf_obj)
 
     end
 
