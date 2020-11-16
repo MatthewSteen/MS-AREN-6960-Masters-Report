@@ -155,7 +155,7 @@ __Figure x. Individual Measure Annual Energy Cost__
 
 ### Thermal Storage (A1)
 
-This measure adds the EnergyPlus object [MaterialProperty:PhaseChange](https://bigladdersoftware.com/epx/docs/9-4/input-output-reference/group-surface-construction-elements.html#materialpropertyphasechange) to all interior surfaces in the model. The object's properties were taken from the EnergyPlus example file `MaterialPropertyPhaseChange.idf` shown below.
+This measure adds the EnergyPlus object `MaterialProperty:PhaseChange` (DOE, 2020) to all interior surfaces in the model. The object's properties were taken from the EnergyPlus example file `MaterialPropertyPhaseChange.idf` (DOE, 2020) shown below.
 
 ```
 	MaterialProperty:PhaseChange,
@@ -170,6 +170,16 @@ This measure adds the EnergyPlus object [MaterialProperty:PhaseChange](https://b
 		60,                      !- Temperature 4 {C}
 		71000;                   !- Enthalpy 4 {J/kg}
 ```
+
+The `MaterialProperty:PhaseChange` object describes the temperature-enthalpy relationship of the Material object referenced by the Name field. This object requires the use of EnergyPlus' conduction finite difference heat balance algorithm, rather than its default conduction transfer function (CTF) method, because the CTF requires constant material properties (e.g. specific heat), which was one of the required changes to the baseline model for this analysis. Additionally, the timestep was changed from six per hour to 12 per hour to accomodate the phase change material. The `Temperature Coefficient for Thermal Conductivity` field describes the material's thermal conductivity change per unit temperature from 20C in W/m-K2. Thermal conductivity is calculated from:
+
+k = {k_o} + {k_1}({T_i} - 20)
+
+where:
+
+k\(_{o}\) is the 20C value of thermal conductivity(normal idf~ input)
+
+k\(_{1}\) is the change in conductivity per degree temperature difference from 20C
 
 The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
 
