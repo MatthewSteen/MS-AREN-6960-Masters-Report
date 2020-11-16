@@ -129,13 +129,19 @@ __Figure x. Monthly Electricity Peak vs. Utility Demand__
 
 ## Measures
 
-The following sections describe the nine measures used to apply each technology to the baseline model and the individual model results compared to the baseline. The measures are coded according to the following prefixes.
+This section describes the nine measures used to apply each technology to the baseline model and the individual model results compared to the baseline. The measures are coded according to the following table.
 
-- A for Architectural
-- E for Electrical
-- M for Mechanical
-- P for Plumbing
-- C for Controls
+Code | Category | Description
+:- | :- | :-
+ A1 | Architectural | Thermal Storage
+ A2 |  | Dynamic Glazing
+ A3 |  | Automated Attachments
+ E1 | Electrical | Continuous-Operation Electronics
+ M1 | Mechanical | Separate Sensible and Latent Space Conditioning
+ M2 |  | Thermal Energy Storage
+ P1 | Plumbing | Building-Scale CHP
+ C1 | Controls | Advanced Sensors and Controls (lighting)
+ C2 |  | Smart Thermostats
 
 The annual energy cost and use results for the individual measures are shown in Figures x. and x. below.
 
