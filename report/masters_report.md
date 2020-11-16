@@ -341,20 +341,35 @@ __Figure x. Measure A3 Annual Energy Use Intensity Savings by End Use__
 
 ### Continuous-Operation Electronics (E1)
 
-This measure adds the EnergyPlus object [DemandManager:ElectricEquipment](https://bigladdersoftware.com/epx/docs/9-4/input-output-reference/group-demand-limiting-controls.html#demandmanagerelectricequipment) to the model. The object's properties come from the EnergyPlus example file `5ZoneAirCooledDemandLimiting.idf` shown below.
+This measure adds the EnergyPlus object `DemandManager:ElectricEquipment` to the model. The object's properties come from the EnergyPlus example file `5ZoneAirCooledDemandLimiting.idf` shown below.
 
 ```
 DemandManager:ElectricEquipment,
-	Eq Mgr Stage 1,          !- Name
-	,                        !- Availability Schedule Name
-	FIXED,                   !- Limit Control
-	60,                      !- Minimum Limit Duration {minutes}
-	0.0,                     !- Maximum Limit Fraction
-	,                        !- Limit Step Change
-	ALL,                     !- Selection Control
-	,                        !- Rotation Duration {minutes}
-	Space1-1 AllZones with Electric Equipment;  !- Electric Equipment 1 Name
+  Demand Manager Electric Equipment,      !- Name
+  ,                                       !- Availability Schedule Name
+  Fixed,                                  !- Limit Control
+  60,                                     !- Minimum Limit Duration {minutes}
+  0.5,                                    !- Maximum Limit Fraction
+  ,                                       !- Limit Step Change
+  All,                                    !- Selection Control
+  ,                                       !- Rotation Duration {minutes}
+  2 Elevator Lift Motors,                 !- Electric Equipment Name 1
+  Office WholeBuilding - Md Office Elec Equip; !- Electric Equipment Name 2
+
+DemandManagerAssignmentList,
+  Demand Manager Assignment List,         !- Name
+  Electricity:Facility,                   !- Meter Name
+  ,                                       !- Demand Limit Schedule Name
+  1,                                      !- Demand Limit Safety Fraction
+  ,                                       !- Billing Period Schedule Name
+  ,                                       !- Peak Period Schedule Name
+  15,                                     !- Demand Window Length {minutes}
+  Sequential,                             !- Demand Manager Priority
+  DemandManager:ElectricEquipment,        !- DemandManager Object Type 1
+  Demand Manager Electric Equipment;      !- DemandManager Name 1
 ```
+
+The `DemandManager:ElectricEquipment` object in EnergyPlus allows modeling common demand side management strategies to reduce power to electric equipment. The `Limit Control` field specifies whether demand limiting is on (Fixed) or off. The `DemandManager module in EnergyPlus determines whether demand limiting is required during a timestep and if so, the power to the referenced Electric Equipment is reduced by the `Maximum Limit Fraction` field. The `DemandManager:AssignmentList` object controls one or more DemandManager objects by allowing the Demand Window Length (in minumtes) and Demand Manager Priority (either Sequential or All) to be specified.
 
 The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
 
