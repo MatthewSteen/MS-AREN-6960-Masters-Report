@@ -267,7 +267,67 @@ __Figure x. Measure A2 Annual Energy Use Intensity Savings by End Use__
 
 ### Automated Attachments (A3)
 
-This measure adds the OpenStudio object [ShadingControl](https://bigladdersoftware.com/epx/docs/9-4/input-output-reference/group-thermal-zone-description-geometry.html#windowpropertyshadingcontrol) to the model with Shading Type set to `InteriorShade`. 
+This measure adds the OpenStudio object `ShadingControl` to the model, which is translated to the EnergyPlus object `WindowShadingControl` prior to simulation as shown below.  
+
+```
+WindowShadingControl,
+  Shading Control 1,                      !- Name
+  Perimeter_top_ZN_1 ZN,                  !- Zone Name
+  1,                                      !- Shading Control Sequence Number
+  InteriorShade,                          !- Shading Type
+  Dbl Elec Ref Bleached 6mm/6mm Air + Shade, !- Construction with Shading Name
+  OnIfHighSolarOnWindow,                  !- Shading Control Type
+  ,                                       !- Schedule Name
+  20,                                     !- Setpoint {W/m2, W or deg C}
+  No,                                     !- Shading Control Is Scheduled
+  No,                                     !- Glare Control Is Active
+  ,                                       !- Shading Device Material Name
+  FixedSlatAngle,                         !- Type of Slat Angle Control for Blinds
+  ,                                       !- Slat Angle Schedule Name
+  ,                                       !- Setpoint 2 {BasedOnField A5}
+  ,                                       !- Daylighting Control Object Name
+  Sequential,                             !- Multiple Surface Control Type
+  Perimeter_top_ZN_1_Wall_South_Window,   !- Fenestration Surface Name 1
+  Perimeter_top_ZN_3_Wall_North_Window,   !- Fenestration Surface Name 2
+  Perimeter_top_ZN_4_Wall_West_Window,    !- Fenestration Surface Name 3
+  Perimeter_bot_ZN_2_Wall_East_Window,    !- Fenestration Surface Name 4
+  Perimeter_mid_ZN_4_Wall_West_Window,    !- Fenestration Surface Name 5
+  Perimeter_mid_ZN_1_Wall_South_Window,   !- Fenestration Surface Name 6
+  Perimeter_mid_ZN_2_Wall_East_Window,    !- Fenestration Surface Name 7
+  Perimeter_bot_ZN_4_Wall_West_Window,    !- Fenestration Surface Name 8
+  Perimeter_top_ZN_2_Wall_East_Window,    !- Fenestration Surface Name 9
+  Perimeter_bot_ZN_3_Wall_North_Window,   !- Fenestration Surface Name 10
+  Perimeter_mid_ZN_3_Wall_North_Window,   !- Fenestration Surface Name 11
+  Perimeter_bot_ZN_1_Wall_South_Window;   !- Fenestration Surface Name 12
+```
+
+For this measure, the Shading Type was set to `InteriorShade`, which allows modeling a diffusing shade located on the inside of the window by referencing a construction with a `WindowMaterial:Shade` objecct in the `Construction with Shading Type` field. Like the A2, this measure required replacing the baseline's window construction with a detailed layered construction. Additionally, a construction with the shade was added to the model so that it was available to the measure (but unused in the baseline) as shown in the objects below. The `WindowMaterial:Shade` object was taken from the `WindowShadeMaterials.idf` EnergyPlus data set.
+
+```
+Construction,
+  Dbl Elec Ref Bleached 6mm/6mm Air + Shade, !- Name
+  ECREF-2 BLEACHED 6MM,                   !- Layer 1
+  AIR 6MM,                                !- Layer 2
+  CLEAR 6MM,                              !- Layer 3
+  MEDIUM REFLECT - MEDIUM TRANS SHADE;    !- Layer 4
+
+WindowMaterial:Shade,
+  MEDIUM REFLECT - MEDIUM TRANS SHADE,    !- Name
+  0.4,                                    !- Solar Transmittance {dimensionless}
+  0.5,                                    !- Solar Reflectance {dimensionless}
+  0.4,                                    !- Visible Transmittance {dimensionless}
+  0.5,                                    !- Visible Reflectance {dimensionless}
+  0.9,                                    !- Infrared Hemispherical Emissivity {dimensionless}
+  0,                                      !- Infrared Transmittance {dimensionless}
+  0.005,                                  !- Thickness {m}
+  0.1,                                    !- Conductivity {W/m-K}
+  0.05,                                   !- Shade to Glass Distance {m}
+  0.5,                                    !- Top Opening Multiplier
+  0.5,                                    !- Bottom Opening Multiplier
+  0.5,                                    !- Left-Side Opening Multiplier
+  0.5,                                    !- Right-Side Opening Multiplier
+  0;                                      !- Airflow Permeability {dimensionless}
+```
 
 The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
 
