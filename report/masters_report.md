@@ -193,7 +193,67 @@ __Figure x. Measure A1 Annual Energy Use Intensity Savings by End Use__
 
 ### Dynamic Glazing (A2)
 
-This measure adds the OpenStudio object [ShadingControl](https://bigladdersoftware.com/epx/docs/9-4/input-output-reference/group-thermal-zone-description-geometry.html#windowpropertyshadingcontrol) to the model with Shading Type set to `SwitchableGlazing`. 
+This measure adds the OpenStudio object `ShadingControl` to the model, which is translated to the EnergyPlus object `WindowShadingControl` prior to simulation as shown below.  
+
+```
+WindowShadingControl,
+  Shading Control 1,                      !- Name
+  Perimeter_top_ZN_1 ZN,                  !- Zone Name
+  1,                                      !- Shading Control Sequence Number
+  SwitchableGlazing,                      !- Shading Type
+  Dbl Elec Ref Colored 6mm/6mm Air,       !- Construction with Shading Name
+  OnIfHighSolarOnWindow,                  !- Shading Control Type
+  ,                                       !- Schedule Name
+  20,                                     !- Setpoint {W/m2, W or deg C}
+  No,                                     !- Shading Control Is Scheduled
+  No,                                     !- Glare Control Is Active
+  ,                                       !- Shading Device Material Name
+  FixedSlatAngle,                         !- Type of Slat Angle Control for Blinds
+  ,                                       !- Slat Angle Schedule Name
+  ,                                       !- Setpoint 2 {BasedOnField A5}
+  ,                                       !- Daylighting Control Object Name
+  Sequential,                             !- Multiple Surface Control Type
+  Perimeter_top_ZN_1_Wall_South_Window,   !- Fenestration Surface Name 1
+  Perimeter_top_ZN_3_Wall_North_Window,   !- Fenestration Surface Name 2
+  Perimeter_top_ZN_4_Wall_West_Window,    !- Fenestration Surface Name 3
+  Perimeter_bot_ZN_2_Wall_East_Window,    !- Fenestration Surface Name 4
+  Perimeter_mid_ZN_4_Wall_West_Window,    !- Fenestration Surface Name 5
+  Perimeter_mid_ZN_1_Wall_South_Window,   !- Fenestration Surface Name 6
+  Perimeter_mid_ZN_2_Wall_East_Window,    !- Fenestration Surface Name 7
+  Perimeter_bot_ZN_4_Wall_West_Window,    !- Fenestration Surface Name 8
+  Perimeter_top_ZN_2_Wall_East_Window,    !- Fenestration Surface Name 9
+  Perimeter_bot_ZN_3_Wall_North_Window,   !- Fenestration Surface Name 10
+  Perimeter_mid_ZN_3_Wall_North_Window,   !- Fenestration Surface Name 11
+  Perimeter_bot_ZN_1_Wall_South_Window;   !- Fenestration Surface Name 12
+```
+
+The `WindowShadingControl` object is used to reduce solar radiation into the thermal zone through a window. For this measure, the Shading Type was set to `SwitchableGlazing`, which allows modeling simple two-state electrochromic glazing by referencing a construction for the tinted state in the `Construction with Shading Type` field. Modeling electrochromic glazing required the baseline window constructions to be changed from `WindowMaterial:SimpleGlazingSystem`, which models an entire window assembly as a simple monolithic layer, to a more detailed layered construction made up of `WindowMaterial:Glazing` and `WindowMaterial:Gas` objects. In this case, both the untinted and the tinted window constructions were taken from the `WindowConstructs.idf` EnergyPlus example file, specifically the . The objects below show the window constructions before and after the changes to the baseline.
+
+```
+WindowMaterial:SimpleGlazingSystem,
+  U 0.59 SHGC 0.39 Simple Glazing U-1.18 SHGC 0.39, !- Name
+  6.72051227935197,                       !- U-Factor {W/m2-K}
+  0.39,                                   !- Solar Heat Gain Coefficient
+  0.31;                                   !- Visible Transmittance
+```
+
+```
+Construction,
+  Dbl Elec Ref Bleached 6mm/6mm Air,      !- Name
+  ECREF-2 BLEACHED 6MM,                   !- Layer 1
+  AIR 6MM,                                !- Layer 2
+  CLEAR 6MM;                              !- Layer 3
+
+! U=2.371  SHGC=0.18  TSOL=0.078  TVIS=0.137
+
+Construction,
+  Dbl Elec Ref Colored 6mm/6mm Air,       !- Name
+  ECREF-2 COLORED 6MM,                    !- Layer 1
+  AIR 6MM,                                !- Layer 2
+  CLEAR 6MM;                  
+
+! U=1.761  SHGC=0.641  TSOL=0.545  TVIS=0.727
+```
 
 The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
 
