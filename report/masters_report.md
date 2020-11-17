@@ -383,30 +383,32 @@ __Figure x. Measure E1 Annual Energy Use Intensity Savings by End Use__
 
 ### Separate Sensible and Latent Space Conditioning (M1)
 
-This measure adds the EnergyPlus object [Dehumidifier:Desiccant:System](https://bigladdersoftware.com/epx/docs/9-4/input-output-reference/group-humidifiers-and-dehumidifiers.html#dehumidifierdesiccantsystem) downstream of the cooling coil on the supply air stream of all air loops in the model. The object's properties come from the the EnergyPlus example file `DesiccantDehumidifierWithCompanionCoil.idf` shown below.
+This measure adds the EnergyPlus object `Dehumidifier:Desiccant:System` downstream of the cooling coil on the supply air stream of all air loops in the model. The object's properties come from the the EnergyPlus example file `DesiccantDehumidifierWithCompanionCoil.idf` shown below.
 
 ```
 ! Modeling Munters HCU (humidity control unit)
 Dehumidifier:Desiccant:System,
-	Desiccant,             !- Name
-	FanAvailSched,           !- Availability Schedule Name
-	HeatExchanger:Desiccant:BalancedFlow,  !- Desiccant Heat Exchanger Object Type
-	Desiccant Heat Exchanger 1,  !- Desiccant Heat Exchanger Name
-	HX Process Outlet Node,  !- Sensor Node Name
-	Fan:SystemModel,         !- Regeneration Air Fan Object Type
-	Desiccant Regen Fan,     !- Regeneration Air Fan Name
-	DrawThrough,             !- Regeneration Air Fan Placement
-	Coil:Heating:Fuel,       !- Regeneration Air Heater Object Type
-	Desiccant Regen Coil,    !- Regeneration Air Heater Name
-	46.111111,               !- Regeneration Inlet Air Setpoint Temperature {C}
-	Coil:Cooling:DX:SingleSpeed,  !- Companion Cooling Coil Object Type
-	Desiccant DXSystem Cooling Coil,  !- Companion Cooling Coil Name
-	Yes,                     !- Companion Cooling Coil Upstream of Dehumidifier Process Inlet
-	Yes,                     !- Companion Coil Regeneration Air Heating
-	,                    !- Exhaust Fan Maximum Flow Rate {m3/s} 1.05
-	50,                      !- Exhaust Fan Maximum Power {W}
-	EXHAUSTFANPLF;           !- Exhaust Fan Power Curve Name
+  Desiccant 1,                            !- Name
+  ,                                       !- Availability Schedule Name
+  HeatExchanger:Desiccant:BalancedFlow,   !- Desiccant Heat Exchanger Object Type
+  Desiccant Heat Exchanger 1,             !- Desiccant Heat Exchanger Name
+  Node 4,                                 !- Sensor Node Name
+  Fan:SystemModel,                        !- Regeneration Air Fan Object Type
+  Desiccant Regen Fan 1,                  !- Regeneration Air Fan Name
+  DrawThrough,                            !- Regeneration Air Fan Placement
+  Coil:Heating:Fuel,                      !- Regeneration Air Heater Object Type
+  Desiccant Regen Coil 1,                 !- Regeneration Air Heater Name
+  46.111111,                              !- Regeneration Inlet Air Setpoint Temperature {C}
+  Coil:Cooling:DX:SingleSpeed,            !- Companion Cooling Coil Object Type
+  1 Spd DX Clg Coil,                      !- Companion Cooling Coil Name
+  Yes,                                    !- Companion Cooling Coil Upstream of Dehumidifier Process Inlet
+  No,                                     !- Companion Coil Regeneration Air Heating
+  ,                                       !- Exhaust Fan Maximum Flow Rate {m3/s}
+  50,                                     !- Exhaust Fan Maximum Power {W}
+  EXHAUSTFANPLF;                          !- Exhaust Fan Power Curve Name
 ```
+
+This object is a parent object that references several child components, which include an air-to-air heat exchanger, an exhaust fan (optional), and a regeneration fan and heating coil (optional) to regenerate the desiccant. The operation of the desiccant system can be coordinated with a companion cooling coil by specifying its type and name in the appropriate fields. This measure required adding humidity controls to all zones served by the air loops and replacing the `Coil:Cooling:DX:TwoSpeed` objects with `Coil:Cooling:DX:SingleSpeed` objects. Humidity controls were set to 45% relative humidity.
 
 The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
 
