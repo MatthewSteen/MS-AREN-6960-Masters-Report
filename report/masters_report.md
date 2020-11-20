@@ -603,7 +603,69 @@ __Figure x. Measure M2 Annual Energy Use Intensity Savings by End Use__
 
 ### Building-Scale CHP (P1)
 
-This measure adds the OpenStudio object [GeneratorMicroTurbineHeatRecovery](https://bigladdersoftware.com/epx/docs/9-4/input-output-reference/group-electric-load-center-generator.html#generatormicroturbine) to the model. The object's properties come from the EnergyPlus example file `HeatRecoveryPlantLoopAuto.idf`, which is based on the Capstone C65, and is located on the supply side of a plant loop with a water heater object. The object generates electric energy for the building and waste thermal energy is used for service hot water. The measure's code and topology is based on https://github.com/NREL/OpenStudio-resources/blob/develop/model/simulationtests/generator_microturbine.rb. The topology differs from the example file because OpenStudio does not allow WaterHeater objects on the same side of two different plant loops.
+This measure adds an OpenStudio `GeneratorMicroTurbineHeatRecovery` object (EnergyPlus object `Generator:MicroTurbine`) to the supply side of a plant loop with a WaterHeater object. The `GeneratorMicroTurbine` is the Capstone C65 from the EnergyPlus `HeatRecoveryPlantLoopAuto.idf` example file (and others), which generates electric energy for the building and waste thermal energy that is used for service hot water. The code and topology is based on https://github.com/NREL/OpenStudio-resources/blob/develop/model/simulationtests/generator_microturbine.rb. The topology differs from the example file because OpenStudio does not allow WaterHeater objects on the same side of two different plant loops. The following block shows the parameters of the micro turbine and the associated objects.
+
+```
+Generator:MicroTurbine,
+  Capstone C65,                           !- Name
+  65000,                                  !- Reference Electrical Power Output {W}
+  29900,                                  !- Minimum Full Load Electrical Power Output {W}
+  65000,                                  !- Maximum Full Load Electrical Power Output {W}
+  0.29,                                   !- Reference Electrical Efficiency Using Lower Heating Value
+  15,                                     !- Reference Combustion Air Inlet Temperature {C}
+  0.00638,                                !- Reference Combustion Air Inlet Humidity Ratio {kgWater/kgDryAir}
+  0,                                      !- Reference Elevation {m}
+  Capstone C65 Power_vs_Temp_Elev,        !- Electrical Power Function of Temperature and Elevation Curve Name
+  Capstone C65 Efficiency_vs_Temp,        !- Electrical Efficiency Function of Temperature Curve Name
+  Capstone C65 Efficiency_vs_PLR,         !- Electrical Efficiency Function of Part Load Ratio Curve Name
+  NaturalGas,                             !- Fuel Type
+  50000,                                  !- Fuel Higher Heating Value {kJ/kg}
+  45450,                                  !- Fuel Lower Heating Value {kJ/kg}
+  300,                                    !- Standby Power {W}
+  4500,                                   !- Ancillary Power {W}
+  ,                                       !- Ancillary Power Function of Fuel Input Curve Name
+  100gal Natural Gas Water Heater - 2883kBtu/hr 0.78 Therm Eff Supply Inlet Water Node, !- Heat Recovery Water Inlet Node Name
+  Node 7,                                 !- Heat Recovery Water Outlet Node Name
+  0.4975,                                 !- Reference Thermal Efficiency Using Lower Heat Value
+  60,                                     !- Reference Inlet Water Temperature {C}
+  PlantControl,                           !- Heat Recovery Water Flow Operating Mode
+  0.00252362,                             !- Reference Heat Recovery Water Flow Rate {m3/s}
+  ,                                       !- Heat Recovery Water Flow Rate Function of Temperature and Power Curve Name
+  Capstone C65 ThermalEff_vs_Temp_Elev,   !- Thermal Efficiency Function of Temperature and Elevation Curve Name
+  Capstone C65 HeatRecoveryRate_vs_PLR,   !- Heat Recovery Rate Function of Part Load Ratio Curve Name
+  Capstone C65 HeatRecoveryRate_vs_InletTemp, !- Heat Recovery Rate Function of Inlet Water Temperature Curve Name
+  Capstone C65 HeatRecoveryRate_vs_WaterFlow, !- Heat Recovery Rate Function of Water Flow Rate Curve Name
+  0.001577263,                            !- Minimum Heat Recovery Water Flow Rate {m3/s}
+  0.003785432,                            !- Maximum Heat Recovery Water Flow Rate {m3/s}
+  82.2,                                   !- Maximum Heat Recovery Water Temperature {C}
+  ,                                       !- Combustion Air Inlet Node Name
+  ,                                       !- Combustion Air Outlet Node Name
+  0.489885,                               !- Reference Exhaust Air Mass Flow Rate {kg/s}
+  Capstone C65 ExhAirFlowRate_vs_InletTemp, !- Exhaust Air Flow Rate Function of Temperature Curve Name
+  Capstone C65 ExhAirFlowRate_vs_PLR,     !- Exhaust Air Flow Rate Function of Part Load Ratio Curve Name
+  308.9,                                  !- Nominal Exhaust Air Outlet Temperature
+  Capstone C65 ExhaustTemp_vs_InletTemp,  !- Exhaust Air Temperature Function of Temperature Curve Name
+  Capstone C65 ExhaustTemp_vs_PLR;        !- Exhaust Air Temperature Function of Part Load Ratio Curve Name
+
+ElectricLoadCenter:Distribution,
+  Capstone C65 ELCD,                      !- Name
+  Capstone C65 ELCD Generators,           !- Generator List Name
+  DemandLimit,                            !- Generator Operation Scheme Type
+  290000,                                 !- Generator Demand Limit Scheme Purchased Electric Demand Limit {W}
+  ,                                       !- Generator Track Schedule Name Scheme Schedule Name
+  ,                                       !- Generator Track Meter Scheme Meter Name
+  AlternatingCurrent;                     !- Electrical Buss Type
+
+ElectricLoadCenter:Generators,
+  Capstone C65 ELCD Generators,           !- Name
+  Capstone C65,                           !- Generator Name 1
+  Generator:MicroTurbine,                 !- Generator Object Type 1
+  65000,                                  !- Generator Rated Electric Power Output 1 {W}
+  ,                                       !- Generator Availability Schedule Name 1
+  1.71551724137931;                       !- Generator Rated Thermal to Electrical Power Ratio 1
+  ```
+
+The `ElectricLoadCenter:Distribution` object determines the generator operation scheme, which was set to limit demand (DemandLimit) to the annual low of 290 kW (July).
 
 The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
 
