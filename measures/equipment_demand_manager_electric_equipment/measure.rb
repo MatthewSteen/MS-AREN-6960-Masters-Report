@@ -138,7 +138,7 @@ class EquipmentDemandManagerElectricEquipment < OpenStudio::Measure::EnergyPlusM
     demand_manager_priority_choices = ['All', 'Sequential']
     demand_manager_priority = OpenStudio::Ruleset::OSArgument::makeChoiceArgument('demand_manager_priority', demand_manager_priority_choices, false)
     demand_manager_priority.setDisplayName('Demand Manager Priority')
-    demand_manager_priority.setDefaultValue('Sequential')
+    demand_manager_priority.setDefaultValue('All')
     args << demand_manager_priority
 
     return args
