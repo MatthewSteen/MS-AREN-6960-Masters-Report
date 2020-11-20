@@ -728,7 +728,7 @@ DemandManager:Thermostats,
   AllControlledZones Thermostat;  !- Thermostat 1 Name
 ```
 
-
+Like measure E1 and C1, the `DemandManager:Thermostats` allows modeling common demand side management strategies to change thermostat setpoints to reduce heating or cooling loads. Instead of a fractional reduction in load, this object specifies maximum setpoint resets for heating and cooling, which were set to 19C and 26C respectively.
 
 The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
 
