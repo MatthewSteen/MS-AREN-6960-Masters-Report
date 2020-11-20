@@ -422,7 +422,174 @@ __Figure x. Measure M1 Annual Energy Use Intensity Savings by End Use__
 
 ### Thermal Energy Storage (M2)
 
-This [measure](https://github.com/NREL/openstudio-load-flexibility-measures-gem/releases/tag/v0.1.3) replaces CoilSystem:Cooling:DX objects in the model with the EnergyPlus object [Coil:Cooling:DX:SingleSpeed:ThermalStorage](https://bigladdersoftware.com/epx/docs/9-4/input-output-reference/group-heating-and-cooling-coils.html#coilcoolingdxsinglespeedthermalstorage). 
+This measure replaces the `CoilSystem:Cooling:DX` objects on the supply air stream of all air loops in the model with `Coil:Cooling:DX:SingleSpeed:ThermalStorage` (TODO, https://github.com/NREL/openstudio-load-flexibility-measures-gem/tree/master/lib/measures/add_packaged_ice_storage) as shown below. 
+
+```
+Coil:Cooling:DX:SingleSpeed:ThermalStorage,
+  UTSS Coil 0,                            !- Name
+  ,                                       !- Availability Schedule Name
+  EMSControlled,                          !- Operating Mode Control Method
+  Simple User Sched,                      !- Operation Mode Control Schedule Name
+  Ice,                                    !- Storage Type
+  ,                                       !- User Defined Fluid Type
+  ,                                       !- Fluid Storage Volume {m3}
+  AutoSize,                               !- Ice Storage Capacity {GJ}
+  9.0,                                    !- Storage Capacity Sizing Factor {hr}
+  UTSS Coil 0 OA Ambient Node,            !- Storage Tank Ambient Temperature Node Name
+  7.913,                                  !- Storage Tank to Ambient U-value Times Area Heat Transfer Coefficient {W/K}
+  ,                                       !- Fluid Storage Tank Rating Temperature {C}
+  AutoSize,                               !- Rated Evaporator Air Flow Rate {m3/s}
+  5 Zone PVAV Mixed Air Node,             !- Evaporator Air Inlet Node Name
+  Node 1,                                 !- Evaporator Air Outlet Node Name
+  Yes,                                    !- Cooling Only Mode Available
+  Autosize,                               !- Cooling Only Mode Rated Total Evaporator Cooling Capacity {W}
+  0.7,                                    !- Cooling Only Mode Rated Sensible Heat Ratio
+  2.9664518019338,                        !- Cooling Only Mode Rated COP {W/W}
+  DOE Ref DX Clg Coil Cool-Cap-fT,        !- Cooling Only Mode Total Evaporator Cooling Capacity Function of Temperature Curve Name
+  DOE Ref DX Clg Coil Cool-CAP-fFlow,     !- Cooling Only Mode Total Evaporator Cooling Capacity Function of Flow Fraction Curve Name
+  DOE Ref DX Clg Coil Cool-EIR-fT,        !- Cooling Only Mode Energy Input Ratio Function of Temperature Curve Name
+  DOE Ref DX Clg Coil Cool-EIR-fFlow,     !- Cooling Only Mode Energy Input Ratio Function of Flow Fraction Curve Name
+  DOE Ref DX Clg Coil Cool-PLF-fPLR,      !- Cooling Only Mode Part Load Fraction Correlation Curve Name
+  Cool-SHR-fT,                            !- Cooling Only Mode Sensible Heat Ratio Function of Temperature Curve Name
+  Cool-SHR-fFF,                           !- Cooling Only Mode Sensible Heat Ratio Function of Flow Fraction Curve Name
+  No,                                     !- Cooling And Charge Mode Available
+  AutoSize,                               !- Cooling And Charge Mode Rated Total Evaporator Cooling Capacity {W}
+  1.0,                                    !- Cooling And Charge Mode Capacity Sizing Factor
+  AutoSize,                               !- Cooling And Charge Mode Rated Storage Charging Capacity {W}
+  0.86,                                   !- Cooling And Charge Mode Storage Capacity Sizing Factor
+  0.7,                                    !- Cooling And Charge Mode Rated Sensible Heat Ratio
+  3.66668443E+00,                         !- Cooling And Charge Mode Cooling Rated COP {W/W}
+  2.17,                                   !- Cooling And Charge Mode Charging Rated COP {W/W}
+  CoolCharge-Cool-Cap-fT,                 !- Cooling And Charge Mode Total Evaporator Cooling Capacity Function of Temperature Curve Name
+  ConstantCubic,                          !- Cooling And Charge Mode Total Evaporator Cooling Capacity Function of Flow Fraction Curve Name
+  CoolCharge-Cool-EIR-fT,                 !- Cooling And Charge Mode Evaporator Energy Input Ratio Function of Temperature Curve Name
+  ConstantCubic,                          !- Cooling And Charge Mode Evaporator Energy Input Ratio Function of Flow Fraction Curve Name
+  Cool-PLF-fPLR,                          !- Cooling And Charge Mode Evaporator Part Load Fraction Correlation Curve Name
+  ,                                       !- Cooling And Charge Mode Storage Charge Capacity Function of Temperature Curve Name
+  ConstantCubic,                          !- Cooling And Charge Mode Storage Charge Capacity Function of Total Evaporator PLR Curve Name
+  ,                                       !- Cooling And Charge Mode Storage Energy Input Ratio Function of Temperature Curve Name
+  ConstantCubic,                          !- Cooling And Charge Mode Storage Energy Input Ratio Function of Flow Fraction Curve Name
+  ConstantCubic,                          !- Cooling And Charge Mode Storage Energy Part Load Fraction Correlation Curve Name
+  Cool-SHR-fT,                            !- Cooling And Charge Mode Sensible Heat Ratio Function of Temperature Curve Name
+  Cool-SHR-fFF,                           !- Cooling And Charge Mode Sensible Heat Ratio Function of Flow Fraction Curve Name
+  No,                                     !- Cooling And Discharge Mode Available
+  ,                                       !- Cooling And Discharge Mode Rated Total Evaporator Cooling Capacity {W}
+  ,                                       !- Cooling And Discharge Mode Evaporator Capacity Sizing Factor
+  ,                                       !- Cooling And Discharge Mode Rated Storage Discharging Capacity {W}
+  ,                                       !- Cooling And Discharge Mode Storage Discharge Capacity Sizing Factor
+  ,                                       !- Cooling And Discharge Mode Rated Sensible Heat Ratio
+  ,                                       !- Cooling And Discharge Mode Cooling Rated COP {W/W}
+  ,                                       !- Cooling And Discharge Mode Discharging Rated COP {W/W}
+  ,                                       !- Cooling And Discharge Mode Total Evaporator Cooling Capacity Function of Temperature Curve Name
+  ,                                       !- Cooling And Discharge Mode Total Evaporator Cooling Capacity Function of Flow Fraction Curve Name
+  ,                                       !- Cooling And Discharge Mode Evaporator Energy Input Ratio Function of Temperature Curve Name
+  ,                                       !- Cooling And Discharge Mode Evaporator Energy Input Ratio Function of Flow Fraction Curve Name
+  ,                                       !- Cooling And Discharge Mode Evaporator Part Load Fraction Correlation Curve Name
+  ,                                       !- Cooling And Discharge Mode Storage Discharge Capacity Function of Temperature Curve Name
+  ,                                       !- Cooling And Discharge Mode Storage Discharge Capacity Function of Flow Fraction Curve Name
+  ,                                       !- Cooling And Discharge Mode Storage Discharge Capacity Function of Total Evaporator PLR Curve Name
+  ,                                       !- Cooling And Discharge Mode Storage Energy Input Ratio Function of Temperature Curve Name
+  ,                                       !- Cooling And Discharge Mode Storage Energy Input Ratio Function of Flow Fraction Curve Name
+  ,                                       !- Cooling And Discharge Mode Storage Energy Part Load Fraction Correlation Curve Name
+  ,                                       !- Cooling And Discharge Mode Sensible Heat Ratio Function of Temperature Curve Name
+  ,                                       !- Cooling And Discharge Mode Sensible Heat Ratio Function of Flow Fraction Curve Name
+  Yes,                                    !- Charge Only Mode Available
+  AutoSize,                               !- Charge Only Mode Rated Storage Charging Capacity {W}
+  0.8,                                    !- Charge Only Mode Capacity Sizing Factor
+  3.09,                                   !- Charge Only Mode Charging Rated COP {W/W}
+  ChargeOnly-Cap-fT,                      !- Charge Only Mode Storage Charge Capacity Function of Temperature Curve Name
+  ChargeOnly-EIR-fT,                      !- Charge Only Mode Storage Energy Input Ratio Function of Temperature Curve Name
+  Yes,                                    !- Discharge Only Mode Available
+  AutoSize,                               !- Discharge Only Mode Rated Storage Discharging Capacity {W}
+  1.37,                                   !- Discharge Only Mode Capacity Sizing Factor
+  0.64,                                   !- Discharge Only Mode Rated Sensible Heat Ratio
+  63.6,                                   !- Discharge Only Mode Rated COP {W/W}
+  Discharge-Cap-fT,                       !- Discharge Only Mode Storage Discharge Capacity Function of Temperature Curve Name
+  Discharge-Cap-fFF,                      !- Discharge Only Mode Storage Discharge Capacity Function of Flow Fraction Curve Name
+  ConstantBi,                             !- Discharge Only Mode Energy Input Ratio Function of Temperature Curve Name
+  ConstantCubic,                          !- Discharge Only Mode Energy Input Ratio Function of Flow Fraction Curve Name
+  ConstantCubic,                          !- Discharge Only Mode Part Load Fraction Correlation Curve Name
+  Discharge-SHR-fT-NREL,                  !- Discharge Only Mode Sensible Heat Ratio Function of Temperature Curve Name
+  Discharge-SHR-fFF,                      !- Discharge Only Mode Sensible Heat Ratio Function of Flow Fraction Curve Name
+  0.0,                                    !- Ancillary Electric Power {W}
+  2.0,                                    !- Cold Weather Operation Minimum Outdoor Air Temperature {C}
+  0.0,                                    !- Cold Weather Operation Ancillary Power {W}
+  UTSS Coil 0 Condenser Inlet Node,       !- Condenser Air Inlet Node Name
+  UTSS Coil 0 Condenser Out Node,         !- Condenser Air Outlet Node Name
+  autocalculate,                          !- Condenser Design Air Flow Rate {m3/s}
+  1.25,                                   !- Condenser Air Flow Sizing Factor
+  AirCooled,                              !- Condenser Type
+  ,                                       !- Evaporative Condenser Effectiveness {dimensionless}
+  ,                                       !- Evaporative Condenser Pump Rated Power Consumption {W}
+  ,                                       !- Basin Heater Capacity {W/K}
+  ,                                       !- Basin Heater Setpoint Temperature {C}
+  ,                                       !- Basin Heater Availability Schedule Name
+  ,                                       !- Supply Water Storage Tank Name
+  ,                                       !- Condensate Collection Water Storage Tank Name
+  ,                                       !- Storage Tank Plant Connection Inlet Node Name
+  ,                                       !- Storage Tank Plant Connection Outlet Node Name
+  ,                                       !- Storage Tank Plant Connection Design Flow Rate {m3/s}
+  ,                                       !- Storage Tank Plant Connection Heat Transfer Effectiveness
+  ,                                       !- Storage Tank Minimum Operating Limit Fluid Temperature {C}
+  ;                                       !- Storage Tank Maximum Operating Limit Fluid Temperature {C}
+```
+
+The `Coil:Cooling:DX:SingleSpeed:ThermalStorage` object is a black box model composed of a condenser, evaporator, compressor, and thermal energy storage (TES) tank that ineracts with its surroundings through condenser inlet and outlet, evaporator inlet and outlet, heat transfer between the TES tank and environment, and optional TES tank plant loop connection. The coil object has six built-in operating modes summarized in the table below that are used if the Operating Mode Control Method field is set to ScheduledModes. 
+
+Operating Mode | Description
+:- | :-
+Off Mode | Object is not cooling with either the coil or TES tank, but the tank continues to be modeled as it exchanges heat with the environment.
+Cooling Only Mode | Object is cooling with the coil the same as a normal single speed DX coil, but is not charging or discharging the TES tank which continues to be modeled as it exchanges heat with the environment.
+Cool and Charge Mode | Object is cooling with the coil and is charging the TES tank (all components are active). Electric power to the compressor is split to model equipment with dual compressors with separate performance characteristics for evaporator cooling and one for charging the TES tank.
+Cool and Discharge Mode | Object is cooling with the coil and discharging from the TES tank (all components are active). Electric power to the compressor is split to model equipment with dual compressors with separate performance characteristics for evaporator cooling and one for cooling from the TES tank.
+Charge Only Mode | Object is charging the TES tank only and the evaporator is off. 
+Discharge Only Mode | Object is cooling by discharging the TES tank and the condenser is off. 
+
+The EMSControlled mode allows for custom user-specified control using the EnergyPlus EnergyManagementSystem (EMS) objects, which was used in this measure. The following shows the EMS objects used to control the TES coils.
+
+```
+EnergyManagementSystem:Sensor,
+  TESIntendedSchedule,                    !- Name
+  Simple User Sched,                      !- Output:Variable or Output:Meter Index Key Name
+  Schedule Value;                         !- Output:Variable or Output:Meter Name
+
+EnergyManagementSystem:Sensor,
+  UTSS_Coil_0_sTES,                       !- Name
+  UTSS Coil 0,                            !- Output:Variable or Output:Meter Index Key Name
+  Cooling Coil Ice Thermal Storage End Fraction; !- Output:Variable or Output:Meter Name
+
+EnergyManagementSystem:Actuator,
+  UTSS_Coil_0_OpMode,                     !- Name
+  UTSS Coil 0,                            !- Actuated Component Unique Name
+  Coil:Cooling:DX:SingleSpeed:ThermalStorage, !- Actuated Component Type
+  Operating Mode;                         !- Actuated Component Control Type
+
+EnergyManagementSystem:GlobalVariable,
+  UTSS_Coil_0_MinSOC;                     !- Erl Variable Name 1
+
+EnergyManagementSystem:Program,
+  UTSS_Coil_0_Control,                    !- Name
+  SET UTSS_Coil_0_OpMode = TESIntendedSchedule, !- Program Line 1
+  IF CurrentEnvironment == 1,             !- Program Line 2
+  SET UTSS_Coil_0_MinSOC = 1,             !- Program Line 3
+  ENDIF,                                  !- Program Line 4
+  IF (UTSS_Coil_0_OpMode == 5),           !- Program Line 5
+  IF ( UTSS_Coil_0_sTES < 0.05 ),         !- Program Line 6
+  SET UTSS_Coil_0_OpMode = 1,             !- Program Line 7
+  ENDIF,                                  !- Program Line 8
+  SET UTSS_Coil_0_MinSOC = UTSS_Coil_0_sTES, !- Program Line 9
+  ENDIF,                                  !- Program Line 10
+  IF (UTSS_Coil_0_OpMode == 4),           !- Program Line 11
+  IF ( UTSS_Coil_0_sTES > 0.99 ),         !- Program Line 12
+  SET UTSS_Coil_0_OpMode = 1,             !- Program Line 13
+  ENDIF,                                  !- Program Line 14
+  ENDIF;                                  !- Program Line 15
+
+EnergyManagementSystem:ProgramCallingManager,
+  UTSS_Coil_0_TES_PrgmCallMgr,            !- Name
+  AfterPredictorAfterHVACManagers,        !- EnergyPlus Model Calling Point
+  UTSS_Coil_0_Control;                    !- Program Name 1
+```
 
 The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
 
