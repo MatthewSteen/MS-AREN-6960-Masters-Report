@@ -683,7 +683,7 @@ __Figure x. Measure P1 Annual Energy Use Intensity Savings by End Use__
 
 ### Advanced Sensors and Controls (lighting) (C1)
 
-This measure adds the EnergyPlus object [DemandManager:Lights](https://bigladdersoftware.com/epx/docs/9-4/input-output-reference/group-demand-limiting-controls.html#demandmanagerlights) to the model. The object's properties come from the EnergyPlus example file `5ZoneAirCooledDemandLimiting.idf` shown below.
+This measure adds the EnergyPlus object `DemandManager:Lights` to the model. The object's properties come from the EnergyPlus example file `5ZoneAirCooledDemandLimiting.idf` shown below.
 
 ```
 DemandManager:Lights,
@@ -698,6 +698,8 @@ DemandManager:Lights,
 	AllZones with Lights;    !- Lights 1 Name    
 ```
 
+Like measure E1, which uses `DemandManager:ElectricEquipment`, the `DemandManager:Lights` object allows modeling common demand side management strategies to reduce power to lights. 
+
 The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
 
 ![image](figure_measures_energy_cost_C1.png)
@@ -710,7 +712,7 @@ __Figure x. Measure C1 Annual Energy Use Intensity Savings by End Use__
 
 ### Smart Thermostats (C2)
 
-This measure adds the EnergyPlus object [DemandManager:Thermostats](https://bigladdersoftware.com/epx/docs/9-4/input-output-reference/group-demand-limiting-controls.html#demandmanagerthermostats) to the model. The object's properties come from the EnergyPlus example file `5ZoneAirCooledDemandLimiting.idf` shown below.
+This measure adds the EnergyPlus object `DemandManager:Thermostats` to the model. The object's properties come from the EnergyPlus example file `5ZoneAirCooledDemandLimiting.idf` shown below.
 
 ```
 DemandManager:Thermostats,
@@ -725,6 +727,8 @@ DemandManager:Thermostats,
   ,                        !- Rotation Duration {minutes}
   AllControlledZones Thermostat;  !- Thermostat 1 Name
 ```
+
+
 
 The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
 
