@@ -143,7 +143,7 @@ Code | Category | Description
  C1 | Controls | Advanced Sensors and Controls (lighting)
  C2 |  | Smart Thermostats
 
-The annual energy cost and use results for the individual measures are shown in Figures x. and x. below.
+The annual energy cost and use results for the individual measures are shown in Figures x. and x. below. Additionally, Table x. shows the time the cooling and heating setpoints are not met. 
 
 ![image](figure_measures_energy_use.png)
 
@@ -152,6 +152,21 @@ __Figure x. Individual Measure Annual Energy Use Intensity__
 ![image](figure_measures_energy_cost.png)
 
 __Figure x. Individual Measure Annual Energy Cost__
+
+__Table x. Individual Measure Time Setpoint Not Met__
+
+Model | During Heating [hr]  | During Cooling [hr]  | During Occupied Heating [hr]  | During Occupied Cooling [hr]
+:- | :- | :- | :- | :-
+Baseline | 1006 | 391 | 326 | 299
+A1 | 1006 | 391 | 326 | 299
+A2 | 1282 | 245 | 476 | 181
+A3 | 1136 | 292 | 380 | 215
+E1 | 1025 | 328 | 328 | 241
+M1 | 1006 | 390 | 326 | 298
+M2 | 1006 | 452 | 326 | 355
+P1 | 1006 | 391 | 326 | 299
+C1 | 1037 | 328 | 331 | 240
+C2 | 938 | 499 | 213 | 164
 
 ### Thermal Storage (A1)
 
