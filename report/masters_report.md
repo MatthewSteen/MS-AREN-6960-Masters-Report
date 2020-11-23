@@ -170,23 +170,23 @@ C2 | 938 | 499 | 213 | 164
 
 ### Thermal Storage (A1)
 
-This measure adds the EnergyPlus object `MaterialProperty:PhaseChange` (DOE, 2020) to all interior surfaces in the model. The object's properties were taken from the EnergyPlus example file `MaterialPropertyPhaseChange.idf` (DOE, 2020) shown below.
+This EnergyPlus measure changes the selected construction layer to a `MaterialProperty:PhaseChange` object. This object requires the conduction finite difference heat balance algorithm rather than the default conduction transfer function algorithm, which requires constant material properties (e.g. specific heat). The object properties come from the `MaterialPropertyPhaseChange.idf` EnergyPlus example file as shown below. 
 
 ```
-	MaterialProperty:PhaseChange,
-		#{construction_interior_layer_name},  !- Name
-		0,                       !- Temperature Coefficient for Thermal Conductivity {W/m-K2}
-		-20,                     !- Temperature 1 {C}
-		0.1,                     !- Enthalpy 1 {J/kg}
-		22,                      !- Temperature 2 {C}
-		18260,                   !- Enthalpy 2 {J/kg}
-		22.1,                    !- Temperature 3 {C}
-		32000,                   !- Enthalpy 3 {J/kg}
-		60,                      !- Temperature 4 {C}
-		71000;                   !- Enthalpy 4 {J/kg}
+MaterialProperty:PhaseChange,
+  Typical Insulation R-10.02,             !- Name
+  0,                                      !- Temperature Coefficient for Thermal Conductivity {W/m-K2}
+  -20,                                    !- Temperature 1 {C}
+  0.1,                                    !- Enthalpy 1 {J/kg}
+  22,                                     !- Temperature 2 {C}
+  18260,                                  !- Enthalpy 2 {J/kg}
+  22.1,                                   !- Temperature 3 {C}
+  32000,                                  !- Enthalpy 3 {J/kg}
+  60,                                     !- Temperature 4 {C}
+  71000;                                  !- Enthalpy 4 {J/kg}
 ```
 
-The `MaterialProperty:PhaseChange` object describes the temperature-enthalpy relationship of the Material object referenced by the Name field. This object requires the use of EnergyPlus' conduction finite difference heat balance algorithm, rather than its default conduction transfer function (CTF) method, because the CTF requires constant material properties (e.g. specific heat), which was one of the required changes to the baseline model for this analysis. Additionally, the timestep was changed from six per hour to 12 per hour to accomodate the phase change material. The `Temperature Coefficient for Thermal Conductivity` field describes the material's thermal conductivity change per unit temperature from 20C in W/m-K2. Thermal conductivity is calculated from:
+The `MaterialProperty:PhaseChange` object describes the temperature-enthalpy relationship of the Material object referenced by the Name field. The `Temperature Coefficient for Thermal Conductivity` field describes the material's thermal conductivity change per unit temperature from 20C in W/m-K2. Thermal conductivity is calculated from:
 
 k = {k_o} + {k_1}({T_i} - 20)
 
@@ -195,6 +195,10 @@ where:
 k\(_{o}\) is the 20C value of thermal conductivity(normal idf~ input)
 
 k\(_{1}\) is the change in conductivity per degree temperature difference from 20C
+
+For this analysis, the baseline heat balance algorithm was changed to conduction finite difference and the phase change material was added to the interior layer of all exterior walls because the phase change temperature occurs at 22C as shown in figure x. 
+
+![image](png/figure_measures_A1.png)
 
 The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
 
@@ -207,8 +211,8 @@ __Figure x. Measure A1 Annual Energy Cost Savings__
 __Figure x. Measure A1 Annual Energy Use Intensity Savings by End Use__
 
 ### Dynamic Glazing (A2)
-
-This measure adds the OpenStudio object `ShadingControl` to the model, which is translated to the EnergyPlus object `WindowShadingControl` prior to simulation as shown below.  
+ 
+This OpenStudio measure adds `ShadingControl` objects to the model by specifying a Construction with shading. The `ShadingControl` objects are translated to EnergyPlus `WindowShadingControl` objects prior to simulation. The Construction must be a detailed fenestration, i.e. be composed of `WindowMaterialGlazing` rather than `WindowMaterialSimpleGlazingSystem`. The object below shows an example.  
 
 ```
 WindowShadingControl,
@@ -242,7 +246,9 @@ WindowShadingControl,
   Perimeter_bot_ZN_1_Wall_South_Window;   !- Fenestration Surface Name 12
 ```
 
-The `WindowShadingControl` object is used to reduce solar radiation into the thermal zone through a window. For this measure, the Shading Type was set to `SwitchableGlazing`, which allows modeling simple two-state electrochromic glazing by referencing a construction for the tinted state in the `Construction with Shading Type` field. Modeling electrochromic glazing required the baseline window constructions to be changed from `WindowMaterial:SimpleGlazingSystem`, which models an entire window assembly as a simple monolithic layer, to a more detailed layered construction made up of `WindowMaterial:Glazing` and `WindowMaterial:Gas` objects. In this case, both the untinted and the tinted window constructions were taken from the `WindowConstructs.idf` EnergyPlus example file, specifically the . The objects below show the window constructions before and after the changes to the baseline.
+The `WindowShadingControl` object is used to reduce solar radiation into the thermal zone through a window. For this measure, the Shading Type was set to `SwitchableGlazing`, which allows modeling simple two-state electrochromic glazing by referencing a construction for the tinted state in the `Construction with Shading Type` field. The `Shading Control Type` was set to `OnIfHighSolarOnWindow`, which turns the switchable glazing on to its tinted state if the beam plus diffuse solar radiation incident on the window exceeds the setpoint (20 W/m2). 
+
+Modeling electrochromic glazing required the baseline window constructions to be changed from `WindowMaterial:SimpleGlazingSystem`, which models an entire window assembly as a simple monolithic layer, to a more detailed layered construction made up of `WindowMaterial:Glazing` and `WindowMaterial:Gas` objects. The untinted ("bleached") and tinted ("colored") window constructions were taken from the `WindowConstructs.idf` EnergyPlus example file, specifically a double-glazed air-filled electrochromic construction. The objects below show the window constructions before and after the changes to the baseline.
 
 ```
 WindowMaterial:SimpleGlazingSystem,
@@ -282,7 +288,7 @@ __Figure x. Measure A2 Annual Energy Use Intensity Savings by End Use__
 
 ### Automated Attachments (A3)
 
-This measure adds the OpenStudio object `ShadingControl` to the model, which is translated to the EnergyPlus object `WindowShadingControl` prior to simulation as shown below.  
+This measure is the same as A2, but adds shading control for an interior shade that covers the window when incident beam plus diffuse solar radiation exceeds 20 W/m2 as shown below. 
 
 ```
 WindowShadingControl,
@@ -316,7 +322,7 @@ WindowShadingControl,
   Perimeter_bot_ZN_1_Wall_South_Window;   !- Fenestration Surface Name 12
 ```
 
-For this measure, the Shading Type was set to `InteriorShade`, which allows modeling a diffusing shade located on the inside of the window by referencing a construction with a `WindowMaterial:Shade` objecct in the `Construction with Shading Type` field. Like the A2, this measure required replacing the baseline's window construction with a detailed layered construction. Additionally, a construction with the shade was added to the model so that it was available to the measure (but unused in the baseline) as shown in the objects below. The `WindowMaterial:Shade` object was taken from the `WindowShadeMaterials.idf` EnergyPlus data set.
+In EnergyPlus, shades are modeled as perfect diffusers, i.e. all transmitted and reflected radiation is hemispherically-diffuse. Transmittance and reflectance are independent of the angle of incidence and the reflectance and emissivity properties are the same on both sides. Like A2, this measure required replacing the baseline's window construction with a detailed layered construction. Additionally, a construction with the shade was added to the model so that it was available to the measure (but unused in the baseline, see below). The `WindowMaterial:Shade` object was taken from the `WindowShadeMaterials.idf` EnergyPlus data set and represents a shade with medium reflectance and medium transmittance as shown below.
 
 ```
 Construction,
@@ -356,7 +362,7 @@ __Figure x. Measure A3 Annual Energy Use Intensity Savings by End Use__
 
 ### Continuous-Operation Electronics (E1)
 
-This measure adds the EnergyPlus object `DemandManager:ElectricEquipment` to the model. The object's properties come from the EnergyPlus example file `5ZoneAirCooledDemandLimiting.idf` shown below.
+This EnergyPlus measure adds a `DemandManager:ElectricEquipment` object to the model. The measure will also add a `DemandManagerAssignmentList` object if one is not present in the model. If one is, it will add the `DemandManager:ElectricEquipment` to the existing `DemandManagerAssignmentList`. The object properties come from the `5ZoneAirCooledDemandLimiting.idf` EnergyPlus example file as shown below.
 
 ```
 DemandManager:ElectricEquipment,
@@ -379,12 +385,12 @@ DemandManagerAssignmentList,
   ,                                       !- Billing Period Schedule Name
   ,                                       !- Peak Period Schedule Name
   15,                                     !- Demand Window Length {minutes}
-  Sequential,                             !- Demand Manager Priority
+  All,                                    !- Demand Manager Priority
   DemandManager:ElectricEquipment,        !- DemandManager Object Type 1
   Demand Manager Electric Equipment;      !- DemandManager Name 1
 ```
 
-The `DemandManager:ElectricEquipment` object in EnergyPlus allows modeling common demand side management strategies to reduce power to electric equipment. The `Limit Control` field specifies whether demand limiting is on (Fixed) or off. The `DemandManager module in EnergyPlus determines whether demand limiting is required during a timestep and if so, the power to the referenced Electric Equipment is reduced by the `Maximum Limit Fraction` field. The `DemandManager:AssignmentList` object controls one or more DemandManager objects by allowing the Demand Window Length (in minumtes) and Demand Manager Priority (either Sequential or All) to be specified.
+The `DemandManager:ElectricEquipment` object in EnergyPlus allows modeling common demand side management strategies to reduce power to electric equipment. The `Limit Control` field specifies whether demand limiting is on (Fixed) or off. The DemandManager module in EnergyPlus determines whether demand limiting is required during a simulation timestep and if so, the power to the referenced electric equipment is reduced up to the `Maximum Limit Fraction` field, which was 50% in this case. The `Minimum Limit Duration` specifies the minimum amount of time that demand is reduced, which was 60 minutes for this analysis. The `DemandManager:AssignmentList` object controls one or more demand managers by specifying the `Demand Window Length` (in minumtes) and coordinating the `Demand Manager Priority` with other demand managers, e.g. lights or thermostats (measures C1 and C2 respectively). Priority can be set to sequentially rotate through demand managers or simultaneously limit demand to all objects.
 
 The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
 
@@ -398,7 +404,7 @@ __Figure x. Measure E1 Annual Energy Use Intensity Savings by End Use__
 
 ### Separate Sensible and Latent Space Conditioning (M1)
 
-This measure adds the EnergyPlus object `Dehumidifier:Desiccant:System` downstream of the cooling coil on the supply air stream of all air loops in the model. The object's properties come from the the EnergyPlus example file `DesiccantDehumidifierWithCompanionCoil.idf` shown below.
+This EnergyPlus measure adds a `Dehumidifier:Desiccant:System` on the selected air stream (outdoor air or supply air) of one or all air loops in the model. The measure works by replacing a surrogate object in the desired location in the air stream with the desiccant dehumidifier system. A setpoint manager must be present on the outlet node of the surrogate object to control humidity. If the system will be added to the supply air stream, the surrogate object must be directly downstream of a cooling coil, which will be the companion cooling coil to the desiccant system. The measure uses objects from the `DesiccantDehumidifierWithCompanionCoil.idf` EnergyPlus example file shown below.
 
 ```
 ! Modeling Munters HCU (humidity control unit)
@@ -423,7 +429,7 @@ Dehumidifier:Desiccant:System,
   EXHAUSTFANPLF;                          !- Exhaust Fan Power Curve Name
 ```
 
-This object is a parent object that references several child components, which include an air-to-air heat exchanger, an exhaust fan (optional), and a regeneration fan and heating coil (optional) to regenerate the desiccant. The operation of the desiccant system can be coordinated with a companion cooling coil by specifying its type and name in the appropriate fields. This measure required adding humidity controls to all zones served by the air loops and replacing the `Coil:Cooling:DX:TwoSpeed` objects with `Coil:Cooling:DX:SingleSpeed` objects. Humidity controls were set to 45% relative humidity.
+This object is a parent object that references several child components, which include an air-to-air heat exchanger, an exhaust fan (optional), and a regeneration fan and heating coil (optional) to regenerate the desiccant. The operation of the desiccant system can be coordinated with a companion cooling coil by specifying its type and name in the appropriate fields. This measure required adding humidity controls to all zones served by the air loops and replacing the `Coil:Cooling:DX:TwoSpeed` objects with `Coil:Cooling:DX:SingleSpeed` objects in the baseline model. Humidity controls were set to 45% relative humidity. The desiccant dehumidifier system was placed downstream of the cooling coil on the supply air stream of all three air loops in the model.  
 
 The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
 
@@ -437,7 +443,7 @@ __Figure x. Measure M1 Annual Energy Use Intensity Savings by End Use__
 
 ### Thermal Energy Storage (M2)
 
-This measure replaces the `CoilSystem:Cooling:DX` objects on the supply air stream of all air loops in the model with `Coil:Cooling:DX:SingleSpeed:ThermalStorage` (TODO, https://github.com/NREL/openstudio-load-flexibility-measures-gem/tree/master/lib/measures/add_packaged_ice_storage) as shown below. 
+This measure replaces the `Coil:Cooling:DX:SingleSpeed` objects on the supply air stream of one or more air loops in the model with `Coil:Cooling:DX:SingleSpeed:ThermalStorage` objects (TODO, https://github.com/NREL/openstudio-load-flexibility-measures-gem/tree/master/lib/measures/add_packaged_ice_storage) as shown below. 
 
 ```
 Coil:Cooling:DX:SingleSpeed:ThermalStorage,
@@ -549,7 +555,7 @@ Coil:Cooling:DX:SingleSpeed:ThermalStorage,
   ;                                       !- Storage Tank Maximum Operating Limit Fluid Temperature {C}
 ```
 
-The `Coil:Cooling:DX:SingleSpeed:ThermalStorage` object is a black box model composed of a condenser, evaporator, compressor, and thermal energy storage (TES) tank that ineracts with its surroundings through condenser inlet and outlet, evaporator inlet and outlet, heat transfer between the TES tank and environment, and optional TES tank plant loop connection. The coil object has six built-in operating modes summarized in the table below that are used if the Operating Mode Control Method field is set to ScheduledModes. 
+This object is a black box model composed of a condenser, evaporator, compressor, and thermal energy storage (TES) tank that ineracts with its surroundings through condenser inlet and outlet, evaporator inlet and outlet, heat transfer between the TES tank and environment, and optional TES tank plant loop connection. The coil object has six built-in operating modes summarized in the table below that are used if the `Operating Mode Control Method` field is set to `ScheduledModes`. 
 
 Operating Mode | Description
 :- | :-
@@ -560,7 +566,7 @@ Cool and Discharge Mode | Object is cooling with the coil and discharging from t
 Charge Only Mode | Object is charging the TES tank only and the evaporator is off. 
 Discharge Only Mode | Object is cooling by discharging the TES tank and the condenser is off. 
 
-The EMSControlled mode allows for custom user-specified control using the EnergyPlus EnergyManagementSystem (EMS) objects, which was used in this measure. The following shows the EMS objects used to control the TES coils.
+The `EMSControlled` mode allows for custom user-specified control using the EnergyPlus EnergyManagementSystem (EMS) objects, which was used in this analysis. The following shows the EMS objects used to control the TES coils.
 
 ```
 EnergyManagementSystem:Sensor,
@@ -618,7 +624,7 @@ __Figure x. Measure M2 Annual Energy Use Intensity Savings by End Use__
 
 ### Building-Scale CHP (P1)
 
-This measure adds an OpenStudio `GeneratorMicroTurbineHeatRecovery` object (EnergyPlus object `Generator:MicroTurbine`) to the supply side of a plant loop with a WaterHeater object. The `GeneratorMicroTurbine` is the Capstone C65 from the EnergyPlus `HeatRecoveryPlantLoopAuto.idf` example file (and others), which generates electric energy for the building and waste thermal energy that is used for service hot water. The code and topology is based on https://github.com/NREL/OpenStudio-resources/blob/develop/model/simulationtests/generator_microturbine.rb. The topology differs from the example file because OpenStudio does not allow WaterHeater objects on the same side of two different plant loops. The following block shows the parameters of the micro turbine and the associated objects.
+This OpenStudio measure adds a `GeneratorMicroTurbineHeatRecovery` object to the supply side of plant loop with a water heater. The micro turbine provides electricity generation and service water heating through exhaust air heat recovery. This object is translated to the EnergyPlus object `Generator:MicroTurbine` for simulation, which is a Capstone C65 from the EnergyPlus `HeatRecoveryPlantLoopAuto.idf` example file (and others) as shown below.
 
 ```
 Generator:MicroTurbine,
@@ -661,7 +667,23 @@ Generator:MicroTurbine,
   308.9,                                  !- Nominal Exhaust Air Outlet Temperature
   Capstone C65 ExhaustTemp_vs_InletTemp,  !- Exhaust Air Temperature Function of Temperature Curve Name
   Capstone C65 ExhaustTemp_vs_PLR;        !- Exhaust Air Temperature Function of Part Load Ratio Curve Name
+```
 
+The measure code and topology are based on https://github.com/NREL/OpenStudio-resources/blob/develop/model/simulationtests/generator_microturbine.rb. The topology differs from the EnergyPlus example file because OpenStudio does not currently allow a water heater object on the same side of two different plant loops. The `Generator:MicroTurbine` object generates electric energy for the building and can optionally recover waste heat from the exhaust air stream to heat water for space or service water heating as was the case for this analysis. The `ElectricLoadCenter:Distribution` object defines the operatation scheme of one or more generators, with the following options summarized below. 
+
+Operation Scheme Type | Description
+:- | :-
+Baseload | Operates the generator at its rated electric power output even if it exceeds the total facility electric demand, subject to its availability schedule in the `ElectricLoadCenter:Generators` object.
+DemandLimit | Limits the electric demand from the grid by trying to meet the demand above the limit set in the `Generator Demand Limit Scheme Purchased Electric Demand Limit` field.
+TrackElectrical | Attempts to meet all of the electrical demand for the facility. 
+TrackSchedule | Attempts to meet all of the electrical demand determined by a user-defined schedule. 
+TrackMeter | Attempts to meet all the electrical demand from an EnergyPlus Meter.
+FollowThermal | Attempts to meet the thermal demand. Excess electrical generation is exported to the grid.
+FollowThermalLimitElectrical | Attempts to meet the thermal demand, but limits electrical output to the current electrical demand so that no electricity is exported to the grid.
+
+For this analysis, the `Generator Operation Scheme Type` was set to limit demand (DemandLimit) to the annual low of 290 kW, which occurs in July. This option produced the lowest energy cost and use compared to other options as shown below.
+
+```
 ElectricLoadCenter:Distribution,
   Capstone C65 ELCD,                      !- Name
   Capstone C65 ELCD Generators,           !- Generator List Name
@@ -670,17 +692,7 @@ ElectricLoadCenter:Distribution,
   ,                                       !- Generator Track Schedule Name Scheme Schedule Name
   ,                                       !- Generator Track Meter Scheme Meter Name
   AlternatingCurrent;                     !- Electrical Buss Type
-
-ElectricLoadCenter:Generators,
-  Capstone C65 ELCD Generators,           !- Name
-  Capstone C65,                           !- Generator Name 1
-  Generator:MicroTurbine,                 !- Generator Object Type 1
-  65000,                                  !- Generator Rated Electric Power Output 1 {W}
-  ,                                       !- Generator Availability Schedule Name 1
-  1.71551724137931;                       !- Generator Rated Thermal to Electrical Power Ratio 1
-  ```
-
-The `ElectricLoadCenter:Distribution` object determines the generator operation scheme, which was set to limit demand (DemandLimit) to the annual low of 290 kW (July).
+```
 
 The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
 
@@ -698,7 +710,7 @@ __Figure x. Measure P1 Annual Energy Use Intensity Savings by End Use__
 
 ### Advanced Sensors and Controls (lighting) (C1)
 
-This measure adds the EnergyPlus object `DemandManager:Lights` to the model. The object's properties come from the EnergyPlus example file `5ZoneAirCooledDemandLimiting.idf` shown below.
+This EnergyPlus measure adds a `DemandManager:Lights` object to the model. The measure will also add a `DemandManagerAssignmentList` object if one is not present in the model. If one is, it will add the `DemandManager:Lights` to the existing `DemandManagerAssignmentList`. The object properties come from the `5ZoneAirCooledDemandLimiting.idf` EnergyPlus example file as shown below.
 
 ```
 DemandManager:Lights,
@@ -713,7 +725,7 @@ DemandManager:Lights,
 	AllZones with Lights;    !- Lights 1 Name    
 ```
 
-Like measure E1, which uses `DemandManager:ElectricEquipment`, the `DemandManager:Lights` object allows modeling common demand side management strategies to reduce power to lights. 
+Similar to E1, this measure reduces power to a specific energy end use category up to a fractional limit for the specified duration, which for this analysis was 50% and 60 minutes respectively.
 
 The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
 
@@ -727,7 +739,7 @@ __Figure x. Measure C1 Annual Energy Use Intensity Savings by End Use__
 
 ### Smart Thermostats (C2)
 
-This measure adds the EnergyPlus object `DemandManager:Thermostats` to the model. The object's properties come from the EnergyPlus example file `5ZoneAirCooledDemandLimiting.idf` shown below.
+This EnergyPlus measure adds a `DemandManager:Thermostats` object to the model. The measure will also add a `DemandManagerAssignmentList` object if one is not present in the model. If one is, it will add the `DemandManager:Thermostats` to the existing `DemandManagerAssignmentList`. The object properties come from the `5ZoneAirCooledDemandLimiting.idf` EnergyPlus example file as shown below.
 
 ```
 DemandManager:Thermostats,
@@ -743,7 +755,7 @@ DemandManager:Thermostats,
   AllControlledZones Thermostat;  !- Thermostat 1 Name
 ```
 
-Like measure E1 and C1, the `DemandManager:Thermostats` allows modeling common demand side management strategies to change thermostat setpoints to reduce heating or cooling loads. Instead of a fractional reduction in load, this object specifies maximum setpoint resets for heating and cooling, which were set to 19C and 26C respectively.
+Instead of a fractional reduction in load, like E1 and C1, this object specifies maximum setpoint resets for heating and cooling, which for this analysis were set to 19C and 26C respectively. 
 
 The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
 
