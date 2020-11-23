@@ -2618,7 +2618,7 @@ OS:Surface,
 
 OS:Timestep,
   {b0fa043b-3e91-4705-b798-a26bbea47620}, !- Handle
-  12;                                     !- Number of Timesteps per Hour
+  6;                                      !- Number of Timesteps per Hour
 
 OS:Sizing:Parameters,
   {0677494e-4528-4de5-8964-9c0de7d15381}, !- Handle
@@ -13364,4 +13364,11 @@ OS:SetpointManager:MultiZone:Humidity:Maximum,
   0.008,                                  !- Minimum Setpoint Humidity Ratio {kgWater/kgDryAir}
   0.015,                                  !- Maximum Setpoint Humidity Ratio {kgWater/kgDryAir}
   {372dca89-a999-4977-83f2-f6c65ed5fb88}; !- Setpoint Node or NodeList Name
+
+OS:Output:JSON,
+  {a23b21d7-63a7-4973-9b68-105a07e45ecd}, !- Handle
+  TimeSeriesAndTabular,                   !- Option Type
+  No,                                     !- Output JSON
+  No,                                     !- Output CBOR
+  No;                                     !- Output MessagePack
 
