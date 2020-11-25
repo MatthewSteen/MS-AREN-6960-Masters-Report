@@ -3,13 +3,13 @@
   <schema_version>3.0</schema_version>
   <name>envelope_material_property_phase_change</name>
   <uid>89c98dc2-c2d7-4014-a411-0103c899546b</uid>
-  <version_id>eecadbfa-2fb5-41ff-8b6f-dfc6f0023e5e</version_id>
-  <version_modified>20201108T032631Z</version_modified>
+  <version_id>3c32461a-52cc-4cf5-8fb4-bf5edbf36539</version_id>
+  <version_modified>20201122T222137Z</version_modified>
   <xml_checksum>BB067920</xml_checksum>
   <class_name>EnvelopeMaterialPropertyPhaseChange</class_name>
   <display_name>Material Property Phase Change</display_name>
   <description>Adds a MaterialProperty:PhaseChange object to the model that references the interior layer of the selected Construction.</description>
-  <modeler_description>Adds a MaterialProperty:PhaseChange object to the workspace for each chosen Construction. Each MaterialProperty:PhaseChange object references the specified layer of the Construction object.</modeler_description>
+  <modeler_description>This EnergyPlus measure changes the selected construction layer to a `MaterialProperty:PhaseChange` object. This object requires the conduction finite difference heat balance algorithm rather than the default conduction transfer function algorithm, which requires constant material properties (e.g. specific heat). The object properties come from the `MaterialPropertyPhaseChange.idf` EnergyPlus example file.</modeler_description>
   <arguments>
     <argument>
       <name>construction_name_1</name>
@@ -143,13 +143,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>79D54A4D</checksum>
+      <checksum>0B58667F</checksum>
     </file>
     <file>
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
-      <checksum>1E66307F</checksum>
+      <checksum>76E82DA0</checksum>
     </file>
   </files>
 </measure>

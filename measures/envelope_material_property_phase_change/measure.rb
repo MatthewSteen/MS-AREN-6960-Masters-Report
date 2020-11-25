@@ -22,7 +22,7 @@ class EnvelopeMaterialPropertyPhaseChange < OpenStudio::Measure::EnergyPlusMeasu
 
   # human readable description of modeling approach
   def modeler_description
-    return 'Adds a MaterialProperty:PhaseChange object to the workspace for each chosen Construction. Each MaterialProperty:PhaseChange object references the specified layer of the Construction object.'
+    return 'This EnergyPlus measure changes the selected construction layer to a `MaterialProperty:PhaseChange` object. This object requires the conduction finite difference heat balance algorithm rather than the default conduction transfer function algorithm, which requires constant material properties (e.g. specific heat). The object properties come from the `MaterialPropertyPhaseChange.idf` EnergyPlus example file.'
   end
 
   # define the arguments that the user will input
@@ -108,6 +108,13 @@ class EnvelopeMaterialPropertyPhaseChange < OpenStudio::Measure::EnergyPlusMeasu
       idf_obj = OpenStudio::IdfObject.load(idf_str).get
       workspace.addObject(idf_obj)
 
+    end
+
+    # HeatBalanceAlgorithm
+    hba = workspace.getObjectsByType('HeatBalanceAlgorithm'.to_IddObjectType).first
+    unless hba.getString(0).to_s == 'ConductionFiniteDifference'
+      hba.setString(0, 'ConductionFiniteDifference')
+      runner.registerInfo('HeatBalanceAlgorithm = ConductionFiniteDifference')
     end
 
     # report final condition of model

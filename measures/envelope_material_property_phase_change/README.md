@@ -8,7 +8,7 @@
 
 
 ## Modeler Description
-Adds a MaterialProperty:PhaseChange object to the workspace for each chosen Construction. Each MaterialProperty:PhaseChange object references the specified layer of the Construction object.
+This EnergyPlus measure changes the selected construction layer to a `MaterialProperty:PhaseChange` object. This object requires the conduction finite difference heat balance algorithm rather than the default conduction transfer function algorithm, which requires constant material properties (e.g. specific heat). The object properties come from the `MaterialPropertyPhaseChange.idf` EnergyPlus example file.
 
 ## Measure Type
 EnergyPlusMeasure
