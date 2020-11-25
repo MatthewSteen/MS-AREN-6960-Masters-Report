@@ -22,10 +22,7 @@ class HVACDehumidifierDesiccantSystem < OpenStudio::Measure::EnergyPlusMeasure
 
   # human readable description of modeling approach
   def modeler_description
-    return 'This measure adds Dehumidifier:Desiccant:System (DDS) object(s) to the outdoor air (OA) or supply air (SA) stream of one or all air loops by replacing a surrogate object (e.g. CoilHeatingGas). 
-    In either case, a SetpointManager must be on the outlet node of the surrogate object to control humidity.
-    If the DDS will be added to the SA stream, the surrogate object must be directly downstream of a cooling coil, which will be the Companion Cooling Coil to the DDS.
-    The measure uses objects from the EnergyPlus example file DesiccantDehumidifierWithCompanionCoil.idf, which are included in the resources folder.'
+    return 'This EnergyPlus measure adds a `Dehumidifier:Desiccant:System` on the selected air stream (outdoor air or supply air) of one or all air loops in the model. The measure works by replacing a surrogate object in the desired location in the air stream with the desiccant dehumidifier system. A setpoint manager must be present on the outlet node of the surrogate object to control humidity. If the system will be added to the supply air stream, the surrogate object must be directly downstream of a cooling coil, which will be the companion cooling coil to the desiccant system. The measure uses objects from the `DesiccantDehumidifierWithCompanionCoil.idf` EnergyPlus example file, which are included in the resources folder.'
   end
 
   # define the arguments that the user will input
@@ -97,16 +94,16 @@ class HVACDehumidifierDesiccantSystem < OpenStudio::Measure::EnergyPlusMeasure
     if air_loop_choice == 'ALL'
       workspace.getObjectsByType('AirLoopHVAC'.to_IddObjectType).each { |obj| air_loops << obj }
     else
-      air_loops << workspace.getObjectsByName(air_loop_choice)[0]
+      air_loops << workspace.getObjectsByName(air_loop_choice).first
     end
 
     # add objects from IDF for both OA and SA locations
-    hx_perf = idf_file.getObjectsByType('HeatExchanger:Desiccant:BalancedFlow:PerformanceDataType1'.to_IddObjectType)[0]
+    hx_perf = idf_file.getObjectsByType('HeatExchanger:Desiccant:BalancedFlow:PerformanceDataType1'.to_IddObjectType).first
     workspace.addObject(hx_perf)
 
     # add objects from IDF for SA location
     if stream == 'SA'
-      fan_curve = idf_file.getObjectsByType('Curve:Cubic'.to_IddObjectType)[0]
+      fan_curve = idf_file.getObjectsByType('Curve:Cubic'.to_IddObjectType).first
       workspace.addObject(fan_curve)
     end
 
@@ -123,11 +120,11 @@ class HVACDehumidifierDesiccantSystem < OpenStudio::Measure::EnergyPlusMeasure
         # coil_inlet_node = air_loop_name + ' Relief Air Node'
         oa_sys_name = air_loop_name + ' OA System'
         oa_sys_eqpt_list_name = oa_sys_name + ' Equipment List'
-        location_obj = workspace.getObjectsByName(oa_sys_eqpt_list_name)[0]
+        location_obj = workspace.getObjectsByName(oa_sys_eqpt_list_name).first
       when 'SA'
         branch_name = air_loop_name + ' Main Branch'
         # coil_inlet_node = air_loop_name + ' Outdoor Air Node'
-        location_obj = workspace.getObjectsByName(branch_name)[0]
+        location_obj = workspace.getObjectsByName(branch_name).first
       end
 
       # number for object names
@@ -142,7 +139,7 @@ class HVACDehumidifierDesiccantSystem < OpenStudio::Measure::EnergyPlusMeasure
           if field == 'CoilSystem:Cooling:DX'
             # get clg coil system object from next field
             coil_sys_name = location_obj.getString(j + 1).to_s
-            coil_sys = workspace.getObjectsByName(coil_sys_name)[0]
+            coil_sys = workspace.getObjectsByName(coil_sys_name).first
             # get clg coil name
             clg_coil_name_idx = coil_sys.iddObject.getFieldIndex('Cooling Coil Name').to_i
             @clg_coil_name = coil_sys.getString(clg_coil_name_idx).get
@@ -153,7 +150,7 @@ class HVACDehumidifierDesiccantSystem < OpenStudio::Measure::EnergyPlusMeasure
         if field.to_s.downcase.include?(string)
 
           # get surrogate object
-          surrogate = workspace.getObjectsByName(field)[0]
+          surrogate = workspace.getObjectsByName(field).first
           surrogate_name = surrogate.getString(0).to_s
           runner.registerInfo(INDENT + "Found surrogate object = #{surrogate_name}")
           
@@ -166,7 +163,7 @@ class HVACDehumidifierDesiccantSystem < OpenStudio::Measure::EnergyPlusMeasure
           # HeatExchanger:Desiccant:BalancedFlow
 
           # add object
-          hx_idf_obj = idf_file.getObjectsByType('HeatExchanger:Desiccant:BalancedFlow'.to_IddObjectType)[0]
+          hx_idf_obj = idf_file.getObjectsByType('HeatExchanger:Desiccant:BalancedFlow'.to_IddObjectType).first
           hx = workspace.addObject(hx_idf_obj).get
 
           # rename object
@@ -195,7 +192,7 @@ class HVACDehumidifierDesiccantSystem < OpenStudio::Measure::EnergyPlusMeasure
           # Fan:SystemModel
 
           # add object
-          fan_idf_obj = idf_file.getObjectsByType('Fan:SystemModel'.to_IddObjectType)[0]
+          fan_idf_obj = idf_file.getObjectsByType('Fan:SystemModel'.to_IddObjectType).first
           fan = workspace.addObject(fan_idf_obj).get
 
           # rename object
@@ -216,7 +213,7 @@ class HVACDehumidifierDesiccantSystem < OpenStudio::Measure::EnergyPlusMeasure
           # OutdoorAir:NodeList
 
           # add object for heating coil
-          oa_nodelist_idf_obj = idf_file.getObjectsByType('OutdoorAir:NodeList'.to_IddObjectType)[0]
+          oa_nodelist_idf_obj = idf_file.getObjectsByType('OutdoorAir:NodeList'.to_IddObjectType).first
           oa_nodelist = workspace.addObject(oa_nodelist_idf_obj).get
           htg_coil_inlet_node = oa_nodelist.getString(0).to_s + " #{stream} #{n}"
           oa_nodelist.setString(0, htg_coil_inlet_node)
@@ -224,7 +221,7 @@ class HVACDehumidifierDesiccantSystem < OpenStudio::Measure::EnergyPlusMeasure
           # Coil:Heating:Fuel
 
           # add object
-          coil_idf_obj = idf_file.getObjectsByType('Coil:Heating:Fuel'.to_IddObjectType)[0]
+          coil_idf_obj = idf_file.getObjectsByType('Coil:Heating:Fuel'.to_IddObjectType).first
           htg_coil = workspace.addObject(coil_idf_obj).get
 
           # rename object
@@ -244,7 +241,7 @@ class HVACDehumidifierDesiccantSystem < OpenStudio::Measure::EnergyPlusMeasure
           # Dehumidifier:Desiccant:System
 
           # add object
-          dds_idf_obj = idf_file.getObjectsByType('Dehumidifier:Desiccant:System'.to_IddObjectType)[0]
+          dds_idf_obj = idf_file.getObjectsByType('Dehumidifier:Desiccant:System'.to_IddObjectType).first
           dds = workspace.addObject(dds_idf_obj).get
 
           # rename object

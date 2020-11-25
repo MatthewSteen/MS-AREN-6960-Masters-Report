@@ -8,10 +8,7 @@
 TODO
 
 ## Modeler Description
-This measure adds Dehumidifier:Desiccant:System (DDS) object(s) to the outdoor air (OA) or supply air (SA) stream of one or all air loops by replacing a surrogate object (e.g. CoilHeatingGas). 
-    In either case, a SetpointManager must be on the outlet node of the surrogate object to control humidity.
-    If the DDS will be added to the SA stream, the surrogate object must be directly downstream of a cooling coil, which will be the Companion Cooling Coil to the DDS.
-    The measure uses objects from the EnergyPlus example file DesiccantDehumidifierWithCompanionCoil.idf, which are included in the resources folder.
+This EnergyPlus measure adds a `Dehumidifier:Desiccant:System` on the selected air stream (outdoor air or supply air) of one or all air loops in the model. The measure works by replacing a surrogate object in the desired location in the air stream with the desiccant dehumidifier system. A setpoint manager must be present on the outlet node of the surrogate object to control humidity. If the system will be added to the supply air stream, the surrogate object must be directly downstream of a cooling coil, which will be the companion cooling coil to the desiccant system. The measure uses objects from the `DesiccantDehumidifierWithCompanionCoil.idf` EnergyPlus example file, which are included in the resources folder.
 
 ## Measure Type
 EnergyPlusMeasure

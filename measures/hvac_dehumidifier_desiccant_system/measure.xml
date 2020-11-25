@@ -1,17 +1,15 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>hvac_dehumidifier_desiccant_system</name>
   <uid>cba3a1f5-f3e0-419b-bc23-aa317512d444</uid>
-  <version_id>55693590-8279-4e31-b5fb-264ba9cc8d74</version_id>
-  <version_modified>20200817T220456Z</version_modified>
+  <version_id>3347d68d-8392-43c5-b955-5e2e0fc823ff</version_id>
+  <version_modified>20201123T034448Z</version_modified>
   <xml_checksum>FE37E22F</xml_checksum>
   <class_name>HVACDehumidifierDesiccantSystem</class_name>
   <display_name>Dehumidifier Desiccant System</display_name>
   <description>TODO</description>
-  <modeler_description>This measure adds Dehumidifier:Desiccant:System (DDS) object(s) to the outdoor air (OA) or supply air (SA) stream of one or all air loops by replacing a surrogate object (e.g. CoilHeatingGas). 
-    In either case, a SetpointManager must be on the outlet node of the surrogate object to control humidity.
-    If the DDS will be added to the SA stream, the surrogate object must be directly downstream of a cooling coil, which will be the Companion Cooling Coil to the DDS.
-    The measure uses objects from the EnergyPlus example file DesiccantDehumidifierWithCompanionCoil.idf, which are included in the resources folder.</modeler_description>
+  <modeler_description>This EnergyPlus measure adds a `Dehumidifier:Desiccant:System` on the selected air stream (outdoor air or supply air) of one or all air loops in the model. The measure works by replacing a surrogate object in the desired location in the air stream with the desiccant dehumidifier system. A setpoint manager must be present on the outlet node of the surrogate object to control humidity. If the system will be added to the supply air stream, the surrogate object must be directly downstream of a cooling coil, which will be the companion cooling coil to the desiccant system. The measure uses objects from the `DesiccantDehumidifierWithCompanionCoil.idf` EnergyPlus example file, which are included in the resources folder.</modeler_description>
   <arguments>
     <argument>
       <name>location</name>
@@ -52,8 +50,8 @@
       <model_dependent>false</model_dependent>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>HVAC.Cooling</tag>
   </tags>
@@ -120,13 +118,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>417A280B</checksum>
+      <checksum>839E6389</checksum>
     </file>
     <file>
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
-      <checksum>FD2B0722</checksum>
+      <checksum>D0F17ACC</checksum>
     </file>
   </files>
 </measure>
