@@ -13,12 +13,12 @@ class EquipmentDemandManagerElectricEquipment < OpenStudio::Measure::EnergyPlusM
 
   # human readable description
   def description
-    return 'TODO'
+    return ''
   end
 
   # human readable description of modeling approach
   def modeler_description
-    return 'This measure will add a DemandManager:ElectricEquipment object to the EnergyPlus model. The measure will also add a DemandManagerAssignmentList object if one is not present in the model. If one is, it will add the DemandManager:ElectricEquipment to the existing DemandManagerAssignmentList. Argument default values come from the 5ZoneAirCooledDemandLimiting.idf EnergyPlus example file.'
+    return 'This EnergyPlus measure adds a `DemandManager:ElectricEquipment` object to the model. The measure will also add a `DemandManagerAssignmentList` object if one is not present in the model. If one is, it will add the `DemandManager:ElectricEquipment` to the existing `DemandManagerAssignmentList`. The object properties come from the `5ZoneAirCooledDemandLimiting.idf` EnergyPlus example file.'
   end
 
   # define the arguments that the user will input
@@ -138,7 +138,7 @@ class EquipmentDemandManagerElectricEquipment < OpenStudio::Measure::EnergyPlusM
     demand_manager_priority_choices = ['All', 'Sequential']
     demand_manager_priority = OpenStudio::Ruleset::OSArgument::makeChoiceArgument('demand_manager_priority', demand_manager_priority_choices, false)
     demand_manager_priority.setDisplayName('Demand Manager Priority')
-    demand_manager_priority.setDefaultValue('Sequential')
+    demand_manager_priority.setDefaultValue('All')
     args << demand_manager_priority
 
     return args
@@ -220,7 +220,7 @@ class EquipmentDemandManagerElectricEquipment < OpenStudio::Measure::EnergyPlusM
       dmal.setString(0, 'Demand Manager Assignment List')
       runner.registerInfo("DemandManagerAssignmentList object added: #{dmal.nameString}")
     when 1
-      dmal = dmals[0]
+      dmal = dmals.first
       runner.registerInfo("DemandManagerAssignmentList object found: #{dmal.nameString}")
     else
       runner.registerError('DemandManagerAssignmentList objects > 1')

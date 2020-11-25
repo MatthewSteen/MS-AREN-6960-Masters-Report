@@ -18,7 +18,7 @@ class SWHGeneratorMicroTurbine < OpenStudio::Measure::ModelMeasure
 
   # human readable description of modeling approach
   def modeler_description
-    return 'This measure adds an OpenStudio GeneratorMicroTurbineHeatRecovery object (EnergyPlus object Generator:MicroTurbine) to the supply side of a plant loop with a WaterHeater object. The GeneratorMicroTurbine is the Capstone C65 from the EnergyPlus HeatRecoveryPlantLoopAuto.idf example file (and others), which generates electric energy for the building and waste thermal energy that is used for service hot water. The code and topology is based on https://github.com/NREL/OpenStudio-resources/blob/develop/model/simulationtests/generator_microturbine.rb. The topology differs from the example file because OpenStudio does not allow WaterHeater objects on the same side of two different plant loops.'
+    return 'This OpenStudio measure adds a `GeneratorMicroTurbineHeatRecovery` object to the supply side of plant loop with a water heater. The micro turbine provides electricity generation and service water heating through exhaust air heat recovery. This object is translated to the EnergyPlus object `Generator:MicroTurbine` for simulation, which is a Capstone C65 from the EnergyPlus `HeatRecoveryPlantLoopAuto.idf` example file (and others). The measure code and topology are based on https://github.com/NREL/OpenStudio-resources/blob/develop/model/simulationtests/generator_microturbine.rb. The topology differs from the EnergyPlus example file because OpenStudio does not currently allow a water heater object on the same side of two different plant loops.'
   end
 
   # define the arguments that the user will input

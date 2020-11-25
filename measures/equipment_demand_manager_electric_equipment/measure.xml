@@ -1,14 +1,15 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>equipment_demand_manager_electric_equipment</name>
   <uid>ec35733c-989b-43b6-a14a-78468c4ded3b</uid>
-  <version_id>6d554b5c-dbf1-4548-b7f0-f4b766cac714</version_id>
-  <version_modified>20201011T194741Z</version_modified>
+  <version_id>327f3e90-851d-4caa-a8a5-586d75b3830a</version_id>
+  <version_modified>20201122T222137Z</version_modified>
   <xml_checksum>878B4EA3</xml_checksum>
   <class_name>EquipmentDemandManagerElectricEquipment</class_name>
   <display_name>Demand Manager Electric Equipment</display_name>
   <description>TODO</description>
-  <modeler_description>This measure will add a DemandManager:ElectricEquipment object to the EnergyPlus model. The measure will also add a DemandManagerAssignmentList object if one is not present in the model. If one is, it will add the DemandManager:ElectricEquipment to the existing DemandManagerAssignmentList. Argument default values come from the 5ZoneAirCooledDemandLimiting.idf EnergyPlus example file.</modeler_description>
+  <modeler_description>This EnergyPlus measure adds a `DemandManager:ElectricEquipment` object to the model. The measure will also add a `DemandManagerAssignmentList` object if one is not present in the model. If one is, it will add the `DemandManager:ElectricEquipment` to the existing `DemandManagerAssignmentList`. The object properties come from the `5ZoneAirCooledDemandLimiting.idf` EnergyPlus example file.</modeler_description>
   <arguments>
     <argument>
       <name>availability_schedule_name</name>
@@ -146,7 +147,7 @@
       <type>Choice</type>
       <required>false</required>
       <model_dependent>false</model_dependent>
-      <default_value>Sequential</default_value>
+      <default_value>All</default_value>
       <choices>
         <choice>
           <value>All</value>
@@ -159,8 +160,8 @@
       </choices>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Equipment.Equipment Controls</tag>
   </tags>
@@ -215,13 +216,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>316E285C</checksum>
+      <checksum>1F4A4607</checksum>
     </file>
     <file>
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
-      <checksum>0B602225</checksum>
+      <checksum>0192E0DD</checksum>
     </file>
   </files>
 </measure>

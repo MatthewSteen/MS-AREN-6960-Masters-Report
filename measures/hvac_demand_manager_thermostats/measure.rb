@@ -13,7 +13,7 @@ class HVACDemandManagerThermostats < OpenStudio::Measure::EnergyPlusMeasure
 
   # human readable description
   def description
-    return 'This measure will add a DemandManager:Thermostats object to the EnergyPlus model. The measure will also add a DemandManagerAssignmentList object if one is not present in the model. If one is, it will add the DemandManager:Thermostats to the existing DemandManagerAssignmentList. Argument default values come from the 5ZoneAirCooledDemandLimiting.idf EnergyPlus example file.'
+    return 'This EnergyPlus measure adds a `DemandManager:Thermostats` object to the model. The measure will also add a `DemandManagerAssignmentList` object if one is not present in the model. If one is, it will add the `DemandManager:Thermostats` to the existing `DemandManagerAssignmentList`. The object properties come from the `5ZoneAirCooledDemandLimiting.idf` EnergyPlus example file.'
   end
 
   # human readable description of modeling approach
