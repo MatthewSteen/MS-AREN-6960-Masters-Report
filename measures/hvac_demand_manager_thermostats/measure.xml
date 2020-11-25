@@ -1,13 +1,14 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>hvac_demand_manager_thermostats</name>
   <uid>1f149d24-ec67-4d72-a475-1976c8dee33e</uid>
-  <version_id>f5aedf56-f70b-4034-bd46-b637d6e8209d</version_id>
-  <version_modified>20200828T191937Z</version_modified>
+  <version_id>cda2e707-4585-4fc4-ae10-896157cebdb9</version_id>
+  <version_modified>20201123T040406Z</version_modified>
   <xml_checksum>84D9637F</xml_checksum>
   <class_name>HVACDemandManagerThermostats</class_name>
   <display_name>Demand Manager Thermostats</display_name>
-  <description></description>
+  <description>This EnergyPlus measure adds a `DemandManager:Thermostats` object to the model. The measure will also add a `DemandManagerAssignmentList` object if one is not present in the model. If one is, it will add the `DemandManager:Thermostats` to the existing `DemandManagerAssignmentList`. The object properties come from the `5ZoneAirCooledDemandLimiting.idf` EnergyPlus example file.</description>
   <modeler_description></modeler_description>
   <arguments>
     <argument>
@@ -167,8 +168,8 @@
       </choices>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>HVAC.HVAC Controls</tag>
   </tags>
@@ -215,12 +216,6 @@
       <checksum>C273D6BF</checksum>
     </file>
     <file>
-      <filename>README.md</filename>
-      <filetype>md</filetype>
-      <usage_type>readme</usage_type>
-      <checksum>1E772E1F</checksum>
-    </file>
-    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>2.9.0</identifier>
@@ -229,7 +224,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>80501A31</checksum>
+      <checksum>C8B172B9</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>CD00AA9F</checksum>
     </file>
   </files>
 </measure>
