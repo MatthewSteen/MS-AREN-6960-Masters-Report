@@ -8,7 +8,7 @@
 TODO
 
 ## Modeler Description
-This measure will add a DemandManager:Lights object to the EnergyPlus model. The measure will also add a DemandManagerAssignmentList object if one is not present in the model. If one is, it will add the DemandManager:Lights to the existing DemandManagerAssignmentList. Argument default values come from the 5ZoneAirCooledDemandLimiting.idf EnergyPlus example file.
+This EnergyPlus measure adds a `DemandManager:Lights` object to the model. The measure will also add a `DemandManagerAssignmentList` object if one is not present in the model. If one is, it will add the `DemandManager:Lights` to the existing `DemandManagerAssignmentList`. The object properties come from the `5ZoneAirCooledDemandLimiting.idf` EnergyPlus example file.
 
 ## Measure Type
 EnergyPlusMeasure

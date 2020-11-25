@@ -18,7 +18,7 @@ class LightingDemandManagerLights < OpenStudio::Measure::EnergyPlusMeasure
 
   # human readable description of modeling approach
   def modeler_description
-    return 'This measure will add a DemandManager:Lights object to the EnergyPlus model. The measure will also add a DemandManagerAssignmentList object if one is not present in the model. If one is, it will add the DemandManager:Lights to the existing DemandManagerAssignmentList. Argument default values come from the 5ZoneAirCooledDemandLimiting.idf EnergyPlus example file.'
+    return 'This EnergyPlus measure adds a `DemandManager:Lights` object to the model. The measure will also add a `DemandManagerAssignmentList` object if one is not present in the model. If one is, it will add the `DemandManager:Lights` to the existing `DemandManagerAssignmentList`. The object properties come from the `5ZoneAirCooledDemandLimiting.idf` EnergyPlus example file.'
   end
 
   # define the arguments that the user will input

@@ -1,14 +1,15 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>lighting_demand_manager_lights</name>
   <uid>14b378bd-0a46-4c2b-9eda-597bd2e530e9</uid>
-  <version_id>335f7946-f847-4f29-847a-21c24a11cd72</version_id>
-  <version_modified>20200828T194628Z</version_modified>
+  <version_id>d363b449-12e1-40e6-b42a-911f41bd2216</version_id>
+  <version_modified>20201122T221415Z</version_modified>
   <xml_checksum>64F0FFBE</xml_checksum>
   <class_name>LightingDemandManagerLights</class_name>
   <display_name>Demand Manager Lights</display_name>
   <description>TODO</description>
-  <modeler_description>This measure will add a DemandManager:Lights object to the EnergyPlus model. The measure will also add a DemandManagerAssignmentList object if one is not present in the model. If one is, it will add the DemandManager:Lights to the existing DemandManagerAssignmentList. Argument default values come from the 5ZoneAirCooledDemandLimiting.idf EnergyPlus example file.</modeler_description>
+  <modeler_description>This EnergyPlus measure adds a `DemandManager:Lights` object to the model. The measure will also add a `DemandManagerAssignmentList` object if one is not present in the model. If one is, it will add the `DemandManager:Lights` to the existing `DemandManagerAssignmentList`. The object properties come from the `5ZoneAirCooledDemandLimiting.idf` EnergyPlus example file.</modeler_description>
   <arguments>
     <argument>
       <name>availability_schedule_name</name>
@@ -159,8 +160,8 @@
       </choices>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Electric Lighting.Electric Lighting Controls</tag>
   </tags>
@@ -215,13 +216,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>479FBC13</checksum>
+      <checksum>A6164B77</checksum>
     </file>
     <file>
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
-      <checksum>37A66C2D</checksum>
+      <checksum>6D2C7EE1</checksum>
     </file>
   </files>
 </measure>
