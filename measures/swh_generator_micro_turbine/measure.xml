@@ -1,14 +1,15 @@
+<?xml version="1.0"?>
 <measure>
   <schema_version>3.0</schema_version>
   <name>swh_generator_micro_turbine</name>
   <uid>28106f2f-d536-44c4-aa30-44408d1a0757</uid>
-  <version_id>e4d9c76e-6529-4034-bcaa-b218b82d0ba5</version_id>
-  <version_modified>20200825T193809Z</version_modified>
+  <version_id>533c8ec7-3c5b-4225-bd57-df671f3b680e</version_id>
+  <version_modified>20201122T211335Z</version_modified>
   <xml_checksum>A05EBCA5</xml_checksum>
   <class_name>SWHGeneratorMicroTurbine</class_name>
   <display_name>Generator Micro Turbine</display_name>
   <description>TODO</description>
-  <modeler_description>This measure adds an OpenStudio GeneratorMicroTurbineHeatRecovery object (EnergyPlus object Generator:MicroTurbine) to the supply side of a plant loop with a WaterHeater object. The GeneratorMicroTurbine is the Capstone C65 from the EnergyPlus HeatRecoveryPlantLoopAuto.idf example file (and others), which generates electric energy for the building and waste thermal energy that is used for service hot water. The code and topology is based on https://github.com/NREL/OpenStudio-resources/blob/develop/model/simulationtests/generator_microturbine.rb. The topology differs from the example file because OpenStudio does not allow WaterHeater objects on the same side of two different plant loops.</modeler_description>
+  <modeler_description>This OpenStudio measure adds a `GeneratorMicroTurbineHeatRecovery` object to the supply side of plant loop with a water heater. The micro turbine provides electricity generation and service water heating through exhaust air heat recovery. This object is translated to the EnergyPlus object `Generator:MicroTurbine` for simulation, which is a Capstone C65 from the EnergyPlus `HeatRecoveryPlantLoopAuto.idf` example file (and others). The measure code and topology are based on https://github.com/NREL/OpenStudio-resources/blob/develop/model/simulationtests/generator_microturbine.rb. The topology differs from the EnergyPlus example file because OpenStudio does not currently allow a water heater object on the same side of two different plant loops.</modeler_description>
   <arguments>
     <argument>
       <name>plant_loop_name</name>
@@ -88,8 +89,8 @@
       </choices>
     </argument>
   </arguments>
-  <outputs/>
-  <provenances/>
+  <outputs />
+  <provenances />
   <tags>
     <tag>Service Water Heating.Water Heating</tag>
   </tags>
@@ -135,16 +136,16 @@
       <checksum>00000000</checksum>
     </file>
     <file>
-      <filename>swh_generator_micro_turbine_test.rb</filename>
-      <filetype>rb</filetype>
-      <usage_type>test</usage_type>
-      <checksum>8233F736</checksum>
-    </file>
-    <file>
       <filename>example_model.osm</filename>
       <filetype>osm</filetype>
       <usage_type>test</usage_type>
       <checksum>53D14E69</checksum>
+    </file>
+    <file>
+      <filename>shw_generator_micro_turbine_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>8233F736</checksum>
     </file>
     <file>
       <version>
@@ -155,13 +156,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>95180A2A</checksum>
+      <checksum>9AB64B4F</checksum>
     </file>
     <file>
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
-      <checksum>E1BA6A5C</checksum>
+      <checksum>D6C99D1F</checksum>
     </file>
   </files>
 </measure>
