@@ -173,7 +173,7 @@ __Table x. Individual Measure Time Setpoint Not Met__
 Model | During Heating [hr]  | During Cooling [hr]  | During Occupied Heating [hr]  | During Occupied Cooling [hr]
 :- | :- | :- | :- | :-
 Baseline | 1006 | 391 | 326 | 299
-A1 | 1006 | 391 | 326 | 299
+A1 | 996 | 389 | 322 | 299
 A2 | 1282 | 245 | 476 | 181
 A3 | 1136 | 292 | 380 | 215
 E1 | 1025 | 328 | 328 | 241
@@ -185,7 +185,7 @@ C2 | 938 | 499 | 213 | 164
 
 ### Thermal Storage (A1)
 
-This EnergyPlus measure changes the selected construction layer to a `MaterialProperty:PhaseChange` object. This object requires the conduction finite difference heat balance algorithm rather than the default conduction transfer function algorithm, which requires constant material properties (e.g. specific heat). The object properties come from the `MaterialPropertyPhaseChange.idf` EnergyPlus example file as shown below. 
+This EnergyPlus measure changes the selected construction layer to a `MaterialProperty:PhaseChange` object. This object requires the conduction finite difference heat balance algorithm rather than the default conduction transfer function algorithm, which requires constant material properties (e.g. specific heat). The object properties come from the `CondFD1ZonePurchAirAutoSizeWithPCM.idf` EnergyPlus example file as shown below. 
 
 ```
 MaterialProperty:PhaseChange,
@@ -215,7 +215,7 @@ For this analysis, the baseline heat balance algorithm was changed to conduction
 
 ![image](png/figure_measures_A1.png)
 
-The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
+The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below. This measure was excluded from the optimization because the energy cost savings of 0.1% were small compared to the baseline.
 
 ![image](png/figure_measures_A1_energy_cost.png)
 
