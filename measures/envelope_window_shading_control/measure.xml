@@ -3,13 +3,13 @@
   <schema_version>3.0</schema_version>
   <name>envelope_window_shading_control</name>
   <uid>63134dc3-40ed-46b7-ae68-779f502c16e9</uid>
-  <version_id>296576c0-b0ed-465f-a438-e8dd907e1464</version_id>
-  <version_modified>20200916T144139Z</version_modified>
+  <version_id>b624d1c9-0e59-46e2-a97a-cdc4562880bf</version_id>
+  <version_modified>20201122T222137Z</version_modified>
   <xml_checksum>9C8A26EB</xml_checksum>
   <class_name>EnvelopeWindowShadingControl</class_name>
   <display_name>Window Shading Control</display_name>
   <description>TODO</description>
-  <modeler_description>This measure adds a ShadingControl object to the model by specifying a Construction with shading. Specifying a Material with a shading device is not currently supported and not all Shading Types are currently supported.</modeler_description>
+  <modeler_description>This OpenStudio measure adds `ShadingControl` objects to the model by specifying a Construction with shading. The `ShadingControl` objects are translated to EnergyPlus `WindowShadingControl` objects prior to simulation. The Construction must be a detailed fenestration, i.e. be composed of `WindowMaterialGlazing` rather than `WindowMaterialSimpleGlazingSystem`. Specifying a Material with a shading device is not currently supported and not all Shading Types are currently supported.</modeler_description>
   <arguments>
     <argument>
       <name>shading_type</name>
@@ -142,6 +142,7 @@
       <type>Double</type>
       <required>false</required>
       <model_dependent>false</model_dependent>
+      <default_value>20</default_value>
     </argument>
     <argument>
       <name>material</name>
@@ -233,6 +234,12 @@
       <checksum>63F0B30F</checksum>
     </file>
     <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
+    </file>
+    <file>
       <version>
         <software_program>OpenStudio</software_program>
         <identifier>3.0.1</identifier>
@@ -241,19 +248,13 @@
       <filename>measure.rb</filename>
       <filetype>rb</filetype>
       <usage_type>script</usage_type>
-      <checksum>DD0CD207</checksum>
-    </file>
-    <file>
-      <filename>README.md.erb</filename>
-      <filetype>erb</filetype>
-      <usage_type>readmeerb</usage_type>
-      <checksum>703C9964</checksum>
+      <checksum>F21A7D9B</checksum>
     </file>
     <file>
       <filename>README.md</filename>
       <filetype>md</filetype>
       <usage_type>readme</usage_type>
-      <checksum>154D96FB</checksum>
+      <checksum>EAF38639</checksum>
     </file>
   </files>
 </measure>

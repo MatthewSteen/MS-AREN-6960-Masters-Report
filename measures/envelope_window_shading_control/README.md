@@ -8,7 +8,7 @@
 TODO
 
 ## Modeler Description
-This measure adds a ShadingControl object to the model by specifying a Construction with shading. Specifying a Material with a shading device is not currently supported and not all Shading Types are currently supported.
+This OpenStudio measure adds `ShadingControl` objects to the model by specifying a Construction with shading. The `ShadingControl` objects are translated to EnergyPlus `WindowShadingControl` objects prior to simulation. The Construction must be a detailed fenestration, i.e. be composed of `WindowMaterialGlazing` rather than `WindowMaterialSimpleGlazingSystem`. Specifying a Material with a shading device is not currently supported and not all Shading Types are currently supported.
 
 ## Measure Type
 ModelMeasure

@@ -16,7 +16,7 @@ class EnvelopeWindowShadingControl < OpenStudio::Measure::ModelMeasure
 
   # human readable description of modeling approach
   def modeler_description
-    return 'This measure adds a ShadingControl object to the model by specifying a Construction with shading. Specifying a Material with a shading device is not currently supported and not all Shading Types are currently supported.'
+    return 'This OpenStudio measure adds `ShadingControl` objects to the model by specifying a Construction with shading. The `ShadingControl` objects are translated to EnergyPlus `WindowShadingControl` objects prior to simulation. The Construction must be a detailed fenestration, i.e. be composed of `WindowMaterialGlazing` rather than `WindowMaterialSimpleGlazingSystem`. Specifying a Material with a shading device is not currently supported and not all Shading Types are currently supported.'
   end
 
   # define the arguments that the user will input
@@ -92,6 +92,7 @@ class EnvelopeWindowShadingControl < OpenStudio::Measure::ModelMeasure
     setpoint = OpenStudio::Ruleset::OSArgument::makeDoubleArgument('setpoint', false)
     setpoint.setDisplayName('Setpoint')
     setpoint.setDescription('W/m2, W, or C')
+    setpoint.setDefaultValue(20)
     args << setpoint
 
     # Shading Control Is Scheduled
