@@ -20,7 +20,7 @@ The analysis used a reference building energy model from the U.S. Department of 
 
 The baseline model was created with OpenStudio (NREL, 2011) using the Create Prototype Building measure. Measures are formal computer scripts written in the Ruby programming language that can interact with an OpenStudio model directly, change the EnergyPlus model during runtime, or produce reports after simulation (Roth et. al, 2016). Several changes to the baseline model were required to allow the application of specific technologies, which are described in the Measures secion. In total, the changes decreased the energy use intensity (EUI) by 0.9% and increased the peak electric demand by 10.2% (unadjusted facility) and 4.8% (adjusted utility).
 
-![image](png/figure_geometry.png)
+![image](png/figure_baseline_geometry.png)
 
 __Figure x. Model Geometry (green axis is north)__
 
@@ -91,39 +91,39 @@ __Table x. Plumbing Inputs__
 
 ## Baseline Model Outputs
 
-![image](png/figure_annual_energy_pct.png)
+![image](png/figure_baseline_annual_energy_pct.png)
 
 __Figure x. Annual Energy Use Percent__
 
-![image](png/figure_annual_energy_eui.png)
+![image](png/figure_baseline_annual_energy_eui.png)
 
 __Figure x. Annual Energy Use Intensity__
 
-![image](png/figure_monthly_elec_energy.png)
+![image](png/figure_baseline_monthly_elec_energy.png)
 
 __Figure x. Monthly Electricity Energy__
 
-![image](png/figure_monthly_elec_demand.png)
+![image](png/figure_baseline_monthly_elec_demand.png)
 
 __Figure x. Monthly Electricity Demand__
 
-![image](png/figure_hourly_elec.png)
+![image](png/figure_baseline_hourly_elec.png)
 
-__Figure x. Hourly Electricity Demand on Peak Day (Dec 22)__
+__Figure x. Hourly Electricity Demand on Peak Day (Feb 06)__
 
-![image](png/figure_monthly_ngas_energy.png)
+![image](png/figure_baseline_monthly_ngas_energy.png)
 
 __Figure x. Monthly Natural Gas Energy__
 
-![image](png/figure_monthly_ngas_demand.png)
+![image](png/figure_baseline_monthly_ngas_demand.png)
 
 __Figure x. Monthly Natural Gas Demand__
 
-![image](png/figure_hourly_ngas.png)
+![image](png/figure_baseline_hourly_ngas.png)
 
-__Figure x. Hourly Natural Gas Demand on Peak Day (Dec 20)__
+__Figure x. Hourly Natural Gas Demand on Peak Day (Dec 22)__
 
-![image](png/figure_monthly_elec_demand_comparison.png)
+![image](png/figure_baseline_monthly_elec_demand_comparison.png)
 
 __Figure x. Monthly Electricity Peak vs. Utility Demand__
 
@@ -202,11 +202,11 @@ For this analysis, the baseline heat balance algorithm was changed to conduction
 
 The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
 
-![image](png/figure_measures_energy_cost_A1.png)
+![image](png/figure_measures_A1_energy_cost.png)
 
 __Figure x. Measure A1 Annual Energy Cost Savings__
 
-![image](png/figure_measures_energy_use_A1.png)
+![image](png/figure_measures_A1_energy_use.png)
 
 __Figure x. Measure A1 Annual Energy Use Intensity Savings by End Use__
 
@@ -278,11 +278,11 @@ Construction,
 
 The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
 
-![image](png/figure_measures_energy_cost_A2.png)
+![image](png/figure_measures_A2_energy_cost.png)
 
 __Figure x. Measure A2 Annual Energy Cost Savings__
 
-![image](png/figure_measures_energy_use_A2.png)
+![image](png/figure_measures_A2_energy_use.png)
 
 __Figure x. Measure A2 Annual Energy Use Intensity Savings by End Use__
 
@@ -352,11 +352,11 @@ WindowMaterial:Shade,
 
 The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
 
-![image](png/figure_measures_energy_cost_A3.png)
+![image](png/figure_measures_A3_energy_cost.png)
 
 __Figure x. Measure A3 Annual Energy Cost Savings__
 
-![image](png/figure_measures_energy_use_A3.png)
+![image](png/figure_measures_A3_energy_use.png)
 
 __Figure x. Measure A3 Annual Energy Use Intensity Savings by End Use__
 
@@ -394,11 +394,11 @@ The `DemandManager:ElectricEquipment` object in EnergyPlus allows modeling commo
 
 The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
 
-![image](png/figure_measures_energy_cost_E1.png)
+![image](png/figure_measures_E1_energy_cost.png)
 
 __Figure x. Measure E1 Annual Energy Cost Savings__
 
-![image](png/figure_measures_energy_use_E1.png)
+![image](png/figure_measures_E1_energy_use.png)
 
 __Figure x. Measure E1 Annual Energy Use Intensity Savings by End Use__
 
@@ -433,11 +433,11 @@ This object is a parent object that references several child components, which i
 
 The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
 
-![image](png/figure_measures_energy_cost_M1.png)
+![image](png/figure_measures_M1_energy_cost.png)
 
 __Figure x. Measure M1 Annual Energy Cost Savings__
 
-![image](png/figure_measures_energy_use_M1.png)
+![image](png/figure_measures_M1_energy_use.png)
 
 __Figure x. Measure M1 Annual Energy Use Intensity Savings by End Use__
 
@@ -614,11 +614,11 @@ EnergyManagementSystem:ProgramCallingManager,
 
 The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
 
-![image](png/figure_measures_energy_cost_M2.png)
+![image](png/figure_measures_M2_energy_cost.png)
 
 __Figure x. Measure M2 Annual Energy Cost Savings__
 
-![image](png/figure_measures_energy_use_M2.png)
+![image](png/figure_measures_M2_energy_use.png)
 
 __Figure x. Measure M2 Annual Energy Use Intensity Savings by End Use__
 
@@ -696,15 +696,11 @@ ElectricLoadCenter:Distribution,
 
 The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
 
-![image](png/figure_measures_energy_cost_P1.png)
+![image](png/figure_measures_P1_energy_cost.png)
 
 __Figure x. Measure P1 Annual Energy Cost Savings__
 
-![image](png/figure_measures_energy_use_P1-1.png)
-
-__Figure x. Measure P1 Annual Energy Use Intensity Savings by End Use__
-
-![image](png/figure_measures_energy_use_P1-2.png)
+![image](png/figure_measures_P1_energy_use.png)
 
 __Figure x. Measure P1 Annual Energy Use Intensity Savings by End Use__
 
@@ -729,11 +725,11 @@ Similar to E1, this measure reduces power to a specific energy end use category 
 
 The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
 
-![image](png/figure_measures_energy_cost_C1.png)
+![image](png/figure_measures_C1_energy_cost.png)
 
 __Figure x. Measure C1 Annual Energy Cost Savings__
 
-![image](png/figure_measures_energy_use_C1.png)
+![image](png/figure_measures_C1_energy_use.png)
 
 __Figure x. Measure C1 Annual Energy Use Intensity Savings by End Use__
 
@@ -759,11 +755,11 @@ Instead of a fractional reduction in load, like E1 and C1, this object specifies
 
 The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
 
-![image](png/figure_measures_energy_cost_C2.png)
+![image](png/figure_measures_C2_energy_cost.png)
 
 __Figure x. Measure C2 Annual Energy Cost Savings__
 
-![image](png/figure_measures_energy_use_C2.png)
+![image](png/figure_measures_C2_energy_use.png)
 
 __Figure x. Measure C2 Annual Energy Use Intensity Savings by End Use__
 
