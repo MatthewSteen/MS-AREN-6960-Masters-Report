@@ -158,7 +158,7 @@ __Table x. Individual Measure Energy Cost and Use Savings__
 Model | Energy Cost Savings | Energy Use Savings
 :- | :- | :-
 Baseline | 0% | 0%
-A1 | 0.1% | 0.2%
+A1 | 0.2% | 0.5%
 A2 | 9.9% | 5%
 A3 | 2.6% | 1.1%
 E1 | 3.5% | 4%
@@ -173,7 +173,7 @@ __Table x. Individual Measure Time Setpoint Not Met__
 Model | During Heating [hr]  | During Cooling [hr]  | During Occupied Heating [hr]  | During Occupied Cooling [hr]
 :- | :- | :- | :- | :-
 Baseline | 1006 | 391 | 326 | 299
-A1 | 996 | 389 | 322 | 299
+A1 | 976 | 387 | 325 | 296
 A2 | 1282 | 245 | 476 | 181
 A3 | 1136 | 292 | 380 | 215
 E1 | 1025 | 328 | 328 | 241
@@ -185,11 +185,11 @@ C2 | 938 | 499 | 213 | 164
 
 ### Thermal Storage (A1)
 
-This EnergyPlus measure changes the selected construction layer to a `MaterialProperty:PhaseChange` object. This object requires the conduction finite difference heat balance algorithm rather than the default conduction transfer function algorithm, which requires constant material properties (e.g. specific heat). The object properties come from the `CondFD1ZonePurchAirAutoSizeWithPCM.idf` EnergyPlus example file as shown below. 
+This EnergyPlus measure adds phase change properties to the selected material by adding a `MaterialProperty:PhaseChange` object. This object requires the conduction finite difference heat balance algorithm rather than the default conduction transfer function algorithm, which requires constant material properties (e.g. specific heat). The object properties come from the `CondFD1ZonePurchAirAutoSizeWithPCM.idf` EnergyPlus example file as shown below. 
 
 ```
 MaterialProperty:PhaseChange,
-  Typical Insulation R-10.02,             !- Name
+  5/8 in. Gypsum Board,                   !- Name
   0,                                      !- Temperature Coefficient for Thermal Conductivity {W/m-K2}
   -20,                                    !- Temperature 1 {C}
   0.1,                                    !- Enthalpy 1 {J/kg}
@@ -215,7 +215,7 @@ For this analysis, the baseline heat balance algorithm was changed to conduction
 
 ![image](png/figure_measures_A1.png)
 
-The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below. This measure was excluded from the optimization because the energy cost savings of 0.1% were small compared to the baseline.
+The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below. 
 
 ![image](png/figure_measures_A1_energy_cost.png)
 
@@ -446,7 +446,7 @@ Dehumidifier:Desiccant:System,
 
 This object is a parent object that references several child components, which include an air-to-air heat exchanger, an exhaust fan (optional), and a regeneration fan and heating coil (optional) to regenerate the desiccant. The operation of the desiccant system can be coordinated with a companion cooling coil by specifying its type and name in the appropriate fields. This measure required adding humidity controls to all zones served by the air loops and replacing the `Coil:Cooling:DX:TwoSpeed` objects with `Coil:Cooling:DX:SingleSpeed` objects in the baseline model. Humidity controls were set to 45% relative humidity. The desiccant dehumidifier system was placed downstream of the cooling coil on the supply air stream of all three air loops in the model.  
 
-The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
+The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below. This measure was excluded from the optimization due to a very small energy cost difference compared to the baseline.
 
 ![image](png/figure_measures_M1_energy_cost.png)
 
