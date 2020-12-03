@@ -8,6 +8,7 @@ class EnvelopeMaterialPropertyPhaseChange < OpenStudio::Measure::EnergyPlusMeasu
   
   # constants
   MAX = 5
+  CLASS = 'MaterialProperty:PhaseChange'
   
   # human readable name
   def name
@@ -22,32 +23,24 @@ class EnvelopeMaterialPropertyPhaseChange < OpenStudio::Measure::EnergyPlusMeasu
 
   # human readable description of modeling approach
   def modeler_description
-    return 'This EnergyPlus measure changes the selected construction layer to a `MaterialProperty:PhaseChange` object. This object requires the conduction finite difference heat balance algorithm rather than the default conduction transfer function algorithm, which requires constant material properties (e.g. specific heat). The object properties come from the `CondFD1ZonePurchAirAutoSizeWithPCM.idf` EnergyPlus example file.'
+    return 'This EnergyPlus measure adds phase change properties to the selected material by adding a `MaterialProperty:PhaseChange` object. This object requires the conduction finite difference heat balance algorithm rather than the default conduction transfer function algorithm, which requires constant material properties (e.g. specific heat). The object properties come from the `CondFD1ZonePurchAirAutoSizeWithPCM.idf` EnergyPlus example file.'
   end
 
   # define the arguments that the user will input
   def arguments(workspace)
     args = OpenStudio::Measure::OSArgumentVector.new
 
-    # get construction names from workspace for choice argument
-    construction_names = OpenStudio::StringVector.new
-    workspace.getObjectsByType('Construction'.to_IddObjectType).sort.each do |obj|
-      construction_names << obj.name.to_s
+    # get material names from workspace for choice argument
+    material_names = OpenStudio::StringVector.new
+    workspace.getObjectsByType('Material'.to_IddObjectType).sort.each do |obj|
+      material_names << obj.name.to_s
     end
     
+    # material name
     (1..MAX).each do |num|
-      
-      # construction name
-      construction_name = OpenStudio::Ruleset::OSArgument::makeChoiceArgument("construction_name_#{num}", construction_names, false)
-      construction_name.setDisplayName("Construction Name #{num}")
-      args << construction_name
-
-      # construction layer number
-      construction_layer_number = OpenStudio::Ruleset::OSArgument::makeIntegerArgument("construction_layer_number_#{num}", false)
-      construction_layer_number.setDisplayName("Construction Layer Number #{num}")
-      construction_layer_number.setDescription('from outside to inside')
-      args << construction_layer_number
-
+      material_name = OpenStudio::Ruleset::OSArgument::makeChoiceArgument("material_name_#{num}", material_names, false)
+      material_name.setDisplayName("Material Name #{num}")
+      args << material_name
     end
 
     return args
@@ -63,38 +56,24 @@ class EnvelopeMaterialPropertyPhaseChange < OpenStudio::Measure::EnergyPlusMeasu
     end
 
     # assign the user inputs to variables
-    construction_hash = {}
+    material_names = []
     (1..MAX).each do |num|
-      if runner.getOptionalStringArgumentValue("construction_name_#{num}", user_arguments).is_initialized
-        construction_name = runner.getOptionalStringArgumentValue("construction_name_#{num}", user_arguments).get
-        if runner.getOptionalIntegerArgumentValue("construction_layer_number_#{num}", user_arguments).is_initialized
-          construction_layer_number = runner.getOptionalIntegerArgumentValue("construction_layer_number_#{num}", user_arguments).get
-          construction_hash[construction_layer_number] = construction_name
-        else
-          runner.registerError("missing user argument = Construction Layer Number #{num}")
-          return false
-        end
+      if runner.getOptionalStringArgumentValue("material_name_#{num}", user_arguments).is_initialized
+        material_name = runner.getOptionalStringArgumentValue("material_name_#{num}", user_arguments).get
+        material_names << material_name
       end
     end
 
     # reporting initial condition of model
-    objs = workspace.getObjectsByType('MaterialProperty:PhaseChange'.to_IddObjectType)
-    runner.registerInitialCondition("MaterialProperty:PhaseChange objects = #{objs.size}")
+    objs = workspace.getObjectsByType(CLASS.to_IddObjectType)
+    runner.registerInitialCondition("#{CLASS} objects = #{objs.size}")
 
-    # add objects
-    construction_hash.each do |construction_layer_number, construction_name|
-    
-      # if the layer number is greater than the number of fields, it's skipped so error handling doesn't work
-      construction = workspace.getObjectByTypeAndName('Construction'.to_IddObjectType, construction_name).get 
-      construction_layer_name = construction.getString(construction_layer_number).to_s
-
-      runner.registerInfo("Construction = #{construction_name}")
-      runner.registerInfo("    Material = #{construction_layer_name}")
-
-      # add object from ~/EnergyPlus-x-x-x/ExampleFiles/MaterialPropertyPhaseChange.idf 
+    # add object from ~/EnergyPlus-x-x-x/ExampleFiles/CondFD1ZonePurchAirAutoSizeWithPCM.idf 
+    material_names.uniq.each do |material_name|
+      runner.registerInfo("#{CLASS} = #{material_name}")
       idf_str = "
         MaterialProperty:PhaseChange,
-          #{construction_layer_name},  !- Name
+          #{material_name},  !- Name
           0,                       !- Temperature Coefficient for Thermal Conductivity {W/m-K2}
           -20,                     !- Temperature 1 {C}
           0.1,                     !- Enthalpy 1 {J/kg}
@@ -107,7 +86,6 @@ class EnvelopeMaterialPropertyPhaseChange < OpenStudio::Measure::EnergyPlusMeasu
         "
       idf_obj = OpenStudio::IdfObject.load(idf_str).get
       workspace.addObject(idf_obj)
-
     end
 
     # HeatBalanceAlgorithm
