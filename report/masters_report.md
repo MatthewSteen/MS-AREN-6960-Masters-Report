@@ -211,7 +211,7 @@ k\(_{o}\) is the 20C value of thermal conductivity(normal idf~ input)
 
 k\(_{1}\) is the change in conductivity per degree temperature difference from 20C
 
-For this analysis, the baseline heat balance algorithm was changed to conduction finite difference and the phase change material was added to the interior layer of all exterior walls because the phase change temperature occurs at 22C as shown in figure x. 
+For this analysis, the baseline heat balance algorithm was changed to conduction finite difference and the phase change material was added to the interior layer of all walls, i.e. the layer exposed to the thermal zone, because the phase change temperature occurs at 22C as shown in figure x. Adding additional phase change material to other layers, e.g. ceilings and floors, increased the savings slightly, but was excluded from the analysis as an unrealistic retrofit scenario.
 
 ![image](png/figure_measures_A1.png)
 
