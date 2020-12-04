@@ -696,13 +696,13 @@ TrackMeter | Attempts to meet all the electrical demand from an EnergyPlus Meter
 FollowThermal | Attempts to meet the thermal demand. Excess electrical generation is exported to the grid.
 FollowThermalLimitElectrical | Attempts to meet the thermal demand, but limits electrical output to the current electrical demand so that no electricity is exported to the grid.
 
-For this analysis, the `Generator Operation Scheme Type` was set to limit demand (DemandLimit), which produced the lowest energy cost compared to other the other operation schemes as shown in Figure x.  
+For this analysis, the `Generator Operation Scheme Type` was set to limit demand (DemandLimit), which produced the lowest energy cost compared to the other operation schemes as shown in Figure x.  
 
 ![img](png/figure_measures_P1_energy_cost_generator_operation_scheme.png)
 
 __Figure x. Measure P1 Generator Operation Scheme Annual Utility Cost Savings__
 
-The demand limit operation scheme turns on the generator when total demand is above the value set in the `Generator Demand Limit Scheme Purchased Electric Demand Limit` field. This value was set to 206.1 kW, which maximizes demand reduction by reducing peak demand during the month with the lowest demand (271.1 kW in September) by the generator's `Maximum Full Load Electrical Power Output` (65 kW), as shown in the object below and Figure x.
+The demand limit operation scheme turns on the generator when total demand is above the value set in the `Generator Demand Limit Scheme Purchased Electric Demand Limit` field. This value was set to 206.1 kW, which maximizes demand reduction by reducing peak demand during the month with the lowest utility demand (271.1 kW in September) by the generator's `Maximum Full Load Electrical Power Output` (65 kW), as shown in the object below and Figure x.
 
 ```
 ElectricLoadCenter:Distribution,
