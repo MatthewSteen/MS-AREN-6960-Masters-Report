@@ -696,18 +696,28 @@ TrackMeter | Attempts to meet all the electrical demand from an EnergyPlus Meter
 FollowThermal | Attempts to meet the thermal demand. Excess electrical generation is exported to the grid.
 FollowThermalLimitElectrical | Attempts to meet the thermal demand, but limits electrical output to the current electrical demand so that no electricity is exported to the grid.
 
-For this analysis, the `Generator Operation Scheme Type` was set to limit demand (DemandLimit) to the annual low of 290 kW, which occurs in July. This option produced the lowest energy cost and use compared to other options as shown below.
+For this analysis, the `Generator Operation Scheme Type` was set to limit demand (DemandLimit), which produced the lowest energy cost compared to other the other operation schemes as shown in Figure x.  
+
+![img](png/figure_measures_P1_energy_cost_generator_operation_scheme.png)
+
+__Figure x. Measure P1 Generator Operation Scheme Annual Utility Cost Savings__
+
+The demand limit operation scheme turns on the generator when total demand is above the value set in the `Generator Demand Limit Scheme Purchased Electric Demand Limit` field. This value was set to 206.1 kW, which maximizes demand reduction by reducing peak demand during the month with the lowest demand (271.1 kW in September) by the generator's `Maximum Full Load Electrical Power Output` (65 kW), as shown in the object below and Figure x.
 
 ```
 ElectricLoadCenter:Distribution,
   Capstone C65 ELCD,                      !- Name
   Capstone C65 ELCD Generators,           !- Generator List Name
   DemandLimit,                            !- Generator Operation Scheme Type
-  290000,                                 !- Generator Demand Limit Scheme Purchased Electric Demand Limit {W}
+  206100,                                 !- Generator Demand Limit Scheme Purchased Electric Demand Limit {W}
   ,                                       !- Generator Track Schedule Name Scheme Schedule Name
   ,                                       !- Generator Track Meter Scheme Meter Name
   AlternatingCurrent;                     !- Electrical Buss Type
 ```
+
+![img](png/figure_measures_P1_demand_limit.png)
+
+__Figure x. Demand Limit Generator Operation Scheme Demand Profile__
 
 The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
 
