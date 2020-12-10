@@ -143,7 +143,7 @@ Code | Category | Description
  C1 | Controls | Advanced Sensors and Controls (lighting)
  C2 |  | Smart Thermostats
 
-The annual energy cost and use results for the individual measures are shown in Figures x. and x. below. Additionally, Table x. shows the time the cooling and heating setpoints are not met. 
+The annual energy cost and use results for the individual measures are shown in Figures x. and x. andd summarized in Table x. below. Additionally, Table x. shows the time the cooling and heating setpoints are not met. 
 
 ![image](png/figure_measures_energy_use.png)
 
@@ -153,12 +153,27 @@ __Figure x. Individual Measure Annual Energy Use Intensity__
 
 __Figure x. Individual Measure Annual Energy Cost__
 
+__Table x. Individual Measure Energy Cost and Use Savings__
+
+Model | Energy Cost Savings | Energy Use Savings
+:- | :- | :-
+Baseline | 0% | 0%
+A1 | 0.2% | 0.5%
+A2 | 9.9% | 5%
+A3 | 2.6% | 1.1%
+E1 | 3.5% | 4%
+M1 | 0% | 0%
+M2 | 1.8% | 0.3%
+P1 | 7.2% | -0.9%
+C1 | 4.6% | 5.7%
+C2 | 13.8% | 7.1%
+
 __Table x. Individual Measure Time Setpoint Not Met__
 
 Model | During Heating [hr]  | During Cooling [hr]  | During Occupied Heating [hr]  | During Occupied Cooling [hr]
 :- | :- | :- | :- | :-
 Baseline | 1006 | 391 | 326 | 299
-A1 | 1006 | 391 | 326 | 299
+A1 | 976 | 387 | 325 | 296
 A2 | 1282 | 245 | 476 | 181
 A3 | 1136 | 292 | 380 | 215
 E1 | 1025 | 328 | 328 | 241
@@ -170,11 +185,11 @@ C2 | 938 | 499 | 213 | 164
 
 ### Thermal Storage (A1)
 
-This EnergyPlus measure changes the selected construction layer to a `MaterialProperty:PhaseChange` object. This object requires the conduction finite difference heat balance algorithm rather than the default conduction transfer function algorithm, which requires constant material properties (e.g. specific heat). The object properties come from the `MaterialPropertyPhaseChange.idf` EnergyPlus example file as shown below. 
+This EnergyPlus measure adds phase change properties to the selected material by adding a `MaterialProperty:PhaseChange` object. This object requires the conduction finite difference heat balance algorithm rather than the default conduction transfer function algorithm, which requires constant material properties (e.g. specific heat). The object properties come from the `CondFD1ZonePurchAirAutoSizeWithPCM.idf` EnergyPlus example file as shown below. 
 
 ```
 MaterialProperty:PhaseChange,
-  Typical Insulation R-10.02,             !- Name
+  5/8 in. Gypsum Board,                   !- Name
   0,                                      !- Temperature Coefficient for Thermal Conductivity {W/m-K2}
   -20,                                    !- Temperature 1 {C}
   0.1,                                    !- Enthalpy 1 {J/kg}
@@ -196,11 +211,11 @@ k\(_{o}\) is the 20C value of thermal conductivity(normal idf~ input)
 
 k\(_{1}\) is the change in conductivity per degree temperature difference from 20C
 
-For this analysis, the baseline heat balance algorithm was changed to conduction finite difference and the phase change material was added to the interior layer of all exterior walls because the phase change temperature occurs at 22C as shown in figure x. 
+For this analysis, the baseline heat balance algorithm was changed to conduction finite difference and the phase change material was added to the interior layer of all walls, i.e. the layer exposed to the thermal zone, because the phase change temperature occurs at 22C as shown in figure x. Adding additional phase change material to other layers, e.g. ceilings and floors, increased the savings slightly, but was excluded from the analysis as an unrealistic retrofit scenario.
 
 ![image](png/figure_measures_A1.png)
 
-The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
+The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below. 
 
 ![image](png/figure_measures_A1_energy_cost.png)
 
@@ -431,7 +446,7 @@ Dehumidifier:Desiccant:System,
 
 This object is a parent object that references several child components, which include an air-to-air heat exchanger, an exhaust fan (optional), and a regeneration fan and heating coil (optional) to regenerate the desiccant. The operation of the desiccant system can be coordinated with a companion cooling coil by specifying its type and name in the appropriate fields. This measure required adding humidity controls to all zones served by the air loops and replacing the `Coil:Cooling:DX:TwoSpeed` objects with `Coil:Cooling:DX:SingleSpeed` objects in the baseline model. Humidity controls were set to 45% relative humidity. The desiccant dehumidifier system was placed downstream of the cooling coil on the supply air stream of all three air loops in the model.  
 
-The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
+The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below. This measure was excluded from the optimization due to a very small energy cost difference compared to the baseline.
 
 ![image](png/figure_measures_M1_energy_cost.png)
 
@@ -681,18 +696,28 @@ TrackMeter | Attempts to meet all the electrical demand from an EnergyPlus Meter
 FollowThermal | Attempts to meet the thermal demand. Excess electrical generation is exported to the grid.
 FollowThermalLimitElectrical | Attempts to meet the thermal demand, but limits electrical output to the current electrical demand so that no electricity is exported to the grid.
 
-For this analysis, the `Generator Operation Scheme Type` was set to limit demand (DemandLimit) to the annual low of 290 kW, which occurs in July. This option produced the lowest energy cost and use compared to other options as shown below.
+For this analysis, the `Generator Operation Scheme Type` was set to limit demand (DemandLimit), which produced the lowest energy cost compared to the other operation schemes as shown in Figure x.  
+
+![img](png/figure_measures_P1_energy_cost_generator_operation_scheme.png)
+
+__Figure x. Measure P1 Generator Operation Scheme Annual Utility Cost Savings__
+
+The demand limit operation scheme turns on the generator when total demand is above the value set in the `Generator Demand Limit Scheme Purchased Electric Demand Limit` field. This value was set to 206.1 kW, which maximizes demand reduction by reducing peak demand during the month with the lowest utility demand (271.1 kW in September) by the generator's `Maximum Full Load Electrical Power Output` (65 kW), as shown in the object below and Figure x.
 
 ```
 ElectricLoadCenter:Distribution,
   Capstone C65 ELCD,                      !- Name
   Capstone C65 ELCD Generators,           !- Generator List Name
   DemandLimit,                            !- Generator Operation Scheme Type
-  290000,                                 !- Generator Demand Limit Scheme Purchased Electric Demand Limit {W}
+  206100,                                 !- Generator Demand Limit Scheme Purchased Electric Demand Limit {W}
   ,                                       !- Generator Track Schedule Name Scheme Schedule Name
   ,                                       !- Generator Track Meter Scheme Meter Name
   AlternatingCurrent;                     !- Electrical Buss Type
 ```
+
+![img](png/figure_measures_P1_demand_limit.png)
+
+__Figure x. Demand Limit Generator Operation Scheme Demand Profile__
 
 The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
 
