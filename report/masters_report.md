@@ -702,7 +702,7 @@ For this analysis, the `Generator Operation Scheme Type` was set to limit demand
 
 __Figure x. Measure P1 Generator Operation Scheme Annual Utility Cost Savings__
 
-The demand limit operation scheme turns on the generator when total demand is above the value set in the `Generator Demand Limit Scheme Purchased Electric Demand Limit` field. This value was set to 206.1 kW, which maximizes demand reduction by reducing peak demand during the month with the lowest utility demand (271.1 kW in September) by the generator's `Maximum Full Load Electrical Power Output` (65 kW), as shown in the object below and Figure x.
+The demand limit operation scheme turns on the generator when total demand is above the value set in the `Generator Demand Limit Scheme Purchased Electric Demand Limit` field. This value was set to 206.1 kW as an initial estimate to maximize demand reduction by reducing peak demand during the month with the lowest utility demand (271.1 kW in September) by the generator's `Maximum Full Load Electrical Power Output` (65 kW), as shown in the object below and Figure x. This variable was chosen for optimization as discussed in the next section.
 
 ```
 ElectricLoadCenter:Distribution,
@@ -718,16 +718,6 @@ ElectricLoadCenter:Distribution,
 ![img](png/figure_measures_P1_demand_limit.png)
 
 __Figure x. Demand Limit Generator Operation Scheme Demand Profile__
-
-The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
-
-![image](png/figure_measures_P1_energy_cost.png)
-
-__Figure x. Measure P1 Annual Energy Cost Savings__
-
-![image](png/figure_measures_P1_energy_use.png)
-
-__Figure x. Measure P1 Annual Energy Use Intensity Savings by End Use__
 
 ### Advanced Sensors and Controls (lighting) (C1)
 
@@ -794,7 +784,23 @@ _TODO since PAT does not have sequential search, use genetic algorithm(GA) or pa
 
 # 3. Results
 
+## 3.x Building-Scale CHP (P1)
 
+The optimization process for this measure used the Particle Swarm Optimization (PSO) technique in PAT, which is based on hydroPSO (Zambrano-Bigiarini et. al., 2013), with a single independent variable, the `Generator Demand Limit Scheme Purchased Electric Demand Limit` in Watts, to minimize the annual utility cost. 
+
+![image](png/figure_measures_p1_pat.png)
+
+__Figure x. Measure P1 Optimization Results__
+
+The annual energy use intensity and energy cost savings for the optimized demand limit of 239.65 kW is shown in Figures x. and x. below, which showed a savings of -6.9% and 9.2% respectively. This measure saved demand costs at the expense of increased natural gas cost and consumption, which shows up under the Generators end use in EnergyPlus.
+
+![image](png/figure_measures_p1_energy_cost.png)
+
+__Figure x. Measure P1 Annual Energy Cost Savings__
+
+![image](png/figure_measures_p1_energy_use.png)
+
+__Figure x. Measure P1 Annual Energy Use Intensity Savings by End Use__
 
 # 4. Discussion
 
