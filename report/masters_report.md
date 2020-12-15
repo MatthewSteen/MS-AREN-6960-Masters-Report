@@ -768,16 +768,6 @@ DemandManager:Thermostats,
 
 Instead of a fractional reduction in load, like E1 and C1, this object specifies maximum setpoint resets for heating and cooling, which for this analysis were set to 19C and 26C respectively. 
 
-The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
-
-![image](png/figure_measures_C2_energy_cost.png)
-
-__Figure x. Measure C2 Annual Energy Cost Savings__
-
-![image](png/figure_measures_C2_energy_use.png)
-
-__Figure x. Measure C2 Annual Energy Use Intensity Savings by End Use__
-
 ## Optimization Process
 
 _TODO since PAT does not have sequential search, use genetic algorithm(GA) or particle swarm optimization (PSO) techniques to perform optimization analyses_
@@ -786,7 +776,7 @@ _TODO since PAT does not have sequential search, use genetic algorithm(GA) or pa
 
 ## 3.x Building-Scale CHP (P1)
 
-The optimization process for this measure used the Particle Swarm Optimization (PSO) technique in PAT, which is based on hydroPSO (Zambrano-Bigiarini et. al., 2013), with a single independent variable, the `Generator Demand Limit Scheme Purchased Electric Demand Limit` in Watts, to minimize the annual utility cost. 
+The optimization process for this measure used the Particle Swarm Optimization (PSO) analysis option in PAT, which is based on hydroPSO (Zambrano-Bigiarini et. al., 2013), with a single independent variable, the `Generator Demand Limit Scheme Purchased Electric Demand Limit` in Watts, to minimize the annual utility cost. 
 
 ![image](png/figure_measures_p1_pat.png)
 
@@ -801,6 +791,57 @@ __Figure x. Measure P1 Annual Energy Cost Savings__
 ![image](png/figure_measures_p1_energy_use.png)
 
 __Figure x. Measure P1 Annual Energy Use Intensity Savings by End Use__
+
+## 3.x Smart Thermostats (C2)
+
+The optimization process for this measure used the Baseline Perturbation analysis option in PAT, which allows discrete values of independent variables to be explored parametrically. For this analysis, the `Maximum Heating Setpoint Reset` and the `Maximum Cooling Setpoint Reset` were optimized to reduce the total annual utility cost by changing the reset temperature by 0.5C increments between the occupied and unoccupied setpoints as summarized in the table x. and x. below. These two independent variables were optimized separately because there is limited interaction between the heatin setpoint and cooling setpoint, which also reduced computation time significantly.
+
+__Table x. Maximum Heating Setpoint Reset Temperatures__
+
+Heating Setpoint | Setpoint (C)
+:- | :-
+Occupied | 21
+Discrete Values | 20.5
+. | 20
+. | 19.5
+. | 19
+. | 18.5
+. | 18
+. | 17.5
+. | 17
+. | 16.5
+. | 16
+Unoccupied | 15.6
+
+__Table x. Maximum Cooling Setpoint Reset Temperatures__
+
+Cooling Setpoint | Setpoint (C)
+:- | :-
+Occupied | 24
+Discrete Values | 24.5
+. | 25
+. | 25.5
+. | 26
+. | 26.5
+Unoccupied | 26.7
+
+As expected, greater reset temperatures produced more utility cost savings such that the highest savings occurred with resets that were at or near the unoccupied setpoint temperatures. For heating, the highest cost savings occurred with a reset temperature of 16C, close to the unoccupied setpoint of 15.7C as shown in Figure x. For Cooling, the hightest cost savings occurred with a reset temperature of 26.7C, the unoccupied setpoint as shown in Figure x. The annual energy use intensity and energy cost savings for the combination of these reset temperatures is shown in Figures x. and x. below, which was 11.5% and 25.0% respectively.
+
+![image](png/figure_measures_c2_pat_htg.png)
+
+__Figure x. Measure C2 Optimization of Heating Setpoint__
+
+![image](png/figure_measures_c2_pat_clg.png)
+
+__Figure x. Measure C2 Optimization of Cooling Setpoint__
+
+![image](png/figure_measures_C2_energy_cost.png)
+
+__Figure x. Measure C2 Annual Energy Cost Savings__
+
+![image](png/figure_measures_C2_energy_use.png)
+
+__Figure x. Measure C2 Annual Energy Use Intensity Savings by End Use__
 
 # 4. Discussion
 
