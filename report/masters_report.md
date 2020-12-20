@@ -261,7 +261,7 @@ WindowShadingControl,
   Perimeter_bot_ZN_1_Wall_South_Window;   !- Fenestration Surface Name 12
 ```
 
-The `WindowShadingControl` object is used to reduce solar radiation into the thermal zone through a window. For this measure, the Shading Type was set to `SwitchableGlazing`, which allows modeling simple two-state electrochromic glazing by referencing a construction for the tinted state in the `Construction with Shading Type` field. The `Shading Control Type` was set to `OnIfHighSolarOnWindow`, which turns the switchable glazing on to its tinted state if the beam plus diffuse solar radiation incident on the window exceeds the setpoint (20 W/m2). 
+The `WindowShadingControl` object is used to reduce solar radiation through a window into the referenced thermal zone. For this measure, the Shading Type was set to `SwitchableGlazing`, which allows modeling simple two-state electrochromic glazing by referencing a construction for the tinted state in the `Construction with Shading Type` field. 
 
 Modeling electrochromic glazing required the baseline window constructions to be changed from `WindowMaterial:SimpleGlazingSystem`, which models an entire window assembly as a simple monolithic layer, to a more detailed layered construction made up of `WindowMaterial:Glazing` and `WindowMaterial:Gas` objects. The untinted ("bleached") and tinted ("colored") window constructions were taken from the `WindowConstructs.idf` EnergyPlus example file, specifically a double-glazed air-filled electrochromic construction. The objects below show the window constructions before and after the changes to the baseline.
 
@@ -290,16 +290,6 @@ Construction,
 
 ! U=1.761  SHGC=0.641  TSOL=0.545  TVIS=0.727
 ```
-
-The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
-
-![image](png/figure_measures_A2_energy_cost.png)
-
-__Figure x. Measure A2 Annual Energy Cost Savings__
-
-![image](png/figure_measures_A2_energy_use.png)
-
-__Figure x. Measure A2 Annual Energy Use Intensity Savings by End Use__
 
 ### Automated Attachments (A3)
 
@@ -773,6 +763,64 @@ Instead of a fractional reduction in load, like E1 and C1, this object specifies
 _TODO since PAT does not have sequential search, use genetic algorithm(GA) or particle swarm optimization (PSO) techniques to perform optimization analyses_
 
 # 3. Results
+
+## 3.x Dynamic Glazing (A2)
+
+The optimization of this measure focused on two variables for the EnergyPlus 'WindowShadingControl` object. The `Shading Control Type` field, a discrete variable which currently has 21 options for high level control that generally reduce thermal loads, improve visual comfort, or improve daylight; and the `Setpoint` field, a continuous variable that allows additional control based on solar radiation (W/m2), temperature (C), or cooling or heating (W). The shading control options are summarized in Table x below.
+
+__Table x. WindowShadingControl Object Shading Control Types__
+
+Shading Control Type | Cooling | Heating | Cooling and Heating | Other
+:- | :- | :- | :- | :-
+AlwaysOn | &#9675; | &#9675; | &#9675; | &#9675;
+AlwaysOff | &#9675; | &#9675; | &#9675; | &#9675;
+OnIfScheduleAllows | &#9673; | &#9675; | &#9675; | &#9675;
+OnIfHighSolarOnWindow | &#9673; | &#9675; | &#9675; | &#9675;
+OnIfHighHorizontalSolar | &#9673; | &#9675; | &#9675; | &#9675;
+OnIfHighOutdoorAirTemperature | &#9673; | &#9675; | &#9675; | &#9675;
+OnIfHighZoneAirTemperature | &#9673; | &#9675; | &#9675; | &#9675;
+OnIfHighZoneCooling | &#9673; | &#9675; | &#9675; | &#9675;
+OnIfHighGlare | &#9675; | &#9675; | &#9675; | &#9673;
+MeetDaylightIlluminanceSetpoint | &#9675; | &#9675; | &#9675; | &#9673;
+OnNightIfLowOutdoorTempAndOffDay | &#9675; | &#9673; | &#9675; | &#9675;
+OnNightIfLowInsideTempAndOffDay | &#9675; | &#9673; | &#9675; | &#9675;
+OnNightIfHeatingAndOffDay | &#9675; | &#9673; | &#9675; | &#9675;
+OnNightIfLowOutdoorTempAndOnDayIfCooling | &#9675; | &#9675; | &#9673; | &#9675;
+OnNightIfHeatingAndOnDayIfCooling | &#9675; | &#9675; | &#9673; | &#9675;
+OffNightAndOnDayIfCoolingAndHighSolarOnWindow | &#9673; | &#9675; | &#9675; | &#9675;
+OnNightAndOnDayIfCoolingAndHighSolarOnWindow | &#9673; | &#9675; | &#9675; | &#9675;
+OnIfHighOutdoorAirTempAndHighSolarOnWindow | &#9673; | &#9675; | &#9675; | &#9675;
+OnIfHighOutdoorAirTempAndHighHorizontalSolar | &#9673; | &#9675; | &#9675; | &#9675;
+OnIfHighZoneAirTempAndHighSolarOnWindow | &#9673; | &#9675; | &#9675; | &#9675;
+OnIfHighZoneAirTempAndHighHorizontalSolar | &#9673; | &#9675; | &#9675; | &#9675;
+
+The pre-optimization process focused on shading control types to reduce heating loads since the model's peak electric demand occurs in the winter months due to air terminals with electric reheat. Furthermore, the selected shading control types were limited to ones that use indoor or outdoor air temperature for setpoint control. Table x. summarizes the pre-optimization variables for this measure.
+
+__Table x. Measure A2 Optimization Variables__
+
+Shading Control Type (discrete) | Setpoints (continuous)
+:- | :-
+OnNightIfLowInsideTempAndOffDay | 15-21C in 1C increments
+OnNightIfLowOutdoorTempAndOffDay | 0-20C in 5C increments
+OnNightIfLowOutdoorTempAndOnDayIfCooling | 0-20C in 5C increments
+
+The pre-optimization was comprised of two separate runs using the Baseline Perturbation analysis option in PAT to determine the magnitude and direction of utility cost savings; one for `OnNightIfLowOutdoorTempAndOffDay` and `OnNightIfLowOutdoorTempAndOnDayIfCooling` shading controls, which use an outdoor air temperature setpoint; and one for `OnNightIfLowInsideTempAndOffDay`, which uses an indoor air temperature setpoint. Of these 17 simulations, the `OnNightIfLowOutdoorTempAndOnDayIfCooling` shading control was the only one that showed significant energy cost savings compared to the baseline with the other two shading control types showing very small energy cost increases.
+
+The optimization of this measure used the Particle Swarm Optimization (PSO) analysis option in PAT with a single independent variable, the outdoor air temperature setpoint, to minimize the annual energy cost. The as shown in Figure x. 
+
+![image](png/measure_a2_optimization_results.png)
+
+__Figure x. Measure A2 Optimization Results__
+
+The annual energy use intensity and energy cost savings for the optimized setpoint of 20.64C is shown in Figures x. and x. below, which showed a savings of 6.1% and 10.3% respectively.
+
+![image](png/measure_a2_energy_cost_results.png)
+
+__Figure x. Measure A2 Annual Energy Cost Results__
+
+![image](png/measure_a2_energy_use_results.png)
+
+__Figure x. Measure A2 Annual Energy Use Results__
 
 ## 3.x Building-Scale CHP (P1)
 
