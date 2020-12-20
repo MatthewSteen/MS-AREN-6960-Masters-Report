@@ -426,16 +426,6 @@ Dehumidifier:Desiccant:System,
 
 This object is a parent object that references several child components, which include an air-to-air heat exchanger, an exhaust fan (optional), and a regeneration fan and heating coil (optional) to regenerate the desiccant. The operation of the desiccant system can be coordinated with a companion cooling coil by specifying its type and name in the appropriate fields. This measure required adding humidity controls to all zones served by the air loops and replacing the `Coil:Cooling:DX:TwoSpeed` objects with `Coil:Cooling:DX:SingleSpeed` objects in the baseline model. Humidity controls were set to 45% relative humidity. The desiccant dehumidifier system was placed downstream of the cooling coil on the supply air stream of all three air loops in the model.  
 
-The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below. This measure was excluded from the optimization due to a very small energy cost difference compared to the baseline.
-
-![image](png/figure_measures_M1_energy_cost.png)
-
-__Figure x. Measure M1 Annual Energy Cost Savings__
-
-![image](png/figure_measures_M1_energy_use.png)
-
-__Figure x. Measure M1 Annual Energy Use Intensity Savings by End Use__
-
 ### Thermal Energy Storage (M2)
 
 This measure replaces the `Coil:Cooling:DX:SingleSpeed` objects on the supply air stream of one or more air loops in the model with `Coil:Cooling:DX:SingleSpeed:ThermalStorage` objects (TODO, https://github.com/NREL/openstudio-load-flexibility-measures-gem/tree/master/lib/measures/add_packaged_ice_storage) as shown below. 
@@ -823,6 +813,18 @@ __Figure x. Measure A2 Annual Energy Cost Results__
 ![image](png/measure_a2_energy_use_results.png)
 
 __Figure x. Measure A2 Annual Energy Use Results__
+
+## 3.x Separate Sensible and Latent Space Conditioning (M1)
+
+Initial testing of this measure showed small savings compared to the baseline model. This measure was excluded from the optimization because this technology is not based on controls and savings were small relative to the baseline. The annual energy use and energy cost savings for this measure are shown in Figures x. and x. below. 
+
+![image](png/measure_m1_energy_cost_results.png)
+
+__Figure x. Measure M1 Annual Energy Cost Results__
+
+![image](png/measure_m1_energy_use_results.png)
+
+__Figure x. Measure M1 Annual Energy Use Results__
 
 ## 3.x Building-Scale CHP (P1)
 
