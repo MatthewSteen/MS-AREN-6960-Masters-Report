@@ -211,19 +211,9 @@ k\(_{o}\) is the 20C value of thermal conductivity(normal idf~ input)
 
 k\(_{1}\) is the change in conductivity per degree temperature difference from 20C
 
-For this analysis, the baseline heat balance algorithm was changed to conduction finite difference and the phase change material was added to the interior layer of all walls, i.e. the layer exposed to the thermal zone, because the phase change temperature occurs at 22C as shown in figure x. Adding additional phase change material to other layers, e.g. ceilings and floors, increased the savings slightly, but was excluded from the analysis as an unrealistic retrofit scenario.
+For this analysis, the baseline heat balance algorithm was changed to conduction finite difference and the phase change material was added to the interior layer of all walls, i.e. the layer exposed to the thermal zone, because the phase change temperature occurs at 22C as shown in figure x. 
 
 ![image](png/figure_measures_A1.png)
-
-The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below. 
-
-![image](png/figure_measures_A1_energy_cost.png)
-
-__Figure x. Measure A1 Annual Energy Cost Savings__
-
-![image](png/figure_measures_A1_energy_use.png)
-
-__Figure x. Measure A1 Annual Energy Use Intensity Savings by End Use__
 
 ### Dynamic Glazing (A2)
  
@@ -763,6 +753,18 @@ Instead of a fractional reduction in load, like E1 and C1, this object specifies
 _TODO since PAT does not have sequential search, use genetic algorithm(GA) or particle swarm optimization (PSO) techniques to perform optimization analyses_
 
 # 3. Results
+
+## 3.x Thermal Storage (A1)
+
+Initial testing of this measure showed small savings compared to the baseline model when the PCM was added to the inside of all walls. Adding additional PCM to other layers, e.g. ceilings and floors, increased the savings slightly. This measure was excluded from the optimization because this technology is not based on controls and savings were small relative to the baseline. The annual energy use and energy cost savings for this measure are shown in Figures x. and x. below. 
+
+![image](png/measure_a1_energy_cost_results.png)
+
+__Figure x. Measure A1 Annual Energy Cost Savings__
+
+![image](png/measure_a1_energy_use_results.png)
+
+__Figure x. Measure A1 Annual Energy Use Intensity Savings by End Use__
 
 ## 3.x Dynamic Glazing (A2)
 
