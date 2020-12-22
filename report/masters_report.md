@@ -345,16 +345,6 @@ WindowMaterial:Shade,
   0;                                      !- Airflow Permeability {dimensionless}
 ```
 
-The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
-
-![image](png/figure_measures_A3_energy_cost.png)
-
-__Figure x. Measure A3 Annual Energy Cost Savings__
-
-![image](png/figure_measures_A3_energy_use.png)
-
-__Figure x. Measure A3 Annual Energy Use Intensity Savings by End Use__
-
 ### Continuous-Operation Electronics (E1)
 
 This EnergyPlus measure adds a `DemandManager:ElectricEquipment` object to the model. The measure will also add a `DemandManagerAssignmentList` object if one is not present in the model. If one is, it will add the `DemandManager:ElectricEquipment` to the existing `DemandManagerAssignmentList`. The object properties come from the `5ZoneAirCooledDemandLimiting.idf` EnergyPlus example file as shown below.
@@ -813,6 +803,38 @@ __Figure x. Measure A2 Annual Energy Cost Results__
 ![image](png/measure_a2_energy_use_results.png)
 
 __Figure x. Measure A2 Annual Energy Use Results__
+
+## 3.x Automated Attachments (A3)
+
+The optimization of this technology used the same methodology as measure A2. The pre-optimization showed similar results as A2, with the `OnNightIfLowOutdoorTempAndOnDayIfCooling` shading control showing the greatest annual energy cost savings compared to the baseline. This control option was chosen for optimization using the same analysis option in PAT (PSO) with the setpoint as the continuous variable to optimize for the lowest annual energy cost. Figures x, x, and x compare the pre-optimization results showing that the `OnNightIfLowOutdoorTempAndOnDayIfCooling` control option produced the greatest savings.
+
+![image](png/measure_a3_energy_cost_savings_OnNightIfLowInsideTempAndOffDay.png)
+
+__Figure x. Measure A3 Annual Energy Cost Savings for OnNightIfLowInsideTempAndOffDay Control__
+
+![image](png/measure_a3_energy_cost_savings_OnNightIfLowOutdoorTempAndOffDay.png)
+
+__Figure x. Measure A3 Annual Energy Cost Savings for OnNightIfLowOutdoorTempAndOffDay Control__
+
+![image](png/measure_a3_energy_cost_savings_OnNightIfLowOutdoorTempAndOnDayIfCooling.png)
+
+__Figure x. Measure A3 Annual Energy Cost Savings for OnNightIfLowOutdoorTempAndOnDayIfCooling Control__
+
+The optimization of this measure used the Particle Swarm Optimization (PSO) analysis option in PAT with a single independent variable, the outdoor air temperature setpoint, to minimize the annual energy cost as shown in Figure x. 
+
+![image](png/measure_a3_optimization_results.png)
+
+__Figure x. Measure A3 Optimization Results__
+
+The annual energy use and energy cost savings for the optimized setpoint of 13C is shown in Figures x. and x. below, which showed a savings of 1.9% and 3.3% respectively.
+
+![image](png/measure_a3_energy_cost_results.png)
+
+__Figure x. Measure A3 Annual Energy Cost Savings__
+
+![image](png/measure_a3_energy_use_results.png)
+
+__Figure x. Measure A3 Annual Energy Use Intensity Savings by End Use__
 
 ## 3.x Separate Sensible and Latent Space Conditioning (M1)
 
