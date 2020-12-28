@@ -698,16 +698,6 @@ DemandManager:Lights,
 
 Similar to E1, this measure reduces power to a specific energy end use category up to a fractional limit for the specified duration, which for this analysis was 50% and 60 minutes respectively.
 
-The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
-
-![image](png/figure_measures_C1_energy_cost.png)
-
-__Figure x. Measure C1 Annual Energy Cost Savings__
-
-![image](png/figure_measures_C1_energy_use.png)
-
-__Figure x. Measure C1 Annual Energy Use Intensity Savings by End Use__
-
 ### Smart Thermostats (C2)
 
 This EnergyPlus measure adds a `DemandManager:Thermostats` object to the model. The measure will also add a `DemandManagerAssignmentList` object if one is not present in the model. If one is, it will add the `DemandManager:Thermostats` to the existing `DemandManagerAssignmentList`. The object properties come from the `5ZoneAirCooledDemandLimiting.idf` EnergyPlus example file as shown below.
@@ -860,11 +850,31 @@ The annual energy use intensity and energy cost savings for the optimized demand
 
 ![image](png/figure_measures_p1_energy_cost.png)
 
-__Figure x. Measure P1 Annual Energy Cost Savings__
+__Figure x. Measure P1 Energy Cost Results__
 
 ![image](png/figure_measures_p1_energy_use.png)
 
-__Figure x. Measure P1 Annual Energy Use Intensity Savings by End Use__
+__Figure x. Measure P1 Energy Use Results__
+
+## 3.x Advanced Sensors and Controls (lighting) (C1)
+
+The optimization process for this technology focused on two continuous variables; the `Minimum Limit Duration`, which is the minimum amount of time in minutes that the lighting power is reduced during demand limiting, and the `Maximum Limit Fraction`, which is the fractional limit of full load lighting power reduction where 1.0 indicates no reduction. The `Maximum Limit Fraction` was fixed at 0.85 based on California's 2016 energy standard, which requires that all buildings greater than 929 m2 (10,000 ft2) be capable of automatically reducing total lighting power by at least 15% in response to a signal from the grid. 
+
+For the optimization, the demand limit duration was simulated at fixed durations to determine the sensitivity of the results. The results showed very small changes in annual energy of about 1 USD with durations of 10 minutes to 320 minutes as shown in Figure x.
+
+![image](png/measure_c1_optimization_results.png)
+
+__Figure x. Measure C1 Optimization Results__
+
+The annual energy use intensity and energy cost savings for the optimized duration of 40 minutes is shown in Figures x. and x. below, which showed a savings of % and % respectively.
+
+![image](png/measure_c1_energy_cost_results.png)
+
+__Figure x. Measure C1 Annual Energy Cost Savings__
+
+![image](png/measure_c1_energy_use_results.png)
+
+__Figure x. Measure C1 Annual Energy Use Intensity Savings by End Use__
 
 ## 3.x Smart Thermostats (C2)
 
