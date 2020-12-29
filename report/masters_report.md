@@ -347,7 +347,7 @@ WindowMaterial:Shade,
 
 ### Continuous-Operation Electronics (E1)
 
-This EnergyPlus measure adds a `DemandManager:ElectricEquipment` object to the model. The measure will also add a `DemandManagerAssignmentList` object if one is not present in the model. If one is, it will add the `DemandManager:ElectricEquipment` to the existing `DemandManagerAssignmentList`. The object properties come from the `5ZoneAirCooledDemandLimiting.idf` EnergyPlus example file as shown below.
+This EnergyPlus measure adds a `DemandManager:ElectricEquipment` object to the model. The measure will also add a `DemandManagerAssignmentList` object if one is not present in the model. If one is, it will add the `DemandManager:ElectricEquipment` to the existing `DemandManagerAssignmentList`. The following objects are examples from `5ZoneAirCooledDemandLimiting.idf` EnergyPlus example file.
 
 ```
 DemandManager:ElectricEquipment,
@@ -375,17 +375,7 @@ DemandManagerAssignmentList,
   Demand Manager Electric Equipment;      !- DemandManager Name 1
 ```
 
-The `DemandManager:ElectricEquipment` object in EnergyPlus allows modeling common demand side management strategies to reduce power to electric equipment. The `Limit Control` field specifies whether demand limiting is on (Fixed) or off. The DemandManager module in EnergyPlus determines whether demand limiting is required during a simulation timestep and if so, the power to the referenced electric equipment is reduced up to the `Maximum Limit Fraction` field, which was 50% in this case. The `Minimum Limit Duration` specifies the minimum amount of time that demand is reduced, which was 60 minutes for this analysis. The `DemandManager:AssignmentList` object controls one or more demand managers by specifying the `Demand Window Length` (in minumtes) and coordinating the `Demand Manager Priority` with other demand managers, e.g. lights or thermostats (measures C1 and C2 respectively). Priority can be set to sequentially rotate through demand managers or simultaneously limit demand to all objects.
-
-The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
-
-![image](png/figure_measures_E1_energy_cost.png)
-
-__Figure x. Measure E1 Annual Energy Cost Savings__
-
-![image](png/figure_measures_E1_energy_use.png)
-
-__Figure x. Measure E1 Annual Energy Use Intensity Savings by End Use__
+The `DemandManager:ElectricEquipment` object in EnergyPlus allows modeling common demand side management strategies to reduce power to electric equipment. The `Limit Control` field specifies whether demand limiting is on (Fixed) or off. The DemandManager module in EnergyPlus determines whether demand limiting is required during a simulation timestep and if so, the power to the referenced electric equipment is reduced up to the `Maximum Limit Fraction` field. The `Minimum Limit Duration` specifies the minimum amount of time that demand is reduced. The `DemandManager:AssignmentList` object controls one or more demand managers by specifying the `Demand Window Length` (in minutes) and coordinating the `Demand Manager Priority` with other demand managers, e.g. lights or thermostats (measures C1 and C2 respectively). Priority can be set to sequentially rotate through demand managers or simultaneously limit demand to all objects.
 
 ### Separate Sensible and Latent Space Conditioning (M1)
 
@@ -825,6 +815,30 @@ __Figure x. Measure A3 Annual Energy Cost Savings__
 ![image](png/measure_a3_energy_use_results.png)
 
 __Figure x. Measure A3 Annual Energy Use Intensity Savings by End Use__
+
+## 3.x Continuous-Operation Electronics (E1)
+
+The optimization process for this technology focused on two continuous variables; the `Minimum Limit Duration`, which is the minimum amount of time in minutes that the equipment power is reduced during demand limiting, and the `Maximum Limit Fraction`, which is the fractional limit of full load lighting power reduction where 1.0 indicates no reduction. The optimization first evaluated the effect of the demand limit fraction on the annual energy cost by simulating ten fractions of 0.1 to 1.0 in 0.1 increments. As expected, this variable showed a strong linear relationship with annual energy cost as shown in Figure x below.
+
+![image](png/measure_e1_optimization_results_fraction.png)
+
+__Figure x. Measure E1 Optimization Results for Fraction__
+
+Next, the optimization evaluated the effect of the demand limit duration on the energy cost by simulating durations between 10 minutes and 320 minutes. This variable had a very small effect on the annual energy cost as shown in Figure x. below.
+
+![image](png/measure_e1_optimization_results_duration.png)
+
+__Figure x. Measure E1 Optimization Results for Duration__
+
+The optimization kept the `Maximum Limit Fraction` fixed at 50% and focused on optimizing the `Minimum Limit Duration`. Because the annual energy cost only varied by about two USD between the discrete variables in the pre-optimization, this analysis forewent a formal optimization and chose a duration of 40 minutes as the value that minimized the annual energy cost. The energy cost and use savings for a 40 minute demand limit duration was % and % as shown in Figure x. and x. below.
+
+![image](png/measure_e1_optimized_energy_cost.png)
+
+__Figure x. Measure E1 Energy Cost Savings__
+
+![image](png/measure_e1_optimized_energy_use.png)
+
+__Figure x. Measure E1 Energy Use Savings__
 
 ## 3.x Separate Sensible and Latent Space Conditioning (M1)
 
