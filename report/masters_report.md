@@ -408,7 +408,7 @@ This object is a parent object that references several child components, which i
 
 ### Thermal Energy Storage (M2)
 
-This measure replaces the `Coil:Cooling:DX:SingleSpeed` objects on the supply air stream of one or more air loops in the model with `Coil:Cooling:DX:SingleSpeed:ThermalStorage` objects (TODO, https://github.com/NREL/openstudio-load-flexibility-measures-gem/tree/master/lib/measures/add_packaged_ice_storage) as shown below. 
+This measure replaces the `Coil:Cooling:DX:SingleSpeed` objects on the supply air stream of one or more air loops in the model with `Coil:Cooling:DX:SingleSpeed:ThermalStorage` objects (TODO, https://github.com/NREL/openstudio-load-flexibility-measures-gem/tree/master/lib/measures/add_packaged_ice_storage) as shown in the example object below. 
 
 ```
 Coil:Cooling:DX:SingleSpeed:ThermalStorage,
@@ -520,18 +520,7 @@ Coil:Cooling:DX:SingleSpeed:ThermalStorage,
   ;                                       !- Storage Tank Maximum Operating Limit Fluid Temperature {C}
 ```
 
-This object is a black box model composed of a condenser, evaporator, compressor, and thermal energy storage (TES) tank that ineracts with its surroundings through condenser inlet and outlet, evaporator inlet and outlet, heat transfer between the TES tank and environment, and optional TES tank plant loop connection. The coil object has six built-in operating modes summarized in the table below that are used if the `Operating Mode Control Method` field is set to `ScheduledModes`. 
-
-Operating Mode | Description
-:- | :-
-Off Mode | Object is not cooling with either the coil or TES tank, but the tank continues to be modeled as it exchanges heat with the environment.
-Cooling Only Mode | Object is cooling with the coil the same as a normal single speed DX coil, but is not charging or discharging the TES tank which continues to be modeled as it exchanges heat with the environment.
-Cool and Charge Mode | Object is cooling with the coil and is charging the TES tank (all components are active). Electric power to the compressor is split to model equipment with dual compressors with separate performance characteristics for evaporator cooling and one for charging the TES tank.
-Cool and Discharge Mode | Object is cooling with the coil and discharging from the TES tank (all components are active). Electric power to the compressor is split to model equipment with dual compressors with separate performance characteristics for evaporator cooling and one for cooling from the TES tank.
-Charge Only Mode | Object is charging the TES tank only and the evaporator is off. 
-Discharge Only Mode | Object is cooling by discharging the TES tank and the condenser is off. 
-
-The `EMSControlled` mode allows for custom user-specified control using the EnergyPlus EnergyManagementSystem (EMS) objects, which was used in this analysis. The following shows the EMS objects used to control the TES coils.
+This object is a black box model composed of a condenser, evaporator, compressor, and thermal energy storage (TES) tank that interacts with its surroundings through condenser inlet and outlet, evaporator inlet and outlet, heat transfer between the TES tank and environment, and optional TES tank plant loop connection. The `Operating Mode Control Method` field determines which mode the coil is in during a given time period and has two choices; `EMSControlled` and `ScheduledModes`. With the `EMSControlled` option, the operating mode is determined by EnergyPlus EnergyManagementSystem (EMS) objects that allow custom routines for dynamic supervisory control as shown in the example objects below.
 
 ```
 EnergyManagementSystem:Sensor,
@@ -577,15 +566,40 @@ EnergyManagementSystem:ProgramCallingManager,
   UTSS_Coil_0_Control;                    !- Program Name 1
 ```
 
-The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
+With the `ScheduledModes` option, the operating mode is determined by a schedule in the `Operation Mode Control Schedule Name` field that uses six built-in operating mode options  summarized in Table x.
 
-![image](png/figure_measures_M2_energy_cost.png)
+__Table x. Measure M2 Operation Mode Descriptions__
 
-__Figure x. Measure M2 Annual Energy Cost Savings__
+Operating Mode | Description
+:- | :-
+Off Mode | Object is not cooling with either the coil or TES tank, but the tank continues to be modeled as it exchanges heat with the environment.
+Cooling Only Mode | Object is cooling with the coil the same as a normal single speed DX coil, but is not charging or discharging the TES tank which continues to be modeled as it exchanges heat with the environment.
+Cool and Charge Mode | Object is cooling with the coil and is charging the TES tank (all components are active). Electric power to the compressor is split to model equipment with dual compressors with separate performance characteristics for evaporator cooling and one for charging the TES tank.
+Cool and Discharge Mode | Object is cooling with the coil and discharging from the TES tank (all components are active). Electric power to the compressor is split to model equipment with dual compressors with separate performance characteristics for evaporator cooling and one for cooling from the TES tank.
+Charge Only Mode | Object is charging the TES tank only and the evaporator is off. 
+Discharge Only Mode | Object is cooling by discharging the TES tank and the condenser is off. 
 
-![image](png/figure_measures_M2_energy_use.png)
+The measure includes five options for the control schedule; a user-defined option (Simple User Sched) and four pre-defined options summarized in Table x. below. The `Simple User Sched` option allows the user to define a daily and hourly schedule for when he TES is used through the year shown in Table x.
 
-__Figure x. Measure M2 Annual Energy Use Intensity Savings by End Use__
+__Table x. Measure M2 Operation Mode Control Schedule Descriptions__
+
+Operation Mode Control Schedule Name | Description
+:- | :-
+Simple User Sched | Builds schedule from user inputs for days of the year, ice charge start and time, and ice discharge start and end time.
+TES Sched 1: TES Off | Useful for creating a baseline case.
+TES Sched 2: 1-5 Peak | Discharges ice between 1:00-5:00 pm and charges from midnight to 7 am.
+TES Sched 3: 3-8 Peak | Discharges ice between 3:00-8:00 pm, and charges from midnight to 7 am.
+TES Sched 4: GSS-T | Aligns ice discharge to Sacramento's 2018 GSS-T electricity rate plan peak hours.
+
+__Table x. Measure M2 Simple User Schedule Default Arguments__
+
+Argument | Value
+:- | :-
+Season | 01/01-12/31
+Ice charge start time | 22:00
+Ice charge end time | 07:00
+Ice discharge start time | 12:00
+Ice discharge end time | 18:00
 
 ### Building-Scale CHP (P1)
 
@@ -851,6 +865,30 @@ __Figure x. Measure M1 Annual Energy Cost Results__
 ![image](png/measure_m1_energy_use_results.png)
 
 __Figure x. Measure M1 Annual Energy Use Results__
+
+## 3.x Thermal Energy Storage (M2)
+
+The pre-optimization for this measure focused on two discrete variables for the `Coil:Cooling:DX:SingleSpeed:ThermalStorage` object; the `Operating Mode Control Method` and the `Operation Mode Control Schedule Name` fields. The pre-optimization simulated each of the two control methods, EMSControlled and ScheduledModes, with each of the five control schedules to determine the option that minimized the annual energy cost savings compared to the baseline as shown in Figures x. and x. below. For the `Simple User Sched` schedule option, the inputs were kept at default values. Of these eight combinations, the `Simple User Sched` produced the greatest savings with both control methods with the `EMSControlled` method showing greater savings compared to the `Scheduled Modes` option as shown in Figure x. and x. below.
+
+![image](png/measure_m2_preoptimization_emscontrolled.png)
+
+__Figure x. Measure M2 Pre-optimization Results for EMSControlled Control Method__
+
+![image](png/measure_m2_preoptimization_scheduledmodes.png)
+
+__Figure x. Measure M2 Pre-optimization Results for ScheduledModes Control Method__
+
+Based on the pre-optimization results, the `EMSControlled` control method was chosen with the `Simple User Sched` schedule option to optimize the annual energy cost. Four of the five continuous variables for the simple user schedule were chosen to optimize with the season fixed at the default value of 01/01-12/31. The four continuous variables of charge start and end time, and discharge start and end time were optimized with discrete hourly values from 0000 to 2400.
+
+The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
+
+![image](png/measures_m2_optimized_energy_cost.png)
+
+__Figure x. Measure M2 Annual Energy Cost Savings__
+
+![image](png/measures_m2_optimized_energy_use.png)
+
+__Figure x. Measure M2 Annual Energy Use Intensity Savings by End Use__
 
 ## 3.x Building-Scale CHP (P1)
 
