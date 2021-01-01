@@ -143,46 +143,6 @@ Code | Category | Description
  C1 | Controls | Advanced Sensors and Controls (lighting)
  C2 |  | Smart Thermostats
 
-The annual energy cost and use results for the individual measures are shown in Figures x. and x. andd summarized in Table x. below. Additionally, Table x. shows the time the cooling and heating setpoints are not met. 
-
-![image](png/figure_measures_energy_use.png)
-
-__Figure x. Individual Measure Annual Energy Use Intensity__
-
-![image](png/figure_measures_energy_cost.png)
-
-__Figure x. Individual Measure Annual Energy Cost__
-
-__Table x. Individual Measure Energy Cost and Use Savings__
-
-Model | Energy Cost Savings | Energy Use Savings
-:- | :- | :-
-Baseline | 0% | 0%
-A1 | 0.2% | 0.5%
-A2 | 9.9% | 5%
-A3 | 2.6% | 1.1%
-E1 | 3.5% | 4%
-M1 | 0% | 0%
-M2 | 1.8% | 0.3%
-P1 | 7.2% | -0.9%
-C1 | 4.6% | 5.7%
-C2 | 13.8% | 7.1%
-
-__Table x. Individual Measure Time Setpoint Not Met__
-
-Model | During Heating [hr]  | During Cooling [hr]  | During Occupied Heating [hr]  | During Occupied Cooling [hr]
-:- | :- | :- | :- | :-
-Baseline | 1006 | 391 | 326 | 299
-A1 | 976 | 387 | 325 | 296
-A2 | 1282 | 245 | 476 | 181
-A3 | 1136 | 292 | 380 | 215
-E1 | 1025 | 328 | 328 | 241
-M1 | 1006 | 390 | 326 | 298
-M2 | 1006 | 452 | 326 | 355
-P1 | 1006 | 391 | 326 | 299
-C1 | 1037 | 328 | 331 | 240
-C2 | 938 | 499 | 213 | 164
-
 ### Thermal Storage (A1)
 
 This EnergyPlus measure adds phase change properties to the selected material by adding a `MaterialProperty:PhaseChange` object. This object requires the conduction finite difference heat balance algorithm rather than the default conduction transfer function algorithm, which requires constant material properties (e.g. specific heat). The object properties come from the `CondFD1ZonePurchAirAutoSizeWithPCM.idf` EnergyPlus example file as shown below. 
@@ -283,7 +243,7 @@ Construction,
 
 ### Automated Attachments (A3)
 
-This measure is the same as A2, but adds shading control for an interior shade that covers the window when incident beam plus diffuse solar radiation exceeds 20 W/m2 as shown below. 
+This measure is the same as A2, but adds shading control for an interior shade that covers the window according to the control type as shown in the example object below.
 
 ```
 WindowShadingControl,
@@ -404,7 +364,7 @@ Dehumidifier:Desiccant:System,
   EXHAUSTFANPLF;                          !- Exhaust Fan Power Curve Name
 ```
 
-This object is a parent object that references several child components, which include an air-to-air heat exchanger, an exhaust fan (optional), and a regeneration fan and heating coil (optional) to regenerate the desiccant. The operation of the desiccant system can be coordinated with a companion cooling coil by specifying its type and name in the appropriate fields. This measure required adding humidity controls to all zones served by the air loops and replacing the `Coil:Cooling:DX:TwoSpeed` objects with `Coil:Cooling:DX:SingleSpeed` objects in the baseline model. Humidity controls were set to 45% relative humidity. The desiccant dehumidifier system was placed downstream of the cooling coil on the supply air stream of all three air loops in the model.  
+This object is a parent object that references several child components, which include an air-to-air heat exchanger (HeatExchanger:Desiccant:BalancedFlow), an exhaust fan (optional), and a regeneration fan and heating coil (optional) to regenerate the desiccant. The operation of the desiccant system can be coordinated with a companion cooling coil by specifying its type and name in the appropriate fields. This measure required adding humidity controls to all zones served by the air loops and replacing the `Coil:Cooling:DX:TwoSpeed` objects with `Coil:Cooling:DX:SingleSpeed` objects in the baseline model. Humidity controls were set to 45% relative humidity. 
 
 ### Thermal Energy Storage (M2)
 
@@ -648,7 +608,7 @@ Generator:MicroTurbine,
   Capstone C65 ExhaustTemp_vs_PLR;        !- Exhaust Air Temperature Function of Part Load Ratio Curve Name
 ```
 
-The measure code and topology are based on https://github.com/NREL/OpenStudio-resources/blob/develop/model/simulationtests/generator_microturbine.rb. The topology differs from the EnergyPlus example file because OpenStudio does not currently allow a water heater object on the same side of two different plant loops. The `Generator:MicroTurbine` object generates electric energy for the building and can optionally recover waste heat from the exhaust air stream to heat water for space or service water heating as was the case for this analysis. The `ElectricLoadCenter:Distribution` object defines the operatation scheme of one or more generators, with the following options summarized below. 
+The measure code and topology are based on https://github.com/NREL/OpenStudio-resources/blob/develop/model/simulationtests/generator_microturbine.rb. The topology differs from the EnergyPlus example file because OpenStudio does not currently allow a water heater object on the same side of two different plant loops. The `Generator:MicroTurbine` object generates electric energy for the building and can optionally recover waste heat from the exhaust air stream to heat water for space or service water heating as was the case for this analysis. The `ElectricLoadCenter:Distribution` object defines the operation scheme of one or more generators, with the following options summarized below. 
 
 Operation Scheme Type | Description
 :- | :-
@@ -659,29 +619,6 @@ TrackSchedule | Attempts to meet all of the electrical demand determined by a us
 TrackMeter | Attempts to meet all the electrical demand from an EnergyPlus Meter.
 FollowThermal | Attempts to meet the thermal demand. Excess electrical generation is exported to the grid.
 FollowThermalLimitElectrical | Attempts to meet the thermal demand, but limits electrical output to the current electrical demand so that no electricity is exported to the grid.
-
-For this analysis, the `Generator Operation Scheme Type` was set to limit demand (DemandLimit), which produced the lowest energy cost compared to the other operation schemes as shown in Figure x.  
-
-![img](png/figure_measures_P1_energy_cost_generator_operation_scheme.png)
-
-__Figure x. Measure P1 Generator Operation Scheme Annual Utility Cost Savings__
-
-The demand limit operation scheme turns on the generator when total demand is above the value set in the `Generator Demand Limit Scheme Purchased Electric Demand Limit` field. This value was set to 206.1 kW as an initial estimate to maximize demand reduction by reducing peak demand during the month with the lowest utility demand (271.1 kW in September) by the generator's `Maximum Full Load Electrical Power Output` (65 kW), as shown in the object below and Figure x. This variable was chosen for optimization as discussed in the next section.
-
-```
-ElectricLoadCenter:Distribution,
-  Capstone C65 ELCD,                      !- Name
-  Capstone C65 ELCD Generators,           !- Generator List Name
-  DemandLimit,                            !- Generator Operation Scheme Type
-  206100,                                 !- Generator Demand Limit Scheme Purchased Electric Demand Limit {W}
-  ,                                       !- Generator Track Schedule Name Scheme Schedule Name
-  ,                                       !- Generator Track Meter Scheme Meter Name
-  AlternatingCurrent;                     !- Electrical Buss Type
-```
-
-![img](png/figure_measures_P1_demand_limit.png)
-
-__Figure x. Demand Limit Generator Operation Scheme Demand Profile__
 
 ### Advanced Sensors and Controls (lighting) (C1)
 
@@ -700,11 +637,11 @@ DemandManager:Lights,
 	AllZones with Lights;    !- Lights 1 Name    
 ```
 
-Similar to E1, this measure reduces power to a specific energy end use category up to a fractional limit for the specified duration, which for this analysis was 50% and 60 minutes respectively.
+Similar to E1, this measure reduces power to a specific energy end use category up to a fractional limit for the specified duration.
 
 ### Smart Thermostats (C2)
 
-This EnergyPlus measure adds a `DemandManager:Thermostats` object to the model. The measure will also add a `DemandManagerAssignmentList` object if one is not present in the model. If one is, it will add the `DemandManager:Thermostats` to the existing `DemandManagerAssignmentList`. The object properties come from the `5ZoneAirCooledDemandLimiting.idf` EnergyPlus example file as shown below.
+This EnergyPlus measure adds a `DemandManager:Thermostats` object to the model. The measure will also add a `DemandManagerAssignmentList` object if one is not present in the model. If one is, it will add the `DemandManager:Thermostats` to the existing `DemandManagerAssignmentList`. The object below shows an example from the `5ZoneAirCooledDemandLimiting.idf` EnergyPlus example file. Instead of a fractional reduction in load, like E1 and C1, this object specifies maximum setpoint resets for heating and cooling.
 
 ```
 DemandManager:Thermostats,
@@ -720,13 +657,51 @@ DemandManager:Thermostats,
   AllControlledZones Thermostat;  !- Thermostat 1 Name
 ```
 
-Instead of a fractional reduction in load, like E1 and C1, this object specifies maximum setpoint resets for heating and cooling, which for this analysis were set to 19C and 26C respectively. 
-
 ## Optimization Process
 
 _TODO since PAT does not have sequential search, use genetic algorithm(GA) or particle swarm optimization (PSO) techniques to perform optimization analyses_
 
 # 3. Results
+
+The annual energy cost and use results for the individual measures are shown in Figures x. and x. andd summarized in Table x. below. Additionally, Table x. shows the time the cooling and heating setpoints are not met. 
+
+![image](png/figure_measures_energy_use.png)
+
+__Figure x. Individual Measure Annual Energy Use Intensity__
+
+![image](png/figure_measures_energy_cost.png)
+
+__Figure x. Individual Measure Annual Energy Cost__
+
+__Table x. Individual Measure Energy Cost and Use Savings__
+
+Model | Energy Cost Savings | Energy Use Savings
+:- | :- | :-
+Baseline | 0% | 0%
+A1 | 0.2% | 0.5%
+A2 | 9.9% | 5%
+A3 | 2.6% | 1.1%
+E1 | 3.5% | 4%
+M1 | 0% | 0%
+M2 | 1.8% | 0.3%
+P1 | 7.2% | -0.9%
+C1 | 4.6% | 5.7%
+C2 | 13.8% | 7.1%
+
+__Table x. Individual Measure Time Setpoint Not Met__
+
+Model | During Heating [hr]  | During Cooling [hr]  | During Occupied Heating [hr]  | During Occupied Cooling [hr]
+:- | :- | :- | :- | :-
+Baseline | 1006 | 391 | 326 | 299
+A1 | 976 | 387 | 325 | 296
+A2 | 1282 | 245 | 476 | 181
+A3 | 1136 | 292 | 380 | 215
+E1 | 1025 | 328 | 328 | 241
+M1 | 1006 | 390 | 326 | 298
+M2 | 1006 | 452 | 326 | 355
+P1 | 1006 | 391 | 326 | 299
+C1 | 1037 | 328 | 331 | 240
+C2 | 938 | 499 | 213 | 164
 
 ## 3.x Thermal Storage (A1)
 
@@ -858,6 +833,8 @@ __Figure x. Measure E1 Energy Use Savings__
 
 Initial testing of this measure showed small savings compared to the baseline model. This measure was excluded from the optimization because this technology is not based on controls and savings were small relative to the baseline. The annual energy use and energy cost savings for this measure are shown in Figures x. and x. below. 
 
+The desiccant dehumidifier system was placed downstream of the cooling coil on the supply air stream of all three air loops in the model.  
+
 ![image](png/measure_m1_energy_cost_results.png)
 
 __Figure x. Measure M1 Annual Energy Cost Results__
@@ -892,6 +869,29 @@ __Figure x. Measure M2 Annual Energy Use Intensity Savings by End Use__
 
 ## 3.x Building-Scale CHP (P1)
 
+For this analysis, the `Generator Operation Scheme Type` was set to limit demand (DemandLimit), which produced the lowest energy cost compared to the other operation schemes as shown in Figure x.  
+
+![img](png/figure_measures_P1_energy_cost_generator_operation_scheme.png)
+
+__Figure x. Measure P1 Generator Operation Scheme Annual Utility Cost Savings__
+
+The demand limit operation scheme turns on the generator when total demand is above the value set in the `Generator Demand Limit Scheme Purchased Electric Demand Limit` field. This value was set to 206.1 kW as an initial estimate to maximize demand reduction by reducing peak demand during the month with the lowest utility demand (271.1 kW in September) by the generator's `Maximum Full Load Electrical Power Output` (65 kW), as shown in the object below and Figure x. This variable was chosen for optimization as discussed in the next section.
+
+```
+ElectricLoadCenter:Distribution,
+  Capstone C65 ELCD,                      !- Name
+  Capstone C65 ELCD Generators,           !- Generator List Name
+  DemandLimit,                            !- Generator Operation Scheme Type
+  206100,                                 !- Generator Demand Limit Scheme Purchased Electric Demand Limit {W}
+  ,                                       !- Generator Track Schedule Name Scheme Schedule Name
+  ,                                       !- Generator Track Meter Scheme Meter Name
+  AlternatingCurrent;                     !- Electrical Buss Type
+```
+
+![img](png/figure_measures_P1_demand_limit.png)
+
+__Figure x. Demand Limit Generator Operation Scheme Demand Profile__
+
 The optimization process for this measure used the Particle Swarm Optimization (PSO) analysis option in PAT, which is based on hydroPSO (Zambrano-Bigiarini et. al., 2013), with a single independent variable, the `Generator Demand Limit Scheme Purchased Electric Demand Limit` in Watts, to minimize the annual utility cost. 
 
 ![image](png/figure_measures_p1_pat.png)
@@ -914,6 +914,9 @@ The optimization process for this technology focused on two continuous variables
 
 For the optimization, the demand limit duration was simulated at fixed durations to determine the sensitivity of the results. The results showed very small changes in annual energy of about 1 USD with durations of 10 minutes to 320 minutes as shown in Figure x.
 
+, which for this analysis was 50% and 60 minutes respectively.
+
+
 ![image](png/measure_c1_optimization_results.png)
 
 __Figure x. Measure C1 Optimization Results__
@@ -931,6 +934,8 @@ __Figure x. Measure C1 Annual Energy Use Intensity Savings by End Use__
 ## 3.x Smart Thermostats (C2)
 
 The optimization process for this measure used the Baseline Perturbation analysis option in PAT, which allows discrete values of independent variables to be explored parametrically. For this analysis, the `Maximum Heating Setpoint Reset` and the `Maximum Cooling Setpoint Reset` were optimized to reduce the total annual utility cost by changing the reset temperature by 0.5C increments between the occupied and unoccupied setpoints as summarized in the table x. and x. below. These two independent variables were optimized separately because there is limited interaction between the heatin setpoint and cooling setpoint, which also reduced computation time significantly.
+
+, which for this analysis were set to 19C and 26C respectively. 
 
 __Table x. Maximum Heating Setpoint Reset Temperatures__
 
