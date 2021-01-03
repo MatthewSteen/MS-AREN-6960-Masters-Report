@@ -18,7 +18,7 @@ The analysis used a reference building energy model from the U.S. Department of 
 
 ## Baseline Model Inputs
 
-The baseline model was created with OpenStudio (Guglielmetti et. al., 2011) using the Create Prototype Building measure. Measures are formal computer scripts written in the Ruby programming language that can interact with an OpenStudio model directly, change the EnergyPlus model during runtime, or produce reports after simulation (Roth et. al, 2016). Several changes to the baseline model were required to allow the application of specific technologies, which are described in the Measures secion. In total, the changes decreased the energy use intensity (EUI) by 0.9% and increased the peak electric demand by 10.2% (unadjusted facility) and 4.8% (adjusted utility).
+The baseline model was created with OpenStudio (Guglielmetti et. al., 2011) using the Create Prototype Building measure. Measures are formal computer scripts written in the Ruby programming language that can interact with an OpenStudio model directly (an OpenStudio Measure), change the EnergyPlus model prior to simulation (an EnergyPlus Measure), or produce reports after simulation with Reporting Measures (Roth et. al, 2016). Several changes to the baseline model were required to allow the application of specific technologies, which are described in the Measures section. In total, the changes decreased the energy use intensity (EUI) by 0.9% and increased the peak electric demand by 10.2% (unadjusted facility) and 4.8% (adjusted utility).
 
 ![image](png/figure_baseline_geometry.png)
 
@@ -129,7 +129,9 @@ __Figure x. Monthly Electricity Peak vs. Utility Demand__
 
 ## Measures
 
-This section describes the nine measures used to apply each technology to the baseline model and the individual model results compared to the baseline. The measures are coded according to the following table.
+This section describes the nine measures used to apply each technology to the baseline model, which are coded according to Table x. Where a change to the baseline model was required to apply a measure, it is described in with the corresponding measure. 
+
+__Table x. Measure Codes__
 
 Code | Category | Description
 :- | :- | :-
@@ -175,6 +177,8 @@ For this analysis, the baseline heat balance algorithm was changed to conduction
 
 ![image](png/figure_measures_A1.png)
 
+__Figure x. Measure A1 Temperature-Enthalpy Relationship__
+
 ### Dynamic Glazing (A2)
  
 This OpenStudio measure adds `ShadingControl` objects to the model by specifying a Construction with shading. The `ShadingControl` objects are translated to EnergyPlus `WindowShadingControl` objects prior to simulation. The Construction must be a detailed fenestration, i.e. be composed of `WindowMaterialGlazing` rather than `WindowMaterialSimpleGlazingSystem`. The object below shows an example.  
@@ -213,7 +217,7 @@ WindowShadingControl,
 
 The `WindowShadingControl` object is used to reduce solar radiation through a window into the referenced thermal zone. For this measure, the Shading Type was set to `SwitchableGlazing`, which allows modeling simple two-state electrochromic glazing by referencing a construction for the tinted state in the `Construction with Shading Type` field. 
 
-Modeling electrochromic glazing required the baseline window constructions to be changed from `WindowMaterial:SimpleGlazingSystem`, which models an entire window assembly as a simple monolithic layer, to a more detailed layered construction made up of `WindowMaterial:Glazing` and `WindowMaterial:Gas` objects. The untinted ("bleached") and tinted ("colored") window constructions were taken from the `WindowConstructs.idf` EnergyPlus example file, specifically a double-glazed air-filled electrochromic construction. The objects below show the window constructions before and after the changes to the baseline.
+Modeling electrochromic glazing required the baseline window constructions to be changed from `WindowMaterial:SimpleGlazingSystem`, which models an entire window assembly as a simple monolithic layer, to a more detailed layered construction made up of `WindowMaterial:Glazing` and `WindowMaterial:Gas` objects. The untinted ("bleached") and tinted ("colored") window constructions were taken from the `WindowConstructs.idf` EnergyPlus data set file, specifically a double-glazed air-filled electrochromic construction. The objects below show the window constructions before and after the changes to the baseline.
 
 ```
 WindowMaterial:SimpleGlazingSystem,
@@ -307,7 +311,7 @@ WindowMaterial:Shade,
 
 ### Continuous-Operation Electronics (E1)
 
-This EnergyPlus measure adds a `DemandManager:ElectricEquipment` object to the model. The measure will also add a `DemandManagerAssignmentList` object if one is not present in the model. If one is, it will add the `DemandManager:ElectricEquipment` to the existing `DemandManagerAssignmentList`. The following objects are examples from `5ZoneAirCooledDemandLimiting.idf` EnergyPlus example file.
+This EnergyPlus measure adds a `DemandManager:ElectricEquipment` object to the model. The measure will also add a `DemandManagerAssignmentList` object if one is not present in the model. If one is, it will add the `DemandManager:ElectricEquipment` to the existing `DemandManagerAssignmentList`. The following objects are examples from the `5ZoneAirCooledDemandLimiting.idf` EnergyPlus example file.
 
 ```
 DemandManager:ElectricEquipment,
@@ -526,7 +530,7 @@ EnergyManagementSystem:ProgramCallingManager,
   UTSS_Coil_0_Control;                    !- Program Name 1
 ```
 
-With the `ScheduledModes` option, the operating mode is determined by a schedule in the `Operation Mode Control Schedule Name` field that uses six built-in operating mode options  summarized in Table x.
+With the `ScheduledModes` option, the operating mode is determined by a schedule in the `Operation Mode Control Schedule Name` field that uses six built-in operating mode options ummarized in Table x.
 
 __Table x. Measure M2 Operation Mode Descriptions__
 
@@ -539,7 +543,7 @@ Cool and Discharge Mode | Object is cooling with the coil and discharging from t
 Charge Only Mode | Object is charging the TES tank only and the evaporator is off. 
 Discharge Only Mode | Object is cooling by discharging the TES tank and the condenser is off. 
 
-The measure includes five options for the control schedule; a user-defined option (Simple User Sched) and four pre-defined options summarized in Table x. below. The `Simple User Sched` option allows the user to define a daily and hourly schedule for when he TES is used through the year shown in Table x.
+The measure includes five built-in options for the control schedule; a user-defined option (Simple User Sched) and four pre-defined options summarized in Table x. below. The `Simple User Sched` option allows the user to define a daily and hourly schedule for when he TES is used through the year shown in Table x.
 
 __Table x. Measure M2 Operation Mode Control Schedule Descriptions__
 
@@ -563,7 +567,7 @@ Ice discharge end time | 18:00
 
 ### Building-Scale CHP (P1)
 
-This OpenStudio measure adds a `GeneratorMicroTurbineHeatRecovery` object to the supply side of plant loop with a water heater. The micro turbine provides electricity generation and service water heating through exhaust air heat recovery. This object is translated to the EnergyPlus object `Generator:MicroTurbine` for simulation, which is a Capstone C65 from the EnergyPlus `HeatRecoveryPlantLoopAuto.idf` example file (and others) as shown below.
+This OpenStudio measure adds a `GeneratorMicroTurbineHeatRecovery` object to the supply side of plant loop with a water heater. The micro turbine provides electricity generation and service water heating through exhaust air heat recovery. This object is translated to the EnergyPlus object `Generator:MicroTurbine` for simulation, which for this measure is a Capstone C65 from the EnergyPlus `HeatRecoveryPlantLoopAuto.idf` example file (and others) as shown below.
 
 ```
 Generator:MicroTurbine,
@@ -622,7 +626,7 @@ FollowThermalLimitElectrical | Attempts to meet the thermal demand, but limits e
 
 ### Advanced Sensors and Controls (lighting) (C1)
 
-This EnergyPlus measure adds a `DemandManager:Lights` object to the model. The measure will also add a `DemandManagerAssignmentList` object if one is not present in the model. If one is, it will add the `DemandManager:Lights` to the existing `DemandManagerAssignmentList`. The object properties come from the `5ZoneAirCooledDemandLimiting.idf` EnergyPlus example file as shown below.
+This EnergyPlus measure adds a `DemandManager:Lights` object to the model. The measure will also add a `DemandManagerAssignmentList` object if one is not present in the model. If one is, it will add the `DemandManager:Lights` to the existing `DemandManagerAssignmentList`. An example object from the `5ZoneAirCooledDemandLimiting.idf` EnergyPlus example is shown below.
 
 ```
 DemandManager:Lights,
@@ -663,7 +667,7 @@ The optimization process focused on each technology individually rather than att
 
 # 3. Results
 
-This section presents the optimization of each technology by discussing the process of determining the independent variables to minimize the annual energy cost. For each measure, pre-optimizations were completed in an attempt to reduce the complexity of the problem by identifying a single independent variable to optimize. The annual energy cost and use results for the individual measures are summarized in Figures x. and x. and Table x. below. Additionally, Table x. shows the time the cooling and heating setpoints are not met to verify that any savings were not the result of the mechanical system not meeting loads.
+This section presents the optimization of each technology by discussing the process of determining the independent variables to minimize the annual energy cost. For each measure, pre-optimizations were completed in an attempt to reduce the complexity of the problem by identifying a single independent variable to optimize. The annual energy cost and use results for the individual measures are summarized in Figures x. and x. and Table x. below. Additionally, Table x. shows the time the cooling and heating setpoints are not met to verify that any savings were not the result of the mechanical system not meeting loads. Measures A1, M1, and M2 did not include full optimization, which are discussed in the corresponding section.
 
 ![image](png/figure_measures_energy_use.png)
 
@@ -705,7 +709,7 @@ C2 | 938 | 499 | 213 | 164
 
 ## 3.x Thermal Storage (A1)
 
-Initial testing of this measure showed small savings compared to the baseline model when the PCM was added to the inside of all walls. Adding additional PCM to other layers, e.g. ceilings and floors, increased the savings slightly. This measure was excluded from the optimization because this technology is not based on controls and savings were small relative to the baseline. The annual energy use and energy cost savings for this measure are shown in Figures x. and x. below. 
+Initial testing of this measure showed small savings compared to the baseline model when the PCM was added to the inside of all walls. Adding additional PCM to other layers, e.g. ceilings and floors, increased the savings slightly. This technology was excluded from the optimization because this measure showed savings that were small relative to the baseline when using default PCM properties from the EnergyPlus example file. The annual energy use and energy cost savings for this measure are shown in Figures x. and x. below, which showed energy cost and use savings of 0.2% and 0.5% respectively.
 
 ![image](png/measure_a1_energy_cost_results.png)
 
@@ -757,13 +761,13 @@ OnNightIfLowOutdoorTempAndOnDayIfCooling | 0-20C in 5C increments
 
 The pre-optimization was comprised of two separate runs using the Baseline Perturbation analysis option in PAT to determine the magnitude and direction of utility cost savings; one for `OnNightIfLowOutdoorTempAndOffDay` and `OnNightIfLowOutdoorTempAndOnDayIfCooling` shading controls, which use an outdoor air temperature setpoint; and one for `OnNightIfLowInsideTempAndOffDay`, which uses an indoor air temperature setpoint. Of these 17 simulations, the `OnNightIfLowOutdoorTempAndOnDayIfCooling` shading control was the only one that showed significant energy cost savings compared to the baseline with the other two shading control types showing very small energy cost increases.
 
-The optimization of this measure used the Particle Swarm Optimization (PSO) analysis option in PAT with a single independent variable, the outdoor air temperature setpoint, to minimize the annual energy cost. The as shown in Figure x. 
+The optimization of this measure used the Particle Swarm Optimization (PSO) analysis option in PAT, which is based on hydroPSO (Zambrano-Bigiarini et. al., 2013) with a single independent variable, the outdoor air temperature setpoint, to minimize the annual energy cost. The as shown in Figure x. 
 
 ![image](png/measure_a2_optimization_results.png)
 
 __Figure x. Measure A2 Optimization Results__
 
-The annual energy use intensity and energy cost savings for the optimized setpoint of 20.64C is shown in Figures x. and x. below, which showed a savings of 6.1% and 10.3% respectively.
+The annual energy cost and use savings for the optimized setpoint of 20.64C is shown in Figures x. and x. below, which showed a savings of 10.3% and 6.1% respectively.
 
 ![image](png/measure_a2_energy_cost_results.png)
 
@@ -775,7 +779,7 @@ __Figure x. Measure A2 Annual Energy Use Results__
 
 ## 3.x Automated Attachments (A3)
 
-The optimization of this technology used the same methodology as measure A2. The pre-optimization showed similar results as A2, with the `OnNightIfLowOutdoorTempAndOnDayIfCooling` shading control showing the greatest annual energy cost savings compared to the baseline. This control option was chosen for optimization using the same analysis option in PAT (PSO) with the setpoint as the continuous variable to optimize for the lowest annual energy cost. Figures x, x, and x compare the pre-optimization results showing that the `OnNightIfLowOutdoorTempAndOnDayIfCooling` control option produced the greatest savings.
+The optimization of this technology used the same methodology as measure A2. The pre-optimization showed similar results as A2, with the `OnNightIfLowOutdoorTempAndOnDayIfCooling` shading control showing the greatest annual energy cost savings compared to the baseline. This control option was chosen for optimization using the PSO analysis option in PAT with the setpoint as the continuous variable to optimize for the lowest annual energy cost. Figures x, x, and x compare the pre-optimization results showing that the `OnNightIfLowOutdoorTempAndOnDayIfCooling` control option produced the greatest savings.
 
 ![image](png/measure_a3_energy_cost_savings_OnNightIfLowInsideTempAndOffDay.png)
 
@@ -789,7 +793,7 @@ __Figure x. Measure A3 Annual Energy Cost Savings for OnNightIfLowOutdoorTempAnd
 
 __Figure x. Measure A3 Annual Energy Cost Savings for OnNightIfLowOutdoorTempAndOnDayIfCooling Control__
 
-The optimization of this measure used the Particle Swarm Optimization (PSO) analysis option in PAT with a single independent variable, the outdoor air temperature setpoint, to minimize the annual energy cost as shown in Figure x. 
+The optimization of this measure used the PSO analysis option in PAT with a single independent variable, the outdoor air temperature setpoint, to minimize the annual energy cost as shown in Figure x. 
 
 ![image](png/measure_a3_optimization_results.png)
 
@@ -819,7 +823,7 @@ Next, the optimization evaluated the effect of the demand limit duration on the 
 
 __Figure x. Measure E1 Optimization Results for Duration__
 
-The optimization kept the `Maximum Limit Fraction` fixed at 50% and focused on optimizing the `Minimum Limit Duration`. Because the annual energy cost only varied by about two USD between the discrete variables in the pre-optimization, this analysis forewent a formal optimization and chose a duration of 40 minutes as the value that minimized the annual energy cost. The energy cost and use savings for a 40 minute demand limit duration was % and % as shown in Figure x. and x. below.
+The optimization kept the `Maximum Limit Fraction` fixed at 50% and focused on optimizing the `Minimum Limit Duration`. Because the annual energy cost only varied by about 2.00 USD between the discrete variables in the pre-optimization, this analysis forewent a formal optimization and chose a duration of 40 minutes as the value that minimized the annual energy cost. The energy cost and use savings for a 40 minute demand limit duration was % and % as shown in Figure x. and x. below.
 
 ![image](png/measure_e1_optimized_energy_cost.png)
 
@@ -831,9 +835,7 @@ __Figure x. Measure E1 Energy Use Savings__
 
 ## 3.x Separate Sensible and Latent Space Conditioning (M1)
 
-Initial testing of this measure showed small savings compared to the baseline model. This measure was excluded from the optimization because this technology is not based on controls and savings were small relative to the baseline. The annual energy use and energy cost savings for this measure are shown in Figures x. and x. below. 
-
-The desiccant dehumidifier system was placed downstream of the cooling coil on the supply air stream of all three air loops in the model.  
+Initial testing of this measure showed small savings compared to the baseline model using default values from the EnergyPlus example file when the  desiccant dehumidifier system was placed downstream of the cooling coil on the supply air stream of all three air loops in the model. This measure was excluded from the optimization because this technology showed savings that were small relative to the baseline. The annual energy cost and use  savings were % and % respectively as shown in Figures x. and x. below. 
 
 ![image](png/measure_m1_energy_cost_results.png)
 
@@ -869,13 +871,13 @@ __Figure x. Measure M2 Annual Energy Use Intensity Savings by End Use__
 
 ## 3.x Building-Scale CHP (P1)
 
-For this analysis, the `Generator Operation Scheme Type` was set to limit demand (DemandLimit), which produced the lowest energy cost compared to the other operation schemes as shown in Figure x.  
+The pre-optimization of this measure focused on the `Generator Operation Scheme Type` discrete variable. The `DemandLimit` option produced the lowest energy cost compared to the other operation schemes as shown in Figure x.  
 
 ![img](png/figure_measures_P1_energy_cost_generator_operation_scheme.png)
 
 __Figure x. Measure P1 Generator Operation Scheme Annual Utility Cost Savings__
 
-The demand limit operation scheme turns on the generator when total demand is above the value set in the `Generator Demand Limit Scheme Purchased Electric Demand Limit` field. This value was set to 206.1 kW as an initial estimate to maximize demand reduction by reducing peak demand during the month with the lowest utility demand (271.1 kW in September) by the generator's `Maximum Full Load Electrical Power Output` (65 kW), as shown in the object below and Figure x. This variable was chosen for optimization as discussed in the next section.
+The demand limit operation scheme turns on the generator when total demand is above the value set in the `Generator Demand Limit Scheme Purchased Electric Demand Limit` field, which was chosen as the optimization variable. This value was set to 206.1 kW as an initial estimate to maximize demand reduction by reducing peak demand during the month with the lowest utility demand (271.1 kW in September) by the generator's `Maximum Full Load Electrical Power Output` (65 kW), as shown in the object below and Figure x. 
 
 ```
 ElectricLoadCenter:Distribution,
@@ -892,7 +894,7 @@ ElectricLoadCenter:Distribution,
 
 __Figure x. Demand Limit Generator Operation Scheme Demand Profile__
 
-The optimization process for this measure used the Particle Swarm Optimization (PSO) analysis option in PAT, which is based on hydroPSO (Zambrano-Bigiarini et. al., 2013), with a single independent variable, the `Generator Demand Limit Scheme Purchased Electric Demand Limit` in Watts, to minimize the annual utility cost. 
+The optimization process for this measure used the PSO analysis option in PAT with a single independent continuous variable, the `Generator Demand Limit Scheme Purchased Electric Demand Limit` in Watts, to minimize the annual utility cost. 
 
 ![image](png/figure_measures_p1_pat.png)
 
@@ -910,12 +912,9 @@ __Figure x. Measure P1 Energy Use Results__
 
 ## 3.x Advanced Sensors and Controls (lighting) (C1)
 
-The optimization process for this technology focused on two continuous variables; the `Minimum Limit Duration`, which is the minimum amount of time in minutes that the lighting power is reduced during demand limiting, and the `Maximum Limit Fraction`, which is the fractional limit of full load lighting power reduction where 1.0 indicates no reduction. The `Maximum Limit Fraction` was fixed at 0.85 based on California's 2016 energy standard, which requires that all buildings greater than 929 m2 (10,000 ft2) be capable of automatically reducing total lighting power by at least 15% in response to a signal from the grid. 
+The pre-optimization process for this technology focused on two continuous variables; the `Minimum Limit Duration`, which is the minimum amount of time in minutes that the lighting power is reduced during demand limiting, and the `Maximum Limit Fraction`, which is the fractional limit of full load lighting power reduction where 1.0 indicates no reduction. The `Maximum Limit Fraction` was fixed at 0.85 based on California's 2016 energy standard, which requires that all buildings greater than 929 m2 (10,000 ft2) be capable of automatically reducing total lighting power by at least 15% in response to a signal from the grid. 
 
-For the optimization, the demand limit duration was simulated at fixed durations to determine the sensitivity of the results. The results showed very small changes in annual energy of about 1 USD with durations of 10 minutes to 320 minutes as shown in Figure x.
-
-, which for this analysis was 50% and 60 minutes respectively.
-
+For the optimization, the demand limit duration was simulated at fixed durations to determine the sensitivity of the results. The results showed very small changes in annual energy of about 1.00 USD with durations of 10 minutes to 320 minutes as shown in Figure x.
 
 ![image](png/measure_c1_optimization_results.png)
 
@@ -933,9 +932,7 @@ __Figure x. Measure C1 Annual Energy Use Intensity Savings by End Use__
 
 ## 3.x Smart Thermostats (C2)
 
-The optimization process for this measure used the Baseline Perturbation analysis option in PAT, which allows discrete values of independent variables to be explored parametrically. For this analysis, the `Maximum Heating Setpoint Reset` and the `Maximum Cooling Setpoint Reset` were optimized to reduce the total annual utility cost by changing the reset temperature by 0.5C increments between the occupied and unoccupied setpoints as summarized in the table x. and x. below. These two independent variables were optimized separately because there is limited interaction between the heatin setpoint and cooling setpoint, which also reduced computation time significantly.
-
-, which for this analysis were set to 19C and 26C respectively. 
+The optimization process for this measure used the Baseline Perturbation analysis option in PAT, which allows discrete values of independent variables to be explored parametrically. For this analysis, the `Maximum Heating Setpoint Reset` and the `Maximum Cooling Setpoint Reset` were optimized to reduce the total annual utility cost by changing the reset temperature by 0.5C increments between the occupied and unoccupied setpoints as summarized in the table x. and x. below. These two independent variables were optimized separately because there is limited interaction between the heating setpoint and cooling setpoint, which also reduced computation time significantly.
 
 __Table x. Maximum Heating Setpoint Reset Temperatures__
 
@@ -966,7 +963,7 @@ Discrete Values | 24.5
 . | 26.5
 Unoccupied | 26.7
 
-As expected, greater reset temperatures produced more utility cost savings such that the highest savings occurred with resets that were at or near the unoccupied setpoint temperatures. For heating, the highest cost savings occurred with a reset temperature of 16C, close to the unoccupied setpoint of 15.7C as shown in Figure x. For Cooling, the hightest cost savings occurred with a reset temperature of 26.7C, the unoccupied setpoint as shown in Figure x. The annual energy use intensity and energy cost savings for the combination of these reset temperatures is shown in Figures x. and x. below, which was 11.5% and 25.0% respectively.
+As expected, greater reset temperatures produced more utility cost savings such that the highest savings occurred with resets that were at or near the unoccupied setpoint temperatures. For heating, the highest cost savings occurred with a reset temperature of 16C, close to the unoccupied setpoint of 15.7C as shown in Figure x. For Cooling, the hightest cost savings occurred with a reset temperature of 26.7C, the unoccupied setpoint as shown in Figure x. The annual energy cost and use savings for the combination of these reset temperatures is shown in Figures x. and x. below, which was 25.0% and 11.5% respectively.
 
 ![image](png/figure_measures_c2_pat_htg.png)
 
