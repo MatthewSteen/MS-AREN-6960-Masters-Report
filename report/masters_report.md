@@ -1,8 +1,36 @@
-# Title
+# Optimization of Grid-interactive Efficiency Building Technologies for a Medium Office Reference Building
 
 # Table of Contents
 
-
+- [Optimization of Grid-interactive Efficiency Building Technologies for a Medium Office Reference Building](#optimization-of-grid-interactive-efficiency-building-technologies-for-a-medium-office-reference-building)
+- [Table of Contents](#table-of-contents)
+- [1. Introduction](#1-introduction)
+- [2. Methodology](#2-methodology)
+  - [2.1 Baseline Model Inputs](#21-baseline-model-inputs)
+  - [2.2 Baseline Model Outputs](#22-baseline-model-outputs)
+  - [2.3 Measures](#23-measures)
+    - [2.3.1 Thermal Storage (A1)](#231-thermal-storage-a1)
+    - [2.3.2 Dynamic Glazing (A2)](#232-dynamic-glazing-a2)
+    - [2.3.3 Automated Attachments (A3)](#233-automated-attachments-a3)
+    - [2.3.4 Continuous-Operation Electronics (E1)](#234-continuous-operation-electronics-e1)
+    - [2.3.5 Separate Sensible and Latent Space Conditioning (M1)](#235-separate-sensible-and-latent-space-conditioning-m1)
+    - [2.3.6 Thermal Energy Storage (M2)](#236-thermal-energy-storage-m2)
+    - [2.3.7 Building-Scale CHP (P1)](#237-building-scale-chp-p1)
+    - [2.3.8 Advanced Sensors and Controls (lighting) (C1)](#238-advanced-sensors-and-controls-lighting-c1)
+    - [2.3.9 Smart Thermostats (C2)](#239-smart-thermostats-c2)
+  - [2.4 Optimization Process](#24-optimization-process)
+- [3. Results](#3-results)
+  - [3.1 Thermal Storage (A1)](#31-thermal-storage-a1)
+  - [3.2 Dynamic Glazing (A2)](#32-dynamic-glazing-a2)
+  - [3.3 Automated Attachments (A3)](#33-automated-attachments-a3)
+  - [3.4 Continuous-Operation Electronics (E1)](#34-continuous-operation-electronics-e1)
+  - [3.5 Separate Sensible and Latent Space Conditioning (M1)](#35-separate-sensible-and-latent-space-conditioning-m1)
+  - [3.6 Thermal Energy Storage (M2)](#36-thermal-energy-storage-m2)
+  - [3.7 Building-Scale CHP (P1)](#37-building-scale-chp-p1)
+  - [3.8 Advanced Sensors and Controls (lighting) (C1)](#38-advanced-sensors-and-controls-lighting-c1)
+  - [3.9 Smart Thermostats (C2)](#39-smart-thermostats-c2)
+- [4. Discussion](#4-discussion)
+- [5. Conclusions](#5-conclusions)
 
 # 1. Introduction
 
@@ -16,7 +44,7 @@ This report builds upon previous work that reviewed and categorized GEB technolo
 
 The analysis used a reference building energy model from the U.S. Department of Energy Commercial Reference Building Models (Deru et. al., 2011) as the starting point for evaluating the technologies, henceforth referred to as the baseline. The reference building models are EnergyPlus models (Crawley et. al., 2001) that are collectively representative of over 60% of the commercial building stock in the United States and are meant to represent generic existing and new buildings rather than a specific individual building. The Medium Office model was chosen because it is most representative of the commercial building stock in the United States based on area (EIA, 2012). 
 
-## Baseline Model Inputs
+## 2.1 Baseline Model Inputs
 
 The baseline model was created with OpenStudio (Guglielmetti et. al., 2011) using the Create Prototype Building measure. Measures are formal computer scripts written in the Ruby programming language that can interact with an OpenStudio model directly (an OpenStudio Measure), change the EnergyPlus model prior to simulation (an EnergyPlus Measure), or produce reports after simulation with Reporting Measures (Roth et. al, 2016). Several changes to the baseline model were required to allow the application of specific technologies, which are described in the Measures section. In total, the changes decreased the energy use intensity (EUI) by 0.9% and increased the peak electric demand by 10.2% (unadjusted facility) and 4.8% (adjusted utility).
 
@@ -89,7 +117,7 @@ __Table x. Plumbing Inputs__
 | Temperature Setpoint | 60C |
 | Water Consumption | 0.00006-0.00036 m3/min |
 
-## Baseline Model Outputs
+## 2.2 Baseline Model Outputs
 
 ![image](png/figure_baseline_annual_energy_pct.png)
 
@@ -127,7 +155,7 @@ __Figure x. Hourly Natural Gas Demand on Peak Day (Dec 22)__
 
 __Figure x. Monthly Electricity Peak vs. Utility Demand__
 
-## Measures
+## 2.3 Measures
 
 This section describes the nine measures used to apply each technology to the baseline model, which are coded according to Table x. Where a change to the baseline model was required to apply a measure, it is described in with the corresponding measure. 
 
@@ -145,7 +173,7 @@ Code | Category | Description
  C1 | Controls | Advanced Sensors and Controls (lighting)
  C2 |  | Smart Thermostats
 
-### Thermal Storage (A1)
+### 2.3.1 Thermal Storage (A1)
 
 This EnergyPlus measure adds phase change properties to the selected material by adding a `MaterialProperty:PhaseChange` object. This object requires the conduction finite difference heat balance algorithm rather than the default conduction transfer function algorithm, which requires constant material properties (e.g. specific heat). The object properties come from the `CondFD1ZonePurchAirAutoSizeWithPCM.idf` EnergyPlus example file as shown below. 
 
@@ -179,7 +207,7 @@ For this analysis, the baseline heat balance algorithm was changed to conduction
 
 __Figure x. Measure A1 Temperature-Enthalpy Relationship__
 
-### Dynamic Glazing (A2)
+### 2.3.2 Dynamic Glazing (A2)
  
 This OpenStudio measure adds `ShadingControl` objects to the model by specifying a Construction with shading. The `ShadingControl` objects are translated to EnergyPlus `WindowShadingControl` objects prior to simulation. The Construction must be a detailed fenestration, i.e. be composed of `WindowMaterialGlazing` rather than `WindowMaterialSimpleGlazingSystem`. The object below shows an example.  
 
@@ -245,7 +273,7 @@ Construction,
 ! U=1.761  SHGC=0.641  TSOL=0.545  TVIS=0.727
 ```
 
-### Automated Attachments (A3)
+### 2.3.3 Automated Attachments (A3)
 
 This measure is the same as A2, but adds shading control for an interior shade that covers the window according to the control type as shown in the example object below.
 
@@ -309,7 +337,7 @@ WindowMaterial:Shade,
   0;                                      !- Airflow Permeability {dimensionless}
 ```
 
-### Continuous-Operation Electronics (E1)
+### 2.3.4 Continuous-Operation Electronics (E1)
 
 This EnergyPlus measure adds a `DemandManager:ElectricEquipment` object to the model. The measure will also add a `DemandManagerAssignmentList` object if one is not present in the model. If one is, it will add the `DemandManager:ElectricEquipment` to the existing `DemandManagerAssignmentList`. The following objects are examples from the `5ZoneAirCooledDemandLimiting.idf` EnergyPlus example file.
 
@@ -341,7 +369,7 @@ DemandManagerAssignmentList,
 
 The `DemandManager:ElectricEquipment` object in EnergyPlus allows modeling common demand side management strategies to reduce power to electric equipment. The `Limit Control` field specifies whether demand limiting is on (Fixed) or off. The DemandManager module in EnergyPlus determines whether demand limiting is required during a simulation timestep and if so, the power to the referenced electric equipment is reduced up to the `Maximum Limit Fraction` field. The `Minimum Limit Duration` specifies the minimum amount of time that demand is reduced. The `DemandManager:AssignmentList` object controls one or more demand managers by specifying the `Demand Window Length` (in minutes) and coordinating the `Demand Manager Priority` with other demand managers, e.g. lights or thermostats (measures C1 and C2 respectively). Priority can be set to sequentially rotate through demand managers or simultaneously limit demand to all objects.
 
-### Separate Sensible and Latent Space Conditioning (M1)
+### 2.3.5 Separate Sensible and Latent Space Conditioning (M1)
 
 This EnergyPlus measure adds a `Dehumidifier:Desiccant:System` on the selected air stream (outdoor air or supply air) of one or all air loops in the model. The measure works by replacing a surrogate object in the desired location in the air stream with the desiccant dehumidifier system. A setpoint manager must be present on the outlet node of the surrogate object to control humidity. If the system will be added to the supply air stream, the surrogate object must be directly downstream of a cooling coil, which will be the companion cooling coil to the desiccant system. The measure uses objects from the `DesiccantDehumidifierWithCompanionCoil.idf` EnergyPlus example file shown below.
 
@@ -370,7 +398,7 @@ Dehumidifier:Desiccant:System,
 
 This object is a parent object that references several child components, which include an air-to-air heat exchanger (HeatExchanger:Desiccant:BalancedFlow), an exhaust fan (optional), and a regeneration fan and heating coil (optional) to regenerate the desiccant. The operation of the desiccant system can be coordinated with a companion cooling coil by specifying its type and name in the appropriate fields. This measure required adding humidity controls to all zones served by the air loops and replacing the `Coil:Cooling:DX:TwoSpeed` objects with `Coil:Cooling:DX:SingleSpeed` objects in the baseline model. Humidity controls were set to 45% relative humidity. 
 
-### Thermal Energy Storage (M2)
+### 2.3.6 Thermal Energy Storage (M2)
 
 This measure replaces the `Coil:Cooling:DX:SingleSpeed` objects on the supply air stream of one or more air loops in the model with `Coil:Cooling:DX:SingleSpeed:ThermalStorage` objects (TODO, https://github.com/NREL/openstudio-load-flexibility-measures-gem/tree/master/lib/measures/add_packaged_ice_storage) as shown in the example object below. 
 
@@ -565,7 +593,7 @@ Ice charge end time | 07:00
 Ice discharge start time | 12:00
 Ice discharge end time | 18:00
 
-### Building-Scale CHP (P1)
+### 2.3.7 Building-Scale CHP (P1)
 
 This OpenStudio measure adds a `GeneratorMicroTurbineHeatRecovery` object to the supply side of plant loop with a water heater. The micro turbine provides electricity generation and service water heating through exhaust air heat recovery. This object is translated to the EnergyPlus object `Generator:MicroTurbine` for simulation, which for this measure is a Capstone C65 from the EnergyPlus `HeatRecoveryPlantLoopAuto.idf` example file (and others) as shown below.
 
@@ -624,7 +652,7 @@ TrackMeter | Attempts to meet all the electrical demand from an EnergyPlus Meter
 FollowThermal | Attempts to meet the thermal demand. Excess electrical generation is exported to the grid.
 FollowThermalLimitElectrical | Attempts to meet the thermal demand, but limits electrical output to the current electrical demand so that no electricity is exported to the grid.
 
-### Advanced Sensors and Controls (lighting) (C1)
+### 2.3.8 Advanced Sensors and Controls (lighting) (C1)
 
 This EnergyPlus measure adds a `DemandManager:Lights` object to the model. The measure will also add a `DemandManagerAssignmentList` object if one is not present in the model. If one is, it will add the `DemandManager:Lights` to the existing `DemandManagerAssignmentList`. An example object from the `5ZoneAirCooledDemandLimiting.idf` EnergyPlus example is shown below.
 
@@ -643,7 +671,7 @@ DemandManager:Lights,
 
 Similar to E1, this measure reduces power to a specific energy end use category up to a fractional limit for the specified duration.
 
-### Smart Thermostats (C2)
+### 2.3.9 Smart Thermostats (C2)
 
 This EnergyPlus measure adds a `DemandManager:Thermostats` object to the model. The measure will also add a `DemandManagerAssignmentList` object if one is not present in the model. If one is, it will add the `DemandManager:Thermostats` to the existing `DemandManagerAssignmentList`. The object below shows an example from the `5ZoneAirCooledDemandLimiting.idf` EnergyPlus example file. Instead of a fractional reduction in load, like E1 and C1, this object specifies maximum setpoint resets for heating and cooling.
 
@@ -661,7 +689,7 @@ DemandManager:Thermostats,
   AllControlledZones Thermostat;  !- Thermostat 1 Name
 ```
 
-## Optimization Process
+## 2.4 Optimization Process
 
 The optimization process focused on each technology individually rather than attempt a large scale inter-optimization across all technologies each with a separate intra-optimization problem of measure-specific variables. Each technology was optimized separately by changing one or more of the measure's inputs to minimize the model's annual energy cost. Energy cost was chosen as a reasonable metric for determining the grid-interactive benefits of a technology because it can include the effects of both energy efficiency and demand without the need for time consuming processing of hourly or sub-hourly model outputs, e.g. to determine peak demand reduction. This approach assumes that the utility company structures its tariffs to minimize the burden on its resources. For this analysis, the local electricity and natural gas tariffs from Xcel Energy in Denver, Colorado were used. The electricity tariff includes seasonal consumption charges for summer and winter with time-of-use demand charges that are the same throughout the year. The natural gas tariff includes annual charges for consumption and demand. OpenStudio's Parametric Analysis Tool (PAT) was used to optimize each technology, which allows users to perform sensitivity analyses, uncertainty quantification, design optimization, and model calibration on a large scale through the use of cloud computing (Ball et. al., 2020). 
 
@@ -707,7 +735,7 @@ P1 | 1006 | 391 | 326 | 299
 C1 | 1037 | 328 | 331 | 240
 C2 | 938 | 499 | 213 | 164
 
-## 3.x Thermal Storage (A1)
+## 3.1 Thermal Storage (A1)
 
 Initial testing of this measure showed small savings compared to the baseline model when the PCM was added to the inside of all walls. Adding additional PCM to other layers, e.g. ceilings and floors, increased the savings slightly. This technology was excluded from the optimization because this measure showed savings that were small relative to the baseline when using default PCM properties from the EnergyPlus example file. The annual energy use and energy cost savings for this measure are shown in Figures x. and x. below, which showed energy cost and use savings of 0.2% and 0.5% respectively.
 
@@ -719,7 +747,7 @@ __Figure x. Measure A1 Annual Energy Cost Savings__
 
 __Figure x. Measure A1 Annual Energy Use Intensity Savings by End Use__
 
-## 3.x Dynamic Glazing (A2)
+## 3.2 Dynamic Glazing (A2)
 
 The optimization of this measure focused on two variables for the EnergyPlus 'WindowShadingControl` object. The `Shading Control Type` field, a discrete variable which currently has 21 options for high level control that generally reduce thermal loads, improve visual comfort, or improve daylight; and the `Setpoint` field, a continuous variable that allows additional control based on solar radiation (W/m2), temperature (C), or cooling or heating (W). The shading control options are summarized in Table x below.
 
@@ -777,7 +805,7 @@ __Figure x. Measure A2 Annual Energy Cost Results__
 
 __Figure x. Measure A2 Annual Energy Use Results__
 
-## 3.x Automated Attachments (A3)
+## 3.3 Automated Attachments (A3)
 
 The optimization of this technology used the same methodology as measure A2. The pre-optimization showed similar results as A2, with the `OnNightIfLowOutdoorTempAndOnDayIfCooling` shading control showing the greatest annual energy cost savings compared to the baseline. This control option was chosen for optimization using the PSO analysis option in PAT with the setpoint as the continuous variable to optimize for the lowest annual energy cost. Figures x, x, and x compare the pre-optimization results showing that the `OnNightIfLowOutdoorTempAndOnDayIfCooling` control option produced the greatest savings.
 
@@ -809,7 +837,7 @@ __Figure x. Measure A3 Annual Energy Cost Savings__
 
 __Figure x. Measure A3 Annual Energy Use Intensity Savings by End Use__
 
-## 3.x Continuous-Operation Electronics (E1)
+## 3.4 Continuous-Operation Electronics (E1)
 
 The optimization process for this technology focused on two continuous variables; the `Minimum Limit Duration`, which is the minimum amount of time in minutes that the equipment power is reduced during demand limiting, and the `Maximum Limit Fraction`, which is the fractional limit of full load lighting power reduction where 1.0 indicates no reduction. The optimization first evaluated the effect of the demand limit fraction on the annual energy cost by simulating ten fractions of 0.1 to 1.0 in 0.1 increments. As expected, this variable showed a strong linear relationship with annual energy cost as shown in Figure x below.
 
@@ -833,7 +861,7 @@ __Figure x. Measure E1 Energy Cost Savings__
 
 __Figure x. Measure E1 Energy Use Savings__
 
-## 3.x Separate Sensible and Latent Space Conditioning (M1)
+## 3.5 Separate Sensible and Latent Space Conditioning (M1)
 
 Initial testing of this measure showed small savings compared to the baseline model using default values from the EnergyPlus example file when the  desiccant dehumidifier system was placed downstream of the cooling coil on the supply air stream of all three air loops in the model. This measure was excluded from the optimization because this technology showed savings that were small relative to the baseline. The annual energy cost and use  savings were % and % respectively as shown in Figures x. and x. below. 
 
@@ -845,7 +873,7 @@ __Figure x. Measure M1 Annual Energy Cost Results__
 
 __Figure x. Measure M1 Annual Energy Use Results__
 
-## 3.x Thermal Energy Storage (M2)
+## 3.6 Thermal Energy Storage (M2)
 
 The pre-optimization for this measure focused on two discrete variables for the `Coil:Cooling:DX:SingleSpeed:ThermalStorage` object; the `Operating Mode Control Method` and the `Operation Mode Control Schedule Name` fields. The pre-optimization simulated each of the two control methods, EMSControlled and ScheduledModes, with each of the five control schedules to determine the option that minimized the annual energy cost savings compared to the baseline as shown in Figures x. and x. below. For the `Simple User Sched` schedule option, the inputs were kept at default values. Of these eight combinations, the `Simple User Sched` produced the greatest savings with both control methods with the `EMSControlled` method showing greater savings compared to the `Scheduled Modes` option as shown in Figure x. and x. below.
 
@@ -869,7 +897,7 @@ __Figure x. Measure M2 Annual Energy Cost Savings__
 
 __Figure x. Measure M2 Annual Energy Use Intensity Savings by End Use__
 
-## 3.x Building-Scale CHP (P1)
+## 3.7 Building-Scale CHP (P1)
 
 The pre-optimization of this measure focused on the `Generator Operation Scheme Type` discrete variable. The `DemandLimit` option produced the lowest energy cost compared to the other operation schemes as shown in Figure x.  
 
@@ -910,7 +938,7 @@ __Figure x. Measure P1 Energy Cost Results__
 
 __Figure x. Measure P1 Energy Use Results__
 
-## 3.x Advanced Sensors and Controls (lighting) (C1)
+## 3.8 Advanced Sensors and Controls (lighting) (C1)
 
 The pre-optimization process for this technology focused on two continuous variables; the `Minimum Limit Duration`, which is the minimum amount of time in minutes that the lighting power is reduced during demand limiting, and the `Maximum Limit Fraction`, which is the fractional limit of full load lighting power reduction where 1.0 indicates no reduction. The `Maximum Limit Fraction` was fixed at 0.85 based on California's 2016 energy standard, which requires that all buildings greater than 929 m2 (10,000 ft2) be capable of automatically reducing total lighting power by at least 15% in response to a signal from the grid. 
 
@@ -930,7 +958,7 @@ __Figure x. Measure C1 Annual Energy Cost Savings__
 
 __Figure x. Measure C1 Annual Energy Use Intensity Savings by End Use__
 
-## 3.x Smart Thermostats (C2)
+## 3.9 Smart Thermostats (C2)
 
 The optimization process for this measure used the Baseline Perturbation analysis option in PAT, which allows discrete values of independent variables to be explored parametrically. For this analysis, the `Maximum Heating Setpoint Reset` and the `Maximum Cooling Setpoint Reset` were optimized to reduce the total annual utility cost by changing the reset temperature by 0.5C increments between the occupied and unoccupied setpoints as summarized in the table x. and x. below. These two independent variables were optimized separately because there is limited interaction between the heating setpoint and cooling setpoint, which also reduced computation time significantly.
 
