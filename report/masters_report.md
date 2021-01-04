@@ -27,7 +27,6 @@
   - [3.7 Building-Scale CHP (P1)](#37-building-scale-chp-p1)
   - [3.8 Advanced Sensors and Controls (lighting) (C1)](#38-advanced-sensors-and-controls-lighting-c1)
   - [3.9 Smart Thermostats (C2)](#39-smart-thermostats-c2)
-- [4. Discussion](#4-discussion)
 - [5. Conclusions](#5-conclusions)
 
 # 1. Introduction
@@ -1007,8 +1006,8 @@ __Figure x. Measure C2 Annual Energy Cost Savings__
 
 __Figure x. Measure C2 Annual Energy Use Intensity Savings by End Use__
 
-# 4. Discussion
-
-
-
 # 5. Conclusions
+
+This report built upon the work of the author that identified ten mature market-ready technologies suitable for GEBs that could also be evaluated with BPS software by quantifying the potential of nine technologies to provide grid services such as energy efficiency, load shedding, and load shifting. The methodology leveraged OpenStudio software tools to develop computer scripts known as Measures for each technology that could be widely applied to OpenStudio models. The analysis used the Medium Office Commercial Reference Building Model as a baseline for evaluating the potential of each technology for providing grid services by optimizing each Measure in OpenStudio's Parametric Analysis Tool to minimize the annual energy cost. Energy cost was chosen as a reasonable metric for determining the grid-interactive benefits of a technology because it includes the effects of both energy efficiency and demand when the utility tariffs include separate charges for consumption and demand. This approach assumes that the utility structures their rate tariffs to reduce the burden on their infrastructure and avoids the need for computationally intensive post processing of hourly or sub-hourly simulation results to determine changes in energy demand. The analysis focused on intra-optimization of each technology by identifying a single independent variable to optimize (where possible), instead of a large scale inter-optimization across all technologies, which significantly reduced the optimization problem and computation requirements. 
+
+Future work should focus on developing a suite of generic Measures that can be applied to building models, developing a workflow for inter-optimization of multiple technologies, and enhancing BPS software such as EnergyPlus to include GEB technologies and reporting capabilities. In particular, improved reporting that easily and readily presents both the time and value of peak demand for both the building and the utility would allow users to evaluate the potential of technologies to provide grid services such as load shedding and load shifting in more detail.
