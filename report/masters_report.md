@@ -1,4 +1,4 @@
-# Optimization of Grid-interactive Efficiency Building Technologies for a Medium Office Reference Building <!-- omit in toc --> 
+# Optimization of Grid-interactive Efficiency Building Technologies for a Medium Office Reference Model <!-- omit in toc --> 
 
 # Table of Contents <!-- omit in toc --> 
 
