@@ -35,15 +35,18 @@ In the United States, the electricity grid continues to experience rapid changes
 
 Fundamentally, grid operators must balance electricity supply with demand. In order for the operators to have enough generation capacity in reserve to meet periods of high peak demands, utilities need to build new generation capacity requiring costly and long-term investments. To defer the construction of new generation capacity, utilities often implement programs that reduce, shed, or shift load through demand-side management (DSM), energy efficiency, or demand response (DR) programs. Buildings, which collectively consumed 63% of delivered electricity in the U.S. in 2019 (15% residential, 12% commercial, 35% industrial, EIA 2020), have the potential to offer grid services through implementation of DSM strategies that enhance electrical load flexibility. Grid-interactive efficient buildings (GEBs) that use existing and new technologies to provide demand flexibility have recently emerged as a way to balance the grid's supply and demand and a source of value through avoided electricity system costs (DOE, 2019a).
 
-This report builds upon previous work that reviewed and categorized GEB technologies (Steen et. al., 2020) by quantitatively evaluating these technologies using building performance simulation. The following sections describe the methodology, results, and conclusions of the analysis. 
+This report builds upon previous work that reviewed and categorized GEB technologies (Steen et. al., 2020) by quantitatively evaluating these technologies using building performance simulation (BPS). The following sections describe the methodology, results, and conclusions of the analysis. 
 
 # 2. Methodology
 
-The analysis used a reference building energy model from the U.S. Department of Energy Commercial Reference Building Models (Deru et. al., 2011) as the starting point for evaluating the technologies, henceforth referred to as the baseline. The reference building models are EnergyPlus models (Crawley et. al., 2001) that are collectively representative of over 60% of the commercial building stock in the United States and are meant to represent generic existing and new buildings rather than a specific individual building. The Medium Office model was chosen because it is most representative of the commercial building stock in the United States based on area (EIA, 2012). 
+The analysis used a reference building energy model from the U.S. Department of Energy Commercial Reference Building Models (Deru et. al., 2011) as the starting point for evaluating the technologies, henceforth referred to as the baseline. The reference building models are EnergyPlus models (Crawley et. al., 2001) that are collectively representative of over 60% of the commercial building stock in the United States and are meant to represent generic existing and new buildings rather than a specific individual building. The Medium Office model was chosen because it is most representative of the commercial building stock in the United States based on area according to the Commercial Buildings Energy Consumption Survey (EIA, 2012). 
+
+The baseline model was created with OpenStudio using the Create Prototype Building measure. OpenStudio is a software development kit that includes a collection of tools for BPS (Guglielmetti et. al., 2011). Notably, OpenStudio includes tools to create models that can be translated to EnergyPlus for simulation and application programming interfaces for programatically interacting with models. Measures are formal computer scripts written in the Ruby programming language that can interact with an OpenStudio model directly (an OpenStudio Measure), change the EnergyPlus model prior to simulation (an EnergyPlus Measure), or produce reports after simulation with Reporting Measures (Roth et. al, 2016). 
+For each technology considered in this analysis, a Measure was used to apply it to the baseline model for optimization in OpenStudio's  Parametric Analysis Tool (PAT), which allows performing sensitivity analyses, uncertainty quantification, design optimization, and model calibration on a large scale through the use of cloud computing (Ball et. al., 2020). 
 
 ## 2.1 Baseline Model Inputs
 
-The baseline model was created with OpenStudio (Guglielmetti et. al., 2011) using the Create Prototype Building measure. Measures are formal computer scripts written in the Ruby programming language that can interact with an OpenStudio model directly (an OpenStudio Measure), change the EnergyPlus model prior to simulation (an EnergyPlus Measure), or produce reports after simulation with Reporting Measures (Roth et. al, 2016). Several changes to the baseline model were required to allow the application of specific technologies, which are described in the Measures section. In total, the changes decreased the energy use intensity (EUI) by 0.9% and increased the peak electric demand by 10.2% (unadjusted facility) and 4.8% (adjusted utility).
+ Several changes to the baseline model were required to allow the application of specific technologies, which are described in the Measures section. In total, the changes decreased the energy use intensity (EUI) by 0.9% and increased the peak electric demand by 10.2% (unadjusted facility) and 4.8% (adjusted utility). The following figures and tables summarize the baseline model inputs and outputs (simulation results).
 
 ![image](images/baseline_geometry.png)
 
@@ -154,7 +157,7 @@ __Figure x. Monthly Electricity Peak vs. Utility Demand__
 
 ## 2.3 Measures
 
-This section describes the nine measures used to apply each technology to the baseline model, which are coded according to Table x. Where a change to the baseline model was required to apply a measure, it is described in with the corresponding measure. 
+This section describes the nine measures used to apply each technology to the baseline model, which are coded according to Table x. Where a change to the baseline model was required to apply a measure, it is described in the corresponding section. 
 
 __Table x. Measure Codes__
 
@@ -206,7 +209,7 @@ __Figure x. Measure A1 Temperature-Enthalpy Relationship__
 
 ### 2.3.2 Dynamic Glazing (A2)
  
-This OpenStudio measure adds `ShadingControl` objects to the model by specifying a Construction with shading. The `ShadingControl` objects are translated to EnergyPlus `WindowShadingControl` objects prior to simulation. The Construction must be a detailed fenestration, i.e. be composed of `WindowMaterialGlazing` rather than `WindowMaterialSimpleGlazingSystem`. The object below shows an example.  
+This OpenStudio measure adds `ShadingControl` objects to the model by specifying a Construction with shading. The `ShadingControl` objects are translated to EnergyPlus `WindowShadingControl` objects prior to simulation. The Construction must be a detailed fenestration, i.e. be composed of `WindowMaterialGlazing` rather than `WindowMaterialSimpleGlazingSystem`. The object below shows an example. 
 
 ```
 WindowShadingControl,
@@ -688,11 +691,11 @@ DemandManager:Thermostats,
 
 ## 2.4 Optimization Process
 
-The optimization process focused on each technology individually rather than attempt a large scale inter-optimization across all technologies each with a separate intra-optimization problem of measure-specific variables. Each technology was optimized separately by changing one or more of the measure's inputs to minimize the model's annual energy cost. Energy cost was chosen as a reasonable metric for determining the grid-interactive benefits of a technology because it can include the effects of both energy efficiency and demand without the need for time consuming processing of hourly or sub-hourly model outputs, e.g. to determine peak demand reduction. This approach assumes that the utility company structures its tariffs to minimize the burden on its resources. For this analysis, the local electricity and natural gas tariffs from Xcel Energy in Denver, Colorado were used. The electricity tariff includes seasonal consumption charges for summer and winter with time-of-use demand charges that are the same throughout the year. The natural gas tariff includes annual charges for consumption and demand. OpenStudio's Parametric Analysis Tool (PAT) was used to optimize each technology, which allows users to perform sensitivity analyses, uncertainty quantification, design optimization, and model calibration on a large scale through the use of cloud computing (Ball et. al., 2020). 
+The optimization process focused on each technology individually rather than attempt a large scale inter-optimization across all technologies each with a separate intra-optimization problem of measure-specific variables. Each technology was optimized separately by changing one or more of the measure's inputs to minimize the model's annual energy cost. Energy cost was chosen as a reasonable metric for determining the grid-interactive benefits of a technology because it can include the effects of both energy efficiency and demand without the need for time consuming processing of hourly or sub-hourly model outputs, e.g. to determine peak demand reduction. This approach assumes that the utility company structures its tariffs to minimize the burden on its resources. For this analysis, the local electricity and natural gas tariffs from Xcel Energy in Denver, Colorado were used. The electricity tariff includes seasonal consumption charges for summer and winter with time-of-use demand charges that are the same throughout the year. The natural gas tariff includes annual charges for consumption and demand. 
 
 # 3. Results
 
-This section presents the optimization of each technology by discussing the process of determining the independent variables to minimize the annual energy cost. For each measure, pre-optimizations were completed in an attempt to reduce the complexity of the problem by identifying a single independent variable to optimize. The annual energy cost and use results for the individual measures are summarized in Figures x. and x. and Table x. below. Additionally, Table x. shows the time the cooling and heating setpoints are not met to verify that any savings were not the result of the mechanical system not meeting loads. Measures A1, M1, and M2 did not include full optimization, which are discussed in the corresponding section.
+This section presents the optimization of each technology by discussing the process of determining the independent variables to minimize the annual energy cost and presenting the results. For each measure, pre-optimizations were completed in an attempt to reduce the complexity of the problem by identifying a single independent variable to optimize. The annual energy cost and use savings for the individual measures are summarized in Figures x. and x. and Table x. below. Additionally, Table x. shows the time the cooling and heating setpoints are not met to verify that any savings were not the result of the mechanical system not meeting loads. Measures A1, M1, and M2 did not include full optimizations, which are discussed in the corresponding section.
 
 ![image](images/measures_energy_use.png)
 
@@ -708,14 +711,14 @@ Model | Energy Cost Savings | Energy Use Savings
 :- | :- | :-
 Baseline | 0% | 0%
 A1 | 0.2% | 0.5%
-A2 | 9.9% | 5%
-A3 | 2.6% | 1.1%
+A2 | 10.3% | 6.1%
+A3 | 3.3% | 1.9%
 E1 | 3.5% | 4%
 M1 | 0% | 0%
-M2 | 1.8% | 0.3%
-P1 | 7.2% | -0.9%
-C1 | 4.6% | 5.7%
-C2 | 13.8% | 7.1%
+M2 | 1.9% | 0.4%
+P1 | 9.2% | -6.9%
+C1 | 0.6% | 0.7%
+C2 | 24.5% | 11.3%
 
 __Table x. Individual Measure Time Setpoint Not Met__
 
@@ -723,18 +726,18 @@ Model | During Heating [hr]  | During Cooling [hr]  | During Occupied Heating [h
 :- | :- | :- | :- | :-
 Baseline | 1006 | 391 | 326 | 299
 A1 | 976 | 387 | 325 | 296
-A2 | 1282 | 245 | 476 | 181
-A3 | 1136 | 292 | 380 | 215
-E1 | 1025 | 328 | 328 | 241
+A2 | 1210 | 267 | 425 | 175
+A3 | 1103 | 317 | 360 | 220
+E1 | 1026 | 328 | 328 | 241
 M1 | 1006 | 390 | 326 | 298
-M2 | 1006 | 452 | 326 | 355
-P1 | 1006 | 391 | 326 | 299
-C1 | 1037 | 328 | 331 | 240
-C2 | 938 | 499 | 213 | 164
+M2 | 1007 | 478 | 327 | 380
+P1 | 1005 | 390 | 326 | 299
+C1 | 1012 | 380 | 327 | 290
+C2 | 896 | 503 | 147 | 167
 
 ## 3.1 Thermal Storage (A1)
 
-Initial testing of this measure showed small savings compared to the baseline model when the PCM was added to the inside of all walls. Adding additional PCM to other layers, e.g. ceilings and floors, increased the savings slightly. This technology was excluded from the optimization because this measure showed savings that were small relative to the baseline when using default PCM properties from the EnergyPlus example file. The annual energy use and energy cost savings for this measure are shown in Figures x. and x. below, which showed energy cost and use savings of 0.2% and 0.5% respectively.
+Initial testing of this measure showed small savings compared to the baseline model when the PCM was added to the inside of all walls. Adding additional PCM to other layers, e.g. ceilings and floors, increased the savings slightly. This technology was excluded from optimization because this measure showed savings that were small relative to the baseline when using default PCM properties from the EnergyPlus example file. The annual energy cost and use savings for this measure are shown in Figures x. and x. below, which showed energy cost and use savings of 0.2% and 0.5% respectively.
 
 ![image](images/measure_a1_energy_cost_savings.png)
 
@@ -824,7 +827,7 @@ The optimization of this measure used the PSO analysis option in PAT with a sing
 
 __Figure x. Measure A3 Optimization Results__
 
-The annual energy use and energy cost savings for the optimized setpoint of 13C is shown in Figures x. and x. below, which showed a savings of 1.9% and 3.3% respectively.
+The annual energy cost and use savings for the optimized setpoint of 13C is shown in Figures x. and x. below, which showed a savings of 3.3% and 1.9% and respectively.
 
 ![image](images/measure_a3_energy_cost_savings.png)
 
@@ -848,7 +851,7 @@ Next, the optimization evaluated the effect of the demand limit duration on the 
 
 __Figure x. Measure E1 Optimization Results for Duration__
 
-The optimization kept the `Maximum Limit Fraction` fixed at 50% and focused on optimizing the `Minimum Limit Duration`. Because the annual energy cost only varied by about 2.00 USD between the discrete variables in the pre-optimization, this analysis forewent a formal optimization and chose a duration of 40 minutes as the value that minimized the annual energy cost. The energy cost and use savings for a 40 minute demand limit duration was % and % as shown in Figure x. and x. below.
+The optimization kept the `Maximum Limit Fraction` fixed at 50% and focused on optimizing the `Minimum Limit Duration`. Because the annual energy cost only varied by about 2.00 USD between the discrete variables in the pre-optimization, this analysis forewent a formal optimization and chose a duration of 40 minutes as the value that minimized the annual energy cost. The energy cost and use savings for a 40 minute demand limit duration was 3.5% and 4.0% as shown in Figure x. and x. below.
 
 ![image](images/measure_e1_energy_cost_savings.png)
 
@@ -860,7 +863,7 @@ __Figure x. Measure E1 Energy Use Savings__
 
 ## 3.5 Separate Sensible and Latent Space Conditioning (M1)
 
-Initial testing of this measure showed small savings compared to the baseline model using default values from the EnergyPlus example file when the  desiccant dehumidifier system was placed downstream of the cooling coil on the supply air stream of all three air loops in the model. This measure was excluded from the optimization because this technology showed savings that were small relative to the baseline. The annual energy cost and use  savings were % and % respectively as shown in Figures x. and x. below. 
+Initial testing of this measure showed small savings compared to the baseline model using default values from the EnergyPlus example file when the desiccant dehumidifier system was placed downstream of the cooling coil on the supply air stream of all three air loops in the model. This likely indicates an issue with how the EnergyPlus measure adds the desiccant system to the model. Due to the small savings relative to the baseline, this measure was excluded from the optimization. The annual energy cost and use  savings were 0% and 0% respectively as shown in Figures x. and x. below. 
 
 ![image](images/measure_m1_energy_cost_savings.png)
 
@@ -896,7 +899,7 @@ __Figure x. Measure M2 Optimized Energy Use Savings__
 
 ## 3.7 Building-Scale CHP (P1)
 
-The pre-optimization of this measure focused on the `Generator Operation Scheme Type` discrete variable. The `DemandLimit` option produced the lowest energy cost compared to the other operation schemes as shown in Figure x.  
+The pre-optimization of this measure focused on the `Generator Operation Scheme Type` discrete variable. The `DemandLimit` option produced the lowest energy cost compared to the other operation schemes as shown in Figure x. 
 
 ![img](images/measure_p1_preoptimization_generator_operation_scheme.png)
 
@@ -925,7 +928,7 @@ The optimization process for this measure used the PSO analysis option in PAT wi
 
 __Figure x. Measure P1 Optimization Results__
 
-The annual energy use intensity and energy cost savings for the optimized demand limit of 239.65 kW is shown in Figures x. and x. below, which showed a savings of -6.9% and 9.2% respectively. This measure saved demand costs at the expense of increased natural gas cost and consumption, which shows up under the Generators end use in EnergyPlus.
+The annual energy cost and use savings for the optimized demand limit of 239.65 kW is shown in Figures x. and x. below, which showed a savings of 9.2% and -6.9% respectively. This measure saved demand costs at the expense of increased natural gas cost and consumption, which shows up under the Generators end use in EnergyPlus.
 
 ![image](images/measure_p1_energy_cost_savings.png)
 
@@ -945,7 +948,7 @@ For the optimization, the demand limit duration was simulated at fixed durations
 
 __Figure x. Measure C1 Optimization Results__
 
-The annual energy use intensity and energy cost savings for the optimized duration of 40 minutes is shown in Figures x. and x. below, which showed a savings of % and % respectively.
+The annual energy cost and use savings for the optimized duration of 40 minutes is shown in Figures x. and x. below, which showed a savings of 0.6% and 0.7% respectively.
 
 ![image](images/measure_c1_energy_cost_savings.png)
 
@@ -988,7 +991,7 @@ Discrete Values | 24.5
 . | 26.5
 Unoccupied | 26.7
 
-As expected, greater reset temperatures produced more utility cost savings such that the highest savings occurred with resets that were at or near the unoccupied setpoint temperatures. For heating, the highest cost savings occurred with a reset temperature of 16C, close to the unoccupied setpoint of 15.7C as shown in Figure x. For Cooling, the hightest cost savings occurred with a reset temperature of 26.7C, the unoccupied setpoint as shown in Figure x. The annual energy cost and use savings for the combination of these reset temperatures is shown in Figures x. and x. below, which was 25.0% and 11.5% respectively.
+As expected, greater reset temperatures produced more utility cost savings such that the highest savings occurred with resets that were at or near the unoccupied setpoint temperatures. For heating, the highest cost savings occurred with a reset temperature of 16C, close to the unoccupied setpoint of 15.7C as shown in Figure x. For Cooling, the hightest cost savings occurred with a reset temperature of 26.7C, the unoccupied setpoint as shown in Figure x. The annual energy cost and use savings for the combination of these reset temperatures is shown in Figures x. and x. below, which was 24.5% and 11.3% respectively.
 
 ![image](images/measure_c2_optimization_results_htg.png)
 
