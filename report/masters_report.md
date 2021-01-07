@@ -1,4 +1,4 @@
-# Optimization of Grid-interactive Efficiency Building Technologies for a Medium Office Reference Model <!-- omit in toc --> 
+# Optimization of Grid-interactive Efficient Building Technologies for a Medium Office Reference Model <!-- omit in toc --> 
 
 # Table of Contents <!-- omit in toc --> 
 
@@ -35,7 +35,7 @@ In the United States, the electricity grid continues to experience rapid changes
 
 Fundamentally, grid operators must balance electricity supply with demand. In order for the operators to have enough generation capacity in reserve to meet periods of high peak demands, utilities need to build new generation capacity requiring costly and long-term investments. To defer the construction of new generation capacity, utilities often implement programs that reduce, shed, or shift load through demand-side management (DSM), energy efficiency, or demand response (DR) programs. Buildings, which collectively consumed 63% of delivered electricity in the U.S. in 2019 (15% residential, 12% commercial, 35% industrial, EIA 2020), have the potential to offer grid services through implementation of DSM strategies that enhance electrical load flexibility. Grid-interactive efficient buildings (GEBs) that use existing and new technologies to provide demand flexibility have recently emerged as a way to balance the grid's supply and demand and a source of value through avoided electricity system costs (DOE, 2019a).
 
-This report builds upon previous work that reviewed and categorized GEB technologies (Steen et. al., 2020) by quantitatively evaluating these technologies using building performance simulation (BPS). The following sections describe the methodology, results, and conclusions of the analysis. 
+This report builds upon previous work that reviewed and categorized GEB technologies (Steen et. al., 2020) with the goal of quantitatively evaluating these technologies for their potential to provide grid services through the use energy and demand flexibility. Strategies that add flexibility include energy efficiency, load shedding, and load shifting. The most suitable technologies identified by Steen (2020) were evaluated using building performance simulation (BPS) by comparing a model with the technology to a baseline model. The report is organized into three main sections. Section 2 describes the methodology, which includes the baseline model inputs and simulation results, how each technology was applied to the baseline model, and the general process for optimizing each one. Section 3 describes the optimization of each technology and presents and discusses the results, which is followed by conclusions in Section 4.
 
 # 2. Methodology
 
