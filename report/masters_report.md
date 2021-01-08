@@ -27,6 +27,7 @@
   - [3.7 Building-Scale CHP (P1)](#37-building-scale-chp-p1)
   - [3.8 Advanced Sensors and Controls (lighting) (C1)](#38-advanced-sensors-and-controls-lighting-c1)
   - [3.9 Smart Thermostats (C2)](#39-smart-thermostats-c2)
+  - [3.10 Combined Measures](#310-combined-measures)
 - [5. Conclusions](#5-conclusions)
 
 # 1. Introduction
@@ -123,49 +124,53 @@ __Table 2.6 Plumbing Inputs__
 
 ## 2.2 Baseline Model Outputs
 
-The changes to the baseline model that were required to apply the measures increased the energy cost by 3.8% and decreased the energy use by 0.9%. The following figures present the annual, monthly, and hourly peak day outputs (simulation results) of the baseline model. On an annual basis, energy use is dominated by interior electric equipment and heating from electric reheat.
+The changes to the baseline model that were required to apply the measures increased the energy cost by 3.8% and decreased the energy use by 0.9%. The following figures present the annual, monthly, and hourly peak day outputs (simulation results) of the baseline model. On an annual basis, energy cost is dominated by electric demand, which makes up over two thirds of total cost (Figure 2.3). Energy use is dominated by interior electric equipment and heating from electric reheat (Figures 2.4 and 2.5).
+
+![image](images/baseline_annual_energy_cost_pct.png)
+
+__Figure 2.3 Annual Energy Cost Percent__
 
 ![image](images/baseline_annual_energy_pct.png)
 
-__Figure 2.3 Annual Energy Use Percent__
+__Figure 2.4 Annual Energy Use Percent__
 
 ![image](images/baseline_annual_energy_eui.png)
 
-__Figure 2.4 Annual Energy Use Intensity__
+__Figure 2.5 Annual Energy Use Intensity__
 
-On a monthly basis, the baseline annual electricity profile peaks in the winter month of December shown in Figure 2.5 due to the electric resistance reheat coils in the variable air volume terminals. Similarly, peak monthly demand occurs in December due to electric reheat shown in Figure 2.6. However, it's important to note that a building's peak demand is not necessarily coincident with the peak demand from the utility's or grid's perspective. This point is illustrated in Figure 2.7 showing the building's peak demand occurs in December while the peak demand based on the electricity tariff occurs in February.
+On a monthly basis, the baseline annual electricity profile peaks in the winter month of December shown (Figure 2.6) due to the electric resistance reheat coils in the variable air volume terminals. Similarly, peak monthly demand occurs in December due to electric reheat (Figure 2.7). However, it's important to note that a building's peak demand is not necessarily coincident with the peak demand from the utility's or grid's perspective. This point is illustrated in Figure 2.8 showing the building's peak demand occurs in December while the peak demand based on the electricity tariff occurs in February.
 
 ![image](images/baseline_monthly_elec_energy.png)
 
-__Figure 2.5 Monthly Electricity Energy__
+__Figure 2.6 Monthly Electricity Energy__
 
 ![image](images/baseline_monthly_elec_demand.png)
 
-__Figure 2.6 Monthly Electricity Demand__
+__Figure 2.7 Monthly Electricity Demand__
 
 ![image](images/baseline_monthly_elec_demand_comparison.png)
 
-__Figure 2.7 Monthly Electricity Peak vs. Utility Demand__
+__Figure 2.8 Monthly Electricity Peak vs. Utility Demand__
 
-For natural gas, the monthly peak use and demand occurs in December, shown in Figures 2.8 and 2.9, due to central heating coils in the air handling units that provide ventilation and pre-conditioned air to the thermal zones.
+For natural gas, the monthly peak use and demand occurs in December, shown in Figures 2.9 and 2.10, due to central heating coils in the air handling units that provide ventilation and pre-conditioned air to the thermal zones.
 
 ![image](images/baseline_monthly_ngas_energy.png)
 
-__Figure 2.8 Monthly Natural Gas Energy__
+__Figure 2.9 Monthly Natural Gas Energy__
 
 ![image](images/baseline_monthly_ngas_demand.png)
 
-__Figure 2.9 Monthly Natural Gas Demand__
+__Figure 2.10 Monthly Natural Gas Demand__
 
-On an hourly basis, the peak demand for electric cost occurs on February 6th at 0700 in the first hour after the building is changed to occupied mode (Figure 2.10). Similarly, peak demand for natural gas occurs at the same time of day, but on December 22nd (Figure 2.11).
+On an hourly basis, the peak demand for electric cost occurs on February 6th at 0700 in the first hour after the building is changed to occupied mode (Figure 2.11). Similarly, peak demand for natural gas occurs at the same time of day, but on December 22nd (Figure 2.12).
 
 ![image](images/baseline_hourly_elec.png)
 
-__Figure 2.10 Hourly Electricity Demand on Peak Day (Feb 06)__
+__Figure 2.11 Hourly Electricity Demand on Peak Day (Feb 06)__
 
 ![image](images/baseline_hourly_ngas.png)
 
-__Figure 2.11 Hourly Natural Gas Demand on Peak Day (Dec 22)__
+__Figure 2.12 Hourly Natural Gas Demand on Peak Day (Dec 22)__
 
 ## 2.3 Measures
 
@@ -218,7 +223,7 @@ For this analysis, the baseline heat balance algorithm was changed to conduction
 
 ![image](images/measure_a1_temperature_enthalpy.png)
 
-__Figure 2.12 Measure A1 Temperature-Enthalpy Relationship__
+__Figure 2.13 Measure A1 Temperature-Enthalpy Relationship__
 
 ### 2.3.2 Dynamic Glazing (A2)
  
@@ -584,7 +589,7 @@ Cool and Discharge Mode | Object is cooling with the coil and discharging from t
 Charge Only Mode | Object is charging the TES tank only and the evaporator is off. 
 Discharge Only Mode | Object is cooling by discharging the TES tank and the condenser is off. 
 
-The measure includes five built-in options for the control schedule; a user-defined option (Simple User Sched) and four pre-defined options summarized in Table x. below. The `Simple User Sched` option allows the user to define a daily and hourly schedule for when he TES is used through the year shown in Table 2.9.
+The measure includes five built-in options for the control schedule; a user-defined option (Simple User Sched) and four pre-defined options summarized in Table 2.9 below. The `Simple User Sched` option allows the user to define a daily and hourly schedule for when he TES is used through the year shown in Table 2.10.
 
 __Table 2.9 Measure M2 Operation Mode Control Schedule Descriptions__
 
@@ -704,7 +709,9 @@ DemandManager:Thermostats,
 
 ## 2.4 Optimization Process
 
-The optimization process focused on each technology individually rather than attempt a large scale inter-optimization across all technologies each with a separate intra-optimization problem of measure-specific variables. Each technology was optimized separately by changing one or more of the measure's inputs to minimize the model's annual energy cost. Energy cost was chosen as a reasonable metric for determining the grid-interactive benefits of a technology because it can include the effects of both energy efficiency and demand without the need for time consuming processing of hourly or sub-hourly model outputs, e.g. to determine peak demand reduction. This approach assumes that the utility company structures its tariffs to minimize the burden on its resources. For this analysis, the local electricity and natural gas tariffs from Xcel Energy in Denver, Colorado were used. The electricity tariff includes seasonal consumption charges for summer and winter with time-of-use demand charges that are the same throughout the year. The natural gas tariff includes annual charges for consumption and demand. Tables 2.x through 2.x summarize the utility tariffs.
+The optimization process focused on each technology individually rather than attempt a large scale inter-optimization across all technologies each with a separate intra-optimization problem of measure-specific variables. Each technology was optimized separately by changing one or more of the measure's inputs to minimize the model's annual energy cost. Finally, the optimized measures were added to the baseline to determine the combined effects of all measures.
+
+Energy cost was chosen as a reasonable metric for determining the grid-interactive benefits of a technology because it can include the effects of both energy efficiency and demand without the need for time consuming processing of hourly or sub-hourly model outputs, e.g. to determine peak demand reduction. This approach assumes that the utility company structures its tariffs to minimize the burden on its resources. For this analysis, the local electricity and natural gas tariffs from Xcel Energy in Denver, Colorado were used. The electricity tariff includes seasonal consumption charges for summer and winter with time-of-use demand charges that are the same throughout the year. The natural gas tariff includes annual charges for consumption and demand. Tables 2.11 through 2.13 summarize the utility tariffs.
 
 __Table 2.11 Electric Tariff Seasonal Time-of-Use Summary__
 
@@ -749,7 +756,7 @@ __Figure 3.2. Annual Energy Cost Results__
 
 __Figure 3.3 Electric Demand Cost Savings__
 
-__Table 3.1. Individual Measure Energy Cost and Use Savings__
+__Table 3.1. Annual Energy Cost and Use Savings__
 
 Model | Energy Cost Savings | Energy Use Savings
 :- | :- | :-
@@ -763,8 +770,9 @@ M2 | 1.9% | 0.4%
 P1 | 9.2% | -6.9%
 C1 | 0.6% | 0.7%
 C2 | 24.5% | 11.3%
+Combined | 36% | 21.1%
 
-__Table 3.2 Individual Measure Time Setpoint Not Met__
+__Table 3.2 Time Setpoint Not Met__
 
 Model | During Heating [hr]  | During Cooling [hr]  | During Occupied Heating [hr]  | During Occupied Cooling [hr]
 :- | :- | :- | :- | :-
@@ -778,6 +786,7 @@ M2 | 1007 | 478 | 327 | 380
 P1 | 1005 | 390 | 326 | 299
 C1 | 1012 | 380 | 327 | 290
 C2 | 896 | 503 | 147 | 167
+Combined | 1151 | 228 | 215 | 90
 
 ## 3.1 Thermal Storage (A1)
 
@@ -907,7 +916,7 @@ __Figure 3.18 Measure E1 Energy Use Savings__
 
 ## 3.5 Separate Sensible and Latent Space Conditioning (M1)
 
-Initial testing of this measure showed small savings compared to the baseline model using default values from the EnergyPlus example file when the desiccant dehumidifier system was placed downstream of the cooling coil on the supply air stream of all three air loops in the model. This likely indicates an issue with how the EnergyPlus measure adds the desiccant system to the model. Due to the small savings relative to the baseline, this measure was excluded from the optimization. The annual energy cost and use  savings were 0% and 0% respectively as shown in Figures x. and x. below. 
+Initial testing of this measure showed small savings compared to the baseline model using default values from the EnergyPlus example file when the desiccant dehumidifier system was placed downstream of the cooling coil on the supply air stream of all three air loops in the model. This likely indicates an issue with how the EnergyPlus measure adds the desiccant system to the model. Due to the small savings relative to the baseline, this measure was excluded from the optimization. The annual energy cost and use  savings were 0% and 0% respectively as shown in Figures 3.19 and 3.20 below. 
 
 ![image](images/measure_m1_energy_cost_savings.png)
 
@@ -919,7 +928,7 @@ __Figure 3.20 Measure M1 Energy Use Savings__
 
 ## 3.6 Thermal Energy Storage (M2)
 
-The pre-optimization for this measure focused on two discrete variables for the `Coil:Cooling:DX:SingleSpeed:ThermalStorage` object; the `Operating Mode Control Method` and the `Operation Mode Control Schedule Name` fields. The pre-optimization simulated each of the two control methods, EMSControlled and ScheduledModes, with each of the five control schedules to determine the option that minimized the annual energy cost savings compared to the baseline as shown in Figures x. and x. below. For the `Simple User Sched` schedule option, the inputs were kept at default values. Of these eight combinations, the `Simple User Sched` produced the greatest savings with both control methods with the `EMSControlled` method showing greater savings compared to the `Scheduled Modes` option as shown in Figure 3.21 and 3.22 below.
+The pre-optimization for this measure focused on two discrete variables for the `Coil:Cooling:DX:SingleSpeed:ThermalStorage` object; the `Operating Mode Control Method` and the `Operation Mode Control Schedule Name` fields. The pre-optimization simulated each of the two control methods, EMSControlled and ScheduledModes, with each of the five control schedules to determine the option that minimized the annual energy cost savings compared to the baseline. For the `Simple User Sched` schedule option, the inputs were kept at default values. Of these eight combinations, the `Simple User Sched` produced the greatest savings with both control methods with the `EMSControlled` method showing greater savings compared to the `Scheduled Modes` option as shown in Figure 3.21 and 3.22 below.
 
 ![image](images/measure_m2_preoptimization_emscontrolled.png)
 
@@ -941,7 +950,7 @@ __Figure 3.24 Measure M2 Energy Use Savings__
 
 ## 3.7 Building-Scale CHP (P1)
 
-The pre-optimization of this measure focused on the `Generator Operation Scheme Type` discrete variable. The `DemandLimit` option produced the lowest energy cost compared to the other operation schemes as shown in Figure x. 
+The pre-optimization of this measure focused on the `Generator Operation Scheme Type` discrete variable. The `DemandLimit` option produced the lowest energy cost compared to the other operation schemes as shown in Figure 3.25 
 
 ![img](images/measure_p1_preoptimization_generator_operation_scheme.png)
 
@@ -1054,6 +1063,18 @@ __Figure 3.36 Measure C2 Annual Energy Cost Savings__
 ![image](images/measure_c2_energy_use_savings.png)
 
 __Figure 3.37 Measure C2 Annual Energy Use Intensity Savings by End Use__
+
+## 3.10 Combined Measures
+
+The optimized technologies were applied to the baseline model to determine the combined effects on the annual energy cost and use with several excluded from the combined case. A1 and M1 were excluded because the cost and use savings were very close to 0%. A3 (window shades) was excluded because A2 (electrochromic glazing) showed higher savings on an individual basis and because the technologies use the same controls so there is potential for one counteracting the other. This was confirmed by running the simulations with and without measure A3, where the one with the measure showed lower savings. Figures 3.38 and 3.39 show the energy cost and use savings for the combined case, which were 36% and 21.1% respectively. Electric demand cost savings from measure A2 and C2 contributed the most to total cost savings. Similarly, these measures contributed the most to energy use savings, which indicates that electrochromic glazing and smart thermostats or dynamic setpoints have the most potential for providing grid services of the technolgies considered in this analysis.
+
+![image](images/measures_combined_energy_cost_savings.png)
+
+__Figure 3.38 Combined Measures Energy Cost Savings__
+
+![image](images/measures_combined_energy_use_savings.png)
+
+__Figure 3.38 Combined Measures Energy Use Savings__
 
 # 5. Conclusions
 
