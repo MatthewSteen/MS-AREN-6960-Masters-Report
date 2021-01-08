@@ -281,7 +281,7 @@ Construction,
   Dbl Elec Ref Colored 6mm/6mm Air,       !- Name
   ECREF-2 COLORED 6MM,                    !- Layer 1
   AIR 6MM,                                !- Layer 2
-  CLEAR 6MM;                  
+  CLEAR 6MM;                              !- Layer 3
 
 ! U=1.761  SHGC=0.641  TSOL=0.545  TVIS=0.727
 ```
@@ -735,17 +735,21 @@ Demand | 6.75 USD/
 
 # 3. Results
 
-This section presents the optimization of each technology by discussing the process of determining the independent variables to minimize the annual energy cost and presenting the results. For each measure, pre-optimizations were completed in an attempt to reduce the complexity of the problem by identifying a single independent variable to optimize. The annual energy cost and use savings for the individual measures are summarized in Figures x. and x. and Table x. below. Additionally, Table x. shows the time the cooling and heating setpoints are not met to verify that any savings were not the result of the mechanical system not meeting loads. Measures A1, M1, and M2 did not include full optimizations, which are discussed in the corresponding section.
+This section presents the optimization of each technology by discussing the process of determining the independent variables to minimize the annual energy cost and presenting the results. For each measure, pre-optimizations were completed in an attempt to reduce the complexity of the problem by identifying a single independent variable to optimize. The annual energy cost and use savings for the individual measures are summarized in Figures 3.1 through 3.3. and Table 3.1 below. Additionally, Table 3.2 shows the time the cooling and heating setpoints are not met to verify that any savings were not the result of the mechanical system not meeting loads. Measures A1, M1, and M2 did not include full optimizations, which are discussed in the corresponding section.
 
 ![image](images/measures_energy_use.png)
 
-__Figure x. Annual Energy Use Results__
+__Figure 3.1 Annual Energy Use Results__
 
 ![image](images/measures_energy_cost.png)
 
-__Figure x. Annual Energy Cost Results__
+__Figure 3.2. Annual Energy Cost Results__
 
-__Table x. Individual Measure Energy Cost and Use Savings__
+![image](images/measures_elec_demand_cost_savings.png)
+
+__Figure 3.3 Electric Demand Cost Savings__
+
+__Table 3.1. Individual Measure Energy Cost and Use Savings__
 
 Model | Energy Cost Savings | Energy Use Savings
 :- | :- | :-
@@ -760,7 +764,7 @@ P1 | 9.2% | -6.9%
 C1 | 0.6% | 0.7%
 C2 | 24.5% | 11.3%
 
-__Table x. Individual Measure Time Setpoint Not Met__
+__Table 3.2 Individual Measure Time Setpoint Not Met__
 
 Model | During Heating [hr]  | During Cooling [hr]  | During Occupied Heating [hr]  | During Occupied Cooling [hr]
 :- | :- | :- | :- | :-
@@ -777,21 +781,21 @@ C2 | 896 | 503 | 147 | 167
 
 ## 3.1 Thermal Storage (A1)
 
-Initial testing of this measure showed small savings compared to the baseline model when the PCM was added to the inside of all walls. Adding additional PCM to other layers, e.g. ceilings and floors, increased the savings slightly. This technology was excluded from optimization because this measure showed savings that were small relative to the baseline when using default PCM properties from the EnergyPlus example file. The annual energy cost and use savings for this measure are shown in Figures x. and x. below, which showed energy cost and use savings of 0.2% and 0.5% respectively.
+Initial testing of this measure showed small energy use savings of 0.5% compared to the baseline model when the PCM was added to the inside of all walls. Adding additional PCM to other layers, e.g. ceilings and floors, increased the savings slightly. This technology was excluded from optimization because this measure showed savings that were small relative to the baseline when using default PCM properties from the EnergyPlus example file. Comparatively, the EnergyPlus example file showed slightly higher energy use savings of 2.2% compared to the same file without PCM. Both savings estimates are low compared to those found in the literature by Steen (2020). Possible reasons for this discrepancy could be that the object and associated properties from the EnergyPlus example file are generic and not necessarily based on an actual material as no documentation could be found for it. Differences could also be model-specific such as location (Chicago, Illinois vs. Denver, Colorado) and size (37 m2 vs. 4982 m2) because the energy use of smaller buildings is typically driven more by external loads than internal loads. Lastly, the difference could be an issue with the PCM source code of EnergyPlus itself. The annual energy cost and use savings for this measure are shown in Figures 3.4 and 3.5 below, which showed energy cost and use savings of 0.2% and 0.5% respectively.
 
 ![image](images/measure_a1_energy_cost_savings.png)
 
-__Figure x. Measure A1 Energy Cost Savings__
+__Figure 3.4 Measure A1 Energy Cost Savings__
 
 ![image](images/measure_a1_energy_use_savings.png)
 
-__Figure x. Measure A1 Energy Use Savings__
+__Figure 3.5 Measure A1 Energy Use Savings__
 
 ## 3.2 Dynamic Glazing (A2)
 
-The optimization of this measure focused on two variables for the EnergyPlus 'WindowShadingControl` object. The `Shading Control Type` field, a discrete variable which currently has 21 options for high level control that generally reduce thermal loads, improve visual comfort, or improve daylight; and the `Setpoint` field, a continuous variable that allows additional control based on solar radiation (W/m2), temperature (C), or cooling or heating (W). The shading control options are summarized in Table x below.
+The optimization of this measure focused on two variables for the EnergyPlus 'WindowShadingControl` object. The `Shading Control Type` field, a discrete variable which currently has 21 options for high level control that generally reduce thermal loads, improve visual comfort, or improve daylight; and the `Setpoint` field, a continuous variable that allows additional control based on solar radiation (W/m2), temperature (C), or cooling or heating (W). The shading control options are summarized in Table 3.3 below.
 
-__Table x. WindowShadingControl Object Shading Control Types__
+__Table 3.3 WindowShadingControl Object Shading Control Types__
 
 Shading Control Type | Cooling | Heating | Cooling and Heating | Other
 :- | :- | :- | :- | :-
@@ -817,9 +821,9 @@ OnIfHighOutdoorAirTempAndHighHorizontalSolar | &#9673; | &#9675; | &#9675; | &#9
 OnIfHighZoneAirTempAndHighSolarOnWindow | &#9673; | &#9675; | &#9675; | &#9675;
 OnIfHighZoneAirTempAndHighHorizontalSolar | &#9673; | &#9675; | &#9675; | &#9675;
 
-The pre-optimization process focused on shading control types to reduce heating loads since the model's peak electric demand occurs in the winter months due to air terminals with electric reheat. Furthermore, the selected shading control types were limited to ones that use indoor or outdoor air temperature for setpoint control. Table x. summarizes the pre-optimization variables for this measure.
+The pre-optimization process focused on shading control types to reduce heating loads since the model's peak electric demand occurs in the winter months due to air terminals with electric reheat. Furthermore, the selected shading control types were limited to ones that use indoor or outdoor air temperature for setpoint control. Table 3.4 summarizes the pre-optimization variables for this measure.
 
-__Table x. Measure A2 Optimization Variables__
+__Table 3.4 Measure A2 Optimization Variables__
 
 Shading Control Type (discrete) | Setpoints (continuous)
 :- | :-
@@ -827,79 +831,79 @@ OnNightIfLowInsideTempAndOffDay | 15-21C in 1C increments
 OnNightIfLowOutdoorTempAndOffDay | 0-20C in 5C increments
 OnNightIfLowOutdoorTempAndOnDayIfCooling | 0-20C in 5C increments
 
-The pre-optimization was comprised of two separate runs using the Baseline Perturbation analysis option in PAT to determine the magnitude and direction of utility cost savings; one for `OnNightIfLowOutdoorTempAndOffDay` and `OnNightIfLowOutdoorTempAndOnDayIfCooling` shading controls, which use an outdoor air temperature setpoint; and one for `OnNightIfLowInsideTempAndOffDay`, which uses an indoor air temperature setpoint. Of these 17 simulations, the `OnNightIfLowOutdoorTempAndOnDayIfCooling` shading control was the only one that showed significant energy cost savings compared to the baseline with the other two shading control types showing very small energy cost increases.
+The pre-optimization was comprised of two separate runs using the Baseline Perturbation analysis option in PAT, which allows discrete values of independent variables to be explored parametrically, to determine the magnitude and direction of utility cost savings; one for `OnNightIfLowOutdoorTempAndOffDay` and `OnNightIfLowOutdoorTempAndOnDayIfCooling` shading controls, which use an outdoor air temperature setpoint; and one for `OnNightIfLowInsideTempAndOffDay`, which uses an indoor air temperature setpoint. Of these 17 simulations, the `OnNightIfLowOutdoorTempAndOnDayIfCooling` shading control was the only one that showed significant energy cost savings compared to the baseline with the other two shading control types showing very small energy cost increases.
 
-The optimization of this measure used the Particle Swarm Optimization (PSO) analysis option in PAT, which is based on hydroPSO (Zambrano-Bigiarini et. al., 2013) with a single independent variable, the outdoor air temperature setpoint, to minimize the annual energy cost. The as shown in Figure x. 
+The optimization of this measure used the Particle Swarm Optimization (PSO) analysis option in PAT, which is based on hydroPSO (Zambrano-Bigiarini et. al., 2013) with a single independent variable, the outdoor air temperature setpoint, to minimize the annual energy cost as shown in Figure 3.6 below. For this measure, the energy cost showed little sensitivity to variations in outdoor air temperature indicating that cooling savings during the day are the driver rather than heating savings during the night.  
 
 ![image](images/measure_a2_optimization_results.png)
 
-__Figure x. Measure A2 Optimization Results__
+__Figure 3.6 Measure A2 Optimization Results__
 
-The annual energy cost and use savings for the optimized setpoint of 20.64C is shown in Figures x. and x. below, which showed a savings of 10.3% and 6.1% respectively.
+The annual energy cost and use savings for the optimized setpoint of 20.64C are shown in Figures 3.7 and 3.8 below, which showed savings of 10.3% and 6.1% respectively. 
 
 ![image](images/measure_a2_energy_cost_savings.png)
 
-__Figure x. Measure A2 Energy Cost Savings__
+__Figure 3.7 Measure A2 Energy Cost Savings__
 
 ![image](images/measure_a2_energy_use_savings.png)
 
-__Figure x. Measure A2 Energy Use Savings__
+__Figure 3.8 Measure A2 Energy Use Savings__
 
 ## 3.3 Automated Attachments (A3)
 
-The optimization of this technology used the same methodology as measure A2. The pre-optimization showed similar results as A2, with the `OnNightIfLowOutdoorTempAndOnDayIfCooling` shading control showing the greatest annual energy cost savings compared to the baseline. This control option was chosen for optimization using the PSO analysis option in PAT with the setpoint as the continuous variable to optimize for the lowest annual energy cost. Figures x, x, and x compare the pre-optimization results showing that the `OnNightIfLowOutdoorTempAndOnDayIfCooling` control option produced the greatest savings.
+The optimization of this technology used the same methodology as measure A2. The pre-optimization showed similar results as A2, with the `OnNightIfLowOutdoorTempAndOnDayIfCooling` shading control showing the greatest annual energy cost savings compared to the baseline. This control option was chosen for optimization using the PSO analysis option in PAT with the setpoint as the continuous variable to optimize for the lowest annual energy cost. Figures 3.9 through 3.11 compare the pre-optimization results showing that the `OnNightIfLowOutdoorTempAndOnDayIfCooling` control option produced the greatest savings.
 
 ![image](images/measure_a3_energy_cost_savings_OnNightIfLowInsideTempAndOffDay.png)
 
-__Figure x. Measure A3 Energy Cost Savings for OnNightIfLowInsideTempAndOffDay Control__
+__Figure 3.9 Measure A3 Energy Cost Savings for OnNightIfLowInsideTempAndOffDay Control__
 
 ![image](images/measure_a3_energy_cost_savings_OnNightIfLowOutdoorTempAndOffDay.png)
 
-__Figure x. Measure A3 Energy Cost Savings for OnNightIfLowOutdoorTempAndOffDay Control__
+__Figure 3.10 Measure A3 Energy Cost Savings for OnNightIfLowOutdoorTempAndOffDay Control__
 
 ![image](images/measure_a3_energy_cost_savings_OnNightIfLowOutdoorTempAndOnDayIfCooling.png)
 
-__Figure x. Measure A3 Energy Cost Savings for OnNightIfLowOutdoorTempAndOnDayIfCooling Control__
+__Figure 3.11 Measure A3 Energy Cost Savings for OnNightIfLowOutdoorTempAndOnDayIfCooling Control__
 
-The optimization of this measure used the PSO analysis option in PAT with a single independent variable, the outdoor air temperature setpoint, to minimize the annual energy cost as shown in Figure x. 
+The optimization of this measure used the PSO analysis option in PAT with a single independent variable, the outdoor air temperature setpoint, to minimize the annual energy cost as shown in Figure 3.12. Similar to A2, the energy cost savings showed little sensitivity to variations in outdoor air temperature indicating that cooling savings are the driver.
 
 ![image](images/measure_a3_optimization_results.png)
 
-__Figure x. Measure A3 Optimization Results__
+__Figure 3.12. Measure A3 Optimization Results__
 
-The annual energy cost and use savings for the optimized setpoint of 13C is shown in Figures x. and x. below, which showed a savings of 3.3% and 1.9% and respectively.
+The annual energy cost and use savings for the optimized setpoint of 13C is shown in Figures 3.13 and 3.14 below, which showed a savings of 3.3% and 1.9% and respectively. 
 
 ![image](images/measure_a3_energy_cost_savings.png)
 
-__Figure x. Measure A3 Energy Cost Savings__
+__Figure 3.13 Measure A3 Energy Cost Savings__
 
 ![image](images/measure_a3_energy_use_savings.png)
 
-__Figure x. Measure A3 Energy Use Savings__
+__Figure 3.14 Measure A3 Energy Use Savings__
 
 ## 3.4 Continuous-Operation Electronics (E1)
 
-The optimization process for this technology focused on two continuous variables; the `Minimum Limit Duration`, which is the minimum amount of time in minutes that the equipment power is reduced during demand limiting, and the `Maximum Limit Fraction`, which is the fractional limit of full load lighting power reduction where 1.0 indicates no reduction. The optimization first evaluated the effect of the demand limit fraction on the annual energy cost by simulating ten fractions of 0.1 to 1.0 in 0.1 increments. As expected, this variable showed a strong linear relationship with annual energy cost as shown in Figure x below.
+The optimization process for this technology focused on two continuous variables; the `Minimum Limit Duration`, which is the minimum amount of time in minutes that the equipment power is reduced during demand limiting, and the `Maximum Limit Fraction`, which is the fractional limit of full load lighting power reduction where 1.0 indicates no reduction. The optimization first evaluated the effect of the demand limit fraction on the annual energy cost by simulating ten fractions of 0.1 to 1.0 in 0.1 increments. As expected, this variable showed a strong linear relationship with annual energy cost as shown in Figure 3.15 below. 
 
 ![image](images/measure_e1_optimization_results_fraction.png)
 
-__Figure x. Measure E1 Optimization Results for Fraction__
+__Figure 3.15 Measure E1 Optimization Results for Fraction__
 
-Next, the optimization evaluated the effect of the demand limit duration on the energy cost by simulating durations between 10 minutes and 320 minutes. This variable had a very small effect on the annual energy cost as shown in Figure x. below.
+Next, the optimization evaluated the effect of the demand limit duration on the energy cost by simulating durations between 10 minutes and 320 minutes. This variable had a very small effect on the annual energy cost as shown in Figure 3.16 below.
 
 ![image](images/measure_e1_optimization_results_duration.png)
 
-__Figure x. Measure E1 Optimization Results for Duration__
+__Figure 3.16 Measure E1 Optimization Results for Duration__
 
-The optimization kept the `Maximum Limit Fraction` fixed at 50% and focused on optimizing the `Minimum Limit Duration`. Because the annual energy cost only varied by about 2.00 USD between the discrete variables in the pre-optimization, this analysis forewent a formal optimization and chose a duration of 40 minutes as the value that minimized the annual energy cost. The energy cost and use savings for a 40 minute demand limit duration was 3.5% and 4.0% as shown in Figure x. and x. below.
+The optimization kept the `Maximum Limit Fraction` fixed at 50% and focused on optimizing the `Minimum Limit Duration`. Because the annual energy cost only varied by about 2.00 USD between the discrete variables in the pre-optimization, this analysis forewent a formal optimization and chose a duration of 40 minutes as the value that minimized the annual energy cost. The energy cost and use savings for a 40 minute demand limit duration was 3.5% and 4.0% as shown in Figure 3.17 and 3.18 below.
 
 ![image](images/measure_e1_energy_cost_savings.png)
 
-__Figure x. Measure E1 Energy Cost Savings__
+__Figure 3.17 Measure E1 Energy Cost Savings__
 
 ![image](images/measure_e1_energy_use_savings.png)
 
-__Figure x. Measure E1 Energy Use Savings__
+__Figure 3.18 Measure E1 Energy Use Savings__
 
 ## 3.5 Separate Sensible and Latent Space Conditioning (M1)
 
@@ -907,35 +911,33 @@ Initial testing of this measure showed small savings compared to the baseline mo
 
 ![image](images/measure_m1_energy_cost_savings.png)
 
-__Figure x. Measure M1 Energy Cost Savings__
+__Figure 3.19 Measure M1 Energy Cost Savings__
 
 ![image](images/measure_m1_energy_use_savings.png)
 
-__Figure x. Measure M1 Energy Use Savings__
+__Figure 3.20 Measure M1 Energy Use Savings__
 
 ## 3.6 Thermal Energy Storage (M2)
 
-The pre-optimization for this measure focused on two discrete variables for the `Coil:Cooling:DX:SingleSpeed:ThermalStorage` object; the `Operating Mode Control Method` and the `Operation Mode Control Schedule Name` fields. The pre-optimization simulated each of the two control methods, EMSControlled and ScheduledModes, with each of the five control schedules to determine the option that minimized the annual energy cost savings compared to the baseline as shown in Figures x. and x. below. For the `Simple User Sched` schedule option, the inputs were kept at default values. Of these eight combinations, the `Simple User Sched` produced the greatest savings with both control methods with the `EMSControlled` method showing greater savings compared to the `Scheduled Modes` option as shown in Figure x. and x. below.
+The pre-optimization for this measure focused on two discrete variables for the `Coil:Cooling:DX:SingleSpeed:ThermalStorage` object; the `Operating Mode Control Method` and the `Operation Mode Control Schedule Name` fields. The pre-optimization simulated each of the two control methods, EMSControlled and ScheduledModes, with each of the five control schedules to determine the option that minimized the annual energy cost savings compared to the baseline as shown in Figures x. and x. below. For the `Simple User Sched` schedule option, the inputs were kept at default values. Of these eight combinations, the `Simple User Sched` produced the greatest savings with both control methods with the `EMSControlled` method showing greater savings compared to the `Scheduled Modes` option as shown in Figure 3.21 and 3.22 below.
 
 ![image](images/measure_m2_preoptimization_emscontrolled.png)
 
-__Figure x. Measure M2 Pre-optimization Results for EMSControlled Control Method__
+__Figure 3.21 Measure M2 Pre-optimization Results for EMSControlled Control Method__
 
 ![image](images/measure_m2_preoptimization_scheduledmodes.png)
 
-__Figure x. Measure M2 Pre-optimization Results for ScheduledModes Control Method__
+__Figure 3.22 Measure M2 Pre-optimization Results for ScheduledModes Control Method__
 
-Based on the pre-optimization results, the `EMSControlled` control method was chosen with the `Simple User Sched` schedule option to optimize the annual energy cost. Four of the five continuous variables for the simple user schedule were chosen to optimize with the season fixed at the default value of 01/01-12/31. The four continuous variables of charge start and end time, and discharge start and end time were optimized with discrete hourly values from 0000 to 2400.
-
-The annual energy use intensity and energy cost savings for this measure is shown in Figures x. and x. below.
+Based on the pre-optimization results, the `EMSControlled` control method was chosen with the `Simple User Sched` schedule option to optimize the annual energy cost. Several attempts were made to optimize the four continuous variables of charge start and stop time, and discharge start and stop time without success. In place of a formal optimization, this analysis kept the measure's default time values, which showed an annual energy cost and use savings of 2.5% and 0.0% shown in Figures 3.23 and 3.24. Further savings are a likely possibility with additional analysis of optimal charge and discharge times that align with time-of-use demand charges and building cooling loads.
 
 ![image](images/measure_m2_energy_cost_savings.png)
 
-__Figure x. Measure M2 Optimized Energy Cost Savings__
+__Figure 3.23 Measure M2 Energy Cost Savings__
 
 ![image](images/measure_m2_energy_use_savings.png)
 
-__Figure x. Measure M2 Optimized Energy Use Savings__
+__Figure 3.24 Measure M2 Energy Use Savings__
 
 ## 3.7 Building-Scale CHP (P1)
 
@@ -943,9 +945,9 @@ The pre-optimization of this measure focused on the `Generator Operation Scheme 
 
 ![img](images/measure_p1_preoptimization_generator_operation_scheme.png)
 
-__Figure x. Measure P1 Generator Operation Scheme Energy Cost Savings__
+__Figure 3.25 Measure P1 Generator Operation Scheme Energy Cost Savings__
 
-The demand limit operation scheme turns on the generator when total demand is above the value set in the `Generator Demand Limit Scheme Purchased Electric Demand Limit` field, which was chosen as the optimization variable. This value was set to 206.1 kW as an initial estimate to maximize demand reduction by reducing peak demand during the month with the lowest utility demand (271.1 kW in September) by the generator's `Maximum Full Load Electrical Power Output` (65 kW), as shown in the object below and Figure x. 
+The demand limit operation scheme turns on the generator when total demand is above the value set in the `Generator Demand Limit Scheme Purchased Electric Demand Limit` field, which was chosen as the optimization variable. This value was set to 206.1 kW as an initial estimate to maximize demand reduction by reducing peak demand during the month with the lowest utility demand (271.1 kW in September) by the generator's `Maximum Full Load Electrical Power Output` (65 kW), as shown in the object below and Figure 3.26.
 
 ```
 ElectricLoadCenter:Distribution,
@@ -960,49 +962,53 @@ ElectricLoadCenter:Distribution,
 
 ![img](images/measure_p1_preoptimization_demand_limit.png)
 
-__Figure x. Demand Limit Generator Operation Scheme Demand Profile__
+__Figure 3.26 Demand Limit Generator Operation Scheme Demand Profile__
 
-The optimization process for this measure used the PSO analysis option in PAT with a single independent continuous variable, the `Generator Demand Limit Scheme Purchased Electric Demand Limit` in Watts, to minimize the annual utility cost. 
+The optimization process for this measure used the PSO analysis option in PAT with a single independent continuous variable, the `Generator Demand Limit Scheme Purchased Electric Demand Limit` in Watts, to minimize the annual utility cost, which is shown in Figure 3.27.
 
 ![image](images/measure_p1_optimization_results.png)
 
-__Figure x. Measure P1 Optimization Results__
+__Figure 3.27 Measure P1 Optimization Results__
 
-The annual energy cost and use savings for the optimized demand limit of 239.65 kW is shown in Figures x. and x. below, which showed a savings of 9.2% and -6.9% respectively. This measure saved demand costs at the expense of increased natural gas cost and consumption, which shows up under the Generators end use in EnergyPlus.
+The annual energy cost and use savings for the optimized demand limit of 239.65 kW is shown in Figures 3.28 and 3.29 below, which showed a savings of 9.2% and -6.9% respectively. This measure saved demand costs at the expense of increased natural gas cost and consumption, indicated by the high negative gas cost savings and the Generators energy end use. The optimal demand limit is higher than the initial guessed value because the generator does not always run at full load when on such that produced electricity, building demand, and time-of-use demand period is not always coincident as shown in Figure 3.30. 
 
 ![image](images/measure_p1_energy_cost_savings.png)
 
-__Figure x. Measure P1 Energy Cost Results__
+__Figure 3.28 Measure P1 Energy Cost Results__
 
 ![image](images/measure_p1_energy_use_savings.png)
 
-__Figure x. Measure P1 Energy Use Results__
+__Figure 3.29 Measure P1 Energy Use Results__
+
+![image](images/measure_p1_generator_produced_electricity.png)
+
+__Figure 3.30 Measure P1 Generator Produced Electricity__
 
 ## 3.8 Advanced Sensors and Controls (lighting) (C1)
 
 The pre-optimization process for this technology focused on two continuous variables; the `Minimum Limit Duration`, which is the minimum amount of time in minutes that the lighting power is reduced during demand limiting, and the `Maximum Limit Fraction`, which is the fractional limit of full load lighting power reduction where 1.0 indicates no reduction. The `Maximum Limit Fraction` was fixed at 0.85 based on California's 2016 energy standard, which requires that all buildings greater than 929 m2 (10,000 ft2) be capable of automatically reducing total lighting power by at least 15% in response to a signal from the grid. 
 
-For the optimization, the demand limit duration was simulated at fixed durations to determine the sensitivity of the results. The results showed very small changes in annual energy of about 1.00 USD with durations of 10 minutes to 320 minutes as shown in Figure x.
+For the optimization, the demand limit duration was simulated at fixed durations to determine the sensitivity of the results. Similar to E1, this measure showed very small changes in annual energy cost when the duration was varied over a reasonable range as shown in Figure 3.31.
 
 ![image](images/measure_c1_optimization_results.png)
 
-__Figure x. Measure C1 Optimization Results__
+__Figure 3.31 Measure C1 Optimization Results__
 
-The annual energy cost and use savings for the optimized duration of 40 minutes is shown in Figures x. and x. below, which showed a savings of 0.6% and 0.7% respectively.
+The annual energy cost and use savings for the optimized duration of 40 minutes is shown in Figures 3.32 and 3.33 below, which showed a savings of 0.6% and 0.7% respectively. Additional savings can be achieved by reducing the limit fraction, however, dimming limits must consider comfort and safety  
 
 ![image](images/measure_c1_energy_cost_savings.png)
 
-__Figure x. Measure C1 Annual Energy Cost Savings__
+__Figure 3.32 Measure C1 Annual Energy Cost Savings__
 
 ![image](images/measure_c1_energy_use_savings.png)
 
-__Figure x. Measure C1 Annual Energy Use Intensity Savings by End Use__
+__Figure 3.33 Measure C1 Annual Energy Use Intensity Savings by End Use__
 
 ## 3.9 Smart Thermostats (C2)
 
-The optimization process for this measure used the Baseline Perturbation analysis option in PAT, which allows discrete values of independent variables to be explored parametrically. For this analysis, the `Maximum Heating Setpoint Reset` and the `Maximum Cooling Setpoint Reset` were optimized to reduce the total annual utility cost by changing the reset temperature by 0.5C increments between the occupied and unoccupied setpoints as summarized in the table x. and x. below. These two independent variables were optimized separately because there is limited interaction between the heating setpoint and cooling setpoint, which also reduced computation time significantly.
+The optimization process for this measure used the Baseline Perturbation analysis option in PAT. For this measure, the `Maximum Heating Setpoint Reset` and the `Maximum Cooling Setpoint Reset` were optimized to reduce the total annual utility cost by changing the reset temperature by 0.5C increments between the occupied and unoccupied setpoints as summarized in the Table 3.5 and 3.6 below. These two independent variables were optimized separately because there is limited interaction between the heating setpoint and cooling setpoint, which also reduced computation time significantly.
 
-__Table x. Maximum Heating Setpoint Reset Temperatures__
+__Table 3.5 Maximum Heating Setpoint Reset Temperatures__
 
 Heating Setpoint | Setpoint (C)
 :- | :-
@@ -1019,7 +1025,7 @@ Discrete Values | 20.5
 . | 16
 Unoccupied | 15.6
 
-__Table x. Maximum Cooling Setpoint Reset Temperatures__
+__Table 3.6 Maximum Cooling Setpoint Reset Temperatures__
 
 Cooling Setpoint | Setpoint (C)
 :- | :-
@@ -1031,23 +1037,23 @@ Discrete Values | 24.5
 . | 26.5
 Unoccupied | 26.7
 
-As expected, greater reset temperatures produced more utility cost savings such that the highest savings occurred with resets that were at or near the unoccupied setpoint temperatures. For heating, the highest cost savings occurred with a reset temperature of 16C, close to the unoccupied setpoint of 15.7C as shown in Figure x. For Cooling, the hightest cost savings occurred with a reset temperature of 26.7C, the unoccupied setpoint as shown in Figure x. The annual energy cost and use savings for the combination of these reset temperatures is shown in Figures x. and x. below, which was 24.5% and 11.3% respectively.
+As expected, greater reset temperatures produced higher utility cost savings such that the highest savings occurred with resets that were at or near the unoccupied setpoint temperatures. For heating, the highest cost savings occurred with a reset temperature of 16C, close to the unoccupied setpoint of 15.7C as shown in Figure 3.34. For Cooling, the hightest cost savings occurred with a reset temperature of 26.7C, the unoccupied setpoint as shown in Figure 3.35. The annual energy cost and use savings for the combination of these reset temperatures is shown in Figures 3.36 and 3.37 below, which were 24.5% and 11.3% respectively.
 
 ![image](images/measure_c2_optimization_results_htg.png)
 
-__Figure x. Measure C2 Optimization of Heating Setpoint__
+__Figure 3.34 Measure C2 Optimization of Heating Setpoint__
 
 ![image](images/measure_c2_optimization_results_clg.png)
 
-__Figure x. Measure C2 Optimization of Cooling Setpoint__
+__Figure 3.35 Measure C2 Optimization of Cooling Setpoint__
 
 ![image](images/measure_c2_energy_cost_savings.png)
 
-__Figure x. Measure C2 Annual Energy Cost Savings__
+__Figure 3.36 Measure C2 Annual Energy Cost Savings__
 
 ![image](images/measure_c2_energy_use_savings.png)
 
-__Figure x. Measure C2 Annual Energy Use Intensity Savings by End Use__
+__Figure 3.37 Measure C2 Annual Energy Use Intensity Savings by End Use__
 
 # 5. Conclusions
 
