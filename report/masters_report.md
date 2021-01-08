@@ -39,28 +39,32 @@ This report builds upon previous work that reviewed and categorized GEB technolo
 
 # 2. Methodology
 
-The analysis used a reference building energy model from the U.S. Department of Energy Commercial Reference Building Models (Deru et. al., 2011) as the starting point for evaluating the technologies, henceforth referred to as the baseline. The reference building models are EnergyPlus models (Crawley et. al., 2001) that are collectively representative of over 60% of the commercial building stock in the United States and are meant to represent generic existing and new buildings rather than a specific individual building. The Medium Office model was chosen because it is most representative of the commercial building stock in the United States based on area according to the Commercial Buildings Energy Consumption Survey (EIA, 2012). 
+The methodology for this analysis used a reference building energy model from the U.S. Department of Energy Commercial Reference Building Models (Deru et. al., 2011) as the starting point for evaluating the technologies, henceforth referred to as the baseline. The reference building models are EnergyPlus models (Crawley et. al., 2001) that are collectively representative of over 60% of the commercial building stock in the United States and are meant to represent generic existing and new buildings rather than a specific individual building. The Medium Office model was chosen because it is most representative of the commercial building stock in the United States based on area according to the Commercial Buildings Energy Consumption Survey (EIA, 2012). 
 
-The baseline model was created with OpenStudio using the Create Prototype Building measure. OpenStudio is a software development kit that includes a collection of tools for BPS (Guglielmetti et. al., 2011). Notably, OpenStudio includes tools to create models that can be translated to EnergyPlus for simulation and application programming interfaces for programatically interacting with models. Measures are formal computer scripts written in the Ruby programming language that can interact with an OpenStudio model directly (an OpenStudio Measure), change the EnergyPlus model prior to simulation (an EnergyPlus Measure), or produce reports after simulation with Reporting Measures (Roth et. al, 2016). 
-For each technology considered in this analysis, a Measure was used to apply it to the baseline model for optimization in OpenStudio's  Parametric Analysis Tool (PAT), which allows performing sensitivity analyses, uncertainty quantification, design optimization, and model calibration on a large scale through the use of cloud computing (Ball et. al., 2020). 
+The baseline model was created with OpenStudio using the Create Prototype Building measure. OpenStudio is a software development kit that includes a collection of tools for BPS (Guglielmetti et. al., 2011). Notably, OpenStudio includes tools to create models that can be translated to EnergyPlus for simulation and application programming interfaces for programatically interacting with models. Measures are formal computer scripts written in the Ruby programming language that can interact with an OpenStudio model directly (an OpenStudio Measure), change the EnergyPlus model prior to simulation (an EnergyPlus Measure), or produce reports after simulation with Reporting Measures (Roth et. al, 2016). For each technology considered in this analysis, a Measure was used to apply it to the baseline model for optimization in OpenStudio's  Parametric Analysis Tool (PAT), which allows performing sensitivity analyses, uncertainty quantification, design optimization, and model calibration on a large scale through the use of cloud computing (Ball et. al., 2020). Figure x. shows a general diagram of the methodology used in this analysis.
+
+![image](images/methodology.png)
+
+__Figure 2.1 Methodology Diagram__
 
 ## 2.1 Baseline Model Inputs
 
- Several changes to the baseline model were required to allow the application of specific technologies, which are described in the Measures section. In total, the changes decreased the energy use intensity (EUI) by 0.9% and increased the peak electric demand by 10.2% (unadjusted facility) and 4.8% (adjusted utility). The following figures and tables summarize the baseline model inputs and outputs (simulation results).
+ The following figure and tables summarize the details of the baseline model including the geometry and inputs. Importantly, the baseline was located in Denver, Colorado using energy costs from the local electricity and natural gas utility. Several changes to the baseline model were required to allow the application of specific technologies, which are described in the Measures section. 
 
 ![image](images/baseline_geometry.png)
 
-__Figure x. Model Geometry (green axis is north)__
+__Figure 2.2 Model Geometry (green axis is north)__
 
-__Table x. General Inputs__
+__Table 2.1 General Inputs__
 
 | Input | Description |
 | :- | :- |
+| Location | Denver, Colorado |
+| Utility Rates | Xcel Energy Secondary General and Large CG tariffs |
 | Occupancy | 0.053820 people/m2 |
 | Schedule | Mon-Fri, 0600-2200 Sat, 0600-1700 |
-| Utility Rates | Xcel Energy Electricity: Secondary General Natural Gas: Large CG |
 
-__Table x. Geometry Inputs__
+__Table 2.2 Geometry Inputs__
 
 | Input | Description |
 | :- | :- |
@@ -73,30 +77,30 @@ __Table x. Geometry Inputs__
 | Exterior Shading | None |
 | Azimuth | 0 |
 
-__Table x. Architectural Inputs__
+__Table 2.3 Architectural Inputs__
 
 | Input | Description |
 | :- | :- |
-| Roofs | Insulation Entirely Above Deck U-0.501 |
-| Walls, above grade | Steel-Framed U-0.302 |
-| Slab-on-Grade Floors | Mass (4” concrete) U-3.402 |
+| Roofs | Roof membrane, R-3.26 Insulation (U-0.501) |
+| Walls, above grade | Stucco, Gypsum board, R-1.76 Insulation, Gypsum (U-0.302) |
+| Slab-on-Grade Floors | 10 cm Concrete, Carpet pad (U-3.402) |
+| Interior Floors | 10 cm Concrete, Carpet pad |
 | Windows | Layered Glazing U-2.371, SHGC-0.180, VT-0.137 |
 | Doors | Swinging, Insulated Metal U-35.433 |
 | Window-to-Wall Ratio | 33% all facades  |
 | Infiltration (ACH) | 0.75 |
 
-__Table x. Electrical Inputs__
+__Table 2.4 Electrical Inputs__
 
 | Input | Description |
 | :- | :- |
 | Interior Lighting Power | 16.9 W/m2 |
-| Interior Lighting Controls |  |
 | Exterior Lighting Power | 17809 W |
 | Exterior Lighting Controls | Astronomical time switch |
 | Equipment Power | 10.76 W/m2 |
 | Conveyance | Elevator: 14610 W |
 
-__Table x. Mechanical Inputs__
+__Table 2.5 Mechanical Inputs__
 
 | Input | Description |
 | :- | :- |
@@ -107,7 +111,7 @@ __Table x. Mechanical Inputs__
 | Cooling Type | Single Speed PACU |
 | Fan Control | Variable |
 
-__Table x. Plumbing Inputs__
+__Table 2.6 Plumbing Inputs__
 
 | Input | Description |
 | :- | :- |
@@ -119,47 +123,55 @@ __Table x. Plumbing Inputs__
 
 ## 2.2 Baseline Model Outputs
 
+The changes to the baseline model that were required to apply the measures increased the energy cost by 3.8% and decreased the energy use by 0.9%. The following figures present the annual, monthly, and hourly peak day outputs (simulation results) of the baseline model. On an annual basis, energy use is dominated by interior electric equipment and heating from electric reheat.
+
 ![image](images/baseline_annual_energy_pct.png)
 
-__Figure x. Annual Energy Use Percent__
+__Figure 2.3 Annual Energy Use Percent__
 
 ![image](images/baseline_annual_energy_eui.png)
 
-__Figure x. Annual Energy Use Intensity__
+__Figure 2.4 Annual Energy Use Intensity__
+
+On a monthly basis, the baseline annual electricity profile peaks in the winter month of December shown in Figure 2.5 due to the electric resistance reheat coils in the variable air volume terminals. Similarly, peak monthly demand occurs in December due to electric reheat shown in Figure 2.6. However, it's important to note that a building's peak demand is not necessarily coincident with the peak demand from the utility's or grid's perspective. This point is illustrated in Figure 2.7 showing the building's peak demand occurs in December while the peak demand based on the electricity tariff occurs in February.
 
 ![image](images/baseline_monthly_elec_energy.png)
 
-__Figure x. Monthly Electricity Energy__
+__Figure 2.5 Monthly Electricity Energy__
 
 ![image](images/baseline_monthly_elec_demand.png)
 
-__Figure x. Monthly Electricity Demand__
-
-![image](images/baseline_hourly_elec.png)
-
-__Figure x. Hourly Electricity Demand on Peak Day (Feb 06)__
-
-![image](images/baseline_monthly_ngas_energy.png)
-
-__Figure x. Monthly Natural Gas Energy__
-
-![image](images/baseline_monthly_ngas_demand.png)
-
-__Figure x. Monthly Natural Gas Demand__
-
-![image](images/baseline_hourly_ngas.png)
-
-__Figure x. Hourly Natural Gas Demand on Peak Day (Dec 22)__
+__Figure 2.6 Monthly Electricity Demand__
 
 ![image](images/baseline_monthly_elec_demand_comparison.png)
 
-__Figure x. Monthly Electricity Peak vs. Utility Demand__
+__Figure 2.7 Monthly Electricity Peak vs. Utility Demand__
+
+For natural gas, the monthly peak use and demand occurs in December, shown in Figures 2.8 and 2.9, due to central heating coils in the air handling units that provide ventilation and pre-conditioned air to the thermal zones.
+
+![image](images/baseline_monthly_ngas_energy.png)
+
+__Figure 2.8 Monthly Natural Gas Energy__
+
+![image](images/baseline_monthly_ngas_demand.png)
+
+__Figure 2.9 Monthly Natural Gas Demand__
+
+On an hourly basis, the peak demand for electric cost occurs on February 6th at 0700 in the first hour after the building is changed to occupied mode (Figure 2.10). Similarly, peak demand for natural gas occurs at the same time of day, but on December 22nd (Figure 2.11).
+
+![image](images/baseline_hourly_elec.png)
+
+__Figure 2.10 Hourly Electricity Demand on Peak Day (Feb 06)__
+
+![image](images/baseline_hourly_ngas.png)
+
+__Figure 2.11 Hourly Natural Gas Demand on Peak Day (Dec 22)__
 
 ## 2.3 Measures
 
-This section describes the nine measures used to apply each technology to the baseline model, which are coded according to Table x. Where a change to the baseline model was required to apply a measure, it is described in the corresponding section. 
+This section describes the nine measures used to apply each technology to the baseline model, which are coded according to Table 2.7. Where a change to the baseline model was required to apply a measure, it is described in the corresponding section. 
 
-__Table x. Measure Codes__
+__Table 2.7 Measure Codes__
 
 Code | Category | Description
 :- | :- | :-
@@ -193,19 +205,20 @@ MaterialProperty:PhaseChange,
 
 The `MaterialProperty:PhaseChange` object describes the temperature-enthalpy relationship of the Material object referenced by the Name field. The `Temperature Coefficient for Thermal Conductivity` field describes the material's thermal conductivity change per unit temperature from 20C in W/m-K2. Thermal conductivity is calculated from:
 
-k = {k_o} + {k_1}({T_i} - 20)
+$$k = {k_o} + {k_1}({T_i} - 20)$$ (1)
 
 where:
 
-k\(_{o}\) is the 20C value of thermal conductivity(normal idf~ input)
+$k{o}$ is the 20C value of thermal conductivity(normal idf~ input)
 
-k\(_{1}\) is the change in conductivity per degree temperature difference from 20C
+$k{1}$ is the change in conductivity per degree temperature difference from 20C
+
 
 For this analysis, the baseline heat balance algorithm was changed to conduction finite difference and the phase change material was added to the interior layer of all walls, i.e. the layer exposed to the thermal zone, because the phase change temperature occurs at 22C as shown in figure x. 
 
 ![image](images/measure_a1_temperature_enthalpy.png)
 
-__Figure x. Measure A1 Temperature-Enthalpy Relationship__
+__Figure 2.12 Measure A1 Temperature-Enthalpy Relationship__
 
 ### 2.3.2 Dynamic Glazing (A2)
  
@@ -560,7 +573,7 @@ EnergyManagementSystem:ProgramCallingManager,
 
 With the `ScheduledModes` option, the operating mode is determined by a schedule in the `Operation Mode Control Schedule Name` field that uses six built-in operating mode options ummarized in Table x.
 
-__Table x. Measure M2 Operation Mode Descriptions__
+__Table 2.8 Measure M2 Operation Mode Descriptions__
 
 Operating Mode | Description
 :- | :-
@@ -573,7 +586,7 @@ Discharge Only Mode | Object is cooling by discharging the TES tank and the cond
 
 The measure includes five built-in options for the control schedule; a user-defined option (Simple User Sched) and four pre-defined options summarized in Table x. below. The `Simple User Sched` option allows the user to define a daily and hourly schedule for when he TES is used through the year shown in Table x.
 
-__Table x. Measure M2 Operation Mode Control Schedule Descriptions__
+__Table 2.9 Measure M2 Operation Mode Control Schedule Descriptions__
 
 Operation Mode Control Schedule Name | Description
 :- | :-
@@ -583,7 +596,7 @@ TES Sched 2: 1-5 Peak | Discharges ice between 1:00-5:00 pm and charges from mid
 TES Sched 3: 3-8 Peak | Discharges ice between 3:00-8:00 pm, and charges from midnight to 7 am.
 TES Sched 4: GSS-T | Aligns ice discharge to Sacramento's 2018 GSS-T electricity rate plan peak hours.
 
-__Table x. Measure M2 Simple User Schedule Default Arguments__
+__Table 2.10 Measure M2 Simple User Schedule Default Arguments__
 
 Argument | Value
 :- | :-
@@ -691,7 +704,34 @@ DemandManager:Thermostats,
 
 ## 2.4 Optimization Process
 
-The optimization process focused on each technology individually rather than attempt a large scale inter-optimization across all technologies each with a separate intra-optimization problem of measure-specific variables. Each technology was optimized separately by changing one or more of the measure's inputs to minimize the model's annual energy cost. Energy cost was chosen as a reasonable metric for determining the grid-interactive benefits of a technology because it can include the effects of both energy efficiency and demand without the need for time consuming processing of hourly or sub-hourly model outputs, e.g. to determine peak demand reduction. This approach assumes that the utility company structures its tariffs to minimize the burden on its resources. For this analysis, the local electricity and natural gas tariffs from Xcel Energy in Denver, Colorado were used. The electricity tariff includes seasonal consumption charges for summer and winter with time-of-use demand charges that are the same throughout the year. The natural gas tariff includes annual charges for consumption and demand. 
+The optimization process focused on each technology individually rather than attempt a large scale inter-optimization across all technologies each with a separate intra-optimization problem of measure-specific variables. Each technology was optimized separately by changing one or more of the measure's inputs to minimize the model's annual energy cost. Energy cost was chosen as a reasonable metric for determining the grid-interactive benefits of a technology because it can include the effects of both energy efficiency and demand without the need for time consuming processing of hourly or sub-hourly model outputs, e.g. to determine peak demand reduction. This approach assumes that the utility company structures its tariffs to minimize the burden on its resources. For this analysis, the local electricity and natural gas tariffs from Xcel Energy in Denver, Colorado were used. The electricity tariff includes seasonal consumption charges for summer and winter with time-of-use demand charges that are the same throughout the year. The natural gas tariff includes annual charges for consumption and demand. Tables 2.x through 2.x summarize the utility tariffs.
+
+__Table 2.11 Electric Tariff Seasonal Time-of-Use Summary__
+
+Season | Month and Day | Charge | Hours
+:- | :- | :- | :-
+Winter | Jan 01 – May 31, Oct 01 – Dec 31 | Peak | 0900 – 2100
+. | . | Off Peak | 0000 – 0900, 2100 – 2400
+Summer | Jun 01 – Sep 30 | Peak | 0900 – 2100
+. | . | Off Peak | 0000 – 0900, 2100 – 2400
+
+__Table 2.12 Electric Tariff Rates__
+
+Season | Charge | Rate
+:- | :- | :-
+Winter | Peak Energy | 0.036 USD/kWh
+. | Off Peak Energy | 0.036 USD/kWh
+. | Peak Demand | 20.071 USD/kW
+Summer | Energy | 0.034 USD/kWh
+. | Off Peak Energy | 0.034 USD/kWh
+. | Peak Demand | 24.922 USD/kW
+
+__Table 2.13 Natural Gas Rates__
+
+Charge | Rate
+:- | :-
+Energy | 4.956 USD/Mbtu
+Demand | 6.75 USD/
 
 # 3. Results
 
