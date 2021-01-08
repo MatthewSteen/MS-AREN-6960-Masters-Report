@@ -81,12 +81,12 @@ __Table 2.3 Architectural Inputs__
 
 | Input | Description |
 | :- | :- |
-| Roofs | Roof membrane, R-3.26 Insulation (U-0.501) |
-| Walls, above grade | Stucco, Gypsum board, R-1.76 Insulation, Gypsum (U-0.302) |
-| Slab-on-Grade Floors | 10 cm Concrete, Carpet pad (U-3.402) |
+| Roofs | Roof membrane, R-3.26 m2-K/W Insulation (U-0.501 W/m2-K) |
+| Walls, above grade | Stucco, Gypsum board, R-1.76 m2-K/W Insulation, Gypsum (U-0.302  W/m2-K) |
+| Slab-on-Grade Floors | 10 cm Concrete, Carpet pad (U-3.402  W/m2-K) |
 | Interior Floors | 10 cm Concrete, Carpet pad |
-| Windows | Layered Glazing U-2.371, SHGC-0.180, VT-0.137 |
-| Doors | Swinging, Insulated Metal U-35.433 |
+| Windows | Layered Glazing: U-2.371  W/m2-K, SHGC-0.180, VT-0.137 |
+| Doors | Swinging, Insulated Metal: U-35.433 W/m2-K |
 | Window-to-Wall Ratio | 33% all facades  |
 | Infiltration (ACH) | 0.75 |
 
@@ -214,7 +214,7 @@ $k{o}$ is the 20C value of thermal conductivity(normal idf~ input)
 $k{1}$ is the change in conductivity per degree temperature difference from 20C
 
 
-For this analysis, the baseline heat balance algorithm was changed to conduction finite difference and the phase change material was added to the interior layer of all walls, i.e. the layer exposed to the thermal zone, because the phase change temperature occurs at 22C as shown in figure x. 
+For this analysis, the baseline heat balance algorithm was changed to conduction finite difference and the phase change material was added to the interior layer of all walls, i.e. the layer exposed to the thermal zone, because the phase change temperature occurs at 22C as shown in figure 2.12. 
 
 ![image](images/measure_a1_temperature_enthalpy.png)
 
@@ -571,7 +571,7 @@ EnergyManagementSystem:ProgramCallingManager,
   UTSS_Coil_0_Control;                    !- Program Name 1
 ```
 
-With the `ScheduledModes` option, the operating mode is determined by a schedule in the `Operation Mode Control Schedule Name` field that uses six built-in operating mode options ummarized in Table x.
+With the `ScheduledModes` option, the operating mode is determined by a schedule in the `Operation Mode Control Schedule Name` field that uses six built-in operating mode options summarized in Table 2.8.
 
 __Table 2.8 Measure M2 Operation Mode Descriptions__
 
@@ -584,7 +584,7 @@ Cool and Discharge Mode | Object is cooling with the coil and discharging from t
 Charge Only Mode | Object is charging the TES tank only and the evaporator is off. 
 Discharge Only Mode | Object is cooling by discharging the TES tank and the condenser is off. 
 
-The measure includes five built-in options for the control schedule; a user-defined option (Simple User Sched) and four pre-defined options summarized in Table x. below. The `Simple User Sched` option allows the user to define a daily and hourly schedule for when he TES is used through the year shown in Table x.
+The measure includes five built-in options for the control schedule; a user-defined option (Simple User Sched) and four pre-defined options summarized in Table x. below. The `Simple User Sched` option allows the user to define a daily and hourly schedule for when he TES is used through the year shown in Table 2.9.
 
 __Table 2.9 Measure M2 Operation Mode Control Schedule Descriptions__
 
