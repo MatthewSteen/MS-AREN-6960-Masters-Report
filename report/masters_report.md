@@ -44,7 +44,7 @@ The methodology for this analysis used a reference building energy model from th
 
 The baseline model was created with OpenStudio using the Create Prototype Building measure. OpenStudio is a software development kit that includes a collection of tools for BPS (Guglielmetti et. al., 2011). Notably, OpenStudio includes tools to create models that can be translated to EnergyPlus for simulation and application programming interfaces for programatically interacting with models. Measures are formal computer scripts written in the Ruby programming language that can interact with an OpenStudio model directly (an OpenStudio Measure), change the EnergyPlus model prior to simulation (an EnergyPlus Measure), or produce reports after simulation with Reporting Measures (Roth et. al, 2016). For each technology considered in this analysis, a Measure was used to apply it to the baseline model for optimization in OpenStudio's  Parametric Analysis Tool (PAT), which allows performing sensitivity analyses, uncertainty quantification, design optimization, and model calibration on a large scale through the use of cloud computing (Ball et. al., 2020). Figure 2.1 shows a general diagram of the methodology used in this analysis.
 
-![image](images/methodology.png) TODO
+![image](images/methodology.png)
 
 __Figure 2.1 Methodology Diagram__
 
