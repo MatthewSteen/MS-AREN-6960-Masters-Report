@@ -1,3 +1,4 @@
+% Encoding: UTF-8
 @REPORT{EIA2020,
   author  = {U.S. Energy Information Administration},
   title   = {Annual Energy Outlook 2020 with projections to 2050},
@@ -65,18 +66,19 @@ author = "Drury B. Crawley and Linda K. Lawrie and Frederick C. Winkelmann and W
 keywords = "Building performance, Simulation, Energy performance, Heat balance, Mass balance, Modular simulation",
 abstract = "Many of the popular building energy simulation programs around the world are reaching maturity — some use simulation methods (and even code) that originated in the 1960s. For more than two decades, the US government supported development of two hourly building energy simulation programs, BLAST and DOE-2. Designed in the days of mainframe computers, expanding their capabilities further has become difficult, time-consuming, and expensive. At the same time, the 30 years have seen significant advances in analysis and computational methods and power — providing an opportunity for significant improvement in these tools. In 1996, a US federal agency began developing a new building energy simulation tool, EnergyPlus, building on development experience with two existing programs: DOE-2 and BLAST. EnergyPlus includes a number of innovative simulation features — such as variable time steps, user-configurable modular systems that are integrated with a heat and mass balance-based zone simulation — and input and output data structures tailored to facilitate third party module and interface development. Other planned simulation capabilities include multizone airflow, and electric power and solar thermal and photovoltaic simulation. Beta testing of EnergyPlus began in late 1999 and the first release is scheduled for early 2001."
 } https://www-sciencedirect-com.colorado.idm.oclc.org/science/article/pii/S0378778800001146
-@article{doi:10.1080/19401493.2020.1778788,
-author = { Brian L.   Ball  and  Nicholas   Long  and  Katherine   Fleming  and  Chris   Balbach  and  Phylroy   Lopez },
-title = {An open source analysis framework for large-scale building energy modeling},
-journal = {Journal of Building Performance Simulation},
-volume = {13},
-number = {5},
-pages = {487-500},
-year  = {2020},
-publisher = {Taylor & Francis},
-doi = {10.1080/19401493.2020.1778788},
-URL = {https://doi.org/10.1080/19401493.2020.1778788},
-eprint = {https://doi.org/10.1080/19401493.2020.1778788}
+
+@Article{doi:10.1080/19401493.2020.1778788,
+  author    = {Brian L. Ball and Nicholas Long and Katherine Fleming and Chris Balbach and Phylroy Lopez},
+  title     = {An open source analysis framework for large-scale building energy modeling},
+  doi       = {10.1080/19401493.2020.1778788},
+  eprint    = {https://doi.org/10.1080/19401493.2020.1778788},
+  number    = {5},
+  pages     = {487-500},
+  url       = {https://doi.org/10.1080/19401493.2020.1778788},
+  volume    = {13},
+  journal   = {Journal of Building Performance Simulation},
+  publisher = {Taylor & Francis},
+  year      = {2020},
 }
 @article{ZAMBRANOBIGIARINI20135,
 title = "A model-independent Particle Swarm Optimisation software for model calibration",
@@ -103,3 +105,11 @@ url          = {https://doi.org/10.1115/1.4048975},
 volume       = {1},
 abstract     = {Buildings of the future are expected to not only be energy efficient but also able to offer grid services through implementation of demand-side management strategies by utilizing existing and new technologies that enhance electrical load flexibility. With the high penetration of variable renewables, grid operators have to balance between variable supply with controllable and adaptable demand. This article reviews the current literature on grid-interactive efficient buildings (GEBs) that can provide grid services. In particular, the review identifies categories and examples of measures and technologies that are suitable for GEBs using various criteria. These criteria include demand-side management strategies, potential to provide grid services, technology maturity, as well as ability to model the technologies to perform detailed analyses and assessments in whole-building simulation software.},
 }
+@Software{,
+  author = {Karl Heine and Ryan Meyer},
+  date   = {2020},
+  title  = {OpenStudio Load Flexibility Measures Gem},
+  url    = {https://github.com/NREL/openstudio-load-flexibility-measures-gem/tree/master/lib/measures/add_packaged_ice_storage},
+}
+
+@Comment{jabref-meta: databaseType:biblatex;}
