@@ -756,7 +756,7 @@ __Figure 3.2. Annual Energy Cost Results__
 
 ![image](images/measures_elec_demand_cost_savings.png)
 
-__Figure 3.3 Electric Demand Cost Savings__
+__Figure 3.3 Annual Electric Demand Cost Savings__
 
 __Table 3.1. Annual Energy Cost and Use Savings__
 
