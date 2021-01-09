@@ -744,11 +744,11 @@ Demand | 6.75 USD/
 
 This section presents the optimization of each technology by discussing the process of determining the independent variables to minimize the annual energy cost and presenting the results. For each measure, pre-optimizations were completed in an attempt to reduce the complexity of the problem by identifying a single independent variable to optimize. The annual energy cost and use savings for the individual measures are summarized in Figures 3.1 through 3.3. and Table 3.1 below. Additionally, Table 3.2 shows the time the cooling and heating setpoints are not met to verify that any savings were not the result of the mechanical system not meeting loads. Measures A1, M1, and M2 did not include full optimizations, which are discussed in the corresponding section.
 
-![image](images/measures_energy_use.png)
+![image](images/measures_energy_use_savings.png)
 
 __Figure 3.1 Annual Energy Use Results__
 
-![image](images/measures_energy_cost.png)
+![image](images/measures_energy_cost_savings.png)
 
 __Figure 3.2. Annual Energy Cost Results__
 
