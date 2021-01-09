@@ -27,6 +27,7 @@
   - [3.7 Building-Scale CHP (P1)](#37-building-scale-chp-p1)
   - [3.8 Advanced Sensors and Controls (lighting) (C1)](#38-advanced-sensors-and-controls-lighting-c1)
   - [3.9 Smart Thermostats (C2)](#39-smart-thermostats-c2)
+  - [3.10 Combined Measures](#310-combined-measures)
 - [5. Conclusions](#5-conclusions)
 
 # 1. Introduction
@@ -43,13 +44,13 @@ The methodology for this analysis used a reference building energy model from th
 
 The baseline model was created with OpenStudio using the Create Prototype Building measure. OpenStudio is a software development kit that includes a collection of tools for BPS (Guglielmetti et. al., 2011). Notably, OpenStudio includes tools to create models that can be translated to EnergyPlus for simulation and application programming interfaces for programatically interacting with models. Measures are formal computer scripts written in the Ruby programming language that can interact with an OpenStudio model directly (an OpenStudio Measure), change the EnergyPlus model prior to simulation (an EnergyPlus Measure), or produce reports after simulation with Reporting Measures (Roth et. al, 2016). For each technology considered in this analysis, a Measure was used to apply it to the baseline model for optimization in OpenStudio's  Parametric Analysis Tool (PAT), which allows performing sensitivity analyses, uncertainty quantification, design optimization, and model calibration on a large scale through the use of cloud computing (Ball et. al., 2020). Figure 2.1 shows a general diagram of the methodology used in this analysis.
 
-![image](images/methodology.png) TODO
+![image](images/methodology.png)
 
 __Figure 2.1 Methodology Diagram__
 
 ## 2.1 Baseline Model Inputs
 
- The following figure and tables summarize the details of the baseline model including the geometry and inputs. Importantly, the baseline was located in Denver, Colorado using energy costs from the local electricity and natural gas utility. Several changes to the baseline model were required to allow the application of specific technologies, which are described in the Measures section. 
+ This section summarizes the details of the baseline model including the geometry and inputs. Importantly, the baseline was located in Denver, Colorado using energy costs from the local electricity and natural gas utility. Several changes to the baseline model were required to allow the application of specific technologies, which are described in detail in the Measures section. 
 
 ![image](images/baseline_geometry.png)
 
@@ -81,12 +82,12 @@ __Table 2.3 Architectural Inputs__
 
 | Input | Description |
 | :- | :- |
-| Roofs | Roof membrane, R-3.26 Insulation (U-0.501) |
-| Walls, above grade | Stucco, Gypsum board, R-1.76 Insulation, Gypsum (U-0.302) |
-| Slab-on-Grade Floors | 10 cm Concrete, Carpet pad (U-3.402) |
+| Roofs | Roof membrane, R-3.26 m2-K/W Insulation (U-0.501 W/m2-K) |
+| Walls, above grade | Stucco, Gypsum board, R-1.76 m2-K/W Insulation, Gypsum (U-0.302  W/m2-K) |
+| Slab-on-Grade Floors | 10 cm Concrete, Carpet pad (U-3.402  W/m2-K) |
 | Interior Floors | 10 cm Concrete, Carpet pad |
-| Windows | Layered Glazing U-2.371, SHGC-0.180, VT-0.137 |
-| Doors | Swinging, Insulated Metal U-35.433 |
+| Windows | Layered Glazing: U-2.371  W/m2-K, SHGC-0.180, VT-0.137 |
+| Doors | Swinging, Insulated Metal: U-35.433 W/m2-K |
 | Window-to-Wall Ratio | 33% all facades  |
 | Infiltration (ACH) | 0.75 |
 
@@ -123,49 +124,53 @@ __Table 2.6 Plumbing Inputs__
 
 ## 2.2 Baseline Model Outputs
 
-The changes to the baseline model that were required to apply the measures increased the energy cost by 3.8% and decreased the energy use by 0.9%. The following figures present the annual, monthly, and hourly peak day outputs (simulation results) of the baseline model. On an annual basis, energy use is dominated by interior electric equipment and heating from electric reheat.
+The changes to the baseline model that were required to apply the measures increased the energy cost by 3.8% and decreased the energy use by 0.9%. The following figures present the annual, monthly, and hourly peak day outputs (simulation results) of the baseline model. On an annual basis, energy cost is dominated by electric demand, which makes up over two thirds of total cost (Figure 2.3). Energy use is dominated by interior electric equipment and heating from electric reheat (Figures 2.4 and 2.5).
+
+![image](images/baseline_annual_energy_cost_pct.png)
+
+__Figure 2.3 Annual Energy Cost Percent__
 
 ![image](images/baseline_annual_energy_pct.png)
 
-__Figure 2.3 Annual Energy Use Percent__
+__Figure 2.4 Annual Energy Use Percent__
 
 ![image](images/baseline_annual_energy_eui.png)
 
-__Figure 2.4 Annual Energy Use Intensity__
+__Figure 2.5 Annual Energy Use Intensity__
 
-On a monthly basis, the baseline annual electricity profile peaks in the winter month of December shown in Figure 2.5 due to the electric resistance reheat coils in the variable air volume terminals. Similarly, peak monthly demand occurs in December due to electric reheat shown in Figure 2.6. However, it's important to note that a building's peak demand is not necessarily coincident with the peak demand from the utility's or grid's perspective. This point is illustrated in Figure 2.7 showing the building's peak demand occurs in December while the peak demand based on the electricity tariff occurs in February.
+On a monthly basis, the baseline annual electricity profile peaks in the winter month of December (Figure 2.6) due to the electric resistance reheat coils in the variable air volume terminals. Similarly, peak monthly demand occurs in December due to electric reheat (Figure 2.7). However, it's important to note that a building's peak demand is not necessarily coincident with the peak demand from the utility's or grid's perspective. This point is illustrated in Figure 2.8 showing the building's peak demand occurs in December while the peak demand based on the electricity tariff occurs in February.
 
 ![image](images/baseline_monthly_elec_energy.png)
 
-__Figure 2.5 Monthly Electricity Energy__
+__Figure 2.6 Monthly Electricity Energy__
 
 ![image](images/baseline_monthly_elec_demand.png)
 
-__Figure 2.6 Monthly Electricity Demand__
+__Figure 2.7 Monthly Electricity Demand__
 
 ![image](images/baseline_monthly_elec_demand_comparison.png)
 
-__Figure 2.7 Monthly Electricity Peak vs. Utility Demand__
+__Figure 2.8 Monthly Electricity Peak vs. Utility Demand__
 
-For natural gas, the monthly peak use and demand occurs in December, shown in Figures 2.8 and 2.9, due to central heating coils in the air handling units that provide ventilation and pre-conditioned air to the thermal zones.
+For natural gas, the monthly peak use and demand occurs in December, shown in Figures 2.9 and 2.10, due to central heating coils in the air handling units that provide ventilation and pre-conditioned air to the thermal zones.
 
 ![image](images/baseline_monthly_ngas_energy.png)
 
-__Figure 2.8 Monthly Natural Gas Energy__
+__Figure 2.9 Monthly Natural Gas Energy__
 
 ![image](images/baseline_monthly_ngas_demand.png)
 
-__Figure 2.9 Monthly Natural Gas Demand__
+__Figure 2.10 Monthly Natural Gas Demand__
 
-On an hourly basis, the peak demand for electric cost occurs on February 6th at 0700 in the first hour after the building is changed to occupied mode (Figure 2.10). Similarly, peak demand for natural gas occurs at the same time of day, but on December 22nd (Figure 2.11).
+On an hourly basis, the peak demand for electric cost occurs on February 6th at 0700 in the first hour after the building is changed to occupied mode (Figure 2.11). Similarly, peak demand for natural gas occurs at the same time of day, but on December 22nd (Figure 2.12).
 
 ![image](images/baseline_hourly_elec.png)
 
-__Figure 2.10 Hourly Electricity Demand on Peak Day (Feb 06)__
+__Figure 2.11 Hourly Electricity Demand on Peak Day (Feb 06)__
 
 ![image](images/baseline_hourly_ngas.png)
 
-__Figure 2.11 Hourly Natural Gas Demand on Peak Day (Dec 22)__
+__Figure 2.12 Hourly Natural Gas Demand on Peak Day (Dec 22)__
 
 ## 2.3 Measures
 
@@ -203,7 +208,7 @@ MaterialProperty:PhaseChange,
   71000;                                  !- Enthalpy 4 {J/kg}
 ```
 
-The `MaterialProperty:PhaseChange` object describes the temperature-enthalpy relationship of the Material object referenced by the Name field. The `Temperature Coefficient for Thermal Conductivity` field describes the material's thermal conductivity change per unit temperature from 20C in W/m-K2. Thermal conductivity is calculated from:
+The `MaterialProperty:PhaseChange` object adds phase change material (PCM) properties to a Material object in the model by describing the temperature-enthalpy relationship of the PCM. The `Temperature Coefficient for Thermal Conductivity` field describes the material's thermal conductivity change per unit temperature from 20C in W/m-K2. Thermal conductivity is calculated from:
 
 $$k = {k_o} + {k_1}({T_i} - 20)$$ (1)
 
@@ -214,11 +219,11 @@ $k{o}$ is the 20C value of thermal conductivity(normal idf~ input)
 $k{1}$ is the change in conductivity per degree temperature difference from 20C
 
 
-For this analysis, the baseline heat balance algorithm was changed to conduction finite difference and the phase change material was added to the interior layer of all walls, i.e. the layer exposed to the thermal zone, because the phase change temperature occurs at 22C as shown in figure x. 
+For this analysis, the baseline heat balance algorithm was changed to conduction finite difference and the phase change material was added to the interior layer of all walls, i.e. the layer exposed to the thermal zone, because the phase change temperature occurs at 22C as shown in figure 2.12. 
 
 ![image](images/measure_a1_temperature_enthalpy.png)
 
-__Figure 2.12 Measure A1 Temperature-Enthalpy Relationship__
+__Figure 2.13 Measure A1 Temperature-Enthalpy Relationship__
 
 ### 2.3.2 Dynamic Glazing (A2)
  
@@ -409,11 +414,11 @@ Dehumidifier:Desiccant:System,
   EXHAUSTFANPLF;                          !- Exhaust Fan Power Curve Name
 ```
 
-This object is a parent object that references several child components, which include an air-to-air heat exchanger (HeatExchanger:Desiccant:BalancedFlow), an exhaust fan (optional), and a regeneration fan and heating coil (optional) to regenerate the desiccant. The operation of the desiccant system can be coordinated with a companion cooling coil by specifying its type and name in the appropriate fields. This measure required adding humidity controls to all zones served by the air loops and replacing the `Coil:Cooling:DX:TwoSpeed` objects with `Coil:Cooling:DX:SingleSpeed` objects in the baseline model. Humidity controls were set to 45% relative humidity. 
+This object is a parent object that references several child components, which include an air-to-air heat exchanger (`HeatExchanger:Desiccant:BalancedFlow`), an exhaust fan (optional), and a regeneration fan and heating coil (optional) to regenerate the desiccant. The operation of the desiccant system can be coordinated with a companion cooling coil by specifying its type and name in the appropriate fields. This measure required adding humidity controls to all zones served by the air loops and replacing the `Coil:Cooling:DX:TwoSpeed` objects with `Coil:Cooling:DX:SingleSpeed` objects in the baseline model. Humidity controls were set to 45% relative humidity. 
 
 ### 2.3.6 Thermal Energy Storage (M2)
 
-This measure replaces the `Coil:Cooling:DX:SingleSpeed` objects on the supply air stream of one or more air loops in the model with `Coil:Cooling:DX:SingleSpeed:ThermalStorage` objects (TODO, https://github.com/NREL/openstudio-load-flexibility-measures-gem/tree/master/lib/measures/add_packaged_ice_storage) as shown in the example object below. 
+This measure replaces the `Coil:Cooling:DX:SingleSpeed` objects on the supply air stream of one or more air loops in the model with `Coil:Cooling:DX:SingleSpeed:ThermalStorage` objects (Heine, 2020) as shown in the example object below. 
 
 ```
 Coil:Cooling:DX:SingleSpeed:ThermalStorage,
@@ -571,7 +576,7 @@ EnergyManagementSystem:ProgramCallingManager,
   UTSS_Coil_0_Control;                    !- Program Name 1
 ```
 
-With the `ScheduledModes` option, the operating mode is determined by a schedule in the `Operation Mode Control Schedule Name` field that uses six built-in operating mode options ummarized in Table x.
+With the `ScheduledModes` option, the operating mode is determined by a schedule in the `Operation Mode Control Schedule Name` field that uses six built-in operating mode options summarized in Table 2.8.
 
 __Table 2.8 Measure M2 Operation Mode Descriptions__
 
@@ -584,7 +589,7 @@ Cool and Discharge Mode | Object is cooling with the coil and discharging from t
 Charge Only Mode | Object is charging the TES tank only and the evaporator is off. 
 Discharge Only Mode | Object is cooling by discharging the TES tank and the condenser is off. 
 
-The measure includes five built-in options for the control schedule; a user-defined option (Simple User Sched) and four pre-defined options summarized in Table x. below. The `Simple User Sched` option allows the user to define a daily and hourly schedule for when he TES is used through the year shown in Table x.
+The measure includes five built-in options for the control schedule; a user-defined option (Simple User Sched) and four pre-defined options summarized in Table 2.9 below. The `Simple User Sched` option allows the user to define a daily and hourly schedule for when he TES is used through the year shown in Table 2.10.
 
 __Table 2.9 Measure M2 Operation Mode Control Schedule Descriptions__
 
@@ -653,7 +658,9 @@ Generator:MicroTurbine,
   Capstone C65 ExhaustTemp_vs_PLR;        !- Exhaust Air Temperature Function of Part Load Ratio Curve Name
 ```
 
-The measure code and topology are based on https://github.com/NREL/OpenStudio-resources/blob/develop/model/simulationtests/generator_microturbine.rb. The topology differs from the EnergyPlus example file because OpenStudio does not currently allow a water heater object on the same side of two different plant loops. The `Generator:MicroTurbine` object generates electric energy for the building and can optionally recover waste heat from the exhaust air stream to heat water for space or service water heating as was the case for this analysis. The `ElectricLoadCenter:Distribution` object defines the operation scheme of one or more generators, with the following options summarized below. 
+The topology differs from the EnergyPlus example file because OpenStudio does not currently allow a water heater object on the same side of two different plant loops. The `Generator:MicroTurbine` object generates electric energy for the building and can optionally recover waste heat from the exhaust air stream to heat water for space or service water heating as was the case for this analysis. The `ElectricLoadCenter:Distribution` object defines the operation scheme of one or more generators, with the following options summarized in Table 2.11. 
+
+__Table 2.11 Measure P1 Generator Operation Scheme Types__
 
 Operation Scheme Type | Description
 :- | :-
@@ -704,9 +711,11 @@ DemandManager:Thermostats,
 
 ## 2.4 Optimization Process
 
-The optimization process focused on each technology individually rather than attempt a large scale inter-optimization across all technologies each with a separate intra-optimization problem of measure-specific variables. Each technology was optimized separately by changing one or more of the measure's inputs to minimize the model's annual energy cost. Energy cost was chosen as a reasonable metric for determining the grid-interactive benefits of a technology because it can include the effects of both energy efficiency and demand without the need for time consuming processing of hourly or sub-hourly model outputs, e.g. to determine peak demand reduction. This approach assumes that the utility company structures its tariffs to minimize the burden on its resources. For this analysis, the local electricity and natural gas tariffs from Xcel Energy in Denver, Colorado were used. The electricity tariff includes seasonal consumption charges for summer and winter with time-of-use demand charges that are the same throughout the year. The natural gas tariff includes annual charges for consumption and demand. Tables 2.x through 2.x summarize the utility tariffs.
+The optimization process focused on each technology individually rather than attempt a large scale inter-optimization across all technologies each with a separate intra-optimization problem of measure-specific variables. Each technology was optimized separately by changing one or more of the measure's inputs to minimize the model's annual energy cost. Finally, the optimized measures were added to the baseline to determine the combined effects of all measures.
 
-__Table 2.11 Electric Tariff Seasonal Time-of-Use Summary__
+Energy cost was chosen as a reasonable metric for determining the grid-interactive benefits of a technology because it can include the effects of both energy efficiency and demand without the need for time consuming processing of hourly or sub-hourly model outputs, e.g. to determine peak demand reduction. This approach assumes that the utility company structures its tariffs to minimize the burden on its resources. For this analysis, the local electricity and natural gas tariffs from Xcel Energy in Denver, Colorado were used. The electricity tariff includes seasonal consumption charges for summer and winter with time-of-use demand charges that are the same throughout the year. The natural gas tariff includes annual charges for consumption and demand. Tables 2.12 through 2.14 summarize the utility tariffs.
+
+__Table 2.12 Electric Tariff Seasonal Time-of-Use Summary__
 
 Season | Month and Day | Charge | Hours
 :- | :- | :- | :-
@@ -715,7 +724,7 @@ Winter | Jan 01 – May 31, Oct 01 – Dec 31 | Peak | 0900 – 2100
 Summer | Jun 01 – Sep 30 | Peak | 0900 – 2100
 . | . | Off Peak | 0000 – 0900, 2100 – 2400
 
-__Table 2.12 Electric Tariff Rates__
+__Table 2.13 Electric Tariff Rates__
 
 Season | Charge | Rate
 :- | :- | :-
@@ -726,7 +735,7 @@ Summer | Energy | 0.034 USD/kWh
 . | Off Peak Energy | 0.034 USD/kWh
 . | Peak Demand | 24.922 USD/kW
 
-__Table 2.13 Natural Gas Rates__
+__Table 2.14 Natural Gas Rates__
 
 Charge | Rate
 :- | :-
@@ -735,21 +744,21 @@ Demand | 6.75 USD/
 
 # 3. Results
 
-This section presents the optimization of each technology by discussing the process of determining the independent variables to minimize the annual energy cost and presenting the results. For each measure, pre-optimizations were completed in an attempt to reduce the complexity of the problem by identifying a single independent variable to optimize. The annual energy cost and use savings for the individual measures are summarized in Figures 3.1 through 3.3. and Table 3.1 below. Additionally, Table 3.2 shows the time the cooling and heating setpoints are not met to verify that any savings were not the result of the mechanical system not meeting loads. Measures A1, M1, and M2 did not include full optimizations, which are discussed in the corresponding section.
+This section covers the optimization of each technology by discussing the process of determining the independent variables to minimize the annual energy cost and then presenting the results. For each measure, pre-optimizations were completed in an attempt to reduce the complexity of the problem by identifying a single independent variable to optimize. The annual energy cost and use savings for the individual measures are summarized in Figures 3.1 through 3.3. and Table 3.1 below. Additionally, Table 3.2 shows the time the cooling and heating setpoints are not met to verify that any savings were not the result of the mechanical system not meeting loads. Measures A1, M1, and M2 did not include full optimizations, which are discussed in the corresponding section.
 
-![image](images/measures_energy_use.png)
+![image](images/measures_energy_use_savings.png)
 
 __Figure 3.1 Annual Energy Use Results__
 
-![image](images/measures_energy_cost.png)
+![image](images/measures_energy_cost_savings.png)
 
 __Figure 3.2. Annual Energy Cost Results__
 
 ![image](images/measures_elec_demand_cost_savings.png)
 
-__Figure 3.3 Electric Demand Cost Savings__
+__Figure 3.3 Annual Electric Demand Cost Savings__
 
-__Table 3.1. Individual Measure Energy Cost and Use Savings__
+__Table 3.1. Annual Energy Cost and Use Savings__
 
 Model | Energy Cost Savings | Energy Use Savings
 :- | :- | :-
@@ -763,10 +772,11 @@ M2 | 1.9% | 0.4%
 P1 | 9.2% | -6.9%
 C1 | 0.6% | 0.7%
 C2 | 24.5% | 11.3%
+Combined | 36% | 21.1%
 
-__Table 3.2 Individual Measure Time Setpoint Not Met__
+__Table 3.2 Time Setpoint Not Met__
 
-Model | During Heating [hr]  | During Cooling [hr]  | During Occupied Heating [hr]  | During Occupied Cooling [hr]
+Model | During Heating [hr] | During Cooling [hr] | During Occupied Heating [hr] | During Occupied Cooling [hr]
 :- | :- | :- | :- | :-
 Baseline | 1006 | 391 | 326 | 299
 A1 | 976 | 387 | 325 | 296
@@ -778,6 +788,7 @@ M2 | 1007 | 478 | 327 | 380
 P1 | 1005 | 390 | 326 | 299
 C1 | 1012 | 380 | 327 | 290
 C2 | 896 | 503 | 147 | 167
+Combined | 1151 | 228 | 215 | 90
 
 ## 3.1 Thermal Storage (A1)
 
@@ -793,12 +804,12 @@ __Figure 3.5 Measure A1 Energy Use Savings__
 
 ## 3.2 Dynamic Glazing (A2)
 
-The optimization of this measure focused on two variables for the EnergyPlus 'WindowShadingControl` object. The `Shading Control Type` field, a discrete variable which currently has 21 options for high level control that generally reduce thermal loads, improve visual comfort, or improve daylight; and the `Setpoint` field, a continuous variable that allows additional control based on solar radiation (W/m2), temperature (C), or cooling or heating (W). The shading control options are summarized in Table 3.3 below.
+The optimization of this measure focused on two variables for the EnergyPlus `WindowShadingControl` object. The `Shading Control Type` field, a discrete variable which currently has 21 options for high level control that generally reduce thermal loads, improve visual comfort, or improve daylight; and the `Setpoint` field, a continuous variable that allows additional control based on solar radiation (W/m2), temperature (C), or cooling or heating (W). The shading control options are summarized in Table 3.3 below.
 
 __Table 3.3 WindowShadingControl Object Shading Control Types__
 
 Shading Control Type | Cooling | Heating | Cooling and Heating | Other
-:- | :- | :- | :- | :-
+:- | :-: | :-: | :-: | :-:
 AlwaysOn | &#9675; | &#9675; | &#9675; | &#9675;
 AlwaysOff | &#9675; | &#9675; | &#9675; | &#9675;
 OnIfScheduleAllows | &#9673; | &#9675; | &#9675; | &#9675;
@@ -907,47 +918,39 @@ __Figure 3.18 Measure E1 Energy Use Savings__
 
 ## 3.5 Separate Sensible and Latent Space Conditioning (M1)
 
-Initial testing of this measure showed small savings compared to the baseline model using default values from the EnergyPlus example file when the desiccant dehumidifier system was placed downstream of the cooling coil on the supply air stream of all three air loops in the model. This likely indicates an issue with how the EnergyPlus measure adds the desiccant system to the model. Due to the small savings relative to the baseline, this measure was excluded from the optimization. The annual energy cost and use  savings were 0% and 0% respectively as shown in Figures x. and x. below. 
-
-![image](images/measure_m1_energy_cost_savings.png)
-
-__Figure 3.19 Measure M1 Energy Cost Savings__
-
-![image](images/measure_m1_energy_use_savings.png)
-
-__Figure 3.20 Measure M1 Energy Use Savings__
+Initial testing of this measure showed very little change compared to the baseline model using default values from the EnergyPlus example file when the desiccant dehumidifier system was placed downstream of the cooling coil on the supply air stream of all three air loops in the model. This likely indicates an issue with how the EnergyPlus measure adds the desiccant system to the model. Due to the small savings relative to the baseline, this measure was excluded from the optimization. 
 
 ## 3.6 Thermal Energy Storage (M2)
 
-The pre-optimization for this measure focused on two discrete variables for the `Coil:Cooling:DX:SingleSpeed:ThermalStorage` object; the `Operating Mode Control Method` and the `Operation Mode Control Schedule Name` fields. The pre-optimization simulated each of the two control methods, EMSControlled and ScheduledModes, with each of the five control schedules to determine the option that minimized the annual energy cost savings compared to the baseline as shown in Figures x. and x. below. For the `Simple User Sched` schedule option, the inputs were kept at default values. Of these eight combinations, the `Simple User Sched` produced the greatest savings with both control methods with the `EMSControlled` method showing greater savings compared to the `Scheduled Modes` option as shown in Figure 3.21 and 3.22 below.
+The pre-optimization for this measure focused on two discrete variables for the `Coil:Cooling:DX:SingleSpeed:ThermalStorage` object; the `Operating Mode Control Method` and the `Operation Mode Control Schedule Name` fields. The pre-optimization simulated each of the two control methods, EMSControlled and ScheduledModes, with each of the five control schedules to determine the option that minimized the annual energy cost savings compared to the baseline. For the `Simple User Sched` schedule option, the inputs were kept at default values. Of these eight combinations, the `Simple User Sched` produced the greatest savings with both control methods with the `EMSControlled` method showing greater savings compared to the `Scheduled Modes` option as shown in Figure 3.19 and 3.20 below.
 
 ![image](images/measure_m2_preoptimization_emscontrolled.png)
 
-__Figure 3.21 Measure M2 Pre-optimization Results for EMSControlled Control Method__
+__Figure 3.19 Measure M2 Pre-optimization Results for EMSControlled Control Method__
 
 ![image](images/measure_m2_preoptimization_scheduledmodes.png)
 
-__Figure 3.22 Measure M2 Pre-optimization Results for ScheduledModes Control Method__
+__Figure 3.20 Measure M2 Pre-optimization Results for ScheduledModes Control Method__
 
-Based on the pre-optimization results, the `EMSControlled` control method was chosen with the `Simple User Sched` schedule option to optimize the annual energy cost. Several attempts were made to optimize the four continuous variables of charge start and stop time, and discharge start and stop time without success. In place of a formal optimization, this analysis kept the measure's default time values, which showed an annual energy cost and use savings of 2.5% and 0.0% shown in Figures 3.23 and 3.24. Further savings are a likely possibility with additional analysis of optimal charge and discharge times that align with time-of-use demand charges and building cooling loads.
+Based on the pre-optimization results, the `EMSControlled` control method was chosen with the `Simple User Sched` schedule option to optimize the annual energy cost. Several attempts were made to optimize the four continuous variables of charge start and stop time, and discharge start and stop time without success. In place of a formal optimization, this analysis kept the measure's default time values, which showed an annual energy cost and use savings of 2.5% and 0.0% shown in Figures 3.21 and 3.22. Further savings are possible with additional analysis of optimal charge and discharge times that align with time-of-use demand charges and building cooling loads.
 
 ![image](images/measure_m2_energy_cost_savings.png)
 
-__Figure 3.23 Measure M2 Energy Cost Savings__
+__Figure 3.21 Measure M2 Energy Cost Savings__
 
 ![image](images/measure_m2_energy_use_savings.png)
 
-__Figure 3.24 Measure M2 Energy Use Savings__
+__Figure 3.22 Measure M2 Energy Use Savings__
 
 ## 3.7 Building-Scale CHP (P1)
 
-The pre-optimization of this measure focused on the `Generator Operation Scheme Type` discrete variable. The `DemandLimit` option produced the lowest energy cost compared to the other operation schemes as shown in Figure x. 
+The pre-optimization of this measure focused on the `Generator Operation Scheme Type` discrete variable. The `DemandLimit` option produced the lowest energy cost compared to the other operation schemes as shown in Figure 3.23 
 
 ![img](images/measure_p1_preoptimization_generator_operation_scheme.png)
 
-__Figure 3.25 Measure P1 Generator Operation Scheme Energy Cost Savings__
+__Figure 3.23 Measure P1 Generator Operation Scheme Energy Cost Savings__
 
-The demand limit operation scheme turns on the generator when total demand is above the value set in the `Generator Demand Limit Scheme Purchased Electric Demand Limit` field, which was chosen as the optimization variable. This value was set to 206.1 kW as an initial estimate to maximize demand reduction by reducing peak demand during the month with the lowest utility demand (271.1 kW in September) by the generator's `Maximum Full Load Electrical Power Output` (65 kW), as shown in the object below and Figure 3.26.
+The demand limit operation scheme turns on the generator when total demand is above the value set in the `Generator Demand Limit Scheme Purchased Electric Demand Limit` field, which was chosen as the optimization variable. This value was set to 206.1 kW as an initial estimate to maximize demand reduction by reducing peak demand during the month with the lowest utility demand (271.1 kW in September) by the generator's `Maximum Full Load Electrical Power Output` (65 kW), as shown in the object below and Figure 3.24.
 
 ```
 ElectricLoadCenter:Distribution,
@@ -962,39 +965,37 @@ ElectricLoadCenter:Distribution,
 
 ![img](images/measure_p1_preoptimization_demand_limit.png)
 
-__Figure 3.26 Demand Limit Generator Operation Scheme Demand Profile__
+__Figure 3.24 Example of Demand Limit Generator Operation Scheme Profile__
 
-The optimization process for this measure used the PSO analysis option in PAT with a single independent continuous variable, the `Generator Demand Limit Scheme Purchased Electric Demand Limit` in Watts, to minimize the annual utility cost, which is shown in Figure 3.27.
+The optimization process for this measure used the PSO analysis option in PAT with a single independent continuous variable, the `Generator Demand Limit Scheme Purchased Electric Demand Limit` in Watts, to minimize the annual utility cost, which is shown in Figure 3.25.
 
 ![image](images/measure_p1_optimization_results.png)
 
-__Figure 3.27 Measure P1 Optimization Results__
+__Figure 3.25 Measure P1 Optimization Results__
 
-The annual energy cost and use savings for the optimized demand limit of 239.65 kW is shown in Figures 3.28 and 3.29 below, which showed a savings of 9.2% and -6.9% respectively. This measure saved demand costs at the expense of increased natural gas cost and consumption, indicated by the high negative gas cost savings and the Generators energy end use. The optimal demand limit is higher than the initial guessed value because the generator does not always run at full load when on such that produced electricity, building demand, and time-of-use demand period is not always coincident as shown in Figure 3.30. 
+The annual energy cost and use savings for the optimized demand limit of 239.65 kW is shown in Figures 3.26 and 3.27 below, which showed a savings of 9.2% and -6.9% respectively. This measure saved demand costs at the expense of increased natural gas cost and consumption, indicated by the high negative gas cost savings and the Generators energy end use. The optimal demand limit is higher than the initial guessed value because the generator does not always run at full load such that produced electricity, building demand, and time-of-use demand period is not coincident as shown in Figure 3.28. 
 
 ![image](images/measure_p1_energy_cost_savings.png)
 
-__Figure 3.28 Measure P1 Energy Cost Results__
+__Figure 3.26 Measure P1 Energy Cost Results__
 
 ![image](images/measure_p1_energy_use_savings.png)
 
-__Figure 3.29 Measure P1 Energy Use Results__
+__Figure 3.27 Measure P1 Energy Use Results__
 
 ![image](images/measure_p1_generator_produced_electricity.png)
 
-__Figure 3.30 Measure P1 Generator Produced Electricity__
+__Figure 3.28 Measure P1 Generator Produced Electricity__
 
 ## 3.8 Advanced Sensors and Controls (lighting) (C1)
 
-The pre-optimization process for this technology focused on two continuous variables; the `Minimum Limit Duration`, which is the minimum amount of time in minutes that the lighting power is reduced during demand limiting, and the `Maximum Limit Fraction`, which is the fractional limit of full load lighting power reduction where 1.0 indicates no reduction. The `Maximum Limit Fraction` was fixed at 0.85 based on California's 2016 energy standard, which requires that all buildings greater than 929 m2 (10,000 ft2) be capable of automatically reducing total lighting power by at least 15% in response to a signal from the grid. 
-
-For the optimization, the demand limit duration was simulated at fixed durations to determine the sensitivity of the results. Similar to E1, this measure showed very small changes in annual energy cost when the duration was varied over a reasonable range as shown in Figure 3.31.
+The pre-optimization process for this technology focused on two continuous variables; the `Minimum Limit Duration`, which is the minimum amount of time in minutes that the lighting power is reduced during demand limiting, and the `Maximum Limit Fraction`, which is the fractional limit of full load lighting power reduction where 1.0 indicates no reduction. The `Maximum Limit Fraction` was fixed at 0.85 based on California's 2016 energy standard, which requires that all buildings greater than 929 m2 (10,000 ft2) be capable of automatically reducing total lighting power by at least 15% in response to a signal from the grid. For the optimization, the demand limit duration was simulated at fixed durations to determine the sensitivity of the results. Similar to E1, this measure showed very small changes in annual energy cost when the duration was varied over a reasonable range as shown in Figure 3.31.
 
 ![image](images/measure_c1_optimization_results.png)
 
 __Figure 3.31 Measure C1 Optimization Results__
 
-The annual energy cost and use savings for the optimized duration of 40 minutes is shown in Figures 3.32 and 3.33 below, which showed a savings of 0.6% and 0.7% respectively. Additional savings can be achieved by reducing the limit fraction, however, dimming limits must consider comfort and safety  
+The annual energy cost and use savings for the optimized duration of 40 minutes is shown in Figures 3.32 and 3.33 below, which showed a savings of 0.6% and 0.7% respectively. Additional savings are possible by reducing the limit fraction, which is expected to show a strong linear relationship with energy cost like E1. However, limits to dimming must balance visual comfort and safety with energy cost.
 
 ![image](images/measure_c1_energy_cost_savings.png)
 
@@ -1054,6 +1055,18 @@ __Figure 3.36 Measure C2 Annual Energy Cost Savings__
 ![image](images/measure_c2_energy_use_savings.png)
 
 __Figure 3.37 Measure C2 Annual Energy Use Intensity Savings by End Use__
+
+## 3.10 Combined Measures
+
+The optimized technologies were applied to the baseline model to determine the combined effects on the annual energy cost and use with several excluded from the combined case. A1 and M1 were excluded because the cost and use savings were very close to 0%. A3 (window shades) was excluded because A2 (electrochromic glazing) showed higher savings on an individual basis and because the technologies use the same controls so there is potential for one counteracting the benefits of the other. This was confirmed by running the simulations with and without measure A3, where the one with the measure showed lower savings. Figures 3.38 and 3.39 show the energy cost and use savings for the combined case, which were 36% and 21.1% respectively. Electric demand cost savings from measure A2 and C2 contributed the most to total cost savings. Similarly, these measures contributed the most to energy use savings, which indicates that electrochromic glazing and smart thermostats or dynamic setpoints have the most potential for providing grid services of the technologies considered in this analysis.
+
+![image](images/measures_combined_energy_cost_savings.png)
+
+__Figure 3.38 Combined Measures Energy Cost Savings__
+
+![image](images/measures_combined_energy_use_savings.png)
+
+__Figure 3.38 Combined Measures Energy Use Savings__
 
 # 5. Conclusions
 
