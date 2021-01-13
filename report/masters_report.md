@@ -1,4 +1,4 @@
-# Optimization of Grid-interactive Efficient Building Technologies for a Medium Office Reference Model <!-- omit in toc --> 
+# Evaluation of Grid-interactive Efficient Building Technologies for a Medium Office Reference Model <!-- omit in toc --> 
 
 # Table of Contents <!-- omit in toc --> 
 
@@ -744,19 +744,17 @@ Demand | 6.75 USD/
 
 # 3. Results
 
-This section covers the optimization of each technology by discussing the process of determining the independent variables to minimize the annual energy cost and then presenting the results. For each measure, pre-optimizations were completed in an attempt to reduce the complexity of the problem by identifying a single independent variable to optimize. The annual energy cost and use savings for the individual measures are summarized in Figures 3.1 through 3.3. and Table 3.1 below. Additionally, Table 3.2 shows the time the cooling and heating setpoints are not met to verify that any savings were not the result of the mechanical system not meeting loads. Measures A1, M1, and M2 did not include full optimizations, which are discussed in the corresponding section.
+This section covers the optimization of each technology by discussing the process of determining the independent variables to minimize the annual energy cost and then presenting the results. For each measure, pre-optimizations were completed in an attempt to reduce the complexity of the problem by identifying a single independent variable to optimize. 
 
-![image](images/measures_energy_use_savings.png)
-
-__Figure 3.1 Annual Energy Use Results__
+The annual energy cost and use savings for the individual measures are summarized in Figures 3.1 and 3.2. and Table 3.1 below. Additionally, Table 3.2 shows the time the cooling and heating setpoints are not met to verify that any savings were not the result of the mechanical system not meeting loads. Measures A1, M1, and M2 did not include full optimizations, which are discussed in the corresponding section.
 
 ![image](images/measures_energy_cost_savings.png)
 
-__Figure 3.2. Annual Energy Cost Results__
+__Figure 3.1. Annual Energy Cost Savings__
 
-![image](images/measures_elec_demand_cost_savings.png)
+![image](images/measures_energy_use_savings.png)
 
-__Figure 3.3 Annual Electric Demand Cost Savings__
+__Figure 3.2 Annual Energy Use Savings__
 
 __Table 3.1. Annual Energy Cost and Use Savings__
 
@@ -789,6 +787,28 @@ P1 | 1005 | 390 | 326 | 299
 C1 | 1012 | 380 | 327 | 290
 C2 | 896 | 503 | 147 | 167
 Combined | 1151 | 228 | 215 | 90
+
+The annual peak electric demand compared to the baseline is summarized in the figure and table below. Figure 3.3 shows the peak electric demand savings from the perspective of the utility and Table 3.3 shows the peak electric demand savings (peak shed) from the perspective of the facility (building) including the time of peak (peak shift). 
+
+![image](images/measures_elec_demand_cost_savings.png)
+
+__Figure 3.3 Annual Electric Demand Cost Savings__
+
+__Table 3.3 Annual Peak Electric Demand Summary (Facility)__
+
+Model | Peak Electric Demand (kW) | Peak Electric Demand Savings (kW) | Peak Electric Demand Savings | Time of Peak
+:- | :- | :- | :- | :- | −
+Baseline | 451.7 | 0 | 0% | 22-DEC-06:02 
+A1 | 451.6 | 0.1 | 0% | 22-DEC-06:02 
+A2 | 367.9 | 83.8 | 18.6% | 22-DEC-06:02 
+A3 | 423.8 | 27.9 | 6.2% | 22-DEC-06:02 
+E1 | 452.1 | -0.4 | -0.1% | 22-DEC-06:02 
+M1 | 451.7 | 0 | 0% | 22-DEC-06:02 
+M2 | 451.7 | 0 | 0% | 22-DEC-06:02 
+P1 | 451.5 | 0.2 | 0% | 22-DEC-06:02 
+C1 | 451.8 | -0.1 | 0% | 22-DEC-06:02 
+C2 | 316 | 135.7 | 30% | 22-DEC-05:57 
+Combined | 273.2 | 178.5 | 39.5% | 22-DEC-06:02 
 
 ## 3.1 Thermal Storage (A1)
 
