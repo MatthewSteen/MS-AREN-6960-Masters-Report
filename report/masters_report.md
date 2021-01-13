@@ -797,7 +797,7 @@ __Figure 3.3 Annual Electric Demand Cost Savings__
 __Table 3.3 Annual Peak Electric Demand Summary (Facility)__
 
 Model | Peak Electric Demand (kW) | Peak Electric Demand Savings (kW) | Peak Electric Demand Savings | Time of Peak
-:- | :- | :- | :- | :- | −
+:- | -: | -: | -: | :-
 Baseline | 451.7 | 0 | 0% | 22-DEC-06:02 
 A1 | 451.6 | 0.1 | 0% | 22-DEC-06:02 
 A2 | 367.9 | 83.8 | 18.6% | 22-DEC-06:02 
