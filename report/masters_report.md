@@ -1,4 +1,4 @@
-# Optimization of Grid-interactive Efficient Building Technologies for a Medium Office Reference Model <!-- omit in toc --> 
+# Evaluation of Grid-interactive Efficient Building Technologies for a Medium Office Reference Model <!-- omit in toc --> 
 
 # Table of Contents <!-- omit in toc --> 
 
@@ -744,19 +744,17 @@ Demand | 6.75 USD/
 
 # 3. Results
 
-This section covers the optimization of each technology by discussing the process of determining the independent variables to minimize the annual energy cost and then presenting the results. For each measure, pre-optimizations were completed in an attempt to reduce the complexity of the problem by identifying a single independent variable to optimize. The annual energy cost and use savings for the individual measures are summarized in Figures 3.1 through 3.3. and Table 3.1 below. Additionally, Table 3.2 shows the time the cooling and heating setpoints are not met to verify that any savings were not the result of the mechanical system not meeting loads. Measures A1, M1, and M2 did not include full optimizations, which are discussed in the corresponding section.
+This section covers the optimization of each technology by discussing the process of determining the independent variables to minimize the annual energy cost and then presenting the results. For each measure, pre-optimizations were completed in an attempt to reduce the complexity of the problem by identifying a single independent variable to optimize. 
 
-![image](images/measures_energy_use_savings.png)
-
-__Figure 3.1 Annual Energy Use Results__
+The annual energy cost and use savings for the individual measures are summarized in Figures 3.1 and 3.2. and Table 3.1 below. Additionally, Table 3.2 shows the time the cooling and heating setpoints are not met to verify that any savings were not the result of the mechanical system not meeting loads. Measures A1, M1, and M2 did not include full optimizations, which are discussed in the corresponding section.
 
 ![image](images/measures_energy_cost_savings.png)
 
-__Figure 3.2. Annual Energy Cost Results__
+__Figure 3.1. Annual Energy Cost Savings__
 
-![image](images/measures_elec_demand_cost_savings.png)
+![image](images/measures_energy_use_savings.png)
 
-__Figure 3.3 Annual Electric Demand Cost Savings__
+__Figure 3.2 Annual Energy Use Savings__
 
 __Table 3.1. Annual Energy Cost and Use Savings__
 
@@ -789,6 +787,28 @@ P1 | 1005 | 390 | 326 | 299
 C1 | 1012 | 380 | 327 | 290
 C2 | 896 | 503 | 147 | 167
 Combined | 1151 | 228 | 215 | 90
+
+The annual peak electric demand compared to the baseline is summarized in the figure and table below. Figure 3.3 shows the peak electric demand savings from the perspective of the utility and Table 3.3 shows the peak electric demand savings (peak shed) from the perspective of the facility (building) including the time of peak (peak shift). 
+
+![image](images/measures_elec_demand_cost_savings.png)
+
+__Figure 3.3 Annual Electric Demand Cost Savings__
+
+__Table 3.3 Annual Peak Electric Demand Summary (Facility)__
+
+Model | Peak Electric Demand (kW) | Peak Electric Demand Savings (kW) | Peak Electric Demand Savings | Time of Peak
+:- | -: | -: | -: | :-
+Baseline | 451.7 | 0 | 0% | 22-DEC-06:02 
+A1 | 451.6 | 0.1 | 0% | 22-DEC-06:02 
+A2 | 367.9 | 83.8 | 18.6% | 22-DEC-06:02 
+A3 | 423.8 | 27.9 | 6.2% | 22-DEC-06:02 
+E1 | 452.1 | -0.4 | -0.1% | 22-DEC-06:02 
+M1 | 451.7 | 0 | 0% | 22-DEC-06:02 
+M2 | 451.7 | 0 | 0% | 22-DEC-06:02 
+P1 | 451.5 | 0.2 | 0% | 22-DEC-06:02 
+C1 | 451.8 | -0.1 | 0% | 22-DEC-06:02 
+C2 | 316 | 135.7 | 30% | 22-DEC-05:57 
+Combined | 273.2 | 178.5 | 39.5% | 22-DEC-06:02 
 
 ## 3.1 Thermal Storage (A1)
 
@@ -1072,4 +1092,6 @@ __Figure 3.38 Combined Measures Energy Use Savings__
 
 This report built upon the work of the author that identified ten mature market-ready technologies suitable for GEBs that could also be evaluated with BPS software by quantifying the potential of nine technologies to provide grid services such as energy efficiency, load shedding, and load shifting. The methodology leveraged OpenStudio software tools to develop computer scripts known as Measures for each technology that could be widely applied to OpenStudio models. The analysis used the Medium Office Commercial Reference Building Model as a baseline for evaluating the potential of each technology for providing grid services by optimizing each Measure in OpenStudio's Parametric Analysis Tool to minimize the annual energy cost. Energy cost was chosen as a reasonable metric for determining the grid-interactive benefits of a technology because it includes the effects of both energy efficiency and demand when the utility tariffs include separate charges for consumption and demand. This approach assumes that the utility structures their rate tariffs to reduce the burden on their infrastructure and avoids the need for computationally intensive post processing of hourly or sub-hourly simulation results to determine changes in energy demand. The analysis focused on intra-optimization of each technology by identifying a single independent variable to optimize (where possible), instead of a large scale inter-optimization across all technologies, which significantly reduced the optimization problem and computation requirements. 
 
-Future work should focus on developing a suite of generic Measures that can be applied to building models, developing a workflow for inter-optimization of multiple technologies, and enhancing BPS software such as EnergyPlus to include GEB technologies and reporting capabilities. In particular, improved reporting that easily and readily presents both the time and value of peak demand for both the building and the utility would allow users to evaluate the potential of technologies to provide grid services such as load shedding and load shifting in more detail.
+Of the nine technologies evaluated in this analysis, the results indicate that measure C2, Smart Thermostats, and A2, Dynamic Glazing, have the potential to each save more the 10% of annual energy costs and provide grid services for a similar building. If combined, the optimized technologies have the potential to save over 30% of annual energy costs and provide significant services to the grid in the form of energy efficiency (21% energy cost savings) and peak shed (42% electric demand cost savings) for a similar building. Targeting technologies based on a building's actual or estimated energy costs and energy end uses appears to be an effective way to implement GEB features. The baseline building's energy costs were dominated by electric demand charges (69%) and its energy use dominated by heating. Based on these characteristics, GEB technologies that target reducing heating demand could be targeted to provide the most value to the grid. Furthermore, using annual utility cost savings as a metric for GEB potential provides a simple readily available value to compare the benefits of different technologies that is common to both building owners and utilities. 
+
+Future work specific to this analysis includes further development of measure A1, thermal storage (PCM), and measure M1, desiccant dehumidification, to determine the cause for low savings. The savings estimates presented here should also be compared to those in the literature or measured data. Additionally, technology costs could be incorporated in a multi-objective optimization to determine the technology that provides the most benefit to the grid at the lowest cost to the building owner. More generally, future work should focus on developing a suite of generic Measures that can be applied to building models, developing a workflow for both inter-optimization and intra-optimization of multiple technologies, and enhancing BPS software to include GEB technologies and reporting capabilities. In particular, improved reporting that easily and readily presents both the timing and value of peak demand for both the building and the utility would allow users to evaluate the potential of technologies to provide grid services such as load shedding and load shifting in more detail.
