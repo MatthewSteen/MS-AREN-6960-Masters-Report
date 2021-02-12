@@ -6,8 +6,7 @@ A summary of the report will be presented at the American Society of Civil Engin
 
 ---
 
-# [Optimization of Grid-interactive Efficient Building Technologies for a Medium Office Reference Building](https://github.com/MatthewSteen/MS-AREN-6960-Masters-Report/blob/develop/report/masters_report.md)
+# [Evaluation of Grid-interactive Efficient Building Technologies for a Medium Office Reference Model](https://github.com/MatthewSteen/MS-AREN-6960-Masters-Report/blob/develop/report/masters_report.md)
 
-## Abstract
 
 
