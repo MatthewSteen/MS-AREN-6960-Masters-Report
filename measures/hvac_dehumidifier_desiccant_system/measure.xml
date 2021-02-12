@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<measure>
+  <schema_version>3.0</schema_version>
+  <name>hvac_dehumidifier_desiccant_system</name>
+  <uid>cba3a1f5-f3e0-419b-bc23-aa317512d444</uid>
+  <version_id>3347d68d-8392-43c5-b955-5e2e0fc823ff</version_id>
+  <version_modified>20201123T034448Z</version_modified>
+  <xml_checksum>FE37E22F</xml_checksum>
+  <class_name>HVACDehumidifierDesiccantSystem</class_name>
+  <display_name>Dehumidifier Desiccant System</display_name>
+  <description>TODO</description>
+  <modeler_description>This EnergyPlus measure adds a `Dehumidifier:Desiccant:System` on the selected air stream (outdoor air or supply air) of one or all air loops in the model. The measure works by replacing a surrogate object in the desired location in the air stream with the desiccant dehumidifier system. A setpoint manager must be present on the outlet node of the surrogate object to control humidity. If the system will be added to the supply air stream, the surrogate object must be directly downstream of a cooling coil, which will be the companion cooling coil to the desiccant system. The measure uses objects from the `DesiccantDehumidifierWithCompanionCoil.idf` EnergyPlus example file, which are included in the resources folder.</modeler_description>
+  <arguments>
+    <argument>
+      <name>location</name>
+      <display_name>Location</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <choices>
+        <choice>
+          <value>Outdoor Air Stream</value>
+          <display_name>Outdoor Air Stream</display_name>
+        </choice>
+        <choice>
+          <value>Supply Air Stream</value>
+          <display_name>Supply Air Stream</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>air_loop_choice</name>
+      <display_name>Choose Air Loop(s)</display_name>
+      <type>Choice</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+      <choices>
+        <choice>
+          <value>ALL</value>
+          <display_name>ALL</display_name>
+        </choice>
+      </choices>
+    </argument>
+    <argument>
+      <name>string</name>
+      <display_name>String Included in Surrogate Object(s) Name</display_name>
+      <description>word included in the surrogate object(s) name</description>
+      <type>String</type>
+      <required>true</required>
+      <model_dependent>false</model_dependent>
+    </argument>
+  </arguments>
+  <outputs />
+  <provenances />
+  <tags>
+    <tag>HVAC.Cooling</tag>
+  </tags>
+  <attributes>
+    <attribute>
+      <name>Measure Type</name>
+      <value>EnergyPlusMeasure</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>OpenStudio Application</value>
+      <datatype>string</datatype>
+    </attribute>
+    <attribute>
+      <name>Intended Software Tool</name>
+      <value>Parametric Analysis Tool</value>
+      <datatype>string</datatype>
+    </attribute>
+  </attributes>
+  <files>
+    <file>
+      <filename>LICENSE.md</filename>
+      <filetype>md</filetype>
+      <usage_type>license</usage_type>
+      <checksum>CD7F5672</checksum>
+    </file>
+    <file>
+      <filename>README.md.erb</filename>
+      <filetype>erb</filetype>
+      <usage_type>readmeerb</usage_type>
+      <checksum>703C9964</checksum>
+    </file>
+    <file>
+      <filename>hvac_dehumidifier_desiccant_system_test.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>test</usage_type>
+      <checksum>FA1DDEF9</checksum>
+    </file>
+    <file>
+      <filename>.gitkeep</filename>
+      <filetype>gitkeep</filetype>
+      <usage_type>doc</usage_type>
+      <checksum>00000000</checksum>
+    </file>
+    <file>
+      <filename>DesiccantDehumidifierWithCompanionCoil-SA.idf</filename>
+      <filetype>idf</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>1A0DBF34</checksum>
+    </file>
+    <file>
+      <filename>DesiccantDehumidifierWithCompanionCoil-OA.idf</filename>
+      <filetype>idf</filetype>
+      <usage_type>resource</usage_type>
+      <checksum>B1046E86</checksum>
+    </file>
+    <file>
+      <version>
+        <software_program>OpenStudio</software_program>
+        <identifier>2.9.0</identifier>
+        <min_compatible>2.9.0</min_compatible>
+      </version>
+      <filename>measure.rb</filename>
+      <filetype>rb</filetype>
+      <usage_type>script</usage_type>
+      <checksum>839E6389</checksum>
+    </file>
+    <file>
+      <filename>README.md</filename>
+      <filetype>md</filetype>
+      <usage_type>readme</usage_type>
+      <checksum>D0F17ACC</checksum>
+    </file>
+  </files>
+</measure>
